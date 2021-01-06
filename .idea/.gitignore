@@ -3,4 +3,4 @@
 /workspace.xml
 .idea/*
 out/
-sqlite-jdbc-3.34.0.jar
+/sqlite-jdbc-3.34.0.jar
