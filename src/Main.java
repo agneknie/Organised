@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    // Launches the program
     public static void main(String[] args) {
         launch(args);
     }
