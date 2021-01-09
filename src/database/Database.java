@@ -3,8 +3,6 @@ package database;
 import org.sqlite.SQLiteDataSource;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Database {
@@ -28,18 +26,16 @@ public class Database {
     }
 
     /**
-     * Closes the connection stored by Database.connection.<br>
-     * Sets Database.currentURL to an empty string if successful.
+     * Closes the connection stored by Database.connection.
      */
     public static void closeConnection() {
         if(connection == null) {
-            //no connection to close, throw error
+            // If no connection to close, throw error
             throw new RuntimeException("Current connection is null, no database connection to close.");
         }else {
             try {
                 connection.close();
                 System.out.println("Connection closed from " + currentURL);
-                currentURL = "";
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -48,18 +44,14 @@ public class Database {
 
     /**
      * Getter for Database.connection, only returns if a connection has already been previously opened.
+     *
      * @return Connection instance
      */
     public static Connection getConnection() {
-
+        // If no connection is present, throw exception
         if(connection != null) return connection;
         else {
             throw new RuntimeException("Current connection is null. Start with Database.openConnection()");
         }
-    }
-
-    public static void main(String[] args) {
-        openConnection();
-        closeConnection();
     }
 }
