@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class Database {
     private static String localDir = System.getProperty("user.dir");
-    static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/chinook.db";
+    static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisationDB.db";
     private static Connection connection = null;
 
     /**
@@ -60,27 +60,6 @@ public class Database {
 
     public static void main(String[] args) {
         openConnection();
-
-        //get the database connection
-        Connection connection = Database.getConnection();
-
-        String query = "SELECT * FROM invoices WHERE BillingCity = 'London';";
-        PreparedStatement pStatement = null;
-        int counter =0;
-        try {
-            // Prepares the statement
-            pStatement = connection.prepareStatement(query);
-            //Executes the statement, gets the result set
-            ResultSet rs = pStatement.executeQuery();
-            while(rs.next()) {
-                System.out.println(rs.getString("BillingCountry"));
-                counter++;
-            }
-            System.out.println(counter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         closeConnection();
     }
 }
