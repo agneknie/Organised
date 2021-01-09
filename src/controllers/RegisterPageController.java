@@ -1,17 +1,24 @@
 package controllers;
 
-import controllers.utilities.ControlStage;
+import controllers.utilities.ControlScene;
+import controllers.utilities.SetupScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.text.html.ImageView;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class RegisterPageController {
+
+public class RegisterPageController implements Initializable {
     // Labels
     @FXML
     private Label greetingsMessageLabel;
@@ -40,6 +47,12 @@ public class RegisterPageController {
     @FXML
     private PasswordField repeatPasswordField;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Sets the welcome message & greeting according to the time of day
+        SetupScene.setupWelcomePanel(greetingsLabel, greetingsMessageLabel);
+    }
+
     /**
      * Method which changes background colour of register button if it is no
      * longer hovered.
@@ -47,7 +60,7 @@ public class RegisterPageController {
      */
     @FXML
     void buttonExited() {
-        ControlStage.buttonExited(registerButton);
+        ControlScene.buttonExited(registerButton);
     }
 
     /**
@@ -56,7 +69,7 @@ public class RegisterPageController {
      */
     @FXML
     void buttonHovered() {
-        ControlStage.buttonHovered(registerButton);
+        ControlScene.buttonHovered(registerButton);
     }
 
     /**
@@ -67,7 +80,7 @@ public class RegisterPageController {
      */
     @FXML
     void closeClicked(MouseEvent event) {
-        ControlStage.closeWindow(event);
+        ControlScene.closeWindow(event);
     }
 
     /**
@@ -78,13 +91,20 @@ public class RegisterPageController {
      */
     @FXML
     private void minimizeClicked(MouseEvent event) {
-        ControlStage.minimizeWindow(event);
+        ControlScene.minimizeWindow(event);
     }
 
-    //TODO
+    /**
+     * Method which changes the screen back to login when goBack button is pressed.
+     */
     @FXML
-    void goBackClicked(MouseEvent event) {
+    void goBackClicked() {
+        try {
+            SetupScene.changeScene("LoginPageView.fxml", (Node) registerButton);
 
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene Register to Login by goBack button.");
+        }
     }
 
     //TODO
@@ -92,5 +112,4 @@ public class RegisterPageController {
     void registerClicked(ActionEvent event) {
 
     }
-
 }

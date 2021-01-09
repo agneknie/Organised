@@ -1,14 +1,15 @@
 package controllers;
 
-import controllers.utilities.ControlStage;
-import controllers.utilities.SetupStage;
-import javafx.event.ActionEvent;
+import controllers.utilities.ControlScene;
+import controllers.utilities.SetupScene;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +47,7 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Sets the welcome message & greeting according to the time of day
-        SetupStage.setupWelcomePanel(greetingsLabel, greetingsMessageLabel);
+        SetupScene.setupWelcomePanel(greetingsLabel, greetingsMessageLabel);
     }
 
     /**
@@ -57,7 +58,7 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void closeClicked(MouseEvent event) {
-        ControlStage.closeWindow(event);
+        ControlScene.closeWindow(event);
     }
 
     /**
@@ -68,7 +69,7 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void minimizeClicked(MouseEvent event) {
-        ControlStage.minimizeWindow(event);
+        ControlScene.minimizeWindow(event);
     }
 
     /**
@@ -77,7 +78,7 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void LoginButtonHovered() {
-        ControlStage.buttonHovered(loginButton);
+        ControlScene.buttonHovered(loginButton);
     }
 
     /**
@@ -86,7 +87,7 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void RegisterButtonHovered() {
-        ControlStage.buttonHovered(registerButton);
+        ControlScene.buttonHovered(registerButton);
     }
 
     /**
@@ -96,7 +97,7 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void LoginButtonExited(){
-        ControlStage.buttonExited(loginButton);
+        ControlScene.buttonExited(loginButton);
     }
 
     /**
@@ -106,19 +107,26 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void RegisterButtonExited(){
-        ControlStage.buttonExited(registerButton);
+        ControlScene.buttonExited(registerButton);
     }
 
     //TODO
     @FXML
-    private void loginClicked(ActionEvent event) {
+    private void loginClicked() {
 
     }
 
-    //TODO
+    /**
+     * Method which changes the scene to register screen when registerButton is pressed.
+     */
     @FXML
-    private void registerClicked(ActionEvent event) {
+    private void registerClicked() {
+        try {
+           SetupScene.changeScene("RegisterPageView.fxml", (Node) registerButton);
 
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene Login to Register by registerButton.");
+        }
     }
 
     /**
@@ -131,8 +139,7 @@ public class LoginPageController implements Initializable {
         // Enter pressed
         if(event.getCode().toString().equals("ENTER") &&
                 !usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
-            ActionEvent empty = new ActionEvent();
-            loginClicked(empty);
+            loginClicked();
         }
     }
 }

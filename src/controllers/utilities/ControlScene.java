@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class ControlStage {
+public class ControlScene {
     /**
      * Method which closes the window when close button is clicked.
      *

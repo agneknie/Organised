@@ -1,15 +1,54 @@
 package controllers.utilities;
 
+import controllers.LoginPageController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Path;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 
 /**
- * Class which has helper methods used to setup stages. Methods here
+ * Class which has helper methods used to setup scenes. Methods here
  * are used in more than one controller/scene.
  */
-public class SetupStage {
+public class SetupScene {
 
+    /**
+     * Method which takes a path to a new scene fxml and a node from a current scene
+     * and updates the stage with the specified scene.
+     *
+     * @param viewName name of the fxml of the new scene
+     * @param node node from a scene, to get the stage
+     * @throws IOException
+     */
+    public static void changeScene(String viewName, Node node) throws IOException {
+        // Constructs scene's fxml url
+        String localDir = System.getProperty("user.dir");
+        String prefix = "\\src\\views\\";
+        String path = localDir+prefix+viewName;
+
+        // Loads new scene
+        Parent root= FXMLLoader.load(new File(path).toURI().toURL());
+
+        // Creates new scene and sets it's size
+        Scene newScene = new Scene(root, 1400, 900);
+
+        // Gets the current scene
+        Window window = node.getScene().getWindow();
+        Stage currentStage = (Stage) node.getScene().getWindow();
+
+        // Sets the scene
+        currentStage.setScene(newScene);
+    }
     /**
      * Sets up the welcome messages in login and register scenes.
      * Uses user's local time to display the according messages.
