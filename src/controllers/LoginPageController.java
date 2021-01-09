@@ -36,7 +36,6 @@ public class LoginPageController implements Initializable {
     private PasswordField passwordField;
 
 
-
     /**
      * Implemented method for initialization tasks.
      * Changes the welcome message and greeting according to the time of day.
@@ -64,6 +63,7 @@ public class LoginPageController implements Initializable {
     /**
      * Method which minimises the window when minimize button is clicked.
      * Refers to class ControlStage method minimizeWindow.
+     *
      * @param event used for getting the scene
      */
     @FXML
@@ -73,6 +73,7 @@ public class LoginPageController implements Initializable {
 
     /**
      * Method which changes background colour of login button if it is hovered.
+     * Refers to class ControlStage method buttonHovered.
      */
     @FXML
     private void LoginButtonHovered() {
@@ -81,6 +82,7 @@ public class LoginPageController implements Initializable {
 
     /**
      * Method which changes background colour of register button if it is hovered.
+     * Refers to class ControlStage method buttonHovered.
      */
     @FXML
     private void RegisterButtonHovered() {
@@ -90,32 +92,34 @@ public class LoginPageController implements Initializable {
     /**
      * Method which changes background colour of login button if it is no
      * longer hovered.
+     * Refers to class ControlStage method buttonExited.
      */
     @FXML
-    private void LoginButtonExited(MouseEvent event){
+    private void LoginButtonExited(){
         ControlStage.buttonExited(loginButton);
     }
 
     /**
      * Method which changes background colour of register button if it is no
      * longer hovered.
+     * Refers to class ControlStage method buttonExited.
      */
     @FXML
-    private void RegisterButtonExited(MouseEvent event){
+    private void RegisterButtonExited(){
         ControlStage.buttonExited(registerButton);
     }
 
+    //TODO
     @FXML
     private void loginClicked(ActionEvent event) {
 
     }
 
+    //TODO
     @FXML
     private void registerClicked(ActionEvent event) {
 
     }
-
-
 
     /**
      * Listener for keyboard events.
