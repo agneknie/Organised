@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
    <children>
-      <Pane prefHeight="900.0" prefWidth="701.0" style="-fx-background-color: #E6BB9A;" />
+      <Pane prefHeight="900.0" prefWidth="701.0" style="-fx-background-color: #E6BB9A;">
+         <children>
+            <Label layoutX="127.0" layoutY="263.0" text="Organised.">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="greetingsLabel" layoutX="127.0" layoutY="456.0" text="Hello!">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="greetingsMessageLabel" alignment="TOP_LEFT" layoutX="127.0" layoutY="504.0" prefHeight="133.0" prefWidth="507.0" style="-fx-wrap-text: True;" text="You are literally out of the comprehension of time.">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane layoutX="700.0" prefHeight="900.0" prefWidth="701.0" style="-fx-background-color: #2B2B2B;">
          <children>
             <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#closeClicked" pickOnBounds="true" preserveRatio="true">
