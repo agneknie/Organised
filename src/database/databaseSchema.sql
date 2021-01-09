@@ -6,6 +6,16 @@ CREATE TABLE User(
     keepLoggedIn BOOLEAN NOT NULL
 );
 
+CREATE TABLE Year(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    yearNumber INTEGER NOT NULL,
+    credits INTEGER NOT NULL,
+    percentWeight INTEGER NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
 CREATE TABLE Module(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     userId INTEGER NOT NULL,
@@ -17,6 +27,8 @@ CREATE TABLE Module(
     colour TEXT NOT NULL,
     FOREIGN KEY (userId)
         REFERENCES User (id)
+    FOREIGN KEY (studyYear)
+        REFERENCES Year (yearNumber)
 );
 
 CREATE TABLE Assignment(
