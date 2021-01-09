@@ -6,8 +6,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-
 public class Main extends Application {
 
     // Launches the program
@@ -15,6 +13,15 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Sets up the stage:
+     * - removes the default windows toolbar;
+     * - adds the application name and icon;
+     * - locks the screen to desired width & height.
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Loads login page
@@ -31,7 +38,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         // Adds the application logo
-        primaryStage.getIcons().add(new Image("/views/images/icon.png"));
+        primaryStage.getIcons().add(new Image("/images/icon.png"));
 
         // Shows the window
         primaryStage.show();
