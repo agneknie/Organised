@@ -110,7 +110,7 @@ public class LoginPageController implements Initializable {
         ControlScene.buttonExited(registerButton);
     }
 
-    //TODO
+    //TODO Login button to login a user into the system
     @FXML
     private void loginClicked() {
 

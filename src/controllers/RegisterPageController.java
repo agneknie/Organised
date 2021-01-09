@@ -107,7 +107,7 @@ public class RegisterPageController implements Initializable {
         }
     }
 
-    //TODO
+    //TODO Register button to register an user to the system
     @FXML
     void registerClicked(ActionEvent event) {
 
