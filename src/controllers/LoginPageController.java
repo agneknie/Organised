@@ -6,7 +6,6 @@ import core.Session;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -147,8 +146,17 @@ public class LoginPageController implements Initializable {
             if(!currentUser.passwordsMatch(password))
                 errorMessage.setText("Wrong password.");
             else {
+                // Saves user in the session
                 Session.beginSession(currentUser);
+                // Updates keepLoggedIn variable
                 currentUser.setKeepLoggedIn(keepLoggedInCheckbox.isSelected());
+                // Switches to profile view
+                try {
+                    SetupScene.changeScene("ProfileView.fxml", registerButton);
+
+                } catch (IOException e) {
+                    System.out.println("Exception whilst changing from scene Login to Profile by loginButton.");
+                }
             }
         }
     }
@@ -162,7 +170,7 @@ public class LoginPageController implements Initializable {
            SetupScene.changeScene("RegisterPageView.fxml", registerButton);
 
         } catch (IOException e) {
-            System.out.println("Exception whilst changing scene Login to Register by registerButton.");
+            System.out.println("Exception whilst changing scene from Login to Register by registerButton.");
         }
     }
 

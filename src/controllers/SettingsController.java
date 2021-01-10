@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
+import core.Session;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,8 @@ public class SettingsController {
     private Pane tasksPane;
     @FXML
     private Pane aboutPane;
+    @FXML
+    private Pane signOutPane;
 
     /**
      * Method which closes the window when close button is clicked.
@@ -217,6 +220,36 @@ public class SettingsController {
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from Settings to About by Menu.");
+        }
+    }
+
+    /**
+     * Changes sign out pane background colour if hovered
+     */
+    @FXML
+    private void signOutHovered(){
+        ControlScene.menuPaneHovered(signOutPane);
+    }
+
+    /**
+     * Changes sign out pane background colour back to default
+     */
+    @FXML
+    private void signOutExited(){
+        ControlScene.menuPaneExited(signOutPane);
+    }
+
+    /**
+     * Logs out the user and forwards to login view/scene
+     */
+    @FXML
+    private void signOutClicked(){
+        try {
+            SetupScene.changeScene("LoginPageView.fxml", signOutPane);
+            Session.cleanSession();
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Settings to Login by Menu.");
         }
     }
 }

@@ -31,7 +31,7 @@ public class Main extends Application {
         Database.openConnection();
 
         // Loads login page
-        Parent root = FXMLLoader.load(getClass().getResource("/views/ProfileView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/LoginPageView.fxml"));
 
         // Sets window (stage) to default size
         primaryStage.setScene(new Scene(root, 1400, 900));

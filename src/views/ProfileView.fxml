@@ -100,6 +100,20 @@
                   </ImageView>
                </children>
             </Pane>
+            <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered" onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
+               <children>
+                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sign_out_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
             <Pane fx:id="aboutPane" layoutY="832.0" onMouseClicked="#aboutClicked" onMouseEntered="#aboutHovered" onMouseExited="#aboutExited" prefHeight="68.0" prefWidth="211.0">
                <children>
                   <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About">
@@ -127,6 +141,11 @@
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
+            <Label fx:id="userForenameLabel" layoutX="413.0" layoutY="394.0" text="User forename!" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="48.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>

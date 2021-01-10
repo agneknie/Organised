@@ -6,7 +6,6 @@ import core.Session;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -95,7 +94,7 @@ public class RegisterPageController implements Initializable {
     @FXML
     void goBackClicked() {
         try {
-            SetupScene.changeScene("LoginPageView.fxml", (Node) registerButton);
+            SetupScene.changeScene("LoginPageView.fxml", registerButton);
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene Register to Login by goBack button.");

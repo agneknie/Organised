@@ -2,13 +2,18 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
+import core.Session;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProfileController {
+public class ProfileController implements Initializable {
 
     // Panes
     @FXML
@@ -23,6 +28,23 @@ public class ProfileController {
     private Pane settingsPane;
     @FXML
     private Pane aboutPane;
+    @FXML
+    private Pane signOutPane;
+
+    // Labels
+    @FXML
+    private Label userForenameLabel;
+
+    /**
+     * Implemented method for initialization tasks.
+     *
+     * @param location parameter not used.
+     * @param resources parameter not used.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        userForenameLabel.setText(Session.getSession().getForename());
+    }
 
     /**
      * Method which closes the window when close button is clicked.
@@ -217,6 +239,36 @@ public class ProfileController {
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from Profile to About by Menu.");
+        }
+    }
+
+    /**
+     * Changes sign out pane background colour if hovered
+     */
+    @FXML
+    private void signOutHovered(){
+        ControlScene.menuPaneHovered(signOutPane);
+    }
+
+    /**
+     * Changes sign out pane background colour back to default
+     */
+    @FXML
+    private void signOutExited(){
+        ControlScene.menuPaneExited(signOutPane);
+    }
+
+    /**
+     * Logs out the user and forwards to login view/scene
+     */
+    @FXML
+    private void signOutClicked(){
+        try {
+            SetupScene.changeScene("LoginPageView.fxml", signOutPane);
+            Session.cleanSession();
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Profile to Login by Menu.");
         }
     }
 }
