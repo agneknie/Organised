@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class ProfileController {
+public class AboutController {
 
     // Panes
+    @FXML
+    private Pane profilePane;
     @FXML
     private Pane marksPane;
     @FXML
@@ -18,8 +20,6 @@ public class ProfileController {
     private Pane tasksPane;
     @FXML
     private Pane settingsPane;
-    @FXML
-    private Pane aboutPane;
 
     /**
      * Method which closes the window when close button is clicked.
@@ -41,6 +41,30 @@ public class ProfileController {
     @FXML
     private void minimizeClicked(MouseEvent event) {
         ControlScene.minimizeWindow(event);
+    }
+
+    /**
+     * Changes marks pane background colour if hovered
+     */
+    @FXML
+    private void profileHovered(){
+        ControlScene.menuPaneHovered(profilePane);
+    }
+
+    /**
+     * Changes marks pane background colour back to default
+     */
+    @FXML
+    private void profileExited(){
+        ControlScene.menuPaneExited(profilePane);
+    }
+
+    /**
+     * Forwards user to marks view/scene
+     */
+    @FXML
+    private void profileClicked(){
+        //TODO Link to profile
     }
 
     /**
@@ -161,29 +185,5 @@ public class ProfileController {
     @FXML
     private void settingsClicked(){
         //TODO Link to settings
-    }
-
-    /**
-     * Changes about pane background colour if hovered
-     */
-    @FXML
-    private void aboutHovered(){
-        ControlScene.menuPaneHovered(aboutPane);
-    }
-
-    /**
-     * Changes about pane background colour back to default
-     */
-    @FXML
-    private void aboutExited(){
-        ControlScene.menuPaneExited(aboutPane);
-    }
-
-    /**
-     * Forwards user to about view/scene
-     */
-    @FXML
-    private void aboutClicked(){
-        //TODO Link to about
     }
 }

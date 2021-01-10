@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class ProfileController {
+public class MarksController {
 
     // Panes
     @FXML
-    private Pane marksPane;
+    private Pane profilePane;
     @FXML
     private Pane timePane;
     @FXML
@@ -44,27 +44,27 @@ public class ProfileController {
     }
 
     /**
-     * Changes marks pane background colour if hovered
+     * Changes profile pane background colour if hovered
      */
     @FXML
-    private void marksHovered(){
-        ControlScene.menuPaneHovered(marksPane);
+    private void profileHovered(){
+        ControlScene.menuPaneHovered(profilePane);
     }
 
     /**
-     * Changes marks pane background colour back to default
+     * Changes profile pane background colour back to default
      */
     @FXML
-    private void marksExited(){
-        ControlScene.menuPaneExited(marksPane);
+    private void profileExited(){
+        ControlScene.menuPaneExited(profilePane);
     }
 
     /**
-     * Forwards user to marks view/scene
+     * Forwards user to profile view/scene
      */
     @FXML
-    private void marksClicked(){
-        //TODO Link to marks
+    private void profileClicked(){
+        //TODO Link to profile
     }
 
     /**
