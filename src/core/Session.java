@@ -23,6 +23,10 @@ public class Session {
         loggedUser = currentUser;
     }
 
+    /**
+     * Returns the user of the current session
+     * @return user which is logged in the current session
+     */
     public static User getSession(){
         return loggedUser;
     }
