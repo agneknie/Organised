@@ -1,7 +1,13 @@
 package core;
 
+import database.Database;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Class representing a user in the system.
@@ -29,6 +35,22 @@ public class User {
     }
 
     /**
+     * Getter for user's password hash
+     * @return users's passwordHash
+     */
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    /**
+     * Getter for user's keep logged in preference
+     * @return users's keepLoggedIn variable
+     */
+    public boolean getKeepLoggedIn(){
+        return keepLoggedIn;
+    }
+
+    /**
      * Setter assigning the value of variable keepLoggedIn.
      * @param keepLoggedIn status of the user's choice of wanting to be logged in
      */
@@ -39,21 +61,111 @@ public class User {
     /**
      * Constructor which takes a username and constructs an existing user
      * from the database.
+     *
      * @param username username of the user to reconstruct
+     * @throws SQLException if such username does not exist in the database
      */
-    public User(String username){
-        // TODO User constructor: takes username -> constructs from db
+    public User(String username) throws SQLException {
+        // Constructs SQL query
+        String query = "SELECT * FROM User WHERE username = ?";
+
+        boolean found = false;
+        // Opens the database, gets the user with the specified id
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+        try {
+            // Prepares the statement
+            pStatement = Database.getConnection().prepareStatement(query);
+            pStatement.setString(1, username);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // Gets the user data in the database
+            while(rs.next()) {
+                this.username = username;   // Supplied already
+                forename = rs.getString("forename");
+                passwordHash = rs.getString("passwordHash");
+                keepLoggedIn = rs.getBoolean("keepLoggedIn");
+                found = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null){
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // If such user doesn't exist, throws an exception
+        if(!found) throw new SQLException("Could not find username " + username + " in the database");
     }
 
     /**
-     * Constructor which constructs a new user with given parameters and
-     * saves them in the database.
+     * Constructor which constructs a new user with given parameters.
+     *
      * @param forename forename of the user
      * @param username username of the user
      * @param password password of the user, which is later turned into password hash
      */
     public User(String forename, String username, String password){
-        // TODO User constructor: takes parameters -> constructs user, adds to db
+        // Constructs the user
+        this.forename = forename;
+        this.username = username;
+        passwordHash = User.generatePasswordHash(password);
+        keepLoggedIn = false;
+    }
+
+    /**
+     * Adds user to the database.
+     *
+     * @param user User to add
+     * @return boolean whether operation was successful
+     */
+    public static boolean addUser(User user){
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        int rowsAffected = 0;
+
+        // Sets up the query
+        String query = "INSERT INTO User VALUES(null,?,?,?,?);";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setString(1, user.getUsername());
+            pStatement.setString(2, user.getForename());
+            pStatement.setString(3, user.getPasswordHash());
+            pStatement.setBoolean(4, user.getKeepLoggedIn());
+
+            // Result of query is true if SQL command worked
+            rowsAffected = pStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null){
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns whether insertion was successful
+        return rowsAffected == 1;
     }
 
     /**
@@ -75,7 +187,7 @@ public class User {
      * @param password which has to be hashed
      * @return string which is a generated password hash
      * */
-    private String generatePasswordHash(String password) {
+    private static String generatePasswordHash(String password) {
         String passwordHash = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
