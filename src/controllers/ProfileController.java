@@ -3,6 +3,7 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
 import core.Session;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -265,7 +266,7 @@ public class ProfileController implements Initializable {
     private void signOutClicked(){
         try {
             SetupScene.changeScene("LoginPageView.fxml", signOutPane);
-            Session.cleanSession();
+            User.signOutUser();
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from Profile to Login by Menu.");

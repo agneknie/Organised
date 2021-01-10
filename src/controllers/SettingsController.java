@@ -3,6 +3,7 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
 import core.Session;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -246,7 +247,7 @@ public class SettingsController {
     private void signOutClicked(){
         try {
             SetupScene.changeScene("LoginPageView.fxml", signOutPane);
-            Session.cleanSession();
+            User.signOutUser();
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from Settings to Login by Menu.");

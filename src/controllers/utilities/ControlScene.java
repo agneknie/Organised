@@ -1,5 +1,6 @@
 package controllers.utilities;
 
+import core.Session;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -65,7 +66,7 @@ public class ControlScene {
      * Reverts to regular styling of the menu tab(pane) if it's
      * no longer hovered.
      *
-     * @param pane
+     * @param pane pane to change the style of
      */
     public static void menuPaneExited(Pane pane){
         pane.setStyle("-fx-background-color: none");

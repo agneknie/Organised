@@ -1,3 +1,5 @@
+import core.Session;
+import core.User;
 import database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +32,17 @@ public class Main extends Application {
         // Opens the database connection
         Database.openConnection();
 
-        // Loads login page
-        Parent root = FXMLLoader.load(getClass().getResource("/views/LoginPageView.fxml"));
+        // Loads the required scene
+        Parent root;
+        User loggedInUser = User.findLoggedInUser();
+        // If logged in user exists, loads their data into session and forwards to profile view
+        if(loggedInUser!=null) {
+            Session.beginSession(loggedInUser);
+            root = FXMLLoader.load(getClass().getResource("/views/ProfileView.fxml"));
+        }
+        // Otherwise, forwards to login page
+        else
+            root = FXMLLoader.load(getClass().getResource("/views/LoginPageView.fxml"));
 
         // Sets window (stage) to default size
         primaryStage.setScene(new Scene(root, 1400, 900));

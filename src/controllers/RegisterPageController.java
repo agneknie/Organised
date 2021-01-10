@@ -140,15 +140,17 @@ public class RegisterPageController implements Initializable {
         if(canRegister){
             // Adds user to the database
             User newUser = new User(forename, username, password);
-            User.addUser(newUser);
-
-            // Forwards the user to the login page
-            try {
-                Session.setUserCreatedInSession(true);
-                SetupScene.changeScene("LoginPageView.fxml", registerButton);
-            } catch (IOException e) {
-                System.out.println("Exception whilst changing scene Register to Login by registerButton.");
+            boolean successful = User.addUser(newUser);
+            if(successful){
+                // Forwards the user to the login page
+                try {
+                    Session.setUserCreatedInSession(true);
+                    SetupScene.changeScene("LoginPageView.fxml", registerButton);
+                } catch (IOException e) {
+                    System.out.println("Exception whilst changing scene Register to Login by registerButton.");
+                }
             }
+            else errorMessage.setText("User creation was unsuccessful. Please try again.");
         }
     }
 

@@ -20,10 +20,11 @@ public class User {
     private String passwordHash;
     private boolean keepLoggedIn;
 
-    private static int PASSWORD_MIN_LENGTH = 8;
+    private static final int PASSWORD_MIN_LENGTH = 8;
 
     /**
      * Getter for user's forename
+     *
      * @return users's forename
      */
     public String getForename() {
@@ -32,6 +33,7 @@ public class User {
 
     /**
      * Getter for user's username
+     *
      * @return users's username
      */
     public String getUsername() {
@@ -40,6 +42,7 @@ public class User {
 
     /**
      * Getter for user's password hash
+     *
      * @return users's passwordHash
      */
     public String getPasswordHash() {
@@ -48,17 +51,19 @@ public class User {
 
     /**
      * Getter for user's keep logged in preference
+     *
      * @return users's keepLoggedIn variable
      */
-    public boolean getKeepLoggedIn(){
+    public boolean getKeepLoggedIn() {
         return keepLoggedIn;
     }
 
     /**
      * Setter assigning the value of variable keepLoggedIn. Updates the database as well.
+     *
      * @param keepLoggedIn status of the user's choice of wanting to be logged in
      */
-    public void setKeepLoggedIn(boolean keepLoggedIn){
+    public void setKeepLoggedIn(boolean keepLoggedIn) {
         // Sets user variable
         this.keepLoggedIn = keepLoggedIn;
 
@@ -76,7 +81,7 @@ public class User {
             e.printStackTrace();
         } finally {
             // Close prepared statement
-            if(pStatement!=null){
+            if (pStatement != null) {
                 try {
                     pStatement.close();
                 } catch (SQLException e) {
@@ -110,7 +115,7 @@ public class User {
             rs = pStatement.executeQuery();
 
             // Gets the user data in the database
-            while(rs.next()) {
+            while (rs.next()) {
                 this.username = username;   // Supplied already
                 forename = rs.getString("forename");
                 passwordHash = rs.getString("passwordHash");
@@ -121,14 +126,14 @@ public class User {
             e.printStackTrace();
         } finally {
             // Closes the prepared statement and result set
-            if (pStatement != null){
+            if (pStatement != null) {
                 try {
                     pStatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            if (rs != null){
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -137,17 +142,18 @@ public class User {
             }
         }
         // If such user doesn't exist, throws an exception
-        if(!found) throw new SQLException("Could not find username " + username + " in the database");
+        if (!found) throw new SQLException("Could not find username " + username + " in the database");
     }
 
     /**
      * Constructor which constructs a new user with given parameters.
+     * To be used whilst registering a user
      *
      * @param forename forename of the user
      * @param username username of the user
      * @param password password of the user, which is later turned into password hash
      */
-    public User(String forename, String username, String password){
+    public User(String forename, String username, String password) {
         // Constructs the user
         this.forename = forename;
         this.username = username;
@@ -156,12 +162,28 @@ public class User {
     }
 
     /**
+     * Constructor which constructs a new user with given parameters.
+     * To be used when logged in user is reconstructed on startup.
+     *
+     * @param forename forename of the user
+     * @param username username of the user
+     * @param passwordHash password hash of the user
+     * @param keepLoggedIn status of variable keepLoggedIn
+     */
+    public User(String forename, String username, String passwordHash, Boolean keepLoggedIn){
+        this.forename = forename;
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.keepLoggedIn = keepLoggedIn;
+    }
+
+    /**
      * Checks if given username already exists in the database.
      *
      * @param username username to check for existence in the database.
      * @return boolean whether username exists or not
      */
-    public static boolean usernameAvailable(String username){
+    public static boolean usernameAvailable(String username) {
         boolean usernameAvailable = false;
 
         // Constructs SQL query
@@ -185,14 +207,14 @@ public class User {
             e.printStackTrace();
         } finally {
             // Closes the prepared statement and result set
-            if (pStatement != null){
+            if (pStatement != null) {
                 try {
                     pStatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            if (rs != null){
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -209,7 +231,7 @@ public class User {
      * @param user User to add
      * @return boolean whether operation was successful
      */
-    public static boolean addUser(User user){
+    public static boolean addUser(User user) {
         // Gets Database connection
         Connection connection = Database.getConnection();
         PreparedStatement pStatement = null;
@@ -230,9 +252,9 @@ public class User {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             // Closes the prepared statement and result set
-            if (pStatement != null){
+            if (pStatement != null) {
                 try {
                     pStatement.close();
                 } catch (SQLException e) {
@@ -249,7 +271,7 @@ public class User {
      *
      * @param inputPassword password inserted by the user (whilst logging in)
      * @return true if passwords match, false otherwise
-     * */
+     */
     public boolean passwordsMatch(String inputPassword) {
         String inputPasswordHash = generatePasswordHash(inputPassword);
 
@@ -261,7 +283,7 @@ public class User {
      *
      * @param password which has to be hashed
      * @return string which is a generated password hash
-     * */
+     */
     private static String generatePasswordHash(String password) {
         String passwordHash = null;
         try {
@@ -272,7 +294,7 @@ public class User {
                 sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
             }
             passwordHash = sb.toString();
-        } catch(NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return passwordHash;
@@ -287,7 +309,7 @@ public class User {
      * @param password password to check for strength
      * @return boolean true if password is strong enough
      */
-    public static boolean isPasswordStrong(String password){
+    public static boolean isPasswordStrong(String password) {
         // Creates patterns
         Pattern upperCase = Pattern.compile("[A-Z]");
         Pattern lowerCase = Pattern.compile("[a-z]");
@@ -301,5 +323,66 @@ public class User {
         // Checks whether password is strong
         return hasUpperCase.find() && hasLowerCase.find() && hasNumber.find() &&
                 password.length() >= PASSWORD_MIN_LENGTH;
+    }
+
+    /**
+     * Method which signs out a user. Removes them from the session
+     * and sets the keepLoggedIn variable to false.
+     */
+    public static void signOutUser() {
+        Session.getSession().setKeepLoggedIn(false);
+        Session.cleanSession();
+    }
+
+    /**
+     * Method which goes through the database and looks for a user, which is
+     * logged in (variable keepLoggedIn is true).
+     * If such user exists, returns this user, if not, returns null.
+     *
+     * @return User which is logged in or null
+     */
+    public static User findLoggedInUser() {
+        User loggedInUser = null;
+        // Constructs SQL query
+        String query = "SELECT * FROM User WHERE keepLoggedIn = True";
+
+        // Opens the database, gets the user with the specified id
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+        try {
+            // Prepares the statement
+            pStatement = Database.getConnection().prepareStatement(query);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, such user exists
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String forename = rs.getString("forename");
+                String passwordHash = rs.getString("passwordHash");
+                // keepLoggedIn is true, because this wouldn't happen if it wouldn't be
+                loggedInUser = new User(forename, username, passwordHash, true);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return loggedInUser;
     }
 }
