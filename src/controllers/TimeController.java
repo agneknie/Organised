@@ -1,9 +1,12 @@
 package controllers;
 
 import controllers.utilities.ControlScene;
+import controllers.utilities.SetupScene;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class TimeController {
 
@@ -64,7 +67,12 @@ public class TimeController {
      */
     @FXML
     private void profileClicked(){
-        //TODO Link to profile
+        try {
+            SetupScene.changeScene("ProfileView.fxml", profilePane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to Profile by Menu.");
+        }
     }
 
     /**
@@ -88,7 +96,12 @@ public class TimeController {
      */
     @FXML
     private void marksClicked(){
-        //TODO Link to marks
+        try {
+            SetupScene.changeScene("MarksView.fxml", marksPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to Marks by Menu.");
+        }
     }
 
     /**
@@ -112,7 +125,12 @@ public class TimeController {
      */
     @FXML
     private void scheduleClicked(){
-        //TODO Link to schedule
+        try {
+            SetupScene.changeScene("ScheduleView.fxml", schedulePane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to Schedule by Menu.");
+        }
     }
 
     /**
@@ -136,7 +154,12 @@ public class TimeController {
      */
     @FXML
     private void tasksClicked(){
-        //TODO Link to tasks
+        try {
+            SetupScene.changeScene("TasksView.fxml", tasksPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to Tasks by Menu.");
+        }
     }
 
     /**
@@ -160,7 +183,12 @@ public class TimeController {
      */
     @FXML
     private void settingsClicked(){
-        //TODO Link to settings
+        try {
+            SetupScene.changeScene("SettingsView.fxml", settingsPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to Settings by Menu.");
+        }
     }
 
     /**
@@ -184,6 +212,11 @@ public class TimeController {
      */
     @FXML
     private void aboutClicked(){
-        //TODO Link to about
+        try {
+            SetupScene.changeScene("AboutView.fxml", aboutPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Time to About by Menu.");
+        }
     }
 }

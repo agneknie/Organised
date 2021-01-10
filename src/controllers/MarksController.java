@@ -1,9 +1,12 @@
 package controllers;
 
 import controllers.utilities.ControlScene;
+import controllers.utilities.SetupScene;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class MarksController {
 
@@ -64,7 +67,12 @@ public class MarksController {
      */
     @FXML
     private void profileClicked(){
-        //TODO Link to profile
+        try {
+            SetupScene.changeScene("ProfileView.fxml", profilePane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to Profile by Menu.");
+        }
     }
 
     /**
@@ -88,7 +96,12 @@ public class MarksController {
      */
     @FXML
     private void timeClicked(){
-        //TODO Link to time
+        try {
+            SetupScene.changeScene("TimeView.fxml", timePane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to Time by Menu.");
+        }
     }
 
     /**
@@ -112,7 +125,12 @@ public class MarksController {
      */
     @FXML
     private void scheduleClicked(){
-        //TODO Link to schedule
+        try {
+            SetupScene.changeScene("ScheduleView.fxml", schedulePane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to Schedule by Menu.");
+        }
     }
 
     /**
@@ -136,7 +154,12 @@ public class MarksController {
      */
     @FXML
     private void tasksClicked(){
-        //TODO Link to tasks
+        try {
+            SetupScene.changeScene("TasksView.fxml", tasksPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to Tasks by Menu.");
+        }
     }
 
     /**
@@ -160,7 +183,12 @@ public class MarksController {
      */
     @FXML
     private void settingsClicked(){
-        //TODO Link to settings
+        try {
+            SetupScene.changeScene("SettingsView.fxml", settingsPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to Settings by Menu.");
+        }
     }
 
     /**
@@ -184,6 +212,11 @@ public class MarksController {
      */
     @FXML
     private void aboutClicked(){
-        //TODO Link to about
+        try {
+            SetupScene.changeScene("AboutView.fxml", aboutPane);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Marks to About by Menu.");
+        }
     }
 }
