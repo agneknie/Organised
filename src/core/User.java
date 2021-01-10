@@ -2,6 +2,7 @@ package core;
 
 import database.Database;
 
+import javax.jws.soap.SOAPBinding;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -125,6 +126,54 @@ public class User {
         this.username = username;
         passwordHash = User.generatePasswordHash(password);
         keepLoggedIn = false;
+    }
+
+    /**
+     * Checks if given username already exists in the database.
+     *
+     * @param username username to check for existence in the database.
+     * @return boolean whether username exists or not
+     */
+    public static boolean usernameAvailable(String username){
+        boolean usernameAvailable = false;
+
+        // Constructs SQL query
+        String query = "SELECT * FROM User WHERE username = ?";
+
+        // Opens the database, gets the user with the specified id
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+        try {
+            // Prepares the statement
+            pStatement = Database.getConnection().prepareStatement(query);
+            pStatement.setString(1, username);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, the username is taken
+            usernameAvailable = !rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null){
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return usernameAvailable;
     }
 
     /**
