@@ -2,13 +2,14 @@ package core;
 
 import database.Database;
 
-import javax.jws.soap.SOAPBinding;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class representing a user in the system.
@@ -18,6 +19,8 @@ public class User {
     private String username;
     private String passwordHash;
     private boolean keepLoggedIn;
+
+    private static int PASSWORD_MIN_LENGTH = 8;
 
     /**
      * Getter for user's forename
@@ -250,8 +253,7 @@ public class User {
     public boolean passwordsMatch(String inputPassword) {
         String inputPasswordHash = generatePasswordHash(inputPassword);
 
-        if(inputPasswordHash.equals(this.passwordHash)) return true;
-        else return false;
+        return inputPasswordHash.equals(this.passwordHash);
     }
 
     /**
@@ -266,13 +268,38 @@ public class User {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] messageDigest = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < messageDigest.length; i++) {
-                sb.append(Integer.toString((messageDigest[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte b : messageDigest) {
+                sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
             }
             passwordHash = sb.toString();
         } catch(NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return passwordHash;
+    }
+
+    /**
+     * Method which checks password strength:
+     * - Has to have at least PASSWORD_MIN_LENGTH letters;
+     * - Has to have a number;
+     * - Has to have an uppercase and a lowercase letter.
+     *
+     * @param password password to check for strength
+     * @return boolean true if password is strong enough
+     */
+    public static boolean isPasswordStrong(String password){
+        // Creates patterns
+        Pattern upperCase = Pattern.compile("[A-Z]");
+        Pattern lowerCase = Pattern.compile("[a-z]");
+        Pattern number = Pattern.compile("[0-9]");
+
+        // Creates matchers
+        Matcher hasUpperCase = upperCase.matcher(password);
+        Matcher hasLowerCase = lowerCase.matcher(password);
+        Matcher hasNumber = number.matcher(password);
+
+        // Checks whether password is strong
+        return hasUpperCase.find() && hasLowerCase.find() && hasNumber.find() &&
+                password.length() >= PASSWORD_MIN_LENGTH;
     }
 }

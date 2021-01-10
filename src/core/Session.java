@@ -7,6 +7,7 @@ package core;
  */
 public class Session {
     private static User loggedUser = null;
+    private static boolean userCreatedInSession;
 
     /**
      * Cleans the session by resetting the logged in user to null.
@@ -29,5 +30,21 @@ public class Session {
      */
     public static User getSession(){
         return loggedUser;
+    }
+
+    /**
+     * Gets the variable, which informs whether the user was just created.
+     * @return boolean true if user was just created (coming back from register screen)
+     */
+    public static boolean getUserCreatedInSession(){
+        return userCreatedInSession;
+    }
+
+    /**
+     * Setter for the variable userCreatedInSession.
+     * @param userCreatedInSession boolean to set the variable to
+     */
+    public static void setUserCreatedInSession(boolean userCreatedInSession) {
+        Session.userCreatedInSession = userCreatedInSession;
     }
 }

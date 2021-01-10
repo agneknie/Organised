@@ -1,19 +1,14 @@
 package controllers.utilities;
 
-import controllers.LoginPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.time.LocalTime;
 
 /**
@@ -28,7 +23,7 @@ public class SetupScene {
      *
      * @param viewName name of the fxml of the new scene
      * @param node node from a scene, to get the stage
-     * @throws IOException
+     * @throws IOException if fxml file could not be found
      */
     public static void changeScene(String viewName, Node node) throws IOException {
         // Constructs scene's fxml url
@@ -42,9 +37,11 @@ public class SetupScene {
         // Creates new scene and sets it's size
         Scene newScene = new Scene(root, 1400, 900);
 
-        // Gets the current scene
-        Window window = node.getScene().getWindow();
+        // Gets the current stage
         Stage currentStage = (Stage) node.getScene().getWindow();
+
+        // Focuses away from the fields for prompt text to be visible
+        root.requestFocus();
 
         // Sets the scene
         currentStage.setScene(newScene);

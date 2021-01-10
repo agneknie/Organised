@@ -51,6 +51,12 @@ public class LoginPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Sets the welcome message & greeting according to the time of day
         SetupScene.setupWelcomePanel(greetingsLabel, greetingsMessageLabel);
+
+        // Checks if the user is coming back from successful registration
+        if(Session.getUserCreatedInSession()){
+            errorMessage.setText("Successfully created a new user. Please log in.");
+            Session.setUserCreatedInSession(false);
+        }
     }
 
     /**
@@ -124,7 +130,7 @@ public class LoginPageController implements Initializable {
 
         // If no username or no password inserted, display error
         if(username.isEmpty() || password.isEmpty())
-            errorMessage.setText("Input both username and password.");
+            errorMessage.setText("Please fill all fields.");
 
         // Tries to construct user with given username and password
         else {
@@ -153,7 +159,7 @@ public class LoginPageController implements Initializable {
     @FXML
     private void registerClicked() {
         try {
-           SetupScene.changeScene("RegisterPageView.fxml", (Node) registerButton);
+           SetupScene.changeScene("RegisterPageView.fxml", registerButton);
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene Login to Register by registerButton.");
@@ -162,15 +168,12 @@ public class LoginPageController implements Initializable {
 
     /**
      * Listener for keyboard events.
-     * If enter is pressed and both text fields have text, login is activated.
+     * If enter is pressed, login is activated.
      * @param event used for identifying the key
      */
     @FXML
     private void keyPressed(KeyEvent event) {
         // Enter pressed
-        if(event.getCode().toString().equals("ENTER") &&
-                !usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
-            loginClicked();
-        }
+        if(event.getCode().toString().equals("ENTER")) loginClicked();
     }
 }

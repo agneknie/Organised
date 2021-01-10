@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     // Launches the program
@@ -20,11 +22,11 @@ public class Main extends Application {
      * - adds the application name and icon;
      * - locks the screen to desired width & height.
      *
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage stage/window of the application
+     * @throws IOException thrown if specified fxml not found
      */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         // Opens the database connection
         Database.openConnection();
 
@@ -43,6 +45,9 @@ public class Main extends Application {
 
         // Adds the application logo
         primaryStage.getIcons().add(new Image("/images/icon.png"));
+
+        // Focuses away from the fields for prompt text to be visible
+        root.requestFocus();
 
         // Shows the window
         primaryStage.show();

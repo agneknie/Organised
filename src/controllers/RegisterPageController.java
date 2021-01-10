@@ -2,7 +2,8 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
-import javafx.event.ActionEvent;
+import core.Session;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -10,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -28,12 +29,6 @@ public class RegisterPageController implements Initializable {
     private Label errorMessage;
 
     // Buttons
-    @FXML
-    private ImageView closeButton;
-    @FXML
-    private ImageView minimizeButton;
-    @FXML
-    private ImageView goBackButton;
     @FXML
     private Button registerButton;
 
@@ -59,7 +54,7 @@ public class RegisterPageController implements Initializable {
      * Refers to class ControlStage method buttonExited.
      */
     @FXML
-    void buttonExited() {
+    public void buttonExited() {
         ControlScene.buttonExited(registerButton);
     }
 
@@ -68,7 +63,7 @@ public class RegisterPageController implements Initializable {
      * Refers to class ControlStage method buttonHovered.
      */
     @FXML
-    void buttonHovered() {
+    public void buttonHovered() {
         ControlScene.buttonHovered(registerButton);
     }
 
@@ -79,7 +74,7 @@ public class RegisterPageController implements Initializable {
      * @param event used for getting the scene
      */
     @FXML
-    void closeClicked(MouseEvent event) {
+    public void closeClicked(MouseEvent event) {
         ControlScene.closeWindow(event);
     }
 
@@ -90,7 +85,7 @@ public class RegisterPageController implements Initializable {
      * @param event used for getting the scene
      */
     @FXML
-    private void minimizeClicked(MouseEvent event) {
+    public void minimizeClicked(MouseEvent event) {
         ControlScene.minimizeWindow(event);
     }
 
@@ -107,9 +102,65 @@ public class RegisterPageController implements Initializable {
         }
     }
 
-    //TODO Register button to register an user to the system
     @FXML
-    void registerClicked(ActionEvent event) {
+    void registerClicked() {
+        String forename = forenameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String passwordRepeat = repeatPasswordField.getText();
 
+        errorMessage.setText("");
+        boolean canRegister = true;
+
+        // Checks if all fields have been filled
+        if(forename.isEmpty() || username.isEmpty() || password.isEmpty() || passwordRepeat.isEmpty()){
+            canRegister = false;
+            errorMessage.setText("Please fill all fields.");
+        }
+
+        // Checks if username is unique
+        if(!User.usernameAvailable(username)){
+            canRegister = false;
+            errorMessage.setText("Username is taken. Please choose another.");
+        }
+
+        // Checks if password is strong
+        if(canRegister && !User.isPasswordStrong(password)){
+            canRegister = false;
+            errorMessage.setText("Password has to have: \n-At least 8 symbols;" +
+                    "\n-A lowercase letter;\n-An uppercase letter;\n-A number.");
+        }
+
+        // Checks if passwords match
+        if(canRegister && !password.equals(passwordRepeat)){
+            canRegister = false;
+            errorMessage.setText("Passwords do not match.");
+        }
+
+        // If above checks are passed, registers the user and forwards them to the login screen
+        if(canRegister){
+            // Adds user to the database
+            User newUser = new User(forename, username, password);
+            User.addUser(newUser);
+
+            // Forwards the user to the login page
+            try {
+                Session.setUserCreatedInSession(true);
+                SetupScene.changeScene("LoginPageView.fxml", registerButton);
+            } catch (IOException e) {
+                System.out.println("Exception whilst changing scene Register to Login by registerButton.");
+            }
+        }
+    }
+
+    /**
+     * Listener for keyboard events.
+     * If enter is pressed, register is activated.
+     * @param event used for identifying the key
+     */
+    @FXML
+    private void keyPressed(KeyEvent event) {
+        // Enter pressed
+        if(event.getCode().toString().equals("ENTER")) registerClicked();
     }
 }
