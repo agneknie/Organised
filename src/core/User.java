@@ -52,11 +52,35 @@ public class User {
     }
 
     /**
-     * Setter assigning the value of variable keepLoggedIn.
+     * Setter assigning the value of variable keepLoggedIn. Updates the database as well.
      * @param keepLoggedIn status of the user's choice of wanting to be logged in
      */
     public void setKeepLoggedIn(boolean keepLoggedIn){
+        // Sets user variable
         this.keepLoggedIn = keepLoggedIn;
+
+        // Updates the value in the database
+        PreparedStatement pStatement = null;
+
+        String sql = "UPDATE User SET keepLoggedIn = ? WHERE username = ?";
+        try {
+            // Fill the prepared statement and execute
+            pStatement = Database.getConnection().prepareStatement(sql);
+            pStatement.setBoolean(1, this.keepLoggedIn);
+            pStatement.setString(2, this.username);
+            pStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close prepared statement
+            if(pStatement!=null){
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**

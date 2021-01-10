@@ -19,7 +19,6 @@ public class ControlScene {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
-        Database.closeConnection();
     }
 
     /**

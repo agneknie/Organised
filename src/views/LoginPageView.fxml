@@ -58,7 +58,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </PasswordField>
-            <CheckBox id="checkbox" fx:id="checkboxKeepLoggedIn" layoutX="216.0" layoutY="488.0" mnemonicParsing="false" onKeyPressed="#keyPressed" style="-fx-text-fill: white;" text="Keep me logged in.">
+            <CheckBox id="checkbox" fx:id="keepLoggedInCheckbox" layoutX="216.0" layoutY="488.0" mnemonicParsing="false" onKeyPressed="#keyPressed" style="-fx-text-fill: white;" text="Keep me logged in.">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>

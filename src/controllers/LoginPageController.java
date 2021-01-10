@@ -33,7 +33,7 @@ public class LoginPageController implements Initializable {
 
     // Other elements
     @FXML
-    private CheckBox checkboxKeepLoggedIn;
+    private CheckBox keepLoggedInCheckbox;
     @FXML
     private TextField usernameField;
     @FXML
@@ -140,7 +140,10 @@ public class LoginPageController implements Initializable {
         if(currentUser!=null){
             if(!currentUser.passwordsMatch(password))
                 errorMessage.setText("Wrong password.");
-            else Session.beginSession(currentUser);
+            else {
+                Session.beginSession(currentUser);
+                currentUser.setKeepLoggedIn(keepLoggedInCheckbox.isSelected());
+            }
         }
     }
 
