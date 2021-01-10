@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ControlScene {
@@ -49,5 +50,24 @@ public class ControlScene {
      */
     public static void buttonExited(Button button){
         button.setStyle("-fx-background-color: white; -fx-background-radius: 10");
+    }
+
+    /**
+     * Changes styling of menu tab(pane) if it's hovered.
+     *
+     * @param pane pane to change the style of
+     */
+    public static void menuPaneHovered(Pane pane){
+        pane.setStyle("-fx-background-color: white;");
+    }
+
+    /**
+     * Reverts to regular styling of the menu tab(pane) if it's
+     * no longer hovered.
+     *
+     * @param pane
+     */
+    public static void menuPaneExited(Pane pane){
+        pane.setStyle("-fx-background-color: none");
     }
 }
