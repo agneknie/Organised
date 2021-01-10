@@ -2,6 +2,8 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
+import core.Session;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -110,10 +113,35 @@ public class LoginPageController implements Initializable {
         ControlScene.buttonExited(registerButton);
     }
 
-    //TODO Login button to login a user into the system
     @FXML
     private void loginClicked() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        User currentUser = null;
 
+        // Resets error message text if there was any
+        errorMessage.setText("");
+
+        // If no username or no password inserted, display error
+        if(username.isEmpty() || password.isEmpty())
+            errorMessage.setText("Input both username and password.");
+
+        // Tries to construct user with given username and password
+        else {
+            try {
+                currentUser = new User(username);
+            } catch (SQLException e) {
+                errorMessage.setText("Such user does not exist.");
+                currentUser = null;
+            }
+        }
+
+        // If user construction was successful & password is correct logs in the user
+        if(currentUser!=null){
+            if(!currentUser.passwordsMatch(password))
+                errorMessage.setText("Wrong password.");
+            else Session.beginSession(currentUser);
+        }
     }
 
     /**

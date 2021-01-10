@@ -47,4 +47,12 @@ public class Main extends Application {
         // Shows the window
         primaryStage.show();
     }
+
+    /**
+     * Method which handles exiting the application
+     */
+    @Override
+    public void stop(){
+        Database.closeConnection();
+    }
 }

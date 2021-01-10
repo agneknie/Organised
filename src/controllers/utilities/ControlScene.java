@@ -1,5 +1,6 @@
 package controllers.utilities;
 
+import database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 public class ControlScene {
     /**
      * Method which closes the window when close button is clicked.
+     * Also closes the database connection.
      *
      * @param event used for identifying the scene
      */
@@ -17,6 +19,7 @@ public class ControlScene {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
+        Database.closeConnection();
     }
 
     /**
