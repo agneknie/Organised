@@ -13,7 +13,10 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    // Launches the program
+    /**
+     * Launching the application
+     * @param args default parameter
+     */
     public static void main(String[] args) {
         launch(args);
     }

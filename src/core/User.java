@@ -19,6 +19,7 @@ public class User {
     private String username;
     private String passwordHash;
     private boolean keepLoggedIn;
+    private int id;
 
     private static final int PASSWORD_MIN_LENGTH = 8;
 
@@ -56,6 +57,15 @@ public class User {
      */
     public boolean getKeepLoggedIn() {
         return keepLoggedIn;
+    }
+
+    /**
+     * Getter for user id in the database
+     *
+     * @return users's id
+     */
+    public int getId(){
+        return id;
     }
 
     /**
@@ -120,6 +130,7 @@ public class User {
                 forename = rs.getString("forename");
                 passwordHash = rs.getString("passwordHash");
                 keepLoggedIn = rs.getBoolean("keepLoggedIn");
+                id = rs.getInt("id");
                 found = true;
             }
         } catch (SQLException e) {
@@ -169,12 +180,14 @@ public class User {
      * @param username username of the user
      * @param passwordHash password hash of the user
      * @param keepLoggedIn status of variable keepLoggedIn
+     * @param id id of the user in the database
      */
-    public User(String forename, String username, String passwordHash, Boolean keepLoggedIn){
+    public User(String forename, String username, String passwordHash, Boolean keepLoggedIn, int id){
         this.forename = forename;
         this.username = username;
         this.passwordHash = passwordHash;
         this.keepLoggedIn = keepLoggedIn;
+        this.id = id;
     }
 
     /**
@@ -326,7 +339,7 @@ public class User {
     }
 
     /**
-     * Method which signs out a user. Removes them from the session
+     * Method which signs out a user. Removes from the session
      * and sets the keepLoggedIn variable to false.
      */
     public static void signOutUser() {
@@ -361,8 +374,9 @@ public class User {
                 String username = rs.getString("username");
                 String forename = rs.getString("forename");
                 String passwordHash = rs.getString("passwordHash");
+                int id = rs.getInt("id");
                 // keepLoggedIn is true, because this wouldn't happen if it wouldn't be
-                loggedInUser = new User(forename, username, passwordHash, true);
+                loggedInUser = new User(forename, username, passwordHash, true, id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
