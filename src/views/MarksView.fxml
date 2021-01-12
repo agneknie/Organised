@@ -131,6 +131,11 @@
          </children></Pane>
       <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
          <children>
+            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="1095.0" layoutY="14.0">
+               <image>
+                  <Image url="@../images/back_icon.png" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0" onMouseClicked="#minimizeClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/minimize_icon.png" />
@@ -207,33 +212,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="859.0" layoutY="197.0" prefHeight="54.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <Label alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="36.0" prefWidth="151.0" style="-fx-wrap-text: true;" text="Assignment" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView layoutX="14.0" layoutY="9.0">
-                     <image>
-                        <Image url="@../images/add_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <ImageView layoutX="1136.0" layoutY="535.0">
-               <image>
-                  <Image url="@../images/next_element_right.png" />
-               </image>
-            </ImageView>
-            <Pane layoutX="68.0" layoutY="311.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;" />
-            <Pane layoutX="438.0" layoutY="311.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;" />
-            <Pane layoutX="807.0" layoutY="311.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;" />
-            <ImageView layoutX="14.0" layoutY="535.0">
-               <image>
-                  <Image url="@../images/next_element_left.png" />
-               </image>
-            </ImageView>
             <Pane layoutX="859.0" layoutY="113.0" prefHeight="54.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="36.0" prefWidth="151.0" style="-fx-wrap-text: true;" text="Module" textFill="#e6bb9a">
@@ -248,6 +226,218 @@
                   </ImageView>
                </children>
             </Pane>
+            <Pane layoutX="859.0" layoutY="197.0" prefHeight="54.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="36.0" prefWidth="151.0" style="-fx-wrap-text: true;" text="Assignment" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView layoutX="14.0" layoutY="9.0">
+                     <image>
+                        <Image url="@../images/add_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView layoutX="16.0" layoutY="560.0">
+               <image>
+                  <Image url="@../images/next_element_left.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="70.0" layoutY="336.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Individual Assignment" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="106.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Credits:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="106.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="20" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="174.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Semester:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="174.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="Autumn" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="242.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Grade:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="242.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="63.2%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="310.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Complete:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="310.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="50%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="63.0" layoutY="387.0" prefHeight="68.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/more_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children></Pane>
+            <Pane layoutX="440.0" layoutY="336.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Individual Assignment" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="106.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Credits:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="106.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="20" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="174.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Semester:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="174.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="Autumn" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="242.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Grade:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="242.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="63.2%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="310.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Complete:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="310.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="50%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="63.0" layoutY="387.0" prefHeight="68.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/more_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="809.0" layoutY="336.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Individual Assignment" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="106.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Credits:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="106.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="20" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="174.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Semester:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="174.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="Autumn" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="242.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Grade:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="242.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="63.2%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="310.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Complete:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="167.0" layoutY="310.0" prefHeight="68.0" prefWidth="125.0" style="-fx-wrap-text: true;" text="50%" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="63.0" layoutY="387.0" prefHeight="68.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/more_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <ImageView layoutX="1138.0" layoutY="560.0">
+               <image>
+                  <Image url="@../images/next_element_right.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </AnchorPane>

@@ -28,6 +28,7 @@ public class MarksController {
     @FXML
     private Pane signOutPane;
 
+    // Below methods implement menu functionality and minimise, close & go back buttons
     /**
      * Method which closes the window when close button is clicked.
      * Refers to class ControlStage method closeWindow.
@@ -48,6 +49,15 @@ public class MarksController {
     @FXML
     private void minimizeClicked(MouseEvent event) {
         ControlScene.minimizeWindow(event);
+    }
+
+    /**
+     * Method which changes the screen back to the previously visited screen
+     * when goBack button is pressed.
+     */
+    @FXML
+    void goBackClicked() {
+        //TODO go back to previous screen button
     }
 
     /**

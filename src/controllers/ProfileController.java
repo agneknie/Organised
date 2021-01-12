@@ -47,6 +47,7 @@ public class ProfileController implements Initializable {
         userForenameLabel.setText(Session.getSession().getForename());
     }
 
+    // Below methods implement menu functionality and minimise & close buttons
     /**
      * Method which closes the window when close button is clicked.
      * Refers to class ControlStage method closeWindow.

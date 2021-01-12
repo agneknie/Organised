@@ -28,6 +28,7 @@ public class TimeController {
     @FXML
     private Pane signOutPane;
 
+    // Below methods implement menu functionality and minimise & close buttons
     /**
      * Method which closes the window when close button is clicked.
      * Refers to class ControlStage method closeWindow.

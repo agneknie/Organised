@@ -8,6 +8,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
+
 public class ControlScene {
     /**
      * Method which closes the window when close button is clicked.
@@ -36,6 +38,7 @@ public class ControlScene {
 
     /**
      * Changes styling of the button if it's hovered.
+     * Used for login & register pages.
      *
      * @param button button to change the style of
      */
@@ -44,13 +47,36 @@ public class ControlScene {
     }
 
     /**
+     * Changes styling of the button and the image if it's hovered.
+     * Used for buttons in marks page.
+     *
+     * @param button button to change the style of
+     * @param image image to change the style of
+     */
+    public static void buttonHovered(Button button, ImageView image){
+        // TODO button/image change
+    }
+
+    /**
      * Reverts to regular styling of the button if it's no longer
      * hovered.
+     * Used for login & register pages.
      *
      * @param button button to change the style of
      */
     public static void buttonExited(Button button){
         button.setStyle("-fx-background-color: white; -fx-background-radius: 10");
+    }
+
+    /**
+     * Changes styling of the button and the image if it's hovered.
+     * Used for buttons in marks page.
+     *
+     * @param button button to change the style of
+     * @param image image to change the style of
+     */
+    public static void buttonExited(Button button, ImageView image){
+        // TODO button/image change, revert back
     }
 
     /**
