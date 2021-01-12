@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class MarksController {
 
-    // Panes
+    // Side menu panes
     @FXML
     private Pane profilePane;
     @FXML
@@ -28,7 +28,163 @@ public class MarksController {
     @FXML
     private Pane signOutPane;
 
-    // Below methods implement menu functionality and minimise, close & go back buttons
+    // Below methods implement UI buttons
+    @FXML
+    void button1Clicked() {
+        //TODO button1Clicked
+    }
+
+    /**
+     * Changes colour of the 1st button if hovered
+     */
+    @FXML
+    void button1Exited() {
+        //TODO button1Exited
+    }
+
+    /**
+     * Reverts to default colour of the 1st button if exited
+     */
+    @FXML
+    void button1Hovered() {
+        //TODO button1Hovered
+    }
+
+    @FXML
+    void button2Clicked() {
+        //TODO button2Clicked
+    }
+
+    /**
+     * Reverts to default colour of the 2nd button if exited
+     */
+    @FXML
+    void button2Exited() {
+        //TODO button2Exited
+    }
+
+    /**
+     * Changes colour of the 2nd button if hovered
+     */
+    @FXML
+    void button2Hovered() {
+        //TODO button2Hovered
+    }
+
+    @FXML
+    void pane5ButtonClicked() {
+        //TODO pane5ButtonClicked
+    }
+
+    /**
+     * Reverts to default colour of pane5 button when exited
+     */
+    @FXML
+    void pane5ButtonExited() {
+        //TODO pane5ButtonExited
+    }
+
+    /**
+     * Changes the colour of pane5 button when hovered
+     */
+    @FXML
+    void pane5ButtonHovered() {
+        //TODO pane5ButtonHovered
+    }
+
+    @FXML
+    void pane6ButtonClicked() {
+        //TODO pane6ButtonClicked
+    }
+
+    /**
+     * Reverts to default colour of pane6 button when exited
+     */
+    @FXML
+    void pane6ButtonExited() {
+        //TODO pane6ButtonExited
+    }
+
+    /**
+     * Changes the colour of pane6 button when hovered
+     */
+    @FXML
+    void pane6ButtonHovered() {
+        //TODO pane6ButtonHovered
+    }
+
+    @FXML
+    void pane7ButtonClicked() {
+        //TODO pane7ButtonClicked
+    }
+
+    /**
+     * Reverts to default colour of pane7 button when exited
+     */
+    @FXML
+    void pane7ButtonExited() {
+        //TODO pane7ButtonExited
+    }
+
+    /**
+     * Changes the colour of pane7 button when hovered
+     */
+    @FXML
+    void pane7ButtonHovered() {
+        //TODO pane7ButtonHovered
+    }
+
+    // Below methods implement go left, go right, close window, go back to previous & minimize buttons
+    /**
+     * Method which moves the existing panes one to left and replaces
+     * leftmost pane with new information.
+     */
+    @FXML
+    void goLeftClicked() {
+        //TODO goLeftClicked
+    }
+
+    /**
+     * Reverts to usual goLeft button colour if exited.
+     */
+    @FXML
+    void goLeftExited() {
+        //TODO goLeftExited
+    }
+
+    /**
+     * Changes goLeft button colour if hovered .
+     */
+    @FXML
+    void goLeftHovered() {
+        //TODO goLeftHovered
+    }
+
+    /**
+     * Method which moves the existing panes one to right and replaces
+     * rightmost pane with new information.
+     */
+    @FXML
+    void goRightClicked() {
+        //TODO goRightClicked
+    }
+
+    /**
+     * Reverts to usual goRight button colour if exited.
+     */
+    @FXML
+    void goRightExited() {
+        //TODO goRightExited
+    }
+
+    /**
+     * Changes goRight button colour if hovered .
+     */
+    @FXML
+    void goRightHovered() {
+        //TODO goRightHovered
+    }
+
     /**
      * Method which closes the window when close button is clicked.
      * Refers to class ControlStage method closeWindow.
@@ -60,6 +216,7 @@ public class MarksController {
         //TODO go back to previous screen button
     }
 
+    // Below methods implement menu functionality
     /**
      * Changes profile pane background colour if hovered
      */
