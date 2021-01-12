@@ -262,7 +262,7 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane5Label" layoutX="23.0" layoutY="174.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="pane5Label2" textFill="#e6bb9a">
+                  <Label fx:id="pane5Label2" layoutX="23.0" layoutY="174.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="pane5Label2" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
@@ -299,7 +299,7 @@
                               <Image url="@../images/more_icon.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                        <Label fx:id="pane5ButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
@@ -361,7 +361,7 @@
                               <Image url="@../images/more_icon.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                        <Label fx:id="pane6ButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
@@ -424,7 +424,7 @@
                               <Image url="@../images/more_icon.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+                        <Label fx:id="pane7ButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="16.0" prefHeight="36.0" prefWidth="109.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>

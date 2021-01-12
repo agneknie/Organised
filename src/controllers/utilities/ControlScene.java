@@ -1,14 +1,18 @@
 package controllers.utilities;
 
-import core.Session;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ControlScene {
     /**
@@ -37,6 +41,38 @@ public class ControlScene {
     }
 
     /**
+     * Method which changes the colour of navigation arrow when hovered.
+     *
+     * @param imageName name of the image to change to
+     * @param image arrow to change
+     */
+    public static void navigationArrowHovered(String imageName, ImageView image){
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/"+imageName);
+            image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method which changes the colour of navigation arrow when exited to default.
+     *
+     * @param imageName name of the image to change to
+     * @param image arrow to change
+     */
+    public static void navigationArrowExited(String imageName, ImageView image){
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/"+imageName);
+            image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Changes styling of the button if it's hovered.
      * Used for login & register pages.
      *
@@ -50,11 +86,21 @@ public class ControlScene {
      * Changes styling of the button and the image if it's hovered.
      * Used for buttons in marks page.
      *
-     * @param button button to change the style of
-     * @param image image to change the style of
+     * @param pane "button" to change the style of
+     * @param image image to change the colour of
+     * @param label label to change the style of
+     * @param imageName name of the image
      */
-    public static void buttonHovered(Button button, ImageView image){
-        // TODO button/image change
+    public static void buttonHovered(Pane pane, ImageView image, Label label, String imageName){
+        pane.setStyle("-fx-background-color: white; -fx-background-radius: 20");
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/"+imageName);
+            image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        label.setTextFill(Color.rgb(0, 0, 0));
     }
 
     /**
@@ -72,11 +118,22 @@ public class ControlScene {
      * Changes styling of the button and the image if it's hovered.
      * Used for buttons in marks page.
      *
-     * @param button button to change the style of
-     * @param image image to change the style of
+     * @param pane "button" to change the style of
+     * @param image image to change the colour of
+     * @param label label to change the style of
+     * @param imageName name of the image
      */
-    public static void buttonExited(Button button, ImageView image){
-        // TODO button/image change, revert back
+    public static void buttonExited(Pane pane, ImageView image, Label label, String imageName){
+        pane.setStyle("-fx-background-color: none; -fx-background-radius: 20; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20");
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/"+imageName);
+            image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        label.setTextFill(Color.rgb(230,187,154));
     }
 
     /**

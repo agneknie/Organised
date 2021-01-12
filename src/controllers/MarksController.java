@@ -5,6 +5,8 @@ import controllers.utilities.SetupScene;
 import core.Session;
 import core.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -28,6 +30,151 @@ public class MarksController {
     @FXML
     private Pane signOutPane;
 
+    // Title Labels
+    @FXML
+    private Label bigTitleLabel;
+    @FXML
+    private Label optionalTitleLabel;
+
+    // Small Panes and their elements
+    @FXML
+    private Pane pane1;
+    @FXML
+    private Label pane1Label;
+    @FXML
+    private Label pane1Value;
+
+    @FXML
+    private Pane pane2;
+    @FXML
+    private Label pane2Label;
+    @FXML
+    private Label pane2Value;
+
+    @FXML
+    private Pane pane3;
+    @FXML
+    private Label pane3Label;
+    @FXML
+    private Label pane3Value;
+
+    @FXML
+    private Pane pane4;
+    @FXML
+    private Label pane4Label;
+    @FXML
+    private Label pane4Value;
+
+    // Add/Edit Buttons
+    @FXML
+    private Pane button1;
+    @FXML
+    private Label button1Label;
+    @FXML
+    private ImageView button1Image;
+
+    @FXML
+    private Pane button2;
+    @FXML
+    private Label button2Label;
+    @FXML
+    private ImageView button2Image;
+
+    // Navigation buttons
+    @FXML
+    private ImageView goLeftButton;
+    @FXML
+    private ImageView goRightButton;
+
+    // Big Panes and their elements
+    // Pane 5
+    @FXML
+    private Pane pane5;
+    @FXML
+    private Label pane5Title;
+    @FXML
+    private Label pane5Label1;
+    @FXML
+    private Label pane5Value1;
+    @FXML
+    private Label pane5Label2;
+    @FXML
+    private Label pane5Value2;
+    @FXML
+    private Label pane5Label3;
+    @FXML
+    private Label pane5Value3;
+    @FXML
+    private Label pane5Label4;
+    @FXML
+    private Label pane5Value4;
+    // Pane 5 button
+    @FXML
+    private Pane pane5Button;
+    @FXML
+    private ImageView pane5ButtonImage;
+    @FXML
+    private Label pane5ButtonLabel;
+
+    // Pane 6
+    @FXML
+    private Pane pane6;
+    @FXML
+    private Label pane6Title;
+    @FXML
+    private Label pane6label1;
+    @FXML
+    private Label pane6Value1;
+    @FXML
+    private Label pane6Label2;
+    @FXML
+    private Label pane6Value2;
+    @FXML
+    private Label pane6Label3;
+    @FXML
+    private Label pane6Value3;
+    @FXML
+    private Label pane6Label4;
+    @FXML
+    private Label pane6Value4;
+    // Pane 6 button
+    @FXML
+    private Pane pane6Button;
+    @FXML
+    private ImageView pane6ButtonImage;
+    @FXML
+    private Label pane6ButtonLabel;
+
+    // Pane 7
+    @FXML
+    private Pane pane7;
+    @FXML
+    private Label pane7Title;
+    @FXML
+    private Label pane7Label1;
+    @FXML
+    private Label pane7Value1;
+    @FXML
+    private Label pane7Label2;
+    @FXML
+    private Label pane7Value2;
+    @FXML
+    private Label pane7Label3;
+    @FXML
+    private Label pane7Value3;
+    @FXML
+    private Label pane7Label4;
+    @FXML
+    private Label pane7Value4;
+    // Pane 7 button
+    @FXML
+    private Pane pane7Button;
+    @FXML
+    private ImageView pane7ButtonImage;
+    @FXML
+    private Label pane7ButtonLabel;
+
+
     // Below methods implement UI buttons
     @FXML
     void button1Clicked() {
@@ -39,7 +186,7 @@ public class MarksController {
      */
     @FXML
     void button1Exited() {
-        //TODO button1Exited
+        ControlScene.buttonExited(button1, button1Image, button1Label, "edit_icon.png");
     }
 
     /**
@@ -47,7 +194,7 @@ public class MarksController {
      */
     @FXML
     void button1Hovered() {
-        //TODO button1Hovered
+        ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
     }
 
     @FXML
@@ -60,7 +207,7 @@ public class MarksController {
      */
     @FXML
     void button2Exited() {
-        //TODO button2Exited
+        ControlScene.buttonExited(button2, button2Image, button2Label, "add_icon.png");
     }
 
     /**
@@ -68,7 +215,7 @@ public class MarksController {
      */
     @FXML
     void button2Hovered() {
-        //TODO button2Hovered
+        ControlScene.buttonHovered(button2, button2Image, button2Label, "add_icon_selected.png");
     }
 
     @FXML
@@ -81,7 +228,7 @@ public class MarksController {
      */
     @FXML
     void pane5ButtonExited() {
-        //TODO pane5ButtonExited
+        ControlScene.buttonExited(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon.png");
     }
 
     /**
@@ -89,7 +236,7 @@ public class MarksController {
      */
     @FXML
     void pane5ButtonHovered() {
-        //TODO pane5ButtonHovered
+        ControlScene.buttonHovered(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon_selected.png");
     }
 
     @FXML
@@ -102,7 +249,7 @@ public class MarksController {
      */
     @FXML
     void pane6ButtonExited() {
-        //TODO pane6ButtonExited
+        ControlScene.buttonExited(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon.png");
     }
 
     /**
@@ -110,7 +257,7 @@ public class MarksController {
      */
     @FXML
     void pane6ButtonHovered() {
-        //TODO pane6ButtonHovered
+        ControlScene.buttonHovered(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon_selected.png");
     }
 
     @FXML
@@ -123,7 +270,7 @@ public class MarksController {
      */
     @FXML
     void pane7ButtonExited() {
-        //TODO pane7ButtonExited
+        ControlScene.buttonExited(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon.png");
     }
 
     /**
@@ -131,7 +278,7 @@ public class MarksController {
      */
     @FXML
     void pane7ButtonHovered() {
-        //TODO pane7ButtonHovered
+        ControlScene.buttonHovered(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon_selected.png");
     }
 
     // Below methods implement go left, go right, close window, go back to previous & minimize buttons
@@ -149,7 +296,7 @@ public class MarksController {
      */
     @FXML
     void goLeftExited() {
-        //TODO goLeftExited
+        ControlScene.navigationArrowExited("next_element_left.png", goLeftButton);
     }
 
     /**
@@ -157,7 +304,7 @@ public class MarksController {
      */
     @FXML
     void goLeftHovered() {
-        //TODO goLeftHovered
+        ControlScene.navigationArrowHovered("next_element_left_selected.png", goLeftButton);
     }
 
     /**
@@ -174,7 +321,7 @@ public class MarksController {
      */
     @FXML
     void goRightExited() {
-        //TODO goRightExited
+        ControlScene.navigationArrowExited("next_element_right.png", goRightButton);
     }
 
     /**
@@ -182,7 +329,7 @@ public class MarksController {
      */
     @FXML
     void goRightHovered() {
-        //TODO goRightHovered
+        ControlScene.navigationArrowHovered("next_element_right_selected.png", goRightButton);
     }
 
     /**
