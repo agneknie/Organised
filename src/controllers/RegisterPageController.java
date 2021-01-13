@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -30,6 +31,14 @@ public class RegisterPageController implements Initializable {
     // Buttons
     @FXML
     private Button registerButton;
+
+    // Navigation buttons
+    @FXML
+    private ImageView closeButton;
+    @FXML
+    private ImageView minimizeButton;
+    @FXML
+    private ImageView goBackButton;
 
     // Fields
     @FXML
@@ -99,6 +108,54 @@ public class RegisterPageController implements Initializable {
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene Register to Login by goBack button.");
         }
+    }
+
+    /**
+     * Method which changes the colour of close button when hovered.
+     */
+    @FXML
+    private void closeHovered(){
+        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of close button to default when exited.
+     */
+    @FXML
+    private void closeExited(){
+        ControlScene.controlButtonEffect("close_icon.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button when hovered.
+     */
+    @FXML
+    private void minimizeHovered(){
+        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button to default when exited.
+     */
+    @FXML
+    private void minimizeExited(){
+        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of go back button when hovered.
+     */
+    @FXML
+    private void goBackHovered(){
+        ControlScene.controlButtonEffect("back_icon_selected.png", goBackButton);
+    }
+
+    /**
+     * Method which changes the colour of go back button to default when exited.
+     */
+    @FXML
+    private void goBackExited(){
+        ControlScene.controlButtonEffect("back_icon.png", goBackButton);
     }
 
     @FXML

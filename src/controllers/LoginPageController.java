@@ -7,6 +7,7 @@ import core.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -21,6 +22,12 @@ public class LoginPageController implements Initializable {
     private Button loginButton;
     @FXML
     private Button registerButton;
+
+    // Navigation buttons
+    @FXML
+    private ImageView closeButton;
+    @FXML
+    private ImageView minimizeButton;
 
     // Labels
     @FXML
@@ -78,6 +85,38 @@ public class LoginPageController implements Initializable {
     @FXML
     private void minimizeClicked(MouseEvent event) {
         ControlScene.minimizeWindow(event);
+    }
+
+    /**
+     * Method which changes the colour of close button when hovered.
+     */
+    @FXML
+    private void closeHovered(){
+        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of close button to default when exited.
+     */
+    @FXML
+    private void closeExited(){
+        ControlScene.controlButtonEffect("close_icon.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button when hovered.
+     */
+    @FXML
+    private void minimizeHovered(){
+        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button to default when exited.
+     */
+    @FXML
+    private void minimizeExited(){
+        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
     }
 
     /**

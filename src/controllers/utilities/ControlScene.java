@@ -41,28 +41,13 @@ public class ControlScene {
     }
 
     /**
-     * Method which changes the colour of navigation arrow when hovered.
+     * Method which changes the colour of control button when hovered.
+     * Applied to minimize, close, go back and navigation arrows.
      *
      * @param imageName name of the image to change to
-     * @param image arrow to change
+     * @param image image/button to change
      */
-    public static void navigationArrowHovered(String imageName, ImageView image){
-        FileInputStream newImage = null;
-        try {
-            newImage = new FileInputStream("src/images/"+imageName);
-            image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Method which changes the colour of navigation arrow when exited to default.
-     *
-     * @param imageName name of the image to change to
-     * @param image arrow to change
-     */
-    public static void navigationArrowExited(String imageName, ImageView image){
+    public static void controlButtonEffect(String imageName, ImageView image){
         FileInputStream newImage = null;
         try {
             newImage = new FileInputStream("src/images/"+imageName);

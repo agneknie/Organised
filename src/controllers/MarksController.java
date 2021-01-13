@@ -2,7 +2,6 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
-import core.Session;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -85,6 +84,12 @@ public class MarksController {
     private ImageView goLeftButton;
     @FXML
     private ImageView goRightButton;
+    @FXML
+    private ImageView closeButton;
+    @FXML
+    private ImageView minimizeButton;
+    @FXML
+    private ImageView goBackButton;
 
     // Big Panes and their elements
     // Pane 5
@@ -296,7 +301,7 @@ public class MarksController {
      */
     @FXML
     void goLeftExited() {
-        ControlScene.navigationArrowExited("next_element_left.png", goLeftButton);
+        ControlScene.controlButtonEffect("next_element_left.png", goLeftButton);
     }
 
     /**
@@ -304,7 +309,7 @@ public class MarksController {
      */
     @FXML
     void goLeftHovered() {
-        ControlScene.navigationArrowHovered("next_element_left_selected.png", goLeftButton);
+        ControlScene.controlButtonEffect("next_element_left_selected.png", goLeftButton);
     }
 
     /**
@@ -321,7 +326,7 @@ public class MarksController {
      */
     @FXML
     void goRightExited() {
-        ControlScene.navigationArrowExited("next_element_right.png", goRightButton);
+        ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
     }
 
     /**
@@ -329,7 +334,7 @@ public class MarksController {
      */
     @FXML
     void goRightHovered() {
-        ControlScene.navigationArrowHovered("next_element_right_selected.png", goRightButton);
+        ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
     }
 
     /**
@@ -359,8 +364,56 @@ public class MarksController {
      * when goBack button is pressed.
      */
     @FXML
-    void goBackClicked() {
+    private void goBackClicked() {
         //TODO go back to previous screen button
+    }
+
+    /**
+     * Method which changes the colour of close button when hovered.
+     */
+    @FXML
+    private void closeHovered(){
+        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of close button to default when exited.
+     */
+    @FXML
+    private void closeExited(){
+        ControlScene.controlButtonEffect("close_icon.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button when hovered.
+     */
+    @FXML
+    private void minimizeHovered(){
+        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button to default when exited.
+     */
+    @FXML
+    private void minimizeExited(){
+        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of go back button when hovered.
+     */
+    @FXML
+    private void goBackHovered(){
+        ControlScene.controlButtonEffect("back_icon_selected.png", goBackButton);
+    }
+
+    /**
+     * Method which changes the colour of go back button to default when exited.
+     */
+    @FXML
+    private void goBackExited(){
+        ControlScene.controlButtonEffect("back_icon.png", goBackButton);
     }
 
     // Below methods implement menu functionality

@@ -4,6 +4,7 @@ import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
 import core.User;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -27,7 +28,13 @@ public class AboutController {
     @FXML
     private Pane signOutPane;
 
-    // Below methods implement menu functionality and minimise & close buttons
+    // Navigation buttons
+    @FXML
+    private ImageView closeButton;
+    @FXML
+    private ImageView minimizeButton;
+
+    // Below methods implement minimise & close button functionality
     /**
      * Method which closes the window when close button is clicked.
      * Refers to class ControlStage method closeWindow.
@@ -50,6 +57,39 @@ public class AboutController {
         ControlScene.minimizeWindow(event);
     }
 
+    /**
+     * Method which changes the colour of close button when hovered.
+     */
+    @FXML
+    private void closeHovered(){
+        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of close button to default when exited.
+     */
+    @FXML
+    private void closeExited(){
+        ControlScene.controlButtonEffect("close_icon.png", closeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button when hovered.
+     */
+    @FXML
+    private void minimizeHovered(){
+        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
+    }
+
+    /**
+     * Method which changes the colour of minimize button to default when exited.
+     */
+    @FXML
+    private void minimizeExited(){
+        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
+    }
+
+    // Below methods implement side menu functionality
     /**
      * Changes marks pane background colour if hovered
      */
