@@ -34,15 +34,15 @@ CREATE TABLE Module(
 CREATE TABLE Assignment(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     userId INTEGER NOT NULL,
-    moduleId INTEGER NOT NULL,
+    moduleCode INTEGER NOT NULL,
     fullName TEXT NOT NULL,
     percentWorth INTEGER NOT NULL,
     maxScore INTEGER,
     score INTEGER,
     FOREIGN KEY (userId)
         REFERENCES User (id),
-    FOREIGN KEY (moduleId)
-        REFERENCES Module (id)
+    FOREIGN KEY (moduleCode)
+        REFERENCES Module (code)
 );
 
 PRAGMA foreign_keys=on;
