@@ -404,7 +404,7 @@ public class User {
         return loggedInUser;
     }
 
-    // Methods concerning years of the user
+    // Methods concerning Years of the user
     /**
      * Method which adds a newly created year to the database.
      * Used when user creates a new year.
