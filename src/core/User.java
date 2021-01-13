@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -279,6 +280,7 @@ public class User {
         return rowsAffected == 1;
     }
 
+    // Methods concerning password of the user
     /**
      * Method which takes a password as a string and checks whether it matches the stored password.
      *
@@ -338,6 +340,7 @@ public class User {
                 password.length() >= PASSWORD_MIN_LENGTH;
     }
 
+    // Methods concerning user login/logout
     /**
      * Method which signs out a user. Removes from the session
      * and sets the keepLoggedIn variable to false.
@@ -399,4 +402,61 @@ public class User {
         }
         return loggedInUser;
     }
+
+    // Methods concerning years of the user
+    /**
+     * Method which adds a newly created year to the database.
+     * Used when user creates a new year.
+     *
+     * @param year Year to add
+     * @return true if operation was successful, false otherwise
+     */
+    public boolean addYear(Year year){
+        // Year already exists in the database
+        if(year.getId() != 0) return false;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        int rowsAffected = 0;
+
+        // Sets up the query
+        String query = "INSERT INTO Year VALUES(null,?,?,?,?);";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, year.getYearNumber());
+            pStatement.setInt(3, year.getCredits());
+            pStatement.setInt(4, year.getPercentWeight());
+
+            // Result of query is true if SQL command worked
+            rowsAffected = pStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns whether insertion was successful
+        return rowsAffected == 1;
+    }
+
+    /**
+     * Method which gets all the years of the user existing in the database.
+     *
+     * @return List of Year objects
+     */
+    public List<Year> getAllYears(){
+        //TODO getAllYears of a User
+        return null;
+    }
+
 }
