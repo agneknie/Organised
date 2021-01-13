@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -436,7 +437,7 @@ public class User {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Closes the prepared statement and result set
+            // Closes the prepared statement
             if (pStatement != null) {
                 try {
                     pStatement.close();
@@ -455,8 +456,56 @@ public class User {
      * @return List of Year objects
      */
     public List<Year> getAllYears(){
-        //TODO getAllYears of a User
-        return null;
+        ArrayList<Year> years = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Year WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Years and them saves in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int userId = rs.getInt("userId");
+                int yearNumber = rs.getInt("yearNumber");
+                int credits = rs.getInt("credits");
+                int percentWeight = rs.getInt("percentWeight");
+
+                Year currentYear = new Year(id, userId, yearNumber, credits, percentWeight);
+                years.add(currentYear);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns a list of Year objects
+        return years;
     }
 
 }
