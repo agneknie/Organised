@@ -23,7 +23,7 @@ public enum Semester {
     /**
      * Method which takes a string and returns a corresponding Semester
      *
-     * @param semesterString as a string
+     * @param semesterString  Semester as a string
      * @return Semester which corresponds to a string
      * */
     public static Semester stringToSemester (String semesterString) {
@@ -31,6 +31,6 @@ public enum Semester {
             String semesterName = semester.VALUE;
             if(semesterString.equals(semesterName)) return semester;
         }
-        throw new IllegalArgumentException("Role " + semesterString + " does not exist");
+        throw new IllegalArgumentException("Semester " + semesterString + " does not exist");
     }
 }

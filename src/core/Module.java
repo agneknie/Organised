@@ -46,14 +46,6 @@ public class Module {
     }
 
     /**
-     * Setter for module code
-     * @param code code to set
-     */
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    /**
      * Getter for module full name
      * @return module full name
      */
@@ -82,6 +74,8 @@ public class Module {
      * @param credits credits to set
      */
     public void setCredits(int credits) {
+        if(credits < 0)
+            throw new IllegalArgumentException("Credits can't be less than 0");
         this.credits = credits;
     }
 
@@ -174,6 +168,10 @@ public class Module {
      * @param colour colour assigned to the module
      */
     public Module(int userId, String code, String fullName, int credits, Semester semester, int studyYear, Color colour) {
+        if(credits < 0)
+            throw new IllegalArgumentException("Credits can't be less than 0");
+        if(studyYear < 0)
+            throw new IllegalArgumentException("Study year can't be less than 0");
         this.id = 0;        // Module is not reconstructed from db/not already in db
         this.userId = userId;
         this.code = code;

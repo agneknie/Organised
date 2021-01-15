@@ -45,14 +45,6 @@ public class Year {
     }
 
     /**
-     * Setter for yearNumber.
-     * @param yearNumber yearNumber to set
-     */
-    public void setYearNumber(int yearNumber) {
-        this.yearNumber = yearNumber;
-    }
-
-    /**
      * Getter for credits.
      * @return credits
      */
@@ -65,6 +57,8 @@ public class Year {
      * @param credits credits to set
      */
     public void setCredits(int credits) {
+        if(credits < 0)
+            throw new IllegalArgumentException("Credits can't be less than 0");
         this.credits = credits;
     }
 
@@ -81,6 +75,8 @@ public class Year {
      * @param percentWeight percentWeight to set.
      */
     public void setPercentWeight(int percentWeight) {
+        if(percentWeight < 0)
+            throw new IllegalArgumentException("Percentage worth can't be less than 0");
         this.percentWeight = percentWeight;
     }
 
@@ -93,6 +89,12 @@ public class Year {
      * @param percentWeight how much does it weight toward the final degree mark
      */
     public Year (int userId, int yearNumber, int credits, int percentWeight){
+        if(yearNumber < 0)
+            throw new IllegalArgumentException("Year can't be less than 0");
+        if(credits < 0)
+            throw new IllegalArgumentException("Credits can't be less than 0");
+        if(percentWeight < 0)
+            throw new IllegalArgumentException("Percentage worth can't be less than 0");
         this.id = 0;    // Year is not reconstructed from db/not already in db
         this.userId = userId;
         this.yearNumber = yearNumber;
