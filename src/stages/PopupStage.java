@@ -15,32 +15,32 @@ import java.io.IOException;
  */
 public class PopupStage {
     // TODO: figure out the sizes, the icon, etc. Finish this method
-    public PopupStage(Stage primaryStage, String viewName) throws IOException {
+    public PopupStage(Stage popup, String viewName) throws IOException {
         // Loads the required scene
         Parent root;
         root = FXMLLoader.load(getClass().getResource("/views/"+viewName));
 
         // Sets window (stage) to default size
-        primaryStage.setScene(new Scene(root, 700, 450));
+        popup.setScene(new Scene(root, 700, 600));
 
         // Sets modality of the stage (can't work with other windows if popup is open
-        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        popup.initModality(Modality.APPLICATION_MODAL);
 
         // Sets application window name
-        primaryStage.setTitle("Organised.");
+        popup.setTitle("Organised.");
 
         // Makes scene non resizable and removes toolbar
-        primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        popup.setResizable(false);
+        popup.initStyle(StageStyle.UNDECORATED);
 
         // Adds the application logo
-        primaryStage.getIcons().add(new Image("/images/icon.png"));
+        popup.getIcons().add(new Image("/images/icon.png"));
 
         // Focuses away from the fields for prompt text to be visible
         root.requestFocus();
 
         // Shows the window
-        primaryStage.show();
+        popup.show();
     }
 
 }

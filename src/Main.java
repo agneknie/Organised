@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import stages.MainStage;
+import stages.PopupStage;
 
 import java.io.IOException;
 

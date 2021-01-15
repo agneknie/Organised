@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import stages.PopupStage;
 
 import java.io.IOException;
 
@@ -182,15 +184,17 @@ public class MarksController {
 
     // Below methods implement UI buttons
     @FXML
-    void button1Clicked() {
+    private void button1Clicked() throws IOException {
         //TODO button1Clicked
+        Stage popup = new Stage();
+        new PopupStage(popup, "MarksPopupView.fxml");
     }
 
     /**
      * Changes colour of the 1st button if hovered
      */
     @FXML
-    void button1Exited() {
+    private void button1Exited() {
         ControlScene.buttonExited(button1, button1Image, button1Label, "edit_icon.png");
     }
 
@@ -198,12 +202,12 @@ public class MarksController {
      * Reverts to default colour of the 1st button if exited
      */
     @FXML
-    void button1Hovered() {
+    private void button1Hovered() {
         ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
     }
 
     @FXML
-    void button2Clicked() {
+    private void button2Clicked() {
         //TODO button2Clicked
     }
 
@@ -211,7 +215,7 @@ public class MarksController {
      * Reverts to default colour of the 2nd button if exited
      */
     @FXML
-    void button2Exited() {
+    private void button2Exited() {
         ControlScene.buttonExited(button2, button2Image, button2Label, "add_icon.png");
     }
 
@@ -219,12 +223,12 @@ public class MarksController {
      * Changes colour of the 2nd button if hovered
      */
     @FXML
-    void button2Hovered() {
+    private void button2Hovered() {
         ControlScene.buttonHovered(button2, button2Image, button2Label, "add_icon_selected.png");
     }
 
     @FXML
-    void pane5ButtonClicked() {
+    private void pane5ButtonClicked() {
         //TODO pane5ButtonClicked
     }
 
@@ -232,7 +236,7 @@ public class MarksController {
      * Reverts to default colour of pane5 button when exited
      */
     @FXML
-    void pane5ButtonExited() {
+    private void pane5ButtonExited() {
         ControlScene.buttonExited(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon.png");
     }
 
@@ -240,12 +244,12 @@ public class MarksController {
      * Changes the colour of pane5 button when hovered
      */
     @FXML
-    void pane5ButtonHovered() {
+    private void pane5ButtonHovered() {
         ControlScene.buttonHovered(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon_selected.png");
     }
 
     @FXML
-    void pane6ButtonClicked() {
+    private void pane6ButtonClicked() {
         //TODO pane6ButtonClicked
     }
 
@@ -253,7 +257,7 @@ public class MarksController {
      * Reverts to default colour of pane6 button when exited
      */
     @FXML
-    void pane6ButtonExited() {
+    private void pane6ButtonExited() {
         ControlScene.buttonExited(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon.png");
     }
 
@@ -261,12 +265,12 @@ public class MarksController {
      * Changes the colour of pane6 button when hovered
      */
     @FXML
-    void pane6ButtonHovered() {
+    private void pane6ButtonHovered() {
         ControlScene.buttonHovered(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon_selected.png");
     }
 
     @FXML
-    void pane7ButtonClicked() {
+    private void pane7ButtonClicked() {
         //TODO pane7ButtonClicked
     }
 
@@ -274,7 +278,7 @@ public class MarksController {
      * Reverts to default colour of pane7 button when exited
      */
     @FXML
-    void pane7ButtonExited() {
+    private void pane7ButtonExited() {
         ControlScene.buttonExited(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon.png");
     }
 
@@ -282,7 +286,7 @@ public class MarksController {
      * Changes the colour of pane7 button when hovered
      */
     @FXML
-    void pane7ButtonHovered() {
+    private void pane7ButtonHovered() {
         ControlScene.buttonHovered(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon_selected.png");
     }
 
@@ -292,7 +296,7 @@ public class MarksController {
      * leftmost pane with new information.
      */
     @FXML
-    void goLeftClicked() {
+    private void goLeftClicked() {
         //TODO goLeftClicked
     }
 
@@ -300,7 +304,7 @@ public class MarksController {
      * Reverts to usual goLeft button colour if exited.
      */
     @FXML
-    void goLeftExited() {
+    private void goLeftExited() {
         ControlScene.controlButtonEffect("next_element_left.png", goLeftButton);
     }
 
@@ -308,7 +312,7 @@ public class MarksController {
      * Changes goLeft button colour if hovered .
      */
     @FXML
-    void goLeftHovered() {
+    private void goLeftHovered() {
         ControlScene.controlButtonEffect("next_element_left_selected.png", goLeftButton);
     }
 
@@ -317,7 +321,7 @@ public class MarksController {
      * rightmost pane with new information.
      */
     @FXML
-    void goRightClicked() {
+    private void goRightClicked() {
         //TODO goRightClicked
     }
 
@@ -325,7 +329,7 @@ public class MarksController {
      * Reverts to usual goRight button colour if exited.
      */
     @FXML
-    void goRightExited() {
+    private void goRightExited() {
         ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
     }
 
@@ -333,7 +337,7 @@ public class MarksController {
      * Changes goRight button colour if hovered .
      */
     @FXML
-    void goRightHovered() {
+    private void goRightHovered() {
         ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
     }
 
