@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for representing a module in the system
@@ -275,5 +277,112 @@ public class Module {
         }
         // Returns whether insertion was successful
         return rowsAffected == 1;
+    }
+
+    /**
+     * Adds a newly created assignment to the database.
+     * Used when user creates a new assignment.
+     *
+     * @param assignment Assignment to add
+     * @return true if operation was successful, false otherwise
+     */
+    public boolean addAssignment(Assignment assignment){
+        // Assignment already exists in the database
+        if (assignment.getId() != 0) return false;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        int rowsAffected = 0;
+
+        // Sets up the query
+        String query = "INSERT INTO Assignment VALUES(null,?,?,?,?,?,?);";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, userId);
+            pStatement.setString(2, assignment.getModuleCode());
+            pStatement.setString(3, assignment.getFullName());
+            pStatement.setInt(4, assignment.getPercentWorth());
+            pStatement.setInt(5, assignment.getMaxScore());
+            pStatement.setInt(6, assignment.getScore());
+
+            // Result of query is true if SQL command worked
+            rowsAffected = pStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns whether insertion was successful
+        return rowsAffected == 1;
+    }
+
+    /**
+     * Gets a list of Assignments, belonging to this module.
+     *
+     * @return List of Assignment objects.
+     */
+    public List<Assignment> getAllAssignments(){
+        ArrayList<Assignment> assignments = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Assignment WHERE userId = ? AND moduleCode = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, userId);
+            pStatement.setString(2, code);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Assignments and them saves in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String fullName = rs.getString("fullName");
+                int percentWorth = rs.getInt("percentWorth");
+                int maxScore = rs.getInt("maxScore");
+                int score = rs.getInt("score");
+
+                Assignment currentAssignment = new Assignment(id, userId, code, fullName,
+                        percentWorth, maxScore, score);
+                assignments.add(currentAssignment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns a list of Module objects
+        return assignments;
     }
 }
