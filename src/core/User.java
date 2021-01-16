@@ -508,4 +508,154 @@ public class User {
         return years;
     }
 
+    // Methods concerning deletion of Years, Modules and Assignments
+
+    /**
+     * Method which deletes an assignment from the database.
+     * Used when user deletes an assignment.
+     *
+     * @param assignment assignment to delete
+     * @return true if deletion was successful
+     */
+    public boolean deleteAssignment(Assignment assignment){
+        // Assignment doesn't exist in the database
+        if(assignment.getId() == 0) return true;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        int rowsAffected = 0;
+
+        // Sets up the query
+        String query = "DELETE FROM Assignment WHERE id = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, assignment.getId());
+
+            // Result of query is true if SQL command worked
+            rowsAffected = pStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns whether deletion was successful
+        return rowsAffected == 1;
+    }
+
+    /**
+     * Method which deletes a module from the system. Deletes all module assignments
+     * as well.
+     * Used when user deletes a module.
+     *
+     * @param module module to delete
+     * @return true if deletion successful, false otherwise
+     */
+    public boolean deleteModule(Module module){
+        // Module doesn't exist in the database
+        if(module.getId() == 0) return true;
+
+        // Deletes all assignments of the module
+        int counter = 0;
+        List <Assignment> assignments = module.getAllAssignments();
+        for(Assignment assignment : assignments){
+            if(this.deleteAssignment(assignment)) counter++;
+        }
+
+        // If assignment deletion was successful, deletes the module
+        if (counter == assignments.size()){
+
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
+            int rowsAffected = 0;
+
+            // Sets up the query
+            String query = "DELETE FROM Module WHERE id = ?;";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, module.getId());
+
+                // Result of query is true if SQL command worked
+                rowsAffected = pStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return rowsAffected == 1;
+        }
+        else return false;
+    }
+
+    /**
+     * Method which deletes a year from the system. Deletes all modules and all assignments
+     * tied to that Year as well.
+     *
+     * @param year year to delete
+     * @return true if deletion successful, false otherwise
+     */
+    public boolean deleteYear(Year year){
+        // Year doesn't exist in the database
+        if(year.getId() == 0) return true;
+
+        // Deletes all modules of the year
+        int counter = 0;
+        List <Module> modules = year.getAllModules();
+        for(Module module : modules){
+            if(this.deleteModule(module)) counter++;
+        }
+
+        // If module deletion was successful, deletes the year
+        if (counter == modules.size()){
+
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
+            int rowsAffected = 0;
+
+            // Sets up the query
+            String query = "DELETE FROM Year WHERE id = ?;";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, year.getId());
+
+                // Result of query is true if SQL command worked
+                rowsAffected = pStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return rowsAffected == 1;
+        }
+        else return false;
+    }
 }
