@@ -131,7 +131,7 @@
          </children></Pane>
       <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
          <children>
-            <ImageView fx:id="goBackButton" fitHeight="27.0" fitWidth="27.0" layoutX="1095.0" layoutY="14.0" onMouseClicked="#goBackClicked" onMouseEntered="#goBackHovered" onMouseExited="#goBackExited">
+            <ImageView fx:id="goBackButton" fitHeight="27.0" fitWidth="27.0" layoutX="1095.0" layoutY="14.0" onMouseClicked="#goBackClicked" onMouseEntered="#goBackHovered" onMouseExited="#goBackExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/back_icon.png" />
                </image>
@@ -240,7 +240,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <ImageView fx:id="goLeftButton" layoutX="13.0" layoutY="562.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited">
+            <ImageView fx:id="goLeftButton" layoutX="13.0" layoutY="562.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_left.png" />
                </image>
@@ -433,7 +433,7 @@
                   </Pane>
                </children>
             </Pane>
-            <ImageView fx:id="goRightButton" layoutX="1142.0" layoutY="563.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited">
+            <ImageView fx:id="goRightButton" layoutX="1142.0" layoutY="563.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_right.png" />
                </image>

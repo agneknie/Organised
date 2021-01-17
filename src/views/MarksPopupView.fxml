@@ -8,12 +8,12 @@
    <children>
       <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
          <children>
-            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited">
+            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited">
+            <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/minimize_icon.png" />
                </image>

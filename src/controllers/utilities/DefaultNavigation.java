@@ -11,6 +11,8 @@ import java.io.IOException;
 /**
  * Class which implements the side menu, close button &
  * minimize button functionality and effects.
+ *
+ * Also implements effects for the goBack button.
  */
 public abstract class DefaultNavigation {
     // Menu panes
