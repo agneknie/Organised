@@ -5,10 +5,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Abstract class for popup stages. Enables styling and functionality
+ * Abstract class for default buttons. Enables styling and functionality
  * of minimize and close buttons.
  */
-public abstract class popupNavigation {
+public abstract class DefaultButtons {
     // Navigation buttons
     @FXML
     private ImageView closeButton;

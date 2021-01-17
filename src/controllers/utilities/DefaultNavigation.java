@@ -10,11 +10,13 @@ import java.io.IOException;
 
 /**
  * Class which implements the side menu, close button &
- * minimize button functionality and effects.
+ * minimize button functionality and effects. Also, animates
+ * the go back button.
+ * Extends abstract class DefaultButtons.
  *
  * Also implements effects for the goBack button.
  */
-public abstract class DefaultNavigation {
+public abstract class DefaultNavigation extends DefaultButtons{
     // Menu panes
     @FXML
     private Pane profilePane;
@@ -34,10 +36,6 @@ public abstract class DefaultNavigation {
     private Pane signOutPane;
 
     // Navigation buttons
-    @FXML
-    private ImageView closeButton;
-    @FXML
-    private ImageView minimizeButton;
     @FXML
     protected ImageView goBackButton;
 
@@ -275,61 +273,7 @@ public abstract class DefaultNavigation {
         }
     }
 
-    // Methods concerning close, goBack and minimize buttons
-    /**
-     * Method which closes the window when close button is clicked.
-     * Refers to class ControlStage method closeWindow.
-     *
-     * @param event used for getting the scene
-     */
-    @FXML
-    private void closeClicked(MouseEvent event) {
-        ControlScene.closeWindow(event);
-    }
-
-    /**
-     * Method which changes the colour of close button when hovered.
-     */
-    @FXML
-    private void closeHovered(){
-        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
-    }
-
-    /**
-     * Method which changes the colour of close button to default when exited.
-     */
-    @FXML
-    private void closeExited(){
-        ControlScene.controlButtonEffect("close_icon.png", closeButton);
-    }
-
-    /**
-     * Method which minimises the window when minimize button is clicked.
-     * Refers to class ControlStage method minimizeWindow.
-     *
-     * @param event used for getting the scene
-     */
-    @FXML
-    private void minimizeClicked(MouseEvent event) {
-        ControlScene.minimizeWindow(event);
-    }
-
-    /**
-     * Method which changes the colour of minimize button when hovered.
-     */
-    @FXML
-    private void minimizeHovered(){
-        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
-    }
-
-    /**
-     * Method which changes the colour of minimize button to default when exited.
-     */
-    @FXML
-    private void minimizeExited(){
-        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
-    }
-
+    // Methods goBack button
     /**
      * Method which changes the colour of go back button when hovered.
      */
