@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarksPopupYearController">
+   <children>
+      <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
+         <children>
+            <Label fx:id="titleLabel" layoutX="89.0" layoutY="50.0" prefHeight="69.0" prefWidth="269.0" text="Word Year." textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <Line endX="421.0" layoutX="190.0" layoutY="119.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0" />
+            <Pane layoutX="89.0" layoutY="152.0" prefHeight="69.0" prefWidth="538.0">
+               <children>
+                  <Label fx:id="yearNumberLabel" prefHeight="69.0" prefWidth="269.0" text="Year Number:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="yearNumberField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 1,2" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/close_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/minimize_icon.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="89.0" layoutY="221.0" prefHeight="69.0" prefWidth="538.0">
+               <children>
+                  <Label fx:id="creditsLabel" prefHeight="69.0" prefWidth="269.0" text="Credits:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="creditsField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 120" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+            <Pane layoutX="89.0" layoutY="290.0" prefHeight="69.0" prefWidth="538.0">
+               <children>
+                  <Label fx:id="weightLabel" prefHeight="69.0" prefWidth="269.0" text="Weight:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="weightField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 33.3%" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+            <Pane fx:id="actionButton" layoutX="266.0" layoutY="386.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../images/more_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="88.0" style="-fx-wrap-text: true;" text="Word" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="deleteButton" layoutX="266.0" layoutY="470.0" onMouseClicked="#deleteButtonClicked" onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="deleteButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="15.0">
+                     <image>
+                        <Image url="@../images/delete_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="deleteButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="88.0" style="-fx-wrap-text: true;" text="Delete" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</Pane>

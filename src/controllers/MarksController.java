@@ -166,7 +166,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void button1Clicked() throws IOException {
         //TODO button1Clicked
         Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupView.fxml");
+        new PopupStage(popup, "MarksPopupViewYear.fxml");
     }
 
     /**

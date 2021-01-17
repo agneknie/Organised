@@ -47,7 +47,7 @@
                   <Image url="@../images/back_icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="216.0" layoutY="264.0" text="Register" textFill="WHITE">
+            <Label layoutX="216.0" layoutY="264.0" text="Register." textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="50.0" />
                </font>
