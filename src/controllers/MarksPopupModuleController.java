@@ -34,31 +34,21 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
 
     // Module code
     @FXML
-    private Label moduleCodeLabel;
-    @FXML
     private TextField moduleCodeField;
 
     // Module name
-    @FXML
-    private Label moduleNameLabel;
     @FXML
     private TextField moduleNameField;
 
     // Credits
     @FXML
-    private Label creditsLabel;
-    @FXML
     private TextField creditsField;
 
     // Semester
     @FXML
-    private Label semesterLabel;
-    @FXML
     private ComboBox<Semester> semesterComboBox;
 
     // Colour
-    @FXML
-    private Label colourLabel;
     @FXML
     private ColorPicker colourPicker;
 

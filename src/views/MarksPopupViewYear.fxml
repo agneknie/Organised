@@ -20,7 +20,7 @@
             <Line endX="421.0" layoutX="190.0" layoutY="119.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0" />
             <Pane layoutX="89.0" layoutY="152.0" prefHeight="69.0" prefWidth="538.0">
                <children>
-                  <Label fx:id="yearNumberLabel" prefHeight="69.0" prefWidth="269.0" text="Year Number:" textFill="WHITE">
+                  <Label prefHeight="69.0" prefWidth="269.0" text="Year Number:" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -44,7 +44,7 @@
             </ImageView>
             <Pane layoutX="89.0" layoutY="221.0" prefHeight="69.0" prefWidth="538.0">
                <children>
-                  <Label fx:id="creditsLabel" prefHeight="69.0" prefWidth="269.0" text="Credits:" textFill="WHITE">
+                  <Label prefHeight="69.0" prefWidth="269.0" text="Credits:" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -58,7 +58,7 @@
             </Pane>
             <Pane layoutX="89.0" layoutY="290.0" prefHeight="69.0" prefWidth="538.0">
                <children>
-                  <Label fx:id="weightLabel" prefHeight="69.0" prefWidth="269.0" text="Weight:" textFill="WHITE">
+                  <Label prefHeight="69.0" prefWidth="269.0" text="Weight:" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>

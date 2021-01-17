@@ -11,10 +11,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller for Year popup in the Marks tab.
- * Used when a Year is selected and added, edited or deleted.
+ * Controller for Assignment popup in the Marks tab.
+ * Used when a Assignment is selected and added, edited or deleted.
  */
-public class MarksPopupYearController extends MarksDefaultPopup implements Initializable {
+public class MarksPopupAssignmentController extends MarksDefaultPopup implements Initializable {
     // Variable for determining the scene type: either Add or Edit
     private String sceneType = Session.getMarksPopupType();
 
@@ -22,29 +22,32 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private Label titleLabel;
 
-    // Year Number
+    // Name
     @FXML
-    private TextField yearNumberField;
+    private TextField nameField;
 
-    // Credits
-    @FXML
-    private TextField creditsField;
-
-    // Weight (%)
+    // Worth %
     @FXML
     private TextField weightField;
+
+    // Attempted
+    //TODO figure out what to do with Attempted?
+
+    // Score
+    @FXML
+    private TextField scoreField;
+
+    // Max Score
+    @FXML
+    private TextField maxScoreField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Sets the text of the title
-        titleLabel.setText(sceneType + " Year.");
+        titleLabel.setText(sceneType + " Assignment.");
 
         // Sets up the action & delete buttons
         this.initializePopup();
-
-        // If "Edit" is selected, disables year number field
-        if(sceneType.equals("Edit")) yearNumberField.setDisable(true);
-
     }
 
     @FXML
