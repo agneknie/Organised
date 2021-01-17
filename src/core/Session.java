@@ -20,7 +20,7 @@ public class Session {
     // Marks: which Assignment selected
     private static Assignment marksAssignmentSelected = null;
     // Marks: whether add or edit button is clicked
-    private static String marksWhichButton = null;
+    private static String marksPopupType = "Edit";
 
     /**
      * Cleans the session by resetting the logged in user to null.
@@ -98,18 +98,18 @@ public class Session {
      * in Marks tab. Used for setting up the popup scene.
      * @return Either "Edit" or "Add"
      */
-    public static String getMarksWhichButton() {
-        return marksWhichButton;
+    public static String getMarksPopupType() {
+        return marksPopupType;
     }
 
     /**
      * Setter for the variable, which determines what button was clicked in Marks
      * tab and is used for popup stage scene setup.
      * Parameter can only be "Edit" or "Add".
-     * @param marksWhichButton "Edit" or "Add"
+     * @param marksPopupType "Edit" or "Add"
      */
-    public static void setMarksWhichButton(String marksWhichButton) {
-        Session.marksWhichButton = marksWhichButton;
+    public static void setMarksPopupType(String marksPopupType) {
+        Session.marksPopupType = marksPopupType;
     }
 
     /**

@@ -166,7 +166,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void button1Clicked() throws IOException {
         //TODO button1Clicked
         Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupViewYear.fxml");
+        new PopupStage(popup, "MarksPopupViewModule.fxml");
     }
 
     /**
@@ -318,28 +318,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private void goRightHovered() {
         ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
-    }
-
-    /**
-     * Method which closes the window when close button is clicked.
-     * Refers to class ControlStage method closeWindow.
-     *
-     * @param event used for getting the scene
-     */
-    @FXML
-    private void closeClicked(MouseEvent event) {
-        ControlScene.closeWindow(event);
-    }
-
-    /**
-     * Method which minimises the window when minimize button is clicked.
-     * Refers to class ControlStage method minimizeWindow.
-     *
-     * @param event used for getting the scene
-     */
-    @FXML
-    private void minimizeClicked(MouseEvent event) {
-        ControlScene.minimizeWindow(event);
     }
 
     /**
