@@ -1,15 +1,13 @@
 package controllers;
 
 import controllers.utilities.ControlScene;
-import controllers.utilities.SetupScene;
-import core.*;
+import controllers.utilities.DefaultNavigation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import stages.PopupStage;
 
@@ -17,24 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MarksController implements Initializable {
-
-    // Side menu panes
-    @FXML
-    private Pane profilePane;
-    @FXML
-    private Pane timePane;
-    @FXML
-    private Pane schedulePane;
-    @FXML
-    private Pane tasksPane;
-    @FXML
-    private Pane settingsPane;
-    @FXML
-    private Pane aboutPane;
-    @FXML
-    private Pane signOutPane;
-
+public class MarksController extends DefaultNavigation implements Initializable {
     // Title Labels
     @FXML
     private Label bigTitleLabel;
@@ -90,12 +71,6 @@ public class MarksController implements Initializable {
     private ImageView goLeftButton;
     @FXML
     private ImageView goRightButton;
-    @FXML
-    private ImageView closeButton;
-    @FXML
-    private ImageView minimizeButton;
-    @FXML
-    private ImageView goBackButton;
 
     // Big Panes and their elements
     // Pane 5
@@ -371,262 +346,8 @@ public class MarksController implements Initializable {
      * Method which changes the screen back to the previously visited screen
      * when goBack button is pressed.
      */
-    @FXML
-    private void goBackClicked() {
+    public void goBackClicked() {
         //TODO go back to previous screen button
-    }
-
-    /**
-     * Method which changes the colour of close button when hovered.
-     */
-    @FXML
-    private void closeHovered(){
-        ControlScene.controlButtonEffect("close_icon_selected.png", closeButton);
-    }
-
-    /**
-     * Method which changes the colour of close button to default when exited.
-     */
-    @FXML
-    private void closeExited(){
-        ControlScene.controlButtonEffect("close_icon.png", closeButton);
-    }
-
-    /**
-     * Method which changes the colour of minimize button when hovered.
-     */
-    @FXML
-    private void minimizeHovered(){
-        ControlScene.controlButtonEffect("minimize_icon_selected.png", minimizeButton);
-    }
-
-    /**
-     * Method which changes the colour of minimize button to default when exited.
-     */
-    @FXML
-    private void minimizeExited(){
-        ControlScene.controlButtonEffect("minimize_icon.png", minimizeButton);
-    }
-
-    /**
-     * Method which changes the colour of go back button when hovered.
-     */
-    @FXML
-    private void goBackHovered(){
-        ControlScene.controlButtonEffect("back_icon_selected.png", goBackButton);
-    }
-
-    /**
-     * Method which changes the colour of go back button to default when exited.
-     */
-    @FXML
-    private void goBackExited(){
-        ControlScene.controlButtonEffect("back_icon.png", goBackButton);
-    }
-
-    // Below methods implement menu functionality
-    /**
-     * Changes profile pane background colour if hovered
-     */
-    @FXML
-    private void profileHovered(){
-        ControlScene.menuPaneHovered(profilePane);
-    }
-
-    /**
-     * Changes profile pane background colour back to default
-     */
-    @FXML
-    private void profileExited(){
-        ControlScene.menuPaneExited(profilePane);
-    }
-
-    /**
-     * Forwards user to profile view/scene
-     */
-    @FXML
-    private void profileClicked(){
-        try {
-            SetupScene.changeScene("ProfileView.fxml", profilePane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Profile by Menu.");
-        }
-    }
-
-    /**
-     * Changes time pane background colour if hovered
-     */
-    @FXML
-    private void timeHovered(){
-        ControlScene.menuPaneHovered(timePane);
-    }
-
-    /**
-     * Changes time pane background colour back to default
-     */
-    @FXML
-    private void timeExited(){
-        ControlScene.menuPaneExited(timePane);
-    }
-
-    /**
-     * Forwards user to time view/scene
-     */
-    @FXML
-    private void timeClicked(){
-        try {
-            SetupScene.changeScene("TimeView.fxml", timePane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Time by Menu.");
-        }
-    }
-
-    /**
-     * Changes schedule pane background colour if hovered
-     */
-    @FXML
-    private void scheduleHovered(){
-        ControlScene.menuPaneHovered(schedulePane);
-    }
-
-    /**
-     * Changes schedule pane background colour back to default
-     */
-    @FXML
-    private void scheduleExited(){
-        ControlScene.menuPaneExited(schedulePane);
-    }
-
-    /**
-     * Forwards user to schedule view/scene
-     */
-    @FXML
-    private void scheduleClicked(){
-        try {
-            SetupScene.changeScene("ScheduleView.fxml", schedulePane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Schedule by Menu.");
-        }
-    }
-
-    /**
-     * Changes tasks pane background colour if hovered
-     */
-    @FXML
-    private void tasksHovered(){
-        ControlScene.menuPaneHovered(tasksPane);
-    }
-
-    /**
-     * Changes tasks pane background colour back to default
-     */
-    @FXML
-    private void tasksExited(){
-        ControlScene.menuPaneExited(tasksPane);
-    }
-
-    /**
-     * Forwards user to tasks view/scene
-     */
-    @FXML
-    private void tasksClicked(){
-        try {
-            SetupScene.changeScene("TasksView.fxml", tasksPane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Tasks by Menu.");
-        }
-    }
-
-    /**
-     * Changes settings pane background colour if hovered
-     */
-    @FXML
-    private void settingsHovered(){
-        ControlScene.menuPaneHovered(settingsPane);
-    }
-
-    /**
-     * Changes settings pane background colour back to default
-     */
-    @FXML
-    private void settingsExited(){
-        ControlScene.menuPaneExited(settingsPane);
-    }
-
-    /**
-     * Forwards user to settings view/scene
-     */
-    @FXML
-    private void settingsClicked(){
-        try {
-            SetupScene.changeScene("SettingsView.fxml", settingsPane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Settings by Menu.");
-        }
-    }
-
-    /**
-     * Changes about pane background colour if hovered
-     */
-    @FXML
-    private void aboutHovered(){
-        ControlScene.menuPaneHovered(aboutPane);
-    }
-
-    /**
-     * Changes about pane background colour back to default
-     */
-    @FXML
-    private void aboutExited(){
-        ControlScene.menuPaneExited(aboutPane);
-    }
-
-    /**
-     * Forwards user to about view/scene
-     */
-    @FXML
-    private void aboutClicked(){
-        try {
-            SetupScene.changeScene("AboutView.fxml", aboutPane);
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to About by Menu.");
-        }
-    }
-
-    /**
-     * Changes sign out pane background colour if hovered
-     */
-    @FXML
-    private void signOutHovered(){
-        ControlScene.menuPaneHovered(signOutPane);
-    }
-
-    /**
-     * Changes sign out pane background colour back to default
-     */
-    @FXML
-    private void signOutExited(){
-        ControlScene.menuPaneExited(signOutPane);
-    }
-
-    /**
-     * Logs out the user and forwards to login view/scene
-     */
-    @FXML
-    private void signOutClicked(){
-        try {
-            SetupScene.changeScene("LoginPageView.fxml", signOutPane);
-            User.signOutUser();
-
-        } catch (IOException e) {
-            System.out.println("Exception whilst changing scene from Marks to Login by Menu.");
-        }
     }
 
     @Override
