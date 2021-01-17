@@ -2,18 +2,22 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.SetupScene;
-import core.User;
+import core.*;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import stages.PopupStage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MarksController {
+public class MarksController implements Initializable {
 
     // Side menu panes
     @FXML
@@ -623,5 +627,10 @@ public class MarksController {
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from Marks to Login by Menu.");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //TODO Initialize method in Marks view
     }
 }

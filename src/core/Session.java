@@ -4,10 +4,19 @@ package core;
  * Class which saves the user which is currently logged in.
  * Used for access of the logged in user's data during different points
  * of the application.
+ *
+ * Also saves data of the current session for functionality of different
+ * application windows.
  */
 public class Session {
+    // User currently using the system
     private static User loggedUser = null;
+    // Whether non-logged in user has just created a new user by registration
     private static boolean userCreatedInSession;
+    // Year selected in Marks tab
+    private static Year marksYearSelected = null;
+    // Module selected in Marks tab
+    private static Module marksModuleSelected = null;
 
     /**
      * Cleans the session by resetting the logged in user to null.

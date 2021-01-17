@@ -509,7 +509,6 @@ public class User {
     }
 
     // Methods concerning deletion of Years, Modules and Assignments
-
     /**
      * Method which deletes an assignment from the database.
      * Used when user deletes an assignment.
