@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
@@ -79,6 +80,17 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
                 }
             }
         });
+    }
+
+    /**
+     * Calls default method.
+     * Cleans session variable responsible for popup type.
+     * @param event used for getting the scene
+     */
+    @Override
+    public void closeClicked(MouseEvent event) {
+        super.closeClicked(event);
+        Session.setMarksPopupType(null);
     }
 
     @FXML

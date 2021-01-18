@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +55,17 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
         // Disable score & maxScore fields, until selection is made
         scoreField.setDisable(true);
         maxScoreField.setDisable(true);
+    }
+
+    /**
+     * Calls default method.
+     * Cleans session variable responsible for popup type.
+     * @param event used for getting the scene
+     */
+    @Override
+    public void closeClicked(MouseEvent event) {
+        super.closeClicked(event);
+        Session.setMarksPopupType(null);
     }
 
     @FXML

@@ -2,12 +2,14 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import stages.PopupStage;
 
 import java.io.IOException;
@@ -159,13 +161,28 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private Label pane7ButtonLabel;
 
+    // Helper methods used within this controller
+    /**
+     * Cleans the session variable if popup is closed.
+     * @param event parameter not used
+     */
+    private void popupClosed(WindowEvent event){
+        Session.setMarksPopupType(null);
+    }
 
     // Below methods implement UI buttons
     @FXML
     private void button1Clicked() throws IOException {
-        //TODO button1Clicked
+        // TODO button1Clicked
+        // Sets the popup type
+        Session.setMarksPopupType("Edit");
+
+        // Creates the popup
         Stage popup = new Stage();
         new PopupStage(popup, "MarksPopupViewAssignment.fxml");
+
+        // If popup gets closed from the taskbar, forwards to popupClosed method
+        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
     }
 
     /**
@@ -185,8 +202,17 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     @FXML
-    private void button2Clicked() {
-        //TODO button2Clicked
+    private void button2Clicked() throws IOException {
+        // TODO button2Clicked
+        // Sets the popup type
+        Session.setMarksPopupType("Add");
+
+        // Creates the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "MarksPopupViewAssignment.fxml");
+
+        // If popup gets closed from the taskbar, forwards to popupClosed method
+        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
     }
 
     /**

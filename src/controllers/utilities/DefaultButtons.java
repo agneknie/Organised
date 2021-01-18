@@ -22,7 +22,7 @@ public abstract class DefaultButtons {
      * @param event used for getting the scene
      */
     @FXML
-    private void closeClicked(MouseEvent event) {
+    public void closeClicked(MouseEvent event) {
         ControlScene.closeWindow(event);
     }
 

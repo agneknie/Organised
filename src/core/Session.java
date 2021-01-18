@@ -20,7 +20,7 @@ public class Session {
     // Marks: which Assignment selected
     private static Assignment marksAssignmentSelected = null;
     // Marks: whether add or edit button is clicked
-    private static String marksPopupType = "Add";
+    private static String marksPopupType;
 
     /**
      * Cleans the session by resetting the logged in user to null.
