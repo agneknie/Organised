@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +32,8 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
     private TextField weightField;
 
     // Attempted
-    //TODO figure out what to do with Attempted?
+    @FXML
+    private ToggleButton attemptedButton;
 
     // Score
     @FXML
@@ -48,6 +50,10 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
 
         // Sets up the action & delete buttons
         this.initializePopup();
+
+        // Disable score & maxScore fields, until selection is made
+        scoreField.setDisable(true);
+        maxScoreField.setDisable(true);
     }
 
     @FXML
@@ -60,4 +66,35 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
         //TODO actionButtonClicked
     }
 
+    /**
+     * Changes the styling of attemptedButton based on user choice.
+     * Disables score & maxScore fields if needed.
+     */
+    @FXML
+    private void attemptedButtonClicked(){
+        // Sets button properties depending on selection
+        String colour;
+        String text;
+        if(attemptedButton.isSelected()){
+            colour = "#60A572;";
+            text = "Yes";
+        }
+        else {
+            colour ="#C75450;";
+            text = "No";
+        }
+
+        // Sets the button style (colours the border)
+        String firstHalfStyles = "-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: ";
+        String secondHalfStyles = " -fx-border-radius: 10; -fx-border-width: 3";
+        attemptedButton.setStyle(firstHalfStyles+colour+secondHalfStyles);
+
+        // Sets button text (Yes/No)
+        attemptedButton.setText(text);
+
+        // Disables the buttons, if needed
+        scoreField.setDisable(!attemptedButton.isSelected());
+        maxScoreField.setDisable(!attemptedButton.isSelected());
+    }
 }

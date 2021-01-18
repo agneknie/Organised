@@ -79,7 +79,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="semesterComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Semester." style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3; -fx-text-fill: white;" />
+                  <ComboBox fx:id="semesterComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Semester:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
                </children>
             </Pane>
             <Pane fx:id="actionButton" layoutX="266.0" layoutY="428.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
@@ -117,7 +117,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <ColorPicker fx:id="colourPicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-color: white;" />
+                  <ColorPicker fx:id="colourPicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-color: white; -fx-color-label-visible: false; -fx-color-rect-width: 180; -fx-color-rect-height: 30;" />
                </children>
             </Pane>
          </children>

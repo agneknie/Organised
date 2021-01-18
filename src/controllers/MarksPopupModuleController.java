@@ -7,13 +7,11 @@ import core.Semester;
 import core.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -65,6 +63,22 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
 
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
+        // Styles semester combo box text
+        semesterComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
     }
 
     @FXML
