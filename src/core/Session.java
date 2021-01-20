@@ -13,6 +13,7 @@ public class Session {
     private static User loggedUser = null;
     // Whether non-logged in user has just created a new user by registration
     private static boolean userCreatedInSession;
+
     // Marks: which Year selected
     private static Year marksYearSelected = null;
     // Marks: which Module selected

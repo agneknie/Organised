@@ -156,7 +156,7 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Pane fx:id="pane1" layoutX="64.0" layoutY="148.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane fx:id="pane1" layoutX="69.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane1Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane1Label" textFill="#e6bb9a">
                      <font>
@@ -170,7 +170,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane2" layoutX="244.0" layoutY="148.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane fx:id="pane2" layoutX="249.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane2Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane2Label" textFill="#e6bb9a">
                      <font>
@@ -184,7 +184,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane3" layoutX="424.0" layoutY="148.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane fx:id="pane3" layoutX="429.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane3Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane3Label" textFill="#e6bb9a">
                      <font>
@@ -198,7 +198,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane4" layoutX="604.0" layoutY="148.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane fx:id="pane4" layoutX="609.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane4Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane4Label" textFill="#e6bb9a">
                      <font>

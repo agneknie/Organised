@@ -3,6 +3,7 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.Session;
+import core.Year;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MarksController extends DefaultNavigation implements Initializable {
@@ -161,6 +163,21 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private Label pane7ButtonLabel;
 
+    // Variables for storing user data
+    private List<Year> userYears;
+    private String actionViewName;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Cleans the session variables of marks, if there were any
+        cleanSession();
+
+        // Loads the Years of the user
+        userYears = Session.getSession().getAllYears();
+
+        loadDegree();
+    }
+
     // Helper methods used within this controller
     /**
      * Cleans the session variable if popup is closed.
@@ -168,6 +185,49 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     private void popupClosed(WindowEvent event){
         Session.setMarksPopupType(null);
+    }
+
+    /**
+     * Cleans the session variables for year, module and assignment
+     */
+    private void cleanSession(){
+        Session.setMarksYearSelected(null);
+        Session.setMarksModuleSelected(null);
+        Session.setMarksAssignmentSelected(null);
+    }
+
+    /**
+     * Setups the scene with degree data (panels have year data)
+     */
+    private void loadDegree(){
+        // Sets the main titles of the page
+        bigTitleLabel.setText("Your Degree.");
+        optionalTitleLabel.setText("");
+
+        // Sets up the buttons
+        button1.setVisible(false);
+        button2Label.setText("Add Year");
+
+        // Sets up the name of the view if add/edit is pressed
+        actionViewName = "Year";
+
+        // Sets degree overall grade
+        pane1Label.setText("Average:");
+        double userGrade = Session.getSession().getDegreeGrade();
+        if (userGrade == -1) pane1Value.setText("-");
+        else pane1Value.setText(Double.toString(userGrade));
+
+        // Set degree classification
+        pane2Label.setText("Classification:");
+        pane2Value.setText(Session.getSession().getClassification());
+
+        // Hides unused top display panes
+        pane3.setVisible(false);
+        pane4.setVisible(false);
+
+        // Load years in pane5, pane6 & pane7
+        // Save loaded year numbers in array(?) so they can be traced back if clicked
+        // Hide year panes if unused
     }
 
     // Below methods implement UI buttons
@@ -179,7 +239,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
         // Creates the popup
         Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupViewAssignment.fxml");
+        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
 
         // If popup gets closed from the taskbar, forwards to popupClosed method
         popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
@@ -209,7 +269,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
         // Creates the popup
         Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupViewAssignment.fxml");
+        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
 
         // If popup gets closed from the taskbar, forwards to popupClosed method
         popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
@@ -351,10 +411,5 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     public void goBackClicked() {
         //TODO go back to previous screen button
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //TODO Initialize method in Marks view
     }
 }
