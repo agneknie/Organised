@@ -199,4 +199,20 @@ public class Assignment {
         // Returns whether insertion was successful
         return rowsAffected == 1;
     }
+
+    /**
+     * Method which returns the grade of the assignment which
+     * is calculated from score and maxScore.
+     *
+     * Returns -1 if maxScore & score is not set yet.
+     *
+     * @return grade of the assignment as percentage or -1
+     */
+    public double getGrade(){
+        // If score is not added yet (assignment acts as a placeholder)
+        if(maxScore == -1 || score == -1){
+            return -1;
+        }
+        else return score/maxScore*100;
+    }
 }

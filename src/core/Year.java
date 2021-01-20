@@ -213,6 +213,29 @@ public class Year {
         return rowsAffected == 1;
     }
 
+    /**
+     * Method which returns the weighted overall grade of the year
+     * @return overall weighted year grade
+     */
+    public double getOverallGrade(){
+        List<Module> modules = getAllModules();
+
+        // Variables to save interim calculation results
+        double overallAchieved = 0;
+        double creditsAvailable = 0;
+
+        // Goes through modules and saves their data
+        for(Module module: modules){
+            double moduleMark = module.getOverallGrade()*module.getCredits();
+            if(moduleMark != 0){
+                overallAchieved += moduleMark;
+                creditsAvailable += module.getCredits();
+            }
+        }
+        // Calculates the grade and returns it
+        return overallAchieved/creditsAvailable;
+    }
+
     // Methods concerning Modules of this year
     /**
      * Method which adds a newly created module to the database.

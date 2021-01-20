@@ -404,6 +404,54 @@ public class User {
         return loggedInUser;
     }
 
+    /**
+     * Method which returns weighted grade of the degree of the user.
+     * Returns -1 if no years present.
+     *
+     * @return degree grade of the user
+     */
+    public double getDegreeGrade(){
+        List <Year> years = getAllYears();
+
+        if(years.isEmpty()) return -1;
+
+        //Variables to save interim calculation results
+        double percentAchieved = 0;
+        double percentAvailable = 0;
+
+        // Goes through years of the user and saves their data
+        for(Year year : years){
+            double yearMark = year.getOverallGrade()*year.getPercentWeight()/100;
+            if(yearMark != 0){
+                percentAchieved += yearMark;
+                percentAvailable += year.getPercentWeight();
+            }
+        }
+
+        // Calculates the grade and returns it
+        return percentAchieved/percentAvailable*100;
+    }
+
+    /**
+     * Returns user's degree classification based on the current grade.
+     * Removes decimal part from the grade without rounding it.
+     * Returns "-" if grade is not available yet.
+     * @return String as a classification
+     */
+    public String getClassification(){
+        double userGrade = getDegreeGrade();
+        String classification;
+
+        if (userGrade == -1) classification = "-";
+        else if(userGrade < 40) classification = "Non-Honours";
+        else if(userGrade < 50) classification = "3rd";
+        else if(userGrade < 60) classification = "2:2";
+        else if(userGrade < 70) classification = "2:1";
+        else classification = "1st";
+
+        return classification;
+    }
+
     // Methods concerning Years of the user
     /**
      * Method which adds a newly created year to the database.

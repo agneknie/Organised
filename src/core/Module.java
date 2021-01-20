@@ -280,6 +280,30 @@ public class Module {
     }
 
     /**
+     * Method which returns an overall grade of the module
+     * @return overall grade of module
+     */
+    public double getOverallGrade(){
+        List <Assignment> assignments = getAllAssignments();
+
+        // Variables to save interim calculation results
+        double percentAchieved = 0;
+        double percentAvailable = 0;
+
+        // Goes through assignments saves their data
+        for(Assignment assignment : assignments){
+            double assignmentMark = assignment.getGrade()*assignment.getPercentWorth()/100;
+            // If assignment mark is -1, doesn't add it to overall score, because it's not yet attempted
+            if(assignmentMark != -1){
+                percentAchieved += assignmentMark;
+                percentAvailable += assignment.getPercentWorth();
+            }
+        }
+        // Calculates the grade and returns it
+        return percentAchieved/percentAvailable*100;
+    }
+
+    /**
      * Adds a newly created assignment to the database.
      * Used when user creates a new assignment.
      *
