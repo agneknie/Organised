@@ -5,6 +5,7 @@ import database.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * Class to represent an Assignment in the application.
@@ -214,5 +215,20 @@ public class Assignment {
             return -1;
         }
         else return score/maxScore*100;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Assignment that = (Assignment) o;
+        return id == that.id && userId == that.userId && percentWorth == that.percentWorth &&
+                maxScore == that.maxScore && score == that.score && moduleCode.equals(that.moduleCode)
+                && fullName.equals(that.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, moduleCode, fullName, percentWorth);
     }
 }

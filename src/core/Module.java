@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class for representing a module in the system
@@ -408,5 +409,20 @@ public class Module {
         }
         // Returns a list of Module objects
         return assignments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Module module = (Module) o;
+        return id == module.id && userId == module.userId && credits == module.credits &&
+                studyYear == module.studyYear && code.equals(module.code) && fullName.equals(module.fullName)
+                && semester == module.semester && colour.equals(module.colour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, code, fullName, credits, semester, studyYear, colour);
     }
 }

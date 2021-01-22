@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class for representing a year in the system
@@ -344,5 +345,19 @@ public class Year {
         }
         // Returns a list of Module objects
         return modules;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Year year = (Year) o;
+        return id == year.id && userId == year.userId && yearNumber == year.yearNumber &&
+                credits == year.credits && percentWeight == year.percentWeight;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, yearNumber, credits, percentWeight);
     }
 }

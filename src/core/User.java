@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -704,5 +705,19 @@ public class User {
             return rowsAffected == 1;
         }
         else return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return keepLoggedIn == user.keepLoggedIn && id == user.id && forename.equals(user.forename) &&
+                username.equals(user.username) && passwordHash.equals(user.passwordHash);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(forename, username, passwordHash, keepLoggedIn, id);
     }
 }
