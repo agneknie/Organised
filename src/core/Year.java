@@ -215,11 +215,14 @@ public class Year {
     }
 
     /**
-     * Method which returns the weighted overall grade of the year
+     * Method which returns the weighted overall grade of the year.
+     * Returns -1 if no modules are attached to a year.
+     *
      * @return overall weighted year grade
      */
     public double getOverallGrade(){
         List<Module> modules = getAllModules();
+        if (modules.isEmpty()) return -1;
 
         // Variables to save interim calculation results
         double overallAchieved = 0;
@@ -233,8 +236,22 @@ public class Year {
                 creditsAvailable += module.getCredits();
             }
         }
+        // If no modules with grades were present, avoids division by 0
+        if(creditsAvailable == 0) return -1;
         // Calculates the grade and returns it
         return overallAchieved/creditsAvailable;
+    }
+
+    public double getPercentComplete(){
+        List<Module> modules = getAllModules();
+        int credits = 0;
+
+        for(Module module : modules){
+            if(module.getOverallGrade() > 0) credits += module.getCredits();
+        }
+
+        if (credits == 0) return 0;
+        else return credits/this.getCredits()*100;
     }
 
     // Methods concerning Modules of this year

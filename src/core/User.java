@@ -413,7 +413,6 @@ public class User {
      */
     public double getDegreeGrade(){
         List <Year> years = getAllYears();
-
         if(years.isEmpty()) return -1;
 
         //Variables to save interim calculation results
@@ -423,12 +422,13 @@ public class User {
         // Goes through years of the user and saves their data
         for(Year year : years){
             double yearMark = year.getOverallGrade()*year.getPercentWeight()/100;
-            if(yearMark != 0){
+            if(yearMark > 0){
                 percentAchieved += yearMark;
                 percentAvailable += year.getPercentWeight();
             }
         }
-
+        // If no years with grades were present, avoids division by 0
+        if(percentAvailable == 0) return -1;
         // Calculates the grade and returns it
         return percentAchieved/percentAvailable*100;
     }

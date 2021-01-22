@@ -300,6 +300,8 @@ public class Module {
                 percentAvailable += assignment.getPercentWorth();
             }
         }
+        // If no assignments with grades were present, avoids division by 0
+        if(percentAvailable == 0) return -1;
         // Calculates the grade and returns it
         return percentAchieved/percentAvailable*100;
     }

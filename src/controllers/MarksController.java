@@ -2,6 +2,8 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Assignment;
+import core.Module;
 import core.Session;
 import core.Year;
 import javafx.fxml.FXML;
@@ -81,6 +83,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     // Pane 5
     @FXML
     private Pane pane5;
+    private boolean pane5Loaded = false;
     @FXML
     private Label pane5Title;
     @FXML
@@ -110,6 +113,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     // Pane 6
     @FXML
     private Pane pane6;
+    private boolean pane6Loaded = false;
     @FXML
     private Label pane6Title;
     @FXML
@@ -139,6 +143,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     // Pane 7
     @FXML
     private Pane pane7;
+    private boolean pane7Loaded = false;
     @FXML
     private Label pane7Title;
     @FXML
@@ -167,6 +172,10 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
     // Variables for storing user data
     private List<Year> userYears;
+    // Indexes of the objects in the above lists, which are displayed by below panes
+    private int pane5Pointer;
+    private int pane6Pointer;
+    private int pane7Pointer;
     private String actionViewName;
 
     @Override
@@ -177,6 +186,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Loads the Years of the user
         userYears = Session.getSession().getAllYears();
 
+        // Loads degree information
         loadDegree();
     }
 
@@ -228,8 +238,68 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane4.setVisible(false);
 
         // Load years in pane5, pane6 & pane7
-        // Save loaded year numbers in array(?) so they can be traced back if clicked
-        // Hide year panes if unused
+        loadPane5(userYears.get(0));
+
+        // Hides year panes if unused
+       hideUnusedPanes();
+    }
+
+    // Methods concerning the big 3 panes for data display
+    /**
+     * Hides module/year/assignment panes if unused.
+     */
+    private void hideUnusedPanes(){
+        if (!pane5Loaded) pane5.setVisible(false);
+        if (!pane6Loaded) pane6.setVisible(false);
+        if (!pane7Loaded) pane7.setVisible(false);
+    }
+
+    /**
+     * Method which sets up Pane 5 with data.
+     * @param object Year, Module or Assignment object to set.
+     */
+    private void loadPane5(Object object){
+        // Gets the name of the class
+        String className = object.getClass().getSimpleName();
+        switch(className){
+
+            // If class is Year, setups the panel as Year
+            case("Year"):
+                Year year = (Year) object;
+                // Top Title
+                pane5Title.setText("Year "+year.getYearNumber());
+
+                // Credits
+                pane5Label1.setText("Credits:");
+                pane5Value1.setText(String.valueOf(year.getCredits()));
+
+                // Worth in percent
+                pane5Label2.setText("Worth:");
+                pane5Value2.setText(String.valueOf(year.getPercentWeight()));
+
+                // Grade
+                pane5Label3.setText("Average:");
+                if (year.getOverallGrade() == -1) pane5Value3.setText("-");
+                else pane5Value3.setText(String.valueOf(year.getOverallGrade()));
+
+                // % Complete:
+                pane5Label4.setText("Complete:");
+                pane5Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+
+                // Marks pane as loaded
+                pane5Loaded = true;
+                break;
+
+            // If class is Module, setups the panel as Module
+            case ("Module"):
+                Module module = (Module) object;
+                break;
+
+            // If class is Assignment, setups the panel as Assignment
+            case ("Assignment"):
+                Assignment assignment = (Assignment) object;
+                break;
+        }
     }
 
     // Below methods implement UI buttons
