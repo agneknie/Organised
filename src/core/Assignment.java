@@ -15,9 +15,9 @@ public class Assignment {
     private int userId;
     private String moduleCode;
     private String fullName;
-    private int percentWorth;
-    private int maxScore;
-    private int score;
+    private double percentWorth;
+    private double maxScore;
+    private double score;
 
     /**
      * Getter for assignment id
@@ -63,7 +63,7 @@ public class Assignment {
      * module overall mark.
      * @return weight as % of the assignment
      */
-    public int getPercentWorth() {
+    public double getPercentWorth() {
         return percentWorth;
     }
 
@@ -71,17 +71,17 @@ public class Assignment {
      * Setter for assignment weight towards the module.
      * @param percentWorth percentage to set
      */
-    public void setPercentWorth(int percentWorth) {
+    public void setPercentWorth(double percentWorth) {
         if (percentWorth > 100 || percentWorth < 0)
             throw new IllegalArgumentException("Percentage has to be between 0% and 100");
-        this.percentWorth = percentWorth;
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
     }
 
     /**
      * Getter for assignment maximum score
      * @return maximum score of the assignment
      */
-    public int getMaxScore() {
+    public double getMaxScore() {
         return maxScore;
     }
 
@@ -89,15 +89,17 @@ public class Assignment {
      * Setter for the maximum score of the assignment
      * @param maxScore score to set
      */
-    public void setMaxScore(int maxScore) {
-        this.maxScore = maxScore;
+    public void setMaxScore(double maxScore) {
+        if (maxScore == 0)
+            throw new IllegalArgumentException("Maximum Score can't be 0.");
+        this.maxScore = (double)Math.round(maxScore * 100) / 100;
     }
 
     /**
      * Getter for assignment score
      * @return score of the assignment
      */
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
@@ -105,10 +107,10 @@ public class Assignment {
      * Setter for the score of the assignment.
      * @param score score to set
      */
-    public void setScore(int score) {
+    public void setScore(double score) {
         if (score > maxScore)
             throw new IllegalArgumentException("Score can't be bigger than maximum score");
-        this.score = score;
+        this.score = (double)Math.round(score * 100) / 100;
     }
 
     /**
@@ -123,14 +125,14 @@ public class Assignment {
      * @param maxScore maximum available score for the assignment
      * @param score score achieved in the assignment
      */
-    public Assignment(int id, int userId, String moduleCode, String fullName, int percentWorth, int maxScore, int score){
+    public Assignment(int id, int userId, String moduleCode, String fullName, double percentWorth, double maxScore, double score){
         this.id = id;
         this.userId = userId;
         this.moduleCode = moduleCode;
         this.fullName = fullName;
-        this.percentWorth = percentWorth;
-        this.maxScore = maxScore;
-        this.score = score;
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.maxScore = (double)Math.round(maxScore * 100) / 100;
+        this.score = (double)Math.round(score * 100) / 100;
     }
 
     /**
@@ -144,18 +146,20 @@ public class Assignment {
      * @param maxScore maximum available score for the assignment
      * @param score score achieved in the assignment
      */
-    public Assignment(int userId, String moduleCode, String fullName, int percentWorth, int maxScore, int score){
+    public Assignment(int userId, String moduleCode, String fullName, double percentWorth, double maxScore, double score){
         if (percentWorth > 100 || percentWorth < 0)
             throw new IllegalArgumentException("Percentage has to be between 0% and 100");
         if (score > maxScore)
             throw new IllegalArgumentException("Score can't be bigger than maximum score");
+        if (maxScore == 0)
+            throw new IllegalArgumentException("Maximum Score can't be 0.");
         this.id = 0;     // Assignment is not reconstructed from db/not already in db
         this.userId = userId;
         this.moduleCode = moduleCode;
         this.fullName = fullName;
-        this.percentWorth = percentWorth;
-        this.maxScore = maxScore;
-        this.score = score;
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.maxScore = (double)Math.round(maxScore * 100) / 100;
+        this.score = (double)Math.round(score * 100) / 100;
     }
 
     /**
@@ -177,9 +181,9 @@ public class Assignment {
             // Fills prepared statement and executes
             pStatement = connection.prepareStatement(query);
             pStatement.setString(1, fullName);
-            pStatement.setInt(2, percentWorth);
-            pStatement.setInt(3, maxScore);
-            pStatement.setInt(4, score);
+            pStatement.setDouble(2, percentWorth);
+            pStatement.setDouble(3, maxScore);
+            pStatement.setDouble(4, score);
             pStatement.setInt(5, id);
 
             // Result of query is true if SQL command worked

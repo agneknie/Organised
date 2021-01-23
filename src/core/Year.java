@@ -1,7 +1,6 @@
 package core;
 
 import database.Database;
-import javafx.scene.paint.Color;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ public class Year {
     private int userId;
     private int yearNumber;
     private int credits;
-    private int percentWeight;
+    private double percentWorth;
 
     /**
      * Getter for id.
@@ -65,20 +64,21 @@ public class Year {
 
     /**
      * Getter for year weight in percentage.
-     * @return percentWeight
+     * @return percentWorth
      */
-    public int getPercentWeight() {
-        return percentWeight;
+    public double getPercentWorth() {
+        return percentWorth;
     }
 
     /**
      * Setter for year weight in percent.
-     * @param percentWeight percentWeight to set.
+     * @param percentWorth percentWorth to set.
      */
-    public void setPercentWeight(int percentWeight) {
-        if(percentWeight < 0)
+    public void setPercentWorth(double percentWorth) {
+        if(percentWorth < 0)
             throw new IllegalArgumentException("Percentage worth can't be less than 0");
-        this.percentWeight = percentWeight;
+
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
     }
 
     /**
@@ -87,20 +87,20 @@ public class Year {
      *
      * @param yearNumber number of the year
      * @param credits how many credits does the year have
-     * @param percentWeight how much does it weight toward the final degree mark
+     * @param percentWorth how much does it weight toward the final degree mark
      */
-    public Year (int userId, int yearNumber, int credits, int percentWeight){
+    public Year (int userId, int yearNumber, int credits, double percentWorth){
         if(yearNumber < 0)
             throw new IllegalArgumentException("Year can't be less than 0");
         if(credits < 0)
             throw new IllegalArgumentException("Credits can't be less than 0");
-        if(percentWeight < 0)
+        if(percentWorth < 0)
             throw new IllegalArgumentException("Percentage worth can't be less than 0");
         this.id = 0;    // Year is not reconstructed from db/not already in db
         this.userId = userId;
         this.yearNumber = yearNumber;
         this.credits = credits;
-        this.percentWeight = percentWeight;
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
     }
 
     /**
@@ -111,14 +111,14 @@ public class Year {
      * @param userId userId of the user to whom the year belongs to
      * @param yearNumber number of the year
      * @param credits how many credits is the year worth
-     * @param percentWeight how much the year weights towards final degree mark
+     * @param percentWorth how much the year weights towards final degree mark
      */
-    public Year (int id, int userId, int yearNumber, int credits, int percentWeight){
+    public Year (int id, int userId, int yearNumber, int credits, double percentWorth){
         this.id = id;
         this.userId = userId;
         this.yearNumber = yearNumber;
         this.credits = credits;
-        this.percentWeight = percentWeight;
+        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
     }
 
     /**
@@ -185,14 +185,14 @@ public class Year {
         int rowsAffected = 0;
 
         // Sets up the query
-        String query = "UPDATE Year SET yearNumber = ?, credits = ?, percentWeight = ? " +
+        String query = "UPDATE Year SET yearNumber = ?, credits = ?, percentWorth = ? " +
                 "WHERE id = ?";
         try {
             // Fills prepared statement and executes
             pStatement = connection.prepareStatement(query);
             pStatement.setInt(1, yearNumber);
             pStatement.setInt(2, credits);
-            pStatement.setInt(3, percentWeight);
+            pStatement.setDouble(3, percentWorth);
             pStatement.setInt(4, id);
 
             // Result of query is true if SQL command worked
@@ -370,11 +370,11 @@ public class Year {
         if (o == null || getClass() != o.getClass()) return false;
         Year year = (Year) o;
         return id == year.id && userId == year.userId && yearNumber == year.yearNumber &&
-                credits == year.credits && percentWeight == year.percentWeight;
+                credits == year.credits && percentWorth == year.percentWorth;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, yearNumber, credits, percentWeight);
+        return Objects.hash(id, userId, yearNumber, credits, percentWorth);
     }
 }

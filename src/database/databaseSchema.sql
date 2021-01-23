@@ -11,7 +11,7 @@ CREATE TABLE Year(
     userId INTEGER NOT NULL,
     yearNumber INTEGER NOT NULL,
     credits INTEGER NOT NULL,
-    percentWeight INTEGER NOT NULL,
+    percentWorth REAL NOT NULL,
     FOREIGN KEY (userId)
         REFERENCES User (id)
 );
@@ -26,7 +26,7 @@ CREATE TABLE Module(
     studyYear INTEGER NOT NULL,
     colour TEXT NOT NULL,
     FOREIGN KEY (userId)
-        REFERENCES User (id)
+        REFERENCES User (id),
     FOREIGN KEY (studyYear)
         REFERENCES Year (yearNumber)
 );
@@ -36,9 +36,9 @@ CREATE TABLE Assignment(
     userId INTEGER NOT NULL,
     moduleCode INTEGER NOT NULL,
     fullName TEXT NOT NULL,
-    percentWorth INTEGER NOT NULL,
-    maxScore INTEGER,
-    score INTEGER,
+    percentWorth REAL NOT NULL,
+    maxScore REAL,
+    score REAL,
     FOREIGN KEY (userId)
         REFERENCES User (id),
     FOREIGN KEY (moduleCode)

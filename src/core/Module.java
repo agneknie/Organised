@@ -330,9 +330,9 @@ public class Module {
             pStatement.setInt(1, userId);
             pStatement.setString(2, assignment.getModuleCode());
             pStatement.setString(3, assignment.getFullName());
-            pStatement.setInt(4, assignment.getPercentWorth());
-            pStatement.setInt(5, assignment.getMaxScore());
-            pStatement.setInt(6, assignment.getScore());
+            pStatement.setDouble(4, assignment.getPercentWorth());
+            pStatement.setDouble(5, assignment.getMaxScore());
+            pStatement.setDouble(6, assignment.getScore());
 
             // Result of query is true if SQL command worked
             rowsAffected = pStatement.executeUpdate();
@@ -381,9 +381,9 @@ public class Module {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String fullName = rs.getString("fullName");
-                int percentWorth = rs.getInt("percentWorth");
-                int maxScore = rs.getInt("maxScore");
-                int score = rs.getInt("score");
+                double percentWorth = rs.getDouble("percentWorth");
+                double maxScore = rs.getDouble("maxScore");
+                double score = rs.getDouble("score");
 
                 Assignment currentAssignment = new Assignment(id, userId, code, fullName,
                         percentWorth, maxScore, score);

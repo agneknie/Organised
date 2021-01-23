@@ -421,10 +421,10 @@ public class User {
 
         // Goes through years of the user and saves their data
         for(Year year : years){
-            double yearMark = year.getOverallGrade()*year.getPercentWeight()/100;
+            double yearMark = year.getOverallGrade()*year.getPercentWorth()/100;
             if(yearMark > 0){
                 percentAchieved += yearMark;
-                percentAvailable += year.getPercentWeight();
+                percentAvailable += year.getPercentWorth();
             }
         }
         // If no years with grades were present, avoids division by 0
@@ -478,7 +478,7 @@ public class User {
             pStatement.setInt(1, id);
             pStatement.setInt(2, year.getYearNumber());
             pStatement.setInt(3, year.getCredits());
-            pStatement.setInt(4, year.getPercentWeight());
+            pStatement.setDouble(4, year.getPercentWorth());
 
             // Result of query is true if SQL command worked
             rowsAffected = pStatement.executeUpdate();
@@ -528,9 +528,9 @@ public class User {
                 int userId = rs.getInt("userId");
                 int yearNumber = rs.getInt("yearNumber");
                 int credits = rs.getInt("credits");
-                int percentWeight = rs.getInt("percentWeight");
+                double percentWorth = rs.getDouble("percentWorth");
 
-                Year currentYear = new Year(id, userId, yearNumber, credits, percentWeight);
+                Year currentYear = new Year(id, userId, yearNumber, credits, percentWorth);
                 years.add(currentYear);
             }
 
