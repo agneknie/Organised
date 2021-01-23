@@ -58,12 +58,12 @@
             </Pane>
             <Pane layoutX="89.0" layoutY="290.0" prefHeight="69.0" prefWidth="538.0">
                <children>
-                  <Label prefHeight="69.0" prefWidth="269.0" text="Weight:" textFill="WHITE">
+                  <Label prefHeight="69.0" prefWidth="269.0" text="Worth:" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="weightField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 33.3%" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+                  <TextField fx:id="worthField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 33.3%" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>

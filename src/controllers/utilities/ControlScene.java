@@ -17,9 +17,8 @@ import java.io.FileNotFoundException;
 public class ControlScene {
     /**
      * Method which closes the window when close button is clicked.
-     * Also closes the database connection.
      *
-     * @param event used for identifying the scene
+     * @param event used for identifying the stage
      */
     @FXML
     public static void closeWindow(MouseEvent event) {
@@ -31,7 +30,7 @@ public class ControlScene {
     /**
      * Method which minimises the window when minimize button is clicked.
      *
-     * @param event used for identifying the scene
+     * @param event used for identifying the stage
      */
     @FXML
     public static void minimizeWindow(MouseEvent event) {

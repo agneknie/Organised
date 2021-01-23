@@ -183,9 +183,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Cleans the session variables of marks, if there were any
         cleanSession();
 
-        // Loads the Years of the user
-        userYears = Session.getSession().getAllYears();
-
         // Loads degree information
         loadDegree();
     }
@@ -212,6 +209,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * Setups the scene with degree data (panels have year data)
      */
     private void loadDegree(){
+        // Loads the Years of the user
+        userYears = Session.getSession().getAllYears();
+
         // Sets the main titles of the page
         bigTitleLabel.setText("Your Degree.");
         optionalTitleLabel.setText("");
@@ -630,5 +630,14 @@ public class MarksController extends DefaultNavigation implements Initializable 
         if (key.equals(KeyCode.LEFT)) goLeftClicked();
         // If right arrow is clicked
         if (key.equals(KeyCode.RIGHT)) goRightClicked();
+    }
+
+    /**
+     * Method which updates the current pane 5, 6 & 7 data if stage was
+     * exited/user just came back from a popup
+     */
+    @FXML
+    private void popupClosed(){
+        loadDegree();
     }
 }

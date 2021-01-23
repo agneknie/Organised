@@ -3,6 +3,7 @@ package controllers.utilities;
 import core.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -85,5 +86,29 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     private void deleteButtonHovered() {
         ControlScene.buttonHovered(deleteButton, deleteButtonImage, deleteButtonLabel,
                 "delete_icon_selected.png");
+    }
+
+    /**
+     * Changes the styling of a text field if the input cannot be accepted.
+     * Used when user adds a Year/Module/Assignment and the value is unacceptable.
+     *
+     * @param problematicField field to highlight as wrong
+     */
+    public void highlightWrongField(TextField problematicField){
+        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
+     * Method which reverts the styling of a text field back to normal, after a
+     * wrong input was received.
+     * Used when user adds a Year/Module/Assignment and the value is unacceptable.
+     * @param problematicField
+     */
+    public void normaliseWrongField(TextField problematicField){
+        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
     }
 }

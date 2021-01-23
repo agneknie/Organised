@@ -173,6 +173,28 @@ public class Year {
     }
 
     /**
+     * Method which goes through the already existing years of the given user
+     * and checks how many percent can the added year be worth.
+     * Used when user is adding a new year.
+     *
+     * e.g. Year 1 is 30%, Year 2 is 50% so new Year can have only 20% max value.
+     *
+     * @param loggedUser user which is adding the year
+     * @return how many unused % user has left in the context of years
+     */
+    public static double percentWorthLeft(User loggedUser){
+        List<Year> years = loggedUser.getAllYears();
+        double percentWorthTotal = 0;
+
+        // Goes through the years of the user and adds them up
+        for(Year year : years){
+            percentWorthTotal += year.getPercentWorth();
+        }
+
+        return (double)Math.round((100-percentWorthTotal) * 100) / 100;
+    }
+
+    /**
      * Method which updates year information in the database.
      * Used when an already existing year has its information updated.
      *
