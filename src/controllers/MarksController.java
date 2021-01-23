@@ -19,6 +19,7 @@ import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -206,6 +207,24 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
+     * Method which hides/shows navigation arrows if needed
+     * @param objects User's Year, Module or Assignment list
+     */
+    private void determineNavigationVisibility(List<Object> objects){
+        // If there are only 3 objects to display, hides the navigation
+        if(objects.size() < 4){
+            goLeftButton.setVisible(false);
+            goRightButton.setVisible(false);
+        }
+        else {
+            // If there are objects hidden on the left, enables left navigation
+            if(pane5Pointer > 0) goLeftButton.setVisible(true);
+            // If there are objects hidden on the right, enables right navigation
+            if(pane7Pointer < objects.size()-1) goRightButton.setVisible(true);
+        }
+    }
+
+    /**
      * Setups the scene with degree data (panels have year data)
      */
     private void loadDegree(){
@@ -257,7 +276,10 @@ public class MarksController extends DefaultNavigation implements Initializable 
         }
 
         // Hides year panes if unused
-       hideUnusedPanes();
+        hideUnusedPanes();
+
+        // Configures navigation arrows
+        determineNavigationVisibility(new ArrayList<>(userYears));
     }
 
     // Methods concerning the big 3 panes for data display
@@ -638,6 +660,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void popupClosed(){
+        // Loads degree again
         loadDegree();
+        // Configures navigation arrows
+        determineNavigationVisibility(new ArrayList<>(userYears));
     }
 }
