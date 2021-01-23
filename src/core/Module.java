@@ -1,5 +1,6 @@
 package core;
 
+import core.enums.Semester;
 import database.Database;
 import javafx.scene.paint.Color;
 

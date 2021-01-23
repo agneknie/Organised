@@ -4,6 +4,7 @@ import controllers.utilities.MarksDefaultPopup;
 import core.Session;
 import core.User;
 import core.Year;
+import core.enums.MarksPopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class MarksPopupYearController extends MarksDefaultPopup implements Initializable {
     // Variable for determining the scene type: either Add or Edit
-    private String sceneType = Session.getMarksPopupType();
+    private MarksPopupType sceneType = Session.getMarksPopupType();
 
     // Label of the scene's title
     @FXML
@@ -50,7 +51,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         this.initializePopup();
 
         // If "Edit" is selected, disables year number field
-        if(sceneType.equals("Edit")) yearNumberField.setDisable(true);
+        if(sceneType == MarksPopupType.EDIT) yearNumberField.setDisable(true);
 
         // Sets the prompt text of worth field
         worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
@@ -76,7 +77,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private void actionButtonClicked() {
         // If action button is 'Add'
-        if(sceneType.equals("Add")) addButtonClicked();
+        if(sceneType.equals(MarksPopupType.ADD)) addButtonClicked();
 
         // If action button is 'Edit'
         else editButtonClicked();
@@ -107,19 +108,19 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
 
         // Checks whether inputs are numbers/not null
         try {
-            yearNumber = Integer.valueOf(yearNumberField.getText());
+            yearNumber = Integer.parseInt(yearNumberField.getText());
         }catch(Exception e){
             highlightWrongField(yearNumberField);
             valid = false;
         }
         try{
-            credits = Integer.valueOf(creditsField.getText());
+            credits = Integer.parseInt(creditsField.getText());
         }catch (Exception e){
             highlightWrongField(creditsField);
             valid = false;
         }
         try{
-            percentWorth = Double.valueOf(worthField.getText());
+            percentWorth = Double.parseDouble(worthField.getText());
         }catch (Exception e){
             highlightWrongField(worthField);
             valid = false;

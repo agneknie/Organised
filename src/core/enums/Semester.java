@@ -1,4 +1,4 @@
-package core;
+package core.enums;
 
 /**
  * Enum representing semesters in the system.

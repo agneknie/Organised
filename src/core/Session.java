@@ -1,5 +1,8 @@
 package core;
 
+import core.enums.MarksPopupType;
+import core.enums.MarksSelection;
+
 /**
  * Class which saves the user which is currently logged in.
  * Used for access of the logged in user's data during different points
@@ -21,7 +24,9 @@ public class Session {
     // Marks: which Assignment selected
     private static Assignment marksAssignmentSelected = null;
     // Marks: whether add or edit button is clicked
-    private static String marksPopupType;
+    private static MarksPopupType marksPopupType = null;
+    // Marks: current selection/display window
+    private static MarksSelection marksSelectionType = null;
 
     /**
      * Cleans the session by resetting the logged in user to null.
@@ -99,7 +104,7 @@ public class Session {
      * in Marks tab. Used for setting up the popup scene.
      * @return Either "Edit" or "Add"
      */
-    public static String getMarksPopupType() {
+    public static MarksPopupType getMarksPopupType() {
         return marksPopupType;
     }
 
@@ -109,7 +114,7 @@ public class Session {
      * Parameter can only be "Edit" or "Add".
      * @param marksPopupType "Edit" or "Add"
      */
-    public static void setMarksPopupType(String marksPopupType) {
+    public static void setMarksPopupType(MarksPopupType marksPopupType) {
         Session.marksPopupType = marksPopupType;
     }
 
@@ -127,5 +132,21 @@ public class Session {
      */
     public static void setMarksAssignmentSelected(Assignment marksAssignmentSelected) {
         Session.marksAssignmentSelected = marksAssignmentSelected;
+    }
+
+    /**
+     * Getter for the currently selected type in the Marks Tab
+     * @return Marks Tab type
+     */
+    public static MarksSelection getMarksSelectionType() {
+        return marksSelectionType;
+    }
+
+    /**
+     * Setter for the current Marks Selection type
+     * @param marksSelectionType Marks Tab type to set
+     */
+    public static void setMarksSelectionType(MarksSelection marksSelectionType) {
+        Session.marksSelectionType = marksSelectionType;
     }
 }

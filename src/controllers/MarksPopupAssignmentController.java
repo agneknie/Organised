@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.MarksDefaultPopup;
 import core.Session;
+import core.enums.MarksPopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class MarksPopupAssignmentController extends MarksDefaultPopup implements Initializable {
     // Variable for determining the scene type: either Add or Edit
-    private String sceneType = Session.getMarksPopupType();
+    private MarksPopupType sceneType = Session.getMarksPopupType();
 
     // Label of the scene's title
     @FXML

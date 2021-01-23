@@ -1,6 +1,7 @@
 package controllers.utilities;
 
 import core.Session;
+import core.enums.MarksPopupType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,23 +34,23 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     protected Label deleteButtonLabel;
 
     // Variable to determine popup type
-    private String sceneType = Session.getMarksPopupType();
+    private MarksPopupType sceneType = Session.getMarksPopupType();
 
     /**
      * Sets the text and the image of action button (add/edit).
      */
     protected void initializePopup(){
         // Sets up the action button
-        actionButtonLabel.setText(sceneType);
+        actionButtonLabel.setText(sceneType.toString());
         try {
-            FileInputStream newImage = new FileInputStream("src/images/" + sceneType.toLowerCase() + "_icon.png");
+            FileInputStream newImage = new FileInputStream("src/images/" + sceneType.toString().toLowerCase() + "_icon.png");
             actionButtonImage.setImage(new Image(newImage));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         // Hides delete button if needed
-        if(sceneType.equals("Add")) deleteButton.setVisible(false);
+        if(sceneType == MarksPopupType.ADD) deleteButton.setVisible(false);
     }
 
     /**
@@ -58,7 +59,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     @FXML
     private void actionButtonExited() {
         ControlScene.buttonExited(actionButton, actionButtonImage, actionButtonLabel,
-                sceneType.toLowerCase()+"_icon.png");
+                sceneType.toString().toLowerCase()+"_icon.png");
     }
 
     /**
@@ -67,7 +68,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     @FXML
     private void actionButtonHovered() {
         ControlScene.buttonHovered(actionButton, actionButtonImage, actionButtonLabel,
-                sceneType.toLowerCase()+"_icon_selected.png");
+                sceneType.toString().toLowerCase()+"_icon_selected.png");
     }
 
     /**

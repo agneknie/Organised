@@ -6,6 +6,8 @@ import core.Assignment;
 import core.Module;
 import core.Session;
 import core.Year;
+import core.enums.MarksPopupType;
+import core.enums.MarksSelection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -177,7 +179,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private int pane5Pointer;
     private int pane6Pointer;
     private int pane7Pointer;
-    private String actionViewName;
+    private MarksSelection actionViewName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -240,7 +242,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button2Label.setText("Add Year");
 
         // Sets up the name of the view if add/edit is pressed
-        actionViewName = "Year";
+        actionViewName = MarksSelection.YEAR;
 
         // Sets degree overall grade
         pane1Label.setText("Average:");
@@ -462,7 +464,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void button1Clicked() throws IOException {
         // TODO button1Clicked
         // Sets the popup type
-        Session.setMarksPopupType("Edit");
+        Session.setMarksPopupType(MarksPopupType.EDIT);
 
         // Creates the popup
         Stage popup = new Stage();
@@ -492,7 +494,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void button2Clicked() throws IOException {
         // TODO button2Clicked
         // Sets the popup type
-        Session.setMarksPopupType("Add");
+        Session.setMarksPopupType(MarksPopupType.ADD);
 
         // Creates the popup
         Stage popup = new Stage();
@@ -588,7 +590,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void goLeftClicked() {
-        //TODO goLeftClicked
+
     }
 
     /**

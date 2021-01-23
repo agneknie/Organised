@@ -1,21 +1,15 @@
 package controllers;
 
-import controllers.utilities.ControlScene;
-import controllers.utilities.DefaultButtons;
 import controllers.utilities.MarksDefaultPopup;
-import core.Semester;
+import core.enums.MarksPopupType;
+import core.enums.Semester;
 import core.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class MarksPopupModuleController extends MarksDefaultPopup implements Initializable {
     // Variable for determining the scene type: either Add or Edit
-    private String sceneType = Session.getMarksPopupType();
+    private MarksPopupType sceneType = Session.getMarksPopupType();
 
     // Label of the scene's title
     @FXML
@@ -60,7 +54,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         this.initializePopup();
 
         // If "Edit" is selected, disables module code field
-        if(sceneType.equals("Edit")) moduleCodeField.setDisable(true);
+        if(sceneType.equals(MarksPopupType.EDIT)) moduleCodeField.setDisable(true);
 
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
