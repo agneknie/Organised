@@ -117,7 +117,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private Label pane6Title;
     @FXML
-    private Label pane6label1;
+    private Label pane6Label1;
     @FXML
     private Label pane6Value1;
     @FXML
@@ -238,7 +238,23 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane4.setVisible(false);
 
         // Load years in pane5, pane6 & pane7
-        loadPane5(userYears.get(0));
+        switch(userYears.size()){
+            case 0:
+                // TODO no Years present
+                break;
+            case 1:
+                loadPane5(userYears.get(0));
+                break;
+            case 2:
+                loadPane5(userYears.get(0));
+                loadPane6(userYears.get(1));
+                break;
+            default:
+                loadPane5(userYears.get(0));
+                loadPane6(userYears.get(1));
+                loadPane7(userYears.get(2));
+                break;
+        }
 
         // Hides year panes if unused
        hideUnusedPanes();
@@ -261,6 +277,10 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void loadPane5(Object object){
         // Gets the name of the class
         String className = object.getClass().getSimpleName();
+
+        // Makes the pane visible, in case previously hidden
+        pane5.setVisible(true);
+
         switch(className){
 
             // If class is Year, setups the panel as Year
@@ -271,23 +291,136 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
                 // Credits
                 pane5Label1.setText("Credits:");
-                pane5Value1.setText(String.valueOf(year.getCredits()));
+                pane5Value1.setText(Integer.toString(year.getCredits()));
 
                 // Worth in percent
                 pane5Label2.setText("Worth:");
-                pane5Value2.setText(String.valueOf(year.getPercentWeight()));
+                pane5Value2.setText(Double.toString(year.getPercentWorth()) + "%");
 
                 // Grade
                 pane5Label3.setText("Average:");
                 if (year.getOverallGrade() == -1) pane5Value3.setText("-");
-                else pane5Value3.setText(String.valueOf(year.getOverallGrade()));
+                else pane5Value3.setText(Double.toString(year.getOverallGrade()) + "%");
 
                 // % Complete:
                 pane5Label4.setText("Complete:");
-                pane5Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+                pane5Value4.setText(Double.toString(year.getPercentComplete()) + "%");
 
                 // Marks pane as loaded
                 pane5Loaded = true;
+
+                // Marks which year in a list of years was added
+                pane5Pointer = userYears.indexOf(year);
+                break;
+
+            // If class is Module, setups the panel as Module
+            case ("Module"):
+                Module module = (Module) object;
+                break;
+
+            // If class is Assignment, setups the panel as Assignment
+            case ("Assignment"):
+                Assignment assignment = (Assignment) object;
+                break;
+        }
+    }
+
+    /**
+     * Method which sets up Pane 6 with data.
+     * @param object Year, Module or Assignment object to set.
+     */
+    private void loadPane6(Object object){
+        // Gets the name of the class
+        String className = object.getClass().getSimpleName();
+
+        // Makes the pane visible, in case previously hidden
+        pane6.setVisible(true);
+
+        switch(className){
+
+            // If class is Year, setups the panel as Year
+            case("Year"):
+                Year year = (Year) object;
+                // Top Title
+                pane6Title.setText("Year "+year.getYearNumber());
+
+                // Credits
+                pane6Label1.setText("Credits:");
+                pane6Value1.setText(String.valueOf(year.getCredits()));
+
+                // Worth in percent
+                pane6Label2.setText("Worth:");
+                pane6Value2.setText(String.valueOf(year.getPercentWorth()) + "%");
+
+                // Grade
+                pane6Label3.setText("Average:");
+                if (year.getOverallGrade() == -1) pane6Value3.setText("-");
+                else pane6Value3.setText(String.valueOf(year.getOverallGrade()) + "%");
+
+                // % Complete:
+                pane6Label4.setText("Complete:");
+                pane6Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+
+                // Marks pane as loaded
+                pane6Loaded = true;
+
+                // Marks which year in a list of years was added
+                pane6Pointer = userYears.indexOf(year);
+                break;
+
+            // If class is Module, setups the panel as Module
+            case ("Module"):
+                Module module = (Module) object;
+                break;
+
+            // If class is Assignment, setups the panel as Assignment
+            case ("Assignment"):
+                Assignment assignment = (Assignment) object;
+                break;
+        }
+    }
+
+    /**
+     * Method which sets up Pane 7 with data.
+     * @param object Year, Module or Assignment object to set.
+     */
+    private void loadPane7(Object object){
+        // Gets the name of the class
+        String className = object.getClass().getSimpleName();
+
+        // Makes the pane visible, in case previously hidden
+        pane7.setVisible(true);
+
+        switch(className){
+
+            // If class is Year, setups the panel as Year
+            case("Year"):
+                Year year = (Year) object;
+                // Top Title
+                pane7Title.setText("Year "+year.getYearNumber());
+
+                // Credits
+                pane7Label1.setText("Credits:");
+                pane7Value1.setText(String.valueOf(year.getCredits()));
+
+                // Worth in percent
+                pane7Label2.setText("Worth:");
+                pane7Value2.setText(String.valueOf(year.getPercentWorth()) + "%");
+
+                // Grade
+                pane7Label3.setText("Average:");
+                if (year.getOverallGrade() == -1) pane7Value3.setText("-");
+                else pane7Value3.setText(String.valueOf(year.getOverallGrade()) + "%");
+
+                // % Complete:
+                pane7Label4.setText("Complete:");
+                pane7Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+
+                // Marks pane as loaded
+                pane7Loaded = true;
+
+                // Marks which year in a list of years was added
+                pane7Pointer = userYears.indexOf(year);
                 break;
 
             // If class is Module, setups the panel as Module
