@@ -557,7 +557,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
                 // Grade
                 pane5Label3.setText("Grade:");
-                pane5Value3.setText(module.getOverallGrade() + "%");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane5Value3.setText(moduleGrade + "%");
+                else pane5Value3.setText("-");
 
                 // Resets unused elements
                 pane5Label4.setText("");
@@ -623,6 +625,33 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Module, setups the panel as Module
             case ("Module"):
                 Module module = (Module) object;
+
+                // Top Title
+                pane6Title.setText(module.getCode());
+
+                // Credits
+                pane6Label1.setText("Credits:");
+                pane6Value1.setText(Integer.toString(module.getCredits()));
+
+                // Semester
+                pane6Label2.setText("Semester:");
+                pane6Value2.setText(module.getSemester().toString());
+
+                // Grade
+                pane6Label3.setText("Grade:");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane6Value3.setText(moduleGrade + "%");
+                else pane6Value3.setText("-");
+
+                // Resets unused elements
+                pane6Label4.setText("");
+                pane6Value4.setText("");
+
+                // Marks pane as loaded
+                pane6Loaded = true;
+
+                // Marks which module in a list of modules was added
+                pane6Pointer = userModules.indexOf(module);
                 break;
 
             // If class is Assignment, setups the panel as Assignment
@@ -678,6 +707,33 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Module, setups the panel as Module
             case ("Module"):
                 Module module = (Module) object;
+
+                // Top Title
+                pane7Title.setText(module.getCode());
+
+                // Credits
+                pane7Label1.setText("Credits:");
+                pane7Value1.setText(Integer.toString(module.getCredits()));
+
+                // Semester
+                pane7Label2.setText("Semester:");
+                pane7Value2.setText(module.getSemester().toString());
+
+                // Grade
+                pane7Label3.setText("Grade:");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane7Value3.setText(moduleGrade + "%");
+                else pane7Value3.setText("-");
+
+                // Resets unused elements
+                pane7Label4.setText("");
+                pane7Value4.setText("");
+
+                // Marks pane as loaded
+                pane7Loaded = true;
+
+                // Marks which module in a list of modules was added
+                pane7Pointer = userModules.indexOf(module);
                 break;
 
             // If class is Assignment, setups the panel as Assignment

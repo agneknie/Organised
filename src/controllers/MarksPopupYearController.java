@@ -50,12 +50,31 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         // Sets up the action & delete buttons
         this.initializePopup();
 
-        // If "Edit" is selected, disables year number field
-        if(sceneType == MarksPopupType.EDIT) yearNumberField.setDisable(true);
+        // Sets up the scene based on its type
+        if (sceneType == MarksPopupType.ADD) setupAdd();
+        else setupEdit();
+    }
 
+    /**
+     * Method which setups the popup if its type is Add.
+     */
+    private void setupAdd(){
         // Sets the prompt text of worth field
         worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
+    }
 
+    /**
+     * Method which setups the popup if its type is Edit.
+     */
+    private void setupEdit(){
+        // Disables year number field
+        yearNumberField.setDisable(true);
+
+        // Fills the fields with Year data
+        Year thisYear = Session.getMarksYearSelected();
+        yearNumberField.setText(Integer.toString(thisYear.getYearNumber()));
+        creditsField.setText(Integer.toString(thisYear.getCredits()));
+        worthField.setText(Double.toString(thisYear.getPercentWorth()));
     }
 
     /**
@@ -77,7 +96,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private void actionButtonClicked() {
         // If action button is 'Add'
-        if(sceneType.equals(MarksPopupType.ADD)) addButtonClicked();
+        if(sceneType == MarksPopupType.ADD) addButtonClicked();
 
         // If action button is 'Edit'
         else editButtonClicked();
@@ -155,7 +174,51 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
      * Method which performs Year editing when action button is pressed.
      */
     private void editButtonClicked(){
-        // TODO editButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new Year construction
+        int credits = -1;
+        double percentWorth = -1;
+        boolean valid = true;
+
+        // Checks whether inputs are numbers/not null
+        try{
+            credits = Integer.parseInt(creditsField.getText());
+        }catch (Exception e){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        try{
+            percentWorth = Double.parseDouble(worthField.getText());
+        }catch (Exception e){
+            highlightWrongField(worthField);
+            valid = false;
+        }
+
+        // Checks if inputs are valid
+        if(credits < 0){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        if(percentWorth < 0 || percentWorth > Year.percentWorthLeft(loggedUser)){
+            highlightWrongField(worthField);
+            valid = false;
+        }
+
+        // If all inputs are valid, updates the Year
+        if(valid){
+            Year thisYear = Session.getMarksYearSelected();
+            // Sets the new values
+            thisYear.setCredits(credits);
+            thisYear.setPercentWorth(percentWorth);
+            // Updates Year in database
+            thisYear.updateYear();
+
+            // Closes the popup/stage
+            Session.setMarksPopupType(null);
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
     }
 
 }
