@@ -260,96 +260,125 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void refreshPanels(){
-        // Refreshes Year/Module/Assignment list
-        switch(Session.getMarksSelectionType()){
+        // If user just deleted an object, they need to return to the previous screen
+        if(Session.getMarksJustDeleted()){
 
-            // Scene type is Degree
-            case DEGREE:
-                userYears = Session.getSession().getAllYears();
-                // Updates the panels
-                switch (userYears.size()){
-                    case 0:
-                        // Does nothing, because no panels to display
-                        break;
-                    case 1:
-                        optionalTitleLabel.setText("");
-                        if(pane5Pointer!=-1) loadPane5(userYears.get(pane5Pointer));
-                        else loadPane5(userYears.get(0));
-                        break;
-                    case 2:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userYears.get(pane5Pointer));
-                        if(pane6Pointer!=-1) loadPane6(userYears.get(pane6Pointer));
-                        else loadPane6(userYears.get(1));
-                        break;
-                    default:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userYears.get(pane5Pointer));
-                        loadPane6(userYears.get(pane6Pointer));
-                        if(pane7Pointer!=-1) loadPane7(userYears.get(pane7Pointer));
-                        else loadPane7(userYears.get(2));
-                }
-                determineNavigationVisibility(new ArrayList<>(userYears));
-                break;
-
-            // Scene type is Year
-            case YEAR:
-                userModules = Session.getMarksYearSelected().getAllModules();
-                // Updates the panels
-                switch (userModules.size()){
-                    case 0:
-                        // Does nothing, because no panels to display
-                        break;
-                    case 1:
-                        optionalTitleLabel.setText("");
-                        if(pane5Pointer!=-1) loadPane5(userModules.get(pane5Pointer));
-                        else loadPane5(userModules.get(0));
-                        break;
-                    case 2:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userModules.get(pane5Pointer));
-                        if(pane6Pointer!=-1) loadPane6(userModules.get(pane6Pointer));
-                        else loadPane6(userModules.get(pane5Pointer++));
-                        break;
-                    default:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userModules.get(pane5Pointer));
-                        loadPane6(userModules.get(pane6Pointer));
-                        if(pane7Pointer!=-1) loadPane7(userModules.get(pane7Pointer));
-                        else loadPane7(userModules.get(pane6Pointer++));
-                }
-                determineNavigationVisibility(new ArrayList<>(userModules));
-                break;
-
-            // Scene type is Module
-            case MODULE:
-                userAssignments = Session.getMarksModuleSelected().getAllAssignments();
-                // Updates the panels
-                switch (userAssignments.size()){
-                    case 0:
-                        // Does nothing, because no panels to display
-                        break;
-                    case 1:
-                        optionalTitleLabel.setText("");
-                        if(pane5Pointer!=-1) loadPane5(userAssignments.get(pane5Pointer));
-                        else loadPane5(userAssignments.get(0));
-                        break;
-                    case 2:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userAssignments.get(pane5Pointer));
-                        if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
-                        else loadPane5(userAssignments.get(pane5Pointer++));
-                        break;
-                    default:
-                        optionalTitleLabel.setText("");
-                        loadPane5(userAssignments.get(pane5Pointer));
-                        loadPane6(userAssignments.get(pane6Pointer));
-                        if(pane7Pointer!=-1) loadPane7(userAssignments.get(pane7Pointer));
-                        else loadPane7(userAssignments.get(pane6Pointer++));
-                }
-                determineNavigationVisibility(new ArrayList<>(userAssignments));
-                break;
         }
+        // Just refresh the panes in case there was an information update
+        else{
+            switch(Session.getMarksSelectionType()){
+                // Scene type is Degree
+                case DEGREE:
+                    refreshPanelsYears();
+                    break;
+
+                // Scene type is Year
+                case YEAR:
+                    refreshPanelsModules();
+                    break;
+
+                // Scene type is Module
+                case MODULE:
+                    refreshPanelsAssignments();
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Method which refreshes panels with currently displayed Years.
+     * Used by refreshPanels method.
+     */
+    private void refreshPanelsYears(){
+        userYears = Session.getSession().getAllYears();
+        // Updates the panels
+        switch (userYears.size()){
+            case 0:
+                // Does nothing, because no panels to display
+                break;
+            case 1:
+                optionalTitleLabel.setText("");
+                if(pane5Pointer!=-1) loadPane5(userYears.get(pane5Pointer));
+                else loadPane5(userYears.get(0));
+                break;
+            case 2:
+                optionalTitleLabel.setText("");
+                loadPane5(userYears.get(pane5Pointer));
+                if(pane6Pointer!=-1) loadPane6(userYears.get(pane6Pointer));
+                else loadPane6(userYears.get(1));
+                break;
+            default:
+                optionalTitleLabel.setText("");
+                loadPane5(userYears.get(pane5Pointer));
+                loadPane6(userYears.get(pane6Pointer));
+                if(pane7Pointer!=-1) loadPane7(userYears.get(pane7Pointer));
+                else loadPane7(userYears.get(2));
+        }
+        determineNavigationVisibility(new ArrayList<>(userYears));
+    }
+
+    /**
+     * Method which refreshes panels with currently displayed Modules.
+     * Used by refreshPanels method.
+     */
+    private void refreshPanelsModules(){
+        userModules = Session.getMarksYearSelected().getAllModules();
+        // Updates the panels
+        switch (userModules.size()){
+            case 0:
+                // Does nothing, because no panels to display
+                break;
+            case 1:
+                optionalTitleLabel.setText("");
+                if(pane5Pointer!=-1) loadPane5(userModules.get(pane5Pointer));
+                else loadPane5(userModules.get(0));
+                break;
+            case 2:
+                optionalTitleLabel.setText("");
+                loadPane5(userModules.get(pane5Pointer));
+                if(pane6Pointer!=-1) loadPane6(userModules.get(pane6Pointer));
+                else loadPane6(userModules.get(pane5Pointer++));
+                break;
+            default:
+                optionalTitleLabel.setText("");
+                loadPane5(userModules.get(pane5Pointer));
+                loadPane6(userModules.get(pane6Pointer));
+                if(pane7Pointer!=-1) loadPane7(userModules.get(pane7Pointer));
+                else loadPane7(userModules.get(pane6Pointer++));
+        }
+        determineNavigationVisibility(new ArrayList<>(userModules));
+    }
+
+    /**
+     * Method which refreshes panels with currently displayed Assignments.
+     * Used by refreshPanels method.
+     */
+    private void refreshPanelsAssignments(){
+        userAssignments = Session.getMarksModuleSelected().getAllAssignments();
+        // Updates the panels
+        switch (userAssignments.size()){
+            case 0:
+                // Does nothing, because no panels to display
+                break;
+            case 1:
+                optionalTitleLabel.setText("");
+                if(pane5Pointer!=-1) loadPane5(userAssignments.get(pane5Pointer));
+                else loadPane5(userAssignments.get(0));
+                break;
+            case 2:
+                optionalTitleLabel.setText("");
+                loadPane5(userAssignments.get(pane5Pointer));
+                if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
+                else loadPane5(userAssignments.get(pane5Pointer++));
+                break;
+            default:
+                optionalTitleLabel.setText("");
+                loadPane5(userAssignments.get(pane5Pointer));
+                loadPane6(userAssignments.get(pane6Pointer));
+                if(pane7Pointer!=-1) loadPane7(userAssignments.get(pane7Pointer));
+                else loadPane7(userAssignments.get(pane6Pointer++));
+        }
+        determineNavigationVisibility(new ArrayList<>(userAssignments));
     }
 
     // Methods concerning the setup up of the scene with user data
@@ -367,6 +396,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Sets up the buttons
         button1.setVisible(false);
         button2Label.setText("Add Year");
+        goBackButton.setVisible(false);
 
         // Sets degree overall grade
         pane1Label.setText("Grade:");
@@ -427,6 +457,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1.setVisible(true);
         button1Label.setText("Edit Year");
         button2Label.setText("Add Module");
+        goBackButton.setVisible(true);
 
         // Sets Year overall grade
         pane1Label.setText("Grade:");
@@ -925,7 +956,26 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * when goBack button is pressed.
      */
     public void goBackClicked() {
-        //TODO go back to previous screen button
+        switch(Session.getMarksSelectionType()){
+            case DEGREE:
+                // Nothing, there's no go back button on Degree display
+                break;
+            case YEAR:
+                Session.setMarksSelectionType(MarksSelection.DEGREE);
+                Session.setMarksYearSelected(null);
+                cleanCurrentSelection();
+                loadDegree();
+                break;
+            case MODULE:
+                Session.setMarksSelectionType(MarksSelection.YEAR);
+                Session.setMarksModuleSelected(null);
+                cleanCurrentSelection();
+                loadYear();
+                break;
+            case ASSIGNMENT:
+                // Nothing, assignment is a popup from Module display
+                break;
+        }
     }
 
     // Methods concerning the styling of elements
