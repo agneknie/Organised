@@ -218,7 +218,7 @@ public class Assignment {
         if(maxScore == -1 || score == -1){
             return -1;
         }
-        else return score/maxScore*100;
+        else return (double)Math.round((score/maxScore*100) * 100) / 100;
     }
 
     @Override

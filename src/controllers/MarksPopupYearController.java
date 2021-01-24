@@ -36,9 +36,6 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private TextField worthField;
 
-    // Variable for storing user data
-    private User loggedUser = Session.getSession();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Sets up the action & delete buttons

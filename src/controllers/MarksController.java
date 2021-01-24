@@ -362,18 +362,18 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Does nothing, because no panels to display
                 break;
             case 1:
-                optionalTitleLabel.setText("");
+                optionalTitleLabel.setText(Session.getMarksModuleSelected().getFullName() + ".");
                 if(pane5Pointer!=-1) loadPane5(userAssignments.get(pane5Pointer));
                 else loadPane5(userAssignments.get(0));
                 break;
             case 2:
-                optionalTitleLabel.setText("");
+                optionalTitleLabel.setText(Session.getMarksModuleSelected().getFullName() + ".");
                 loadPane5(userAssignments.get(pane5Pointer));
                 if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
                 else loadPane5(userAssignments.get(1));
                 break;
             default:
-                optionalTitleLabel.setText("");
+                optionalTitleLabel.setText(Session.getMarksModuleSelected().getFullName() + ".");
                 loadPane5(userAssignments.get(pane5Pointer));
                 loadPane6(userAssignments.get(pane6Pointer));
                 if(pane7Pointer!=-1) loadPane7(userAssignments.get(pane7Pointer));
@@ -480,7 +480,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Sets Spring Grade
         pane4.setVisible(true);
         pane4Label.setText("Spring:");
-        double autumnGrade = thisYear.getAutumnGrade();
+        double autumnGrade = thisYear.getSpringGrade();
         if(autumnGrade == -1) pane4Value.setText("-");
         else pane4Value.setText(autumnGrade + "%");
 
@@ -516,7 +516,64 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * Setups the scene with Module data (panels have assignment data)
      */
     private void loadModule(){
-        //TODO loadModule
+        // Loads assignments of the Module
+        Module thisModule = Session.getMarksModuleSelected();
+        userAssignments = thisModule.getAllAssignments();
+
+        // Sets the main titles of the page
+        bigTitleLabel.setText(thisModule.getCode() + ".");
+        optionalTitleLabel.setText(thisModule.getFullName() + ".");
+
+        // Sets up buttons
+        button1.setVisible(true);
+        button1Label.setText("Edit Module");
+        button2Label.setText("Add Assignment");
+        goBackButton.setVisible(true);
+
+        // Sets Module overall grade
+        pane1Label.setText("Grade:");
+        double moduleGrade = thisModule.getOverallGrade();
+        if(moduleGrade != -1) pane1Value.setText(moduleGrade + "%");
+        else pane1Label.setText("-");
+
+        // Sets Module % complete
+        pane2Label.setText("Complete:");
+        pane2Value.setText(thisModule.getPercentComplete() + "%");
+
+        // Sets Module credits
+        pane3Label.setText("Credits:");
+        pane3Value.setText(Integer.toString(thisModule.getCredits()));
+
+        // Sets Module semester
+        pane4Label.setText("Semester:");
+        pane4Value.setText(thisModule.getSemester().toString());
+
+        // Loads assignments in pane5, pane6 & pane7
+        switch(userAssignments.size()){
+            case 0:
+                optionalTitleLabel.setText("Add some Assignments to start getting Organised.");
+                break;
+            case 1:
+                loadPane5(userAssignments.get(0));
+                break;
+            case 2:
+                loadPane5(userAssignments.get(0));
+                loadPane6(userAssignments.get(1));
+                break;
+            default:
+                loadPane5(userAssignments.get(0));
+                loadPane6(userAssignments.get(1));
+                loadPane7(userAssignments.get(2));
+        }
+
+        // Hides assignment panes if unused
+        hideUnusedPanes();
+
+        // Configures navigation arrows
+        determineNavigationVisibility(new ArrayList<>(userAssignments));
+
+        // Sets the current Marks Tab Selection
+        Session.setMarksSelectionType(MarksSelection.MODULE);
     }
 
     // Methods concerning the big 3 panes for data display
@@ -607,6 +664,31 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Assignment, setups the panel as Assignment
             case ("Assignment"):
                 Assignment assignment = (Assignment) object;
+
+                // Top Title
+                pane5Title.setText(assignment.getFullName());
+
+                // Grade
+                pane5Label1.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane5Value1.setText(assignment.getGrade() + "%");
+                else pane5Value1.setText("-");
+
+                // % Worth
+                pane5Label2.setText("Worth:");
+                pane5Value2.setText(assignment.getPercentWorth() + "%");
+
+                // Resets unused elements
+                pane5Label3.setText("");
+                pane5Value3.setText("");
+                pane5Label4.setText("");
+                pane5Value4.setText("");
+
+                // Marks pane as loaded
+                pane5Loaded = true;
+
+                // Marks which assignment in a list of assignments was added
+                pane5Pointer = userAssignments.indexOf(assignment);
                 break;
         }
     }
@@ -689,6 +771,31 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Assignment, setups the panel as Assignment
             case ("Assignment"):
                 Assignment assignment = (Assignment) object;
+
+                // Top Title
+                pane6Title.setText(assignment.getFullName());
+
+                // Grade
+                pane6Label1.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane6Value1.setText(assignment.getGrade() + "%");
+                else pane6Value1.setText("-");
+
+                // % Worth
+                pane6Label2.setText("Worth:");
+                pane6Value2.setText(assignment.getPercentWorth() + "%");
+
+                // Resets unused elements
+                pane6Label3.setText("");
+                pane6Value3.setText("");
+                pane6Label4.setText("");
+                pane6Value4.setText("");
+
+                // Marks pane as loaded
+                pane6Loaded = true;
+
+                // Marks which assignment in a list of assignments was added
+                pane6Pointer = userAssignments.indexOf(assignment);
                 break;
         }
     }
@@ -771,6 +878,31 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Assignment, setups the panel as Assignment
             case ("Assignment"):
                 Assignment assignment = (Assignment) object;
+
+                // Top Title
+                pane7Title.setText(assignment.getFullName());
+
+                // Grade
+                pane7Label1.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane7Value1.setText(assignment.getGrade() + "%");
+                else pane7Value1.setText("-");
+
+                // % Worth
+                pane7Label2.setText("Worth:");
+                pane7Value2.setText(assignment.getPercentWorth() + "%");
+
+                // Resets unused elements
+                pane7Label3.setText("");
+                pane7Value3.setText("");
+                pane7Label4.setText("");
+                pane7Value4.setText("");
+
+                // Marks pane as loaded
+                pane7Loaded = true;
+
+                // Marks which assignment in a list of assignments was added
+                pane7Pointer = userAssignments.indexOf(assignment);
                 break;
         }
     }

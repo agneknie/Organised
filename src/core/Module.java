@@ -308,6 +308,22 @@ public class Module {
     }
 
     /**
+     * Method which returns how much of the module is completed.
+     * @return % of the Module completed
+     */
+    public double getPercentComplete(){
+        List<Assignment> assignments = getAllAssignments();
+        int percent = 0;
+
+        for(Assignment assignment : assignments){
+            if(assignment.getMaxScore() != -1 && assignment.getScore() != -1)
+                percent += assignment.getPercentWorth();
+        }
+
+        return (double)Math.round(percent * 100) / 100;
+    }
+
+    /**
      * Adds a newly created assignment to the database.
      * Used when user creates a new assignment.
      *

@@ -45,7 +45,7 @@
             </ImageView>
             <Pane layoutX="89.0" layoutY="204.0" prefHeight="69.0" prefWidth="538.0">
                <children>
-                  <Label prefHeight="69.0" prefWidth="269.0" text="Weight:" textFill="WHITE">
+                  <Label prefHeight="69.0" prefWidth="269.0" text="Worth:" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>

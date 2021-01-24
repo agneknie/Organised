@@ -1,6 +1,7 @@
 package controllers.utilities;
 
 import core.Session;
+import core.User;
 import core.enums.MarksPopupType;
 import core.enums.Semester;
 import javafx.fxml.FXML;
@@ -37,6 +38,9 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
 
     // Variable to determine popup type
     public MarksPopupType sceneType = Session.getMarksPopupType();
+
+    // Variable for storing user data
+    public User loggedUser = Session.getSession();
 
     /**
      * Sets the text and the image of action button (add/edit).

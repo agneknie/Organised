@@ -151,7 +151,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="optionalTitleLabel" layoutX="64.0" layoutY="97.0" prefHeight="27.0" prefWidth="693.0" text="Optional title used for full names." textFill="WHITE">
+            <Label fx:id="optionalTitleLabel" layoutX="64.0" layoutY="97.0" prefHeight="27.0" prefWidth="691.0" text="Optional title used for full names." textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
@@ -212,9 +212,9 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="button1" layoutX="859.0" layoutY="113.0" onMouseClicked="#button1Clicked" onMouseEntered="#button1Hovered" onMouseExited="#button1Exited" prefHeight="54.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="button1" layoutX="859.0" layoutY="113.0" onMouseClicked="#button1Clicked" onMouseEntered="#button1Hovered" onMouseExited="#button1Exited" prefHeight="54.0" prefWidth="248.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="button1Label" alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="36.0" prefWidth="151.0" style="-fx-wrap-text: true;" text="button1Label" textFill="#e6bb9a">
+                  <Label fx:id="button1Label" alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="37.0" prefWidth="189.0" style="-fx-wrap-text: true;" text="button1Label" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="22.0" />
                      </font>
@@ -226,9 +226,9 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="button2" layoutX="859.0" layoutY="197.0" onMouseClicked="#button2Clicked" onMouseEntered="#button2Hovered" onMouseExited="#button2Exited" prefHeight="54.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="button2" layoutX="859.0" layoutY="197.0" onMouseClicked="#button2Clicked" onMouseEntered="#button2Hovered" onMouseExited="#button2Exited" prefHeight="54.0" prefWidth="248.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="button2Label" alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="36.0" prefWidth="151.0" style="-fx-wrap-text: true;" text="button2Label" textFill="#e6bb9a">
+                  <Label fx:id="button2Label" alignment="CENTER" layoutX="46.0" layoutY="9.0" prefHeight="37.0" prefWidth="189.0" style="-fx-wrap-text: true;" text="button2Label" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="22.0" />
                      </font>

@@ -46,9 +46,6 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     @FXML
     private ColorPicker colourPicker;
 
-    // Variable for storing user data
-    private User loggedUser = Session.getSession();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Sets up the action & delete buttons
@@ -91,11 +88,18 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         Session.setMarksPopupType(null);
     }
 
+    /**
+     * Deletes the selected Module and sets up to forward the user to
+     * the previous screen.
+     */
     @FXML
     private void deleteButtonClicked() {
         //TODO deleteButtonClicked
     }
 
+    /**
+     * Either Adds or Edits the Module based on the current popup scene type.
+     */
     @FXML
     private void actionButtonClicked() {
         // If action button is 'Add'
@@ -175,10 +179,10 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     }
 
     /**
-     * Method which performs Year editing when action button is pressed.
+     * Method which performs Module editing when action button is pressed.
      */
     private void editButtonClicked(){
-
+        // TODO editButtonClicked
     }
 
 }
