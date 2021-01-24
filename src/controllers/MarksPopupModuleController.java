@@ -1,6 +1,8 @@
 package controllers;
 
 import controllers.utilities.MarksDefaultPopup;
+import core.Module;
+import core.User;
 import core.enums.MarksPopupType;
 import core.enums.Semester;
 import core.Session;
@@ -8,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +22,6 @@ import java.util.ResourceBundle;
  * Used when a Module is selected and added, edited or deleted.
  */
 public class MarksPopupModuleController extends MarksDefaultPopup implements Initializable {
-    // Variable for determining the scene type: either Add or Edit
-    private final MarksPopupType sceneType = Session.getMarksPopupType();
-
     // Label of the scene's title
     @FXML
     private Label titleLabel;
@@ -45,16 +46,19 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     @FXML
     private ColorPicker colourPicker;
 
+    // Variable for storing user data
+    private User loggedUser = Session.getSession();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Sets the text of the title
-        titleLabel.setText(sceneType + " Module.");
-
         // Sets up the action & delete buttons
         this.initializePopup();
 
+        // Sets the text of the title
+        titleLabel.setText(sceneType + " Module.");
+
         // If "Edit" is selected, disables module code field
-        if(sceneType.equals(MarksPopupType.EDIT)) moduleCodeField.setDisable(true);
+        if(sceneType == MarksPopupType.EDIT) moduleCodeField.setDisable(true);
 
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
@@ -94,7 +98,87 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
 
     @FXML
     private void actionButtonClicked() {
-        //TODO actionButtonClicked
+        // If action button is 'Add'
+        if(sceneType == MarksPopupType.ADD) addButtonClicked();
+
+        // If action button is 'Edit'
+        else editButtonClicked();
+    }
+
+    /**
+     * Normalises all text field borders in case they were highlighted
+     * as wrong previously.
+     */
+    private void normaliseAllFields(){
+        normaliseWrongField(moduleCodeField);
+        normaliseWrongField(moduleNameField);
+        normaliseWrongField(creditsField);
+        normaliseWrongField(semesterComboBox);
+    }
+
+    /**
+     * Method which performs Module addition when action button is pressed.
+     */
+    private void addButtonClicked(){
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new Module construction
+        String moduleCode = moduleCodeField.getText();
+        String moduleName = moduleNameField.getText();
+        int credits = -1;
+        Semester semester = semesterComboBox.getValue();
+        Color colour = colourPicker.getValue();
+        boolean valid = true;
+
+        // Checks whether inputs are numbers where needed & not null
+        try {
+            credits = Integer.parseInt(creditsField.getText());
+        }catch (Exception e){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        if(moduleCode.isEmpty()){
+            highlightWrongField(moduleCodeField);
+            valid = false;
+        }
+        if(moduleName.isEmpty()){
+            highlightWrongField(moduleNameField);
+            valid = false;
+        }
+
+        // Checks if inputs are valid
+        if(!Module.moduleCodeAvailable(moduleCode, loggedUser)){
+            highlightWrongField(moduleCodeField);
+            valid = false;
+        }
+        if(credits < 0){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        if(semesterComboBox.getValue() == null){
+            highlightWrongField(semesterComboBox);
+            valid = false;
+        }
+        else semester = semesterComboBox.getValue();
+
+        //If all inputs valid, adds the new Module
+        if(valid){
+            Module newModule = new Module(loggedUser.getId(), moduleCode, moduleName, credits, semester,
+                    Session.getMarksYearSelected().getYearNumber(), colour);
+            Session.getMarksYearSelected().addModule(newModule);
+
+            // Closes the popup/stage
+            Session.setMarksPopupType(null);
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
+    }
+
+    /**
+     * Method which performs Year editing when action button is pressed.
+     */
+    private void editButtonClicked(){
+
     }
 
 }

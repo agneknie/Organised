@@ -338,14 +338,14 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 optionalTitleLabel.setText("");
                 loadPane5(userModules.get(pane5Pointer));
                 if(pane6Pointer!=-1) loadPane6(userModules.get(pane6Pointer));
-                else loadPane6(userModules.get(pane5Pointer++));
+                else loadPane6(userModules.get(1));
                 break;
             default:
                 optionalTitleLabel.setText("");
                 loadPane5(userModules.get(pane5Pointer));
                 loadPane6(userModules.get(pane6Pointer));
                 if(pane7Pointer!=-1) loadPane7(userModules.get(pane7Pointer));
-                else loadPane7(userModules.get(pane6Pointer++));
+                else loadPane7(userModules.get(2));
         }
         determineNavigationVisibility(new ArrayList<>(userModules));
     }
@@ -370,14 +370,14 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 optionalTitleLabel.setText("");
                 loadPane5(userAssignments.get(pane5Pointer));
                 if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
-                else loadPane5(userAssignments.get(pane5Pointer++));
+                else loadPane5(userAssignments.get(1));
                 break;
             default:
                 optionalTitleLabel.setText("");
                 loadPane5(userAssignments.get(pane5Pointer));
                 loadPane6(userAssignments.get(pane6Pointer));
                 if(pane7Pointer!=-1) loadPane7(userAssignments.get(pane7Pointer));
-                else loadPane7(userAssignments.get(pane6Pointer++));
+                else loadPane7(userAssignments.get(2));
         }
         determineNavigationVisibility(new ArrayList<>(userAssignments));
     }

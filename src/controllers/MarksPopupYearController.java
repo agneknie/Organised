@@ -20,9 +20,6 @@ import java.util.ResourceBundle;
  * Used when a Year is selected and added, edited or deleted.
  */
 public class MarksPopupYearController extends MarksDefaultPopup implements Initializable {
-    // Variable for determining the scene type: either Add or Edit
-    private final MarksPopupType sceneType = Session.getMarksPopupType();
-
     // Label of the scene's title
     @FXML
     private Label titleLabel;
@@ -39,28 +36,22 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private TextField worthField;
 
-    // Variables for storing user data
+    // Variable for storing user data
     private User loggedUser = Session.getSession();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Sets the text of the title
-        titleLabel.setText(sceneType + " Year.");
-
         // Sets up the action & delete buttons
         this.initializePopup();
 
-        // Sets up the scene based on its type
-        if (sceneType == MarksPopupType.ADD) setupAdd();
-        else setupEdit();
-    }
+        // Sets the text of the title
+        titleLabel.setText(sceneType + " Year.");
 
-    /**
-     * Method which setups the popup if its type is Add.
-     */
-    private void setupAdd(){
         // Sets the prompt text of worth field
         worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
+
+        // Sets up the scene based on its type
+        if (sceneType == MarksPopupType.EDIT) setupEdit();
     }
 
     /**
@@ -95,7 +86,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @FXML
     private void deleteButtonClicked() {
         // Deletes the Year
-        System.out.println(loggedUser.deleteYear(Session.getMarksYearSelected()));
+        loggedUser.deleteYear(Session.getMarksYearSelected());
 
         // Sets the session variable
         Session.setMarksJustDeleted(true);

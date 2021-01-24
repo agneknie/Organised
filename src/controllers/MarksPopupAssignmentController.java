@@ -18,9 +18,6 @@ import java.util.ResourceBundle;
  * Used when a Assignment is selected and added, edited or deleted.
  */
 public class MarksPopupAssignmentController extends MarksDefaultPopup implements Initializable {
-    // Variable for determining the scene type: either Add or Edit
-    private final MarksPopupType sceneType = Session.getMarksPopupType();
-
     // Label of the scene's title
     @FXML
     private Label titleLabel;
@@ -47,11 +44,11 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Sets the text of the title
-        titleLabel.setText(sceneType + " Assignment.");
-
         // Sets up the action & delete buttons
         this.initializePopup();
+
+        // Sets the text of the title
+        titleLabel.setText(sceneType + " Assignment.");
 
         // Disable score & maxScore fields, until selection is made
         scoreField.setDisable(true);

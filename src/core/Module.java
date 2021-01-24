@@ -198,7 +198,7 @@ public class Module {
         boolean moduleCodeAvailable = false;
 
         // Constructs SQL query
-        String query = "SELECT * FROM Year WHERE moduleCode = ? AND userId = ?";
+        String query = "SELECT * FROM Module WHERE code = ? AND userId = ?";
 
         // Opens the database, gets the user with the specified id
         PreparedStatement pStatement = null;

@@ -2,7 +2,9 @@ package controllers.utilities;
 
 import core.Session;
 import core.enums.MarksPopupType;
+import core.enums.Semester;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -34,7 +36,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     protected Label deleteButtonLabel;
 
     // Variable to determine popup type
-    private MarksPopupType sceneType = Session.getMarksPopupType();
+    public MarksPopupType sceneType = Session.getMarksPopupType();
 
     /**
      * Sets the text and the image of action button (add/edit).
@@ -102,13 +104,39 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     }
 
     /**
+     * Changes the styling of a combo box if the input cannot be accepted.
+     * Used when user adds a Year/Module/Assignment and the value is unacceptable.
+     *
+     * @param problematicComboBox combo box to highlight as wrong
+     */
+    public void highlightWrongField(ComboBox<Semester> problematicComboBox){
+        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
      * Method which reverts the styling of a text field back to normal, after a
      * wrong input was received.
      * Used when user adds a Year/Module/Assignment and the value is unacceptable.
-     * @param problematicField
+     *
+     * @param problematicField text field to un-highlight
      */
     public void normaliseWrongField(TextField problematicField){
         problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
+     * Method which reverts the styling of a combo box back to normal, after a
+     * wrong input was received.
+     * Used when user adds a Year/Module/Assignment and the value is unacceptable.
+     *
+     * @param problematicComboBox combo box to un-highlight
+     */
+    public void normaliseWrongField(ComboBox<Semester> problematicComboBox){
+        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
                 "-fx-border-width: 3");
     }
