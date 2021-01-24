@@ -8,8 +8,7 @@ public enum MarksSelection {
 
     DEGREE("Degree"),
     YEAR("Year"),
-    MODULE("Module"),
-    ASSIGNMENT("Assignment");
+    MODULE("Module");
 
     public final String VALUE;
     MarksSelection(String value){

@@ -181,8 +181,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private int pane5Pointer;
     private int pane6Pointer;
     private int pane7Pointer;
-    // Other
-    private MarksSelection actionViewName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -198,7 +196,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * Cleans the session variable if popup is closed.
      * @param event parameter not used
      */
-    private void popupClosed(WindowEvent event){
+    private void popupClosedFromTaskBar(WindowEvent event){
         Session.setMarksPopupType(null);
     }
 
@@ -212,6 +210,16 @@ public class MarksController extends DefaultNavigation implements Initializable 
         Session.setMarksAssignmentSelected(null);
         Session.setMarksSelectionType(null);
         Session.setMarksPopupType(null);
+    }
+
+    /**
+     * Sets pane 5, 6 & 7 statuses to not loaded.
+     * Used when user is changing the scene view between Degree/Year/Module
+     */
+    private void cleanCurrentSelection(){
+        pane5Loaded = false;
+        pane6Loaded = false;
+        pane7Loaded = false;
     }
 
     /**
@@ -245,15 +253,25 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
-     * Method which updates the current pane 5, 6 & 7 data if stage was
-     * exited/user just came back from a popup
+     * Refreshes the panels if user came back from the popup.
+     * Also updates user information regarding Years, Modules or Assignments
      */
     @FXML
-    private void popupClosed(){
-        // Loads degree again
-        loadDegree();
-        // Configures navigation arrows
-        determineNavigationVisibility(new ArrayList<>(userYears));
+    private void refreshPanels(){
+        // Refreshes Year/Module/Assignment list
+        switch(Session.getMarksSelectionType()){
+            case DEGREE:
+                userYears = Session.getSession().getAllYears();
+                break;
+            case YEAR:
+                userModules = Session.getMarksYearSelected().getAllModules();
+                break;
+            case MODULE:
+                userAssignments = Session.getMarksModuleSelected().getAllAssignments();
+                break;
+        }
+        // Updates the panels
+        panelsUpdate();
     }
 
     // Methods concerning the setup up of the scene with user data
@@ -271,9 +289,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Sets up the buttons
         button1.setVisible(false);
         button2Label.setText("Add Year");
-
-        // Sets up the name of the view if add/edit is pressed
-        actionViewName = MarksSelection.YEAR;
 
         // Sets degree overall grade
         pane1Label.setText("Average:");
@@ -507,85 +522,11 @@ public class MarksController extends DefaultNavigation implements Initializable 
         }
     }
 
-    // Below methods implement UI buttons
-    @FXML
-    private void button1Clicked() throws IOException {
-        // Sets the popup type
-        Session.setMarksPopupType(MarksPopupType.EDIT);
-
-        // Creates the popup
-        Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
-
-        // If popup gets closed from the taskbar, forwards to popupClosed method
-        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
-    }
-
-    @FXML
-    private void button2Clicked() throws IOException {
-        // Sets the popup type
-        Session.setMarksPopupType(MarksPopupType.ADD);
-
-        // Creates the popup
-        Stage popup = new Stage();
-        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
-
-        // If popup gets closed from the taskbar, forwards to popupClosed method
-        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
-    }
-
-    @FXML
-    private void pane5ButtonClicked() {
-        //TODO pane5ButtonClicked
-    }
-
-    @FXML
-    private void pane6ButtonClicked() {
-        //TODO pane6ButtonClicked
-    }
-
-    @FXML
-    private void pane7ButtonClicked() {
-        //TODO pane7ButtonClicked
-    }
-
-    // Below methods implement go left, go right, close window & go back to previous buttons
     /**
-     * Method which moves the existing panes one to left and replaces
-     * leftmost pane with new information.
-     */
-    @FXML
-    private void goLeftClicked() {
-        // Updates pointers
-        pane5Pointer --;
-        pane6Pointer --;
-        pane7Pointer --;
-
-        // Updates panes & navigation arrows visibility
-        navigationUpdate();
-    }
-
-    /**
-     * Method which moves the existing panes one to right and replaces
-     * rightmost pane with new information.
-     */
-    @FXML
-    private void goRightClicked() {
-        // Updates pointers
-        pane5Pointer ++;
-        pane6Pointer ++;
-        pane7Pointer ++;
-
-        // Updates panes & navigation arrows visibility
-        navigationUpdate();
-    }
-
-    /**
-     * Helper method which is used by navigation arrows to update the information
-     * in pane 5, 6 & 7.
+     * Helper method which updates the data in panels 5, 6 &7.
      * Also updates the visibility of navigation arrows.
      */
-    private void navigationUpdate(){
+    private void panelsUpdate(){
         MarksSelection currentScene = Session.getMarksSelectionType();
 
         // Updates the panes
@@ -620,6 +561,130 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 determineNavigationVisibility(new ArrayList<>(userAssignments));
                 break;
         }
+    }
+
+    // Below methods implement UI buttons
+    @FXML
+    private void button1Clicked() throws IOException {
+        // Sets the popup type
+        Session.setMarksPopupType(MarksPopupType.EDIT);
+
+        // Creates the popup
+        MarksSelection actionViewName = Session.getMarksSelectionType();
+        Stage popup = new Stage();
+        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
+
+        // If popup gets closed from the taskbar, forwards to popupClosed method
+        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosedFromTaskBar);
+    }
+
+    @FXML
+    private void button2Clicked() throws IOException {
+        // Sets the popup type
+        Session.setMarksPopupType(MarksPopupType.ADD);
+
+        // Creates the popup
+        MarksSelection actionViewName = Session.getMarksSelectionType();
+        Stage popup = new Stage();
+        new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
+
+        // If popup gets closed from the taskbar, forwards to popupClosed method
+        popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosedFromTaskBar);
+    }
+
+    /**
+     * Method which handles the change of scene view based on the user's selection.
+     * Interaction with Pane 5.
+     * @throws IOException if popup fxml is not found
+     */
+    @FXML
+    private void pane5ButtonClicked() throws IOException {
+        // Based on current selection, changes it and changes the displayed data accordingly
+        MarksSelection currentSelection = Session.getMarksSelectionType();
+        switch(currentSelection){
+            // Populates the scene with selected Year information
+            case DEGREE:
+                Session.setMarksSelectionType(MarksSelection.YEAR);
+                Session.setMarksYearSelected(userYears.get(pane5Pointer));
+                cleanCurrentSelection();
+                loadYear();
+                break;
+
+            // Populates the scene with selected Module information
+            case YEAR:
+                Session.setMarksSelectionType(MarksSelection.MODULE);
+                Session.setMarksModuleSelected(userModules.get(pane5Pointer));
+                cleanCurrentSelection();
+                loadModule();
+                break;
+
+            // Creates a popup for assignment
+            case MODULE:
+                // Sets popup type
+                Session.setMarksPopupType(MarksPopupType.EDIT);
+
+                // Creates the popup
+                Stage popup = new Stage();
+                new PopupStage(popup, "MarksPopupViewAssignment.fxml");
+
+                // If popup gets closed from the taskbar, forwards to popupClosed method
+                popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,
+                        this::popupClosedFromTaskBar);
+                break;
+        }
+    }
+
+    /**
+     * Method which handles the change of scene view based on the user's selection.
+     * Interaction with Pane 6.
+     * @throws IOException if popup fxml is not found
+     */
+    @FXML
+    private void pane6ButtonClicked() {
+        //TODO pane6ButtonClicked
+    }
+
+    /**
+     * Method which handles the change of scene view based on the user's selection.
+     * Interaction with Pane 6.
+     * @throws IOException if popup fxml is not found
+     */
+    @FXML
+    private void pane7ButtonClicked() {
+        //TODO pane7ButtonClicked
+    }
+
+
+
+    // Below methods implement go left, go right, close window & go back to previous buttons
+    /**
+     * Method which moves the existing panes one to left and replaces
+     * leftmost pane with new information.
+     */
+    @FXML
+    private void goLeftClicked() {
+        // Updates pointers
+        pane5Pointer --;
+        pane6Pointer --;
+        pane7Pointer --;
+
+        // Updates panes & navigation arrows visibility
+        panelsUpdate();
+    }
+
+    /**
+     * Method which moves the existing panes one to right and replaces
+     * rightmost pane with new information.
+     */
+    @FXML
+    private void goRightClicked() {
+        // Updates pointers
+        pane5Pointer ++;
+        pane6Pointer ++;
+        pane7Pointer ++;
+
+        // Updates panes & navigation arrows visibility
+        panelsUpdate();
     }
 
     /**

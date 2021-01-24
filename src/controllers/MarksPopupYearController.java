@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class MarksPopupYearController extends MarksDefaultPopup implements Initializable {
     // Variable for determining the scene type: either Add or Edit
-    private MarksPopupType sceneType = Session.getMarksPopupType();
+    private final MarksPopupType sceneType = Session.getMarksPopupType();
 
     // Label of the scene's title
     @FXML
