@@ -175,10 +175,13 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
     // Variables for storing user data
     private List<Year> userYears;
+    private List<Module> userModules;
+    private List<Assignment> userAssignments;
     // Indexes of the objects in the above lists, which are displayed by below panes
     private int pane5Pointer;
     private int pane6Pointer;
     private int pane7Pointer;
+    // Other
     private MarksSelection actionViewName;
 
     @Override
@@ -200,12 +203,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
-     * Cleans the session variables for year, module and assignment
+     * Cleans the session variables for year, module, assignment &
+     * popup, selection types.
      */
     private void cleanSession(){
         Session.setMarksYearSelected(null);
         Session.setMarksModuleSelected(null);
         Session.setMarksAssignmentSelected(null);
+        Session.setMarksSelectionType(null);
+        Session.setMarksPopupType(null);
     }
 
     /**
@@ -213,19 +219,44 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * @param objects User's Year, Module or Assignment list
      */
     private void determineNavigationVisibility(List<Object> objects){
-        // If there are only 3 objects to display, hides the navigation
-        if(objects.size() < 4){
-            goLeftButton.setVisible(false);
-            goRightButton.setVisible(false);
-        }
-        else {
-            // If there are objects hidden on the left, enables left navigation
-            if(pane5Pointer > 0) goLeftButton.setVisible(true);
-            // If there are objects hidden on the right, enables right navigation
-            if(pane7Pointer < objects.size()-1) goRightButton.setVisible(true);
-        }
+        // In case there are only 3 objects to display, hides the navigation
+        goLeftButton.setVisible(false);
+        goRightButton.setVisible(false);
+
+        // If there are objects hidden on the left, enables left navigation
+        if(pane5Pointer > 0) goLeftButton.setVisible(true);
+        // If there are objects hidden on the right, enables right navigation
+        if(pane7Pointer < objects.size()-1) goRightButton.setVisible(true);
+
     }
 
+    /**
+     * Listener for keyboard events.
+     * If right/left arrow is pressed, changes the pane information (triggers
+     * the navigation arrows actions)
+     * @param event used for identifying the key
+     */
+    public void keyPressed(KeyEvent event){
+        KeyCode key = event.getCode();
+        // If left arrow is clicked
+        if (key.equals(KeyCode.LEFT)) goLeftClicked();
+        // If right arrow is clicked
+        if (key.equals(KeyCode.RIGHT)) goRightClicked();
+    }
+
+    /**
+     * Method which updates the current pane 5, 6 & 7 data if stage was
+     * exited/user just came back from a popup
+     */
+    @FXML
+    private void popupClosed(){
+        // Loads degree again
+        loadDegree();
+        // Configures navigation arrows
+        determineNavigationVisibility(new ArrayList<>(userYears));
+    }
+
+    // Methods concerning the setup up of the scene with user data
     /**
      * Setups the scene with degree data (panels have year data)
      */
@@ -282,6 +313,23 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
         // Configures navigation arrows
         determineNavigationVisibility(new ArrayList<>(userYears));
+
+        // Sets the current Marks Tab Selection
+        Session.setMarksSelectionType(MarksSelection.DEGREE);
+    }
+
+    /**
+     * Setups the scene with Year data (panels have module data)
+     */
+    private void loadYear(){
+        //TODO loadYear
+    }
+
+    /**
+     * Setups the scene with Module data (panels have assignment data)
+     */
+    private void loadModule(){
+        //TODO loadModule
     }
 
     // Methods concerning the big 3 panes for data display
@@ -319,16 +367,16 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
                 // Worth in percent
                 pane5Label2.setText("Worth:");
-                pane5Value2.setText(Double.toString(year.getPercentWorth()) + "%");
+                pane5Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
                 pane5Label3.setText("Average:");
                 if (year.getOverallGrade() == -1) pane5Value3.setText("-");
-                else pane5Value3.setText(Double.toString(year.getOverallGrade()) + "%");
+                else pane5Value3.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
                 pane5Label4.setText("Complete:");
-                pane5Value4.setText(Double.toString(year.getPercentComplete()) + "%");
+                pane5Value4.setText(year.getPercentComplete() + "%");
 
                 // Marks pane as loaded
                 pane5Loaded = true;
@@ -374,16 +422,16 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
                 // Worth in percent
                 pane6Label2.setText("Worth:");
-                pane6Value2.setText(String.valueOf(year.getPercentWorth()) + "%");
+                pane6Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
                 pane6Label3.setText("Average:");
                 if (year.getOverallGrade() == -1) pane6Value3.setText("-");
-                else pane6Value3.setText(String.valueOf(year.getOverallGrade()) + "%");
+                else pane6Value3.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
                 pane6Label4.setText("Complete:");
-                pane6Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+                pane6Value4.setText(year.getPercentComplete() + "%");
 
                 // Marks pane as loaded
                 pane6Loaded = true;
@@ -429,16 +477,16 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
                 // Worth in percent
                 pane7Label2.setText("Worth:");
-                pane7Value2.setText(String.valueOf(year.getPercentWorth()) + "%");
+                pane7Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
                 pane7Label3.setText("Average:");
                 if (year.getOverallGrade() == -1) pane7Value3.setText("-");
-                else pane7Value3.setText(String.valueOf(year.getOverallGrade()) + "%");
+                else pane7Value3.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
                 pane7Label4.setText("Complete:");
-                pane7Value4.setText(String.valueOf(year.getPercentComplete()) + "%");
+                pane7Value4.setText(year.getPercentComplete() + "%");
 
                 // Marks pane as loaded
                 pane7Loaded = true;
@@ -462,7 +510,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
     // Below methods implement UI buttons
     @FXML
     private void button1Clicked() throws IOException {
-        // TODO button1Clicked
         // Sets the popup type
         Session.setMarksPopupType(MarksPopupType.EDIT);
 
@@ -474,25 +521,8 @@ public class MarksController extends DefaultNavigation implements Initializable 
         popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
     }
 
-    /**
-     * Changes colour of the 1st button if hovered
-     */
-    @FXML
-    private void button1Exited() {
-        ControlScene.buttonExited(button1, button1Image, button1Label, "edit_icon.png");
-    }
-
-    /**
-     * Reverts to default colour of the 1st button if exited
-     */
-    @FXML
-    private void button1Hovered() {
-        ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
-    }
-
     @FXML
     private void button2Clicked() throws IOException {
-        // TODO button2Clicked
         // Sets the popup type
         Session.setMarksPopupType(MarksPopupType.ADD);
 
@@ -504,41 +534,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
         popup.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::popupClosed);
     }
 
-    /**
-     * Reverts to default colour of the 2nd button if exited
-     */
-    @FXML
-    private void button2Exited() {
-        ControlScene.buttonExited(button2, button2Image, button2Label, "add_icon.png");
-    }
-
-    /**
-     * Changes colour of the 2nd button if hovered
-     */
-    @FXML
-    private void button2Hovered() {
-        ControlScene.buttonHovered(button2, button2Image, button2Label, "add_icon_selected.png");
-    }
-
     @FXML
     private void pane5ButtonClicked() {
         //TODO pane5ButtonClicked
-    }
-
-    /**
-     * Reverts to default colour of pane5 button when exited
-     */
-    @FXML
-    private void pane5ButtonExited() {
-        ControlScene.buttonExited(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon.png");
-    }
-
-    /**
-     * Changes the colour of pane5 button when hovered
-     */
-    @FXML
-    private void pane5ButtonHovered() {
-        ControlScene.buttonHovered(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon_selected.png");
     }
 
     @FXML
@@ -546,51 +544,107 @@ public class MarksController extends DefaultNavigation implements Initializable 
         //TODO pane6ButtonClicked
     }
 
-    /**
-     * Reverts to default colour of pane6 button when exited
-     */
-    @FXML
-    private void pane6ButtonExited() {
-        ControlScene.buttonExited(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon.png");
-    }
-
-    /**
-     * Changes the colour of pane6 button when hovered
-     */
-    @FXML
-    private void pane6ButtonHovered() {
-        ControlScene.buttonHovered(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon_selected.png");
-    }
-
     @FXML
     private void pane7ButtonClicked() {
         //TODO pane7ButtonClicked
     }
 
-    /**
-     * Reverts to default colour of pane7 button when exited
-     */
-    @FXML
-    private void pane7ButtonExited() {
-        ControlScene.buttonExited(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon.png");
-    }
-
-    /**
-     * Changes the colour of pane7 button when hovered
-     */
-    @FXML
-    private void pane7ButtonHovered() {
-        ControlScene.buttonHovered(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon_selected.png");
-    }
-
-    // Below methods implement go left, go right, close window, go back to previous & minimize buttons
+    // Below methods implement go left, go right, close window & go back to previous buttons
     /**
      * Method which moves the existing panes one to left and replaces
      * leftmost pane with new information.
      */
     @FXML
     private void goLeftClicked() {
+        // Updates pointers
+        pane5Pointer --;
+        pane6Pointer --;
+        pane7Pointer --;
 
+        // Updates panes & navigation arrows visibility
+        navigationUpdate();
+    }
+
+    /**
+     * Method which moves the existing panes one to right and replaces
+     * rightmost pane with new information.
+     */
+    @FXML
+    private void goRightClicked() {
+        // Updates pointers
+        pane5Pointer ++;
+        pane6Pointer ++;
+        pane7Pointer ++;
+
+        // Updates panes & navigation arrows visibility
+        navigationUpdate();
+    }
+
+    /**
+     * Helper method which is used by navigation arrows to update the information
+     * in pane 5, 6 & 7.
+     * Also updates the visibility of navigation arrows.
+     */
+    private void navigationUpdate(){
+        MarksSelection currentScene = Session.getMarksSelectionType();
+
+        // Updates the panes
+        switch(currentScene){
+            // If degree information is currently displayed
+            case DEGREE:
+                loadPane5(userYears.get(pane5Pointer));
+                loadPane6(userYears.get(pane6Pointer));
+                loadPane7(userYears.get(pane7Pointer));
+
+                // Updates navigation visibility
+                determineNavigationVisibility(new ArrayList<>(userYears));
+                break;
+
+            // If Year information is currently displayed
+            case YEAR:
+                loadPane5(userModules.get(pane5Pointer));
+                loadPane6(userModules.get(pane6Pointer));
+                loadPane7(userModules.get(pane7Pointer));
+
+                // Updates navigation visibility
+                determineNavigationVisibility(new ArrayList<>(userModules));
+                break;
+
+            // If Module information is currently displayed
+            case MODULE:
+                loadPane5(userAssignments.get(pane5Pointer));
+                loadPane6(userAssignments.get(pane6Pointer));
+                loadPane7(userAssignments.get(pane7Pointer));
+
+                // Updates navigation visibility
+                determineNavigationVisibility(new ArrayList<>(userAssignments));
+                break;
+        }
+    }
+
+    /**
+     * Method which changes the screen back to the previously visited screen
+     * when goBack button is pressed.
+     */
+    public void goBackClicked() {
+        //TODO go back to previous screen button
+    }
+
+    // Methods concerning the styling of elements
+    /**
+     * Reverts to usual goRight button colour if exited.
+     */
+    @FXML
+    private void goRightExited() {
+        ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
+    }
+
+    /**
+     * Changes goRight button colour if hovered .
+     */
+    @FXML
+    private void goRightHovered() {
+        ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
     }
 
     /**
@@ -610,61 +664,82 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
-     * Method which moves the existing panes one to right and replaces
-     * rightmost pane with new information.
+     * Reverts to default colour of pane7 button when exited
      */
     @FXML
-    private void goRightClicked() {
-        //TODO goRightClicked
+    private void pane7ButtonExited() {
+        ControlScene.buttonExited(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon.png");
     }
 
     /**
-     * Reverts to usual goRight button colour if exited.
+     * Changes the colour of pane7 button when hovered
      */
     @FXML
-    private void goRightExited() {
-        ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
+    private void pane7ButtonHovered() {
+        ControlScene.buttonHovered(pane7Button, pane7ButtonImage, pane7ButtonLabel, "more_icon_selected.png");
     }
 
     /**
-     * Changes goRight button colour if hovered .
+     * Reverts to default colour of pane6 button when exited
      */
     @FXML
-    private void goRightHovered() {
-        ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
+    private void pane6ButtonExited() {
+        ControlScene.buttonExited(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon.png");
     }
 
     /**
-     * Method which changes the screen back to the previously visited screen
-     * when goBack button is pressed.
-     */
-    public void goBackClicked() {
-        //TODO go back to previous screen button
-    }
-
-    /**
-     * Listener for keyboard events.
-     * If right/left arrow is pressed, changes the pane information (triggers
-     * the navigation arrows actions)
-     * @param event used for identifying the key
-     */
-    public void keyPressed(KeyEvent event){
-        KeyCode key = event.getCode();
-        // If left arrow is clicked
-        if (key.equals(KeyCode.LEFT)) goLeftClicked();
-        // If right arrow is clicked
-        if (key.equals(KeyCode.RIGHT)) goRightClicked();
-    }
-
-    /**
-     * Method which updates the current pane 5, 6 & 7 data if stage was
-     * exited/user just came back from a popup
+     * Changes the colour of pane6 button when hovered
      */
     @FXML
-    private void popupClosed(){
-        // Loads degree again
-        loadDegree();
-        // Configures navigation arrows
-        determineNavigationVisibility(new ArrayList<>(userYears));
+    private void pane6ButtonHovered() {
+        ControlScene.buttonHovered(pane6Button, pane6ButtonImage, pane6ButtonLabel, "more_icon_selected.png");
+    }
+
+    /**
+     * Reverts to default colour of pane5 button when exited
+     */
+    @FXML
+    private void pane5ButtonExited() {
+        ControlScene.buttonExited(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon.png");
+    }
+
+    /**
+     * Changes the colour of pane5 button when hovered
+     */
+    @FXML
+    private void pane5ButtonHovered() {
+        ControlScene.buttonHovered(pane5Button, pane5ButtonImage, pane5ButtonLabel, "more_icon_selected.png");
+    }
+
+    /**
+     * Reverts to default colour of the 2nd button if exited
+     */
+    @FXML
+    private void button2Exited() {
+        ControlScene.buttonExited(button2, button2Image, button2Label, "add_icon.png");
+    }
+
+    /**
+     * Changes colour of the 2nd button if hovered
+     */
+    @FXML
+    private void button2Hovered() {
+        ControlScene.buttonHovered(button2, button2Image, button2Label, "add_icon_selected.png");
+    }
+
+    /**
+     * Changes colour of the 1st button if hovered
+     */
+    @FXML
+    private void button1Exited() {
+        ControlScene.buttonExited(button1, button1Image, button1Label, "edit_icon.png");
+    }
+
+    /**
+     * Reverts to default colour of the 1st button if exited
+     */
+    @FXML
+    private void button1Hovered() {
+        ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
     }
 }
