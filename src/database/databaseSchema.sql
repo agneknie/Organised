@@ -26,9 +26,7 @@ CREATE TABLE Module(
     studyYear INTEGER NOT NULL,
     colour TEXT NOT NULL,
     FOREIGN KEY (userId)
-        REFERENCES User (id),
-    FOREIGN KEY (studyYear)
-        REFERENCES Year (yearNumber)
+        REFERENCES User (id)
 );
 
 CREATE TABLE Assignment(
@@ -40,9 +38,7 @@ CREATE TABLE Assignment(
     maxScore REAL,
     score REAL,
     FOREIGN KEY (userId)
-        REFERENCES User (id),
-    FOREIGN KEY (moduleCode)
-        REFERENCES Module (code)
+        REFERENCES User (id)
 );
 
 PRAGMA foreign_keys=on;

@@ -178,9 +178,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private List<Module> userModules;
     private List<Assignment> userAssignments;
     // Indexes of the objects in the above lists, which are displayed by below panes
-    private int pane5Pointer;
-    private int pane6Pointer;
-    private int pane7Pointer;
+    private int pane5Pointer = -1;
+    private int pane6Pointer = -1;
+    private int pane7Pointer = -1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -220,6 +220,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane5Loaded = false;
         pane6Loaded = false;
         pane7Loaded = false;
+        pane5Pointer = -1;
+        pane6Pointer = -1;
+        pane7Pointer = -1;
     }
 
     /**
@@ -234,8 +237,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // If there are objects hidden on the left, enables left navigation
         if(pane5Pointer > 0) goLeftButton.setVisible(true);
         // If there are objects hidden on the right, enables right navigation
-        if(pane7Pointer < objects.size()-1) goRightButton.setVisible(true);
-
+        if(pane7Pointer < objects.size()-1 && pane7Pointer != -1) goRightButton.setVisible(true);
     }
 
     /**
@@ -260,20 +262,92 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void refreshPanels(){
         // Refreshes Year/Module/Assignment list
         switch(Session.getMarksSelectionType()){
+
+            // Scene type is Degree
             case DEGREE:
                 userYears = Session.getSession().getAllYears();
                 // Updates the panels
-                if(!userYears.isEmpty()) panelsUpdate();
+                switch (userYears.size()){
+                    case 0:
+                        // Does nothing, because no panels to display
+                        break;
+                    case 1:
+                        optionalTitleLabel.setText("");
+                        if(pane5Pointer!=-1) loadPane5(userYears.get(pane5Pointer));
+                        else loadPane5(userYears.get(0));
+                        break;
+                    case 2:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userYears.get(pane5Pointer));
+                        if(pane6Pointer!=-1) loadPane6(userYears.get(pane6Pointer));
+                        else loadPane6(userYears.get(1));
+                        break;
+                    default:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userYears.get(pane5Pointer));
+                        loadPane6(userYears.get(pane6Pointer));
+                        if(pane7Pointer!=-1) loadPane7(userYears.get(pane7Pointer));
+                        else loadPane7(userYears.get(2));
+                }
+                determineNavigationVisibility(new ArrayList<>(userYears));
                 break;
+
+            // Scene type is Year
             case YEAR:
                 userModules = Session.getMarksYearSelected().getAllModules();
                 // Updates the panels
-                if(!userModules.isEmpty()) panelsUpdate();
+                switch (userModules.size()){
+                    case 0:
+                        // Does nothing, because no panels to display
+                        break;
+                    case 1:
+                        optionalTitleLabel.setText("");
+                        if(pane5Pointer!=-1) loadPane5(userModules.get(pane5Pointer));
+                        else loadPane5(userModules.get(0));
+                        break;
+                    case 2:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userModules.get(pane5Pointer));
+                        if(pane6Pointer!=-1) loadPane6(userModules.get(pane6Pointer));
+                        else loadPane6(userModules.get(pane5Pointer++));
+                        break;
+                    default:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userModules.get(pane5Pointer));
+                        loadPane6(userModules.get(pane6Pointer));
+                        if(pane7Pointer!=-1) loadPane7(userModules.get(pane7Pointer));
+                        else loadPane7(userModules.get(pane6Pointer++));
+                }
+                determineNavigationVisibility(new ArrayList<>(userModules));
                 break;
+
+            // Scene type is Module
             case MODULE:
                 userAssignments = Session.getMarksModuleSelected().getAllAssignments();
                 // Updates the panels
-                if(!userAssignments.isEmpty()) panelsUpdate();
+                switch (userAssignments.size()){
+                    case 0:
+                        // Does nothing, because no panels to display
+                        break;
+                    case 1:
+                        optionalTitleLabel.setText("");
+                        if(pane5Pointer!=-1) loadPane5(userAssignments.get(pane5Pointer));
+                        else loadPane5(userAssignments.get(0));
+                        break;
+                    case 2:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userAssignments.get(pane5Pointer));
+                        if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
+                        else loadPane5(userAssignments.get(pane5Pointer++));
+                        break;
+                    default:
+                        optionalTitleLabel.setText("");
+                        loadPane5(userAssignments.get(pane5Pointer));
+                        loadPane6(userAssignments.get(pane6Pointer));
+                        if(pane7Pointer!=-1) loadPane7(userAssignments.get(pane7Pointer));
+                        else loadPane7(userAssignments.get(pane6Pointer++));
+                }
+                determineNavigationVisibility(new ArrayList<>(userAssignments));
                 break;
         }
     }
@@ -362,7 +436,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
         // Sets % Complete
         pane2Label.setText("Complete:");
-        pane2Value.setText(Double.toString(thisYear.getPercentComplete()));
+        pane2Value.setText(thisYear.getPercentComplete() + "%");
 
         // Sets Autumn Grade
         pane3.setVisible(true);
@@ -614,10 +688,11 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
-     * Helper method which updates the data in panels 5, 6 &7.
+     * Helper method which updates the data in panels 5, 6 & 7 after
+     * a navigation arrow was clicked.
      * Also updates the visibility of navigation arrows.
      */
-    private void panelsUpdate(){
+    private void panelsUpdateNavigation(){
         MarksSelection currentScene = Session.getMarksSelectionType();
 
         // Updates the panes
@@ -771,7 +846,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane7Pointer --;
 
         // Updates panes & navigation arrows visibility
-        panelsUpdate();
+        panelsUpdateNavigation();
     }
 
     /**
@@ -786,7 +861,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane7Pointer ++;
 
         // Updates panes & navigation arrows visibility
-        panelsUpdate();
+        panelsUpdateNavigation();
     }
 
     /**
