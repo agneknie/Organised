@@ -262,7 +262,8 @@ public class MarksController extends DefaultNavigation implements Initializable 
     private void refreshPanels(){
         // If user just deleted an object, they need to return to the previous screen
         if(Session.getMarksJustDeleted()){
-
+            Session.setMarksJustDeleted(false);
+            goBackClicked();
         }
         // Just refresh the panes in case there was an information update
         else{

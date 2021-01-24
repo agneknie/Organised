@@ -88,11 +88,26 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         Session.setMarksPopupType(null);
     }
 
+    /**
+     * Deletes the selected Year and sets up to forward the user to
+     * the previous screen.
+     */
     @FXML
     private void deleteButtonClicked() {
-        //TODO deleteButtonClicked
+        // Deletes the Year
+        System.out.println(loggedUser.deleteYear(Session.getMarksYearSelected()));
+
+        // Sets the session variable
+        Session.setMarksJustDeleted(true);
+
+        // Closes the popup/stage
+        Session.setMarksPopupType(null);
+        ((Stage) deleteButton.getScene().getWindow()).close();
     }
 
+    /**
+     * Either Adds or Edits the Year based on the current popup scene type.
+     */
     @FXML
     private void actionButtonClicked() {
         // If action button is 'Add'
@@ -220,5 +235,4 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
             ((Stage) actionButton.getScene().getWindow()).close();
         }
     }
-
 }

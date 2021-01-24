@@ -27,6 +27,8 @@ public class Session {
     private static MarksPopupType marksPopupType = null;
     // Marks: current selection/display window
     private static MarksSelection marksSelectionType = null;
+    // Marks: user just deleted an element
+    private static boolean marksJustDeleted;
 
     /**
      * Cleans the session by resetting the logged in user to null.
@@ -148,5 +150,21 @@ public class Session {
      */
     public static void setMarksSelectionType(MarksSelection marksSelectionType) {
         Session.marksSelectionType = marksSelectionType;
+    }
+
+    /**
+     * Getter for the variable which marks if user just deleted Year/Module/Assignment
+     * @return true if deletion just happened, false otherwise
+     */
+    public static boolean getMarksJustDeleted() {
+        return marksJustDeleted;
+    }
+
+    /**
+     * Setter for the variable which marks if user just deleted Year/Module/Assignment
+     * @param marksJustDeleted boolean to set
+     */
+    public static void setMarksJustDeleted(boolean marksJustDeleted) {
+        Session.marksJustDeleted = marksJustDeleted;
     }
 }
