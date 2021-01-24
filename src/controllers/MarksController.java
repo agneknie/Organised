@@ -262,16 +262,20 @@ public class MarksController extends DefaultNavigation implements Initializable 
         switch(Session.getMarksSelectionType()){
             case DEGREE:
                 userYears = Session.getSession().getAllYears();
+                // Updates the panels
+                if(!userYears.isEmpty()) panelsUpdate();
                 break;
             case YEAR:
                 userModules = Session.getMarksYearSelected().getAllModules();
+                // Updates the panels
+                if(!userModules.isEmpty()) panelsUpdate();
                 break;
             case MODULE:
                 userAssignments = Session.getMarksModuleSelected().getAllAssignments();
+                // Updates the panels
+                if(!userAssignments.isEmpty()) panelsUpdate();
                 break;
         }
-        // Updates the panels
-        panelsUpdate();
     }
 
     // Methods concerning the setup up of the scene with user data
@@ -291,10 +295,10 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button2Label.setText("Add Year");
 
         // Sets degree overall grade
-        pane1Label.setText("Average:");
+        pane1Label.setText("Grade:");
         double userGrade = Session.getSession().getDegreeGrade();
         if (userGrade == -1) pane1Value.setText("-");
-        else pane1Value.setText(Double.toString(userGrade));
+        else pane1Value.setText(userGrade + "%");
 
         // Set degree classification
         pane2Label.setText("Classification:");
@@ -307,7 +311,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // Load years in pane5, pane6 & pane7
         switch(userYears.size()){
             case 0:
-                // TODO no Years present
+                optionalTitleLabel.setText("Add some Years to start getting Organised.");
                 break;
             case 1:
                 loadPane5(userYears.get(0));
@@ -337,7 +341,69 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * Setups the scene with Year data (panels have module data)
      */
     private void loadYear(){
-        //TODO loadYear
+        // Loads modules of the Year
+        Year thisYear = Session.getMarksYearSelected();
+        userModules = thisYear.getAllModules();
+
+        // Sets the main titles of the page
+        bigTitleLabel.setText("Year "+thisYear.getYearNumber()+".");
+        optionalTitleLabel.setText("");
+
+        // Sets up buttons
+        button1.setVisible(true);
+        button1Label.setText("Edit Year");
+        button2Label.setText("Add Module");
+
+        // Sets Year overall grade
+        pane1Label.setText("Grade:");
+        double yearGrade = thisYear.getOverallGrade();
+        if(yearGrade == -1) pane1Value.setText("-");
+        else pane1Value.setText(yearGrade + "%");
+
+        // Sets % Complete
+        pane2Label.setText("Complete:");
+        pane2Value.setText(Double.toString(thisYear.getPercentComplete()));
+
+        // Sets Autumn Grade
+        pane3.setVisible(true);
+        pane3Label.setText("Autumn:");
+        double springGrade = thisYear.getAutumnGrade();
+        if(springGrade == -1) pane3Value.setText("-");
+        else pane3Value.setText(springGrade + "%");
+
+        // Sets Spring Grade
+        pane4.setVisible(true);
+        pane4Label.setText("Spring:");
+        double autumnGrade = thisYear.getAutumnGrade();
+        if(autumnGrade == -1) pane4Value.setText("-");
+        else pane4Value.setText(autumnGrade + "%");
+
+        // Load modules in pane5, pane6 & pane7
+        switch(userModules.size()){
+            case 0:
+                optionalTitleLabel.setText("Add some Modules to start getting Organised.");
+                break;
+            case 1:
+                loadPane5(userModules.get(0));
+                break;
+            case 2:
+                loadPane5(userModules.get(0));
+                loadPane6(userModules.get(1));
+                break;
+            default:
+                loadPane5(userModules.get(0));
+                loadPane6(userModules.get(1));
+                loadPane7(userModules.get(2));
+        }
+
+        // Hides module panes if unused
+        hideUnusedPanes();
+
+        // Configures navigation arrows
+        determineNavigationVisibility(new ArrayList<>(userModules));
+
+        // Sets the current Marks Tab Selection
+        Session.setMarksSelectionType(MarksSelection.YEAR);
     }
 
     /**
@@ -385,7 +451,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 pane5Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
-                pane5Label3.setText("Average:");
+                pane5Label3.setText("Grade:");
                 if (year.getOverallGrade() == -1) pane5Value3.setText("-");
                 else pane5Value3.setText(year.getOverallGrade() + "%");
 
@@ -403,6 +469,31 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // If class is Module, setups the panel as Module
             case ("Module"):
                 Module module = (Module) object;
+
+                // Top Title
+                pane5Title.setText(module.getCode());
+
+                // Credits
+                pane5Label1.setText("Credits:");
+                pane5Value1.setText(Integer.toString(module.getCredits()));
+
+                // Semester
+                pane5Label2.setText("Semester:");
+                pane5Value2.setText(module.getSemester().toString());
+
+                // Grade
+                pane5Label3.setText("Grade:");
+                pane5Value3.setText(module.getOverallGrade() + "%");
+
+                // Resets unused elements
+                pane5Label4.setText("");
+                pane5Value4.setText("");
+
+                // Marks pane as loaded
+                pane5Loaded = true;
+
+                // Marks which module in a list of modules was added
+                pane5Pointer = userModules.indexOf(module);
                 break;
 
             // If class is Assignment, setups the panel as Assignment
@@ -440,7 +531,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 pane6Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
-                pane6Label3.setText("Average:");
+                pane6Label3.setText("Grade:");
                 if (year.getOverallGrade() == -1) pane6Value3.setText("-");
                 else pane6Value3.setText(year.getOverallGrade() + "%");
 
@@ -495,7 +586,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 pane7Value2.setText(year.getPercentWorth() + "%");
 
                 // Grade
-                pane7Label3.setText("Average:");
+                pane7Label3.setText("Grade:");
                 if (year.getOverallGrade() == -1) pane7Value3.setText("-");
                 else pane7Value3.setText(year.getOverallGrade() + "%");
 
@@ -584,7 +675,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         Session.setMarksPopupType(MarksPopupType.ADD);
 
         // Creates the popup
-        MarksSelection actionViewName = Session.getMarksSelectionType();
+        MarksSelection actionViewName = Session.getMarksSelectionType().next();
         Stage popup = new Stage();
         new PopupStage(popup, "MarksPopupView"+actionViewName+".fxml");
 
@@ -593,19 +684,19 @@ public class MarksController extends DefaultNavigation implements Initializable 
     }
 
     /**
-     * Method which handles the change of scene view based on the user's selection.
-     * Interaction with Pane 5.
-     * @throws IOException if popup fxml is not found
+     * Method which handles the change of scene view based on the user's selection
+     * and the given pointer, to identify the selected Pane.
+     *
+     * @param panePointer pointer to select the relevant object
      */
-    @FXML
-    private void pane5ButtonClicked() throws IOException {
+    private void paneButtonClicked(int panePointer) throws IOException {
         // Based on current selection, changes it and changes the displayed data accordingly
         MarksSelection currentSelection = Session.getMarksSelectionType();
         switch(currentSelection){
             // Populates the scene with selected Year information
             case DEGREE:
                 Session.setMarksSelectionType(MarksSelection.YEAR);
-                Session.setMarksYearSelected(userYears.get(pane5Pointer));
+                Session.setMarksYearSelected(userYears.get(panePointer));
                 cleanCurrentSelection();
                 loadYear();
                 break;
@@ -613,7 +704,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // Populates the scene with selected Module information
             case YEAR:
                 Session.setMarksSelectionType(MarksSelection.MODULE);
-                Session.setMarksModuleSelected(userModules.get(pane5Pointer));
+                Session.setMarksModuleSelected(userModules.get(panePointer));
                 cleanCurrentSelection();
                 loadModule();
                 break;
@@ -636,12 +727,13 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
     /**
      * Method which handles the change of scene view based on the user's selection.
-     * Interaction with Pane 6.
+     * Interaction with Pane 5.
      * @throws IOException if popup fxml is not found
      */
     @FXML
-    private void pane6ButtonClicked() {
-        //TODO pane6ButtonClicked
+    private void pane5ButtonClicked() throws IOException {
+        // Forwards to paneButtonClicked method
+        paneButtonClicked(pane5Pointer);
     }
 
     /**
@@ -650,11 +742,21 @@ public class MarksController extends DefaultNavigation implements Initializable 
      * @throws IOException if popup fxml is not found
      */
     @FXML
-    private void pane7ButtonClicked() {
-        //TODO pane7ButtonClicked
+    private void pane6ButtonClicked() throws IOException {
+        // Forwards to paneButtonClicked method
+        paneButtonClicked(pane6Pointer);
     }
 
-
+    /**
+     * Method which handles the change of scene view based on the user's selection.
+     * Interaction with Pane 7.
+     * @throws IOException if popup fxml is not found
+     */
+    @FXML
+    private void pane7ButtonClicked() throws IOException {
+        // Forwards to paneButtonClicked method
+        paneButtonClicked(pane7Pointer);
+    }
 
     // Below methods implement go left, go right, close window & go back to previous buttons
     /**
