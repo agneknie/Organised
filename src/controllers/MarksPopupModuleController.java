@@ -82,6 +82,9 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         });
     }
 
+    /**
+     * Method which setups the popup if ts type is Edit
+     */
     private void setupEdit(){
         // Disables module code field
         moduleCodeField.setDisable(true);
@@ -89,6 +92,14 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         // Sets the prompt text of worth field
         creditsField.setPromptText("Credits left: " + (Session.getMarksYearSelected().creditsLeft() +
                 Session.getMarksModuleSelected().getCredits()));
+
+        // Fills the fields with Module data
+        Module thisModule = Session.getMarksModuleSelected();
+        moduleCodeField.setText(thisModule.getCode());
+        moduleNameField.setText(thisModule.getFullName());
+        creditsField.setText(Integer.toString(thisModule.getCredits()));
+        semesterComboBox.setValue(thisModule.getSemester());
+        colourPicker.setValue(Color.web(thisModule.getColourAsString()));
     }
 
     /**
@@ -108,7 +119,15 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
      */
     @FXML
     private void deleteButtonClicked() {
-        //TODO deleteButtonClicked
+        // Deletes the Module
+        loggedUser.deleteModule(Session.getMarksModuleSelected());
+
+        // Sets the session variable
+        Session.setMarksJustDeleted(true);
+
+        // Closes the popup/stage
+        Session.setMarksPopupType(null);
+        ((Stage) deleteButton.getScene().getWindow()).close();
     }
 
     /**
@@ -196,7 +215,54 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
      * Method which performs Module editing when action button is pressed.
      */
     private void editButtonClicked(){
-        // TODO editButtonClicked
-    }
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
 
+        // Variables for new Module construction
+        String moduleName = moduleNameField.getText();
+        int credits = -1;
+        Semester semester = semesterComboBox.getValue();
+        Color colour = colourPicker.getValue();
+        boolean valid = true;
+
+        // Checks whether inputs are numbers where needed & not null
+        try {
+            credits = Integer.parseInt(creditsField.getText());
+        }catch (Exception e){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        if(moduleName.isEmpty()){
+            highlightWrongField(moduleNameField);
+            valid = false;
+        }
+
+        // Checks if inputs are valid
+        if(credits < 0 || credits > Session.getMarksYearSelected().creditsLeft()+
+                Session.getMarksModuleSelected().getCredits()){
+            highlightWrongField(creditsField);
+            valid = false;
+        }
+        if(semesterComboBox.getValue() == null){
+            highlightWrongField(semesterComboBox);
+            valid = false;
+        }
+        else semester = semesterComboBox.getValue();
+
+        // If all inputs valid, updates the module
+        if(valid){
+            Module thisModule = Session.getMarksModuleSelected();
+            // Sets the new values
+            thisModule.setFullName(moduleName);
+            thisModule.setCredits(credits);
+            thisModule.setSemester(semester);
+            thisModule.setColour(colour);
+            // Updates the Module in database
+            thisModule.updateModule();
+
+            // Closes the popup/stage
+            Session.setMarksPopupType(null);
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
+    }
 }
