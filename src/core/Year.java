@@ -290,11 +290,12 @@ public class Year {
         double credits = 0;
 
         for(Module module : modules){
-            if(module.getOverallGrade() != -1) credits += module.getCredits();
+            if(module.getOverallGrade() != -1)
+                credits += module.getCredits() * module.getPercentComplete();
         }
 
         if (credits == 0) return 0;
-        else return (double)Math.round((credits/this.getCredits()) * 100) / 100;
+        return (double)Math.round((credits/this.credits) * 100) / 100;
     }
 
     /**
