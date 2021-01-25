@@ -434,6 +434,24 @@ public class User {
     }
 
     /**
+     * Method which returns how much of their degree a user has completed.
+     *
+     * @return % of degree completed
+     */
+    public double getDegreePercentComplete(){
+        List<Year> years = getAllYears();
+        double percent = 0;
+
+        for(Year year : years){
+            if(year.getOverallGrade() != -1)
+                percent += year.getPercentComplete() * year.getPercentWorth();
+        }
+
+        if(percent == 0) return 0;
+        else return (double)Math.round((percent/100) * 100) / 100;
+    }
+
+    /**
      * Returns user's degree classification based on the current grade.
      * Removes decimal part from the grade without rounding it.
      * Returns "-" if grade is not available yet.
@@ -445,10 +463,10 @@ public class User {
 
         if (userGrade == -1) classification = "-";
         else if(userGrade < 40) classification = "Non-Honours";
-        else if(userGrade < 50) classification = "3rd";
-        else if(userGrade < 60) classification = "2:2";
-        else if(userGrade < 70) classification = "2:1";
-        else classification = "1st";
+        else if(userGrade < 50) classification = "Third (3rd)";
+        else if(userGrade < 60) classification = "Lower-Second (2:2)";
+        else if(userGrade < 70) classification = "Upper-Second (2:1)";
+        else classification = "First (1st)";
 
         return classification;
     }

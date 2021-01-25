@@ -11,6 +11,7 @@ import core.enums.MarksSelection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import stages.PopupStage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -270,16 +273,22 @@ public class MarksController extends DefaultNavigation implements Initializable 
             switch(Session.getMarksSelectionType()){
                 // Scene type is Degree
                 case DEGREE:
+                    if(Year.percentWorthLeft(Session.getSession()) == 0) disableAddButton();
+                    else enableAddButton();
                     refreshPanelsYears();
                     break;
 
                 // Scene type is Year
                 case YEAR:
+                    if(Session.getMarksYearSelected().creditsLeft() == 0) disableAddButton();
+                    else enableAddButton();
                     refreshPanelsModules();
                     break;
 
                 // Scene type is Module
                 case MODULE:
+                    if(Session.getMarksModuleSelected().percentWorthLeft() == 0) disableAddButton();
+                    else enableAddButton();
                     refreshPanelsAssignments();
                     break;
             }
@@ -398,6 +407,8 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1.setVisible(false);
         button2Label.setText("Add Year");
         goBackButton.setVisible(false);
+        if(Year.percentWorthLeft(Session.getSession()) == 0) disableAddButton();
+        else enableAddButton();
 
         // Sets degree overall grade
         pane1Label.setText("Grade:");
@@ -405,12 +416,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
         if (userGrade == -1) pane1Value.setText("-");
         else pane1Value.setText(userGrade + "%");
 
+        // Sets how much of the degree is completed
+        pane2Label.setText("Complete:");
+        pane2Value.setText(Session.getSession().getDegreePercentComplete() + "%");
+
         // Set degree classification
-        pane2Label.setText("Classification:");
-        pane2Value.setText(Session.getSession().getClassification());
+        pane3Label.setText("Classification:");
+        pane3Value.setText(Session.getSession().getClassification());
 
         // Hides unused top display panes
-        pane3.setVisible(false);
         pane4.setVisible(false);
 
         // Load years in pane5, pane6 & pane7
@@ -459,9 +473,11 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1Label.setText("Edit Year");
         button2Label.setText("Add Module");
         goBackButton.setVisible(true);
+        if(Session.getMarksYearSelected().creditsLeft() == 0) disableAddButton();
+        else enableAddButton();
 
         // Sets Year overall grade
-        pane1Label.setText("Grade:");
+        pane1Label.setText("Overall   Grade:");
         double yearGrade = thisYear.getOverallGrade();
         if(yearGrade == -1) pane1Value.setText("-");
         else pane1Value.setText(yearGrade + "%");
@@ -472,14 +488,14 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
         // Sets Autumn Grade
         pane3.setVisible(true);
-        pane3Label.setText("Autumn:");
+        pane3Label.setText("Autumn Grade:");
         double springGrade = thisYear.getAutumnGrade();
         if(springGrade == -1) pane3Value.setText("-");
         else pane3Value.setText(springGrade + "%");
 
         // Sets Spring Grade
         pane4.setVisible(true);
-        pane4Label.setText("Spring:");
+        pane4Label.setText("Spring   Grade:");
         double autumnGrade = thisYear.getSpringGrade();
         if(autumnGrade == -1) pane4Value.setText("-");
         else pane4Value.setText(autumnGrade + "%");
@@ -529,6 +545,8 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1Label.setText("Edit Module");
         button2Label.setText("Add Assignment");
         goBackButton.setVisible(true);
+        if(Session.getMarksModuleSelected().percentWorthLeft() == 0) disableAddButton();
+        else enableAddButton();
 
         // Sets Module overall grade
         pane1Label.setText("Grade:");
@@ -668,15 +686,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane5Title.setText(assignment.getFullName());
 
-                // Grade
-                pane5Label1.setText("Grade:");
-                double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane5Value1.setText(assignment.getGrade() + "%");
-                else pane5Value1.setText("-");
-
                 // % Worth
-                pane5Label2.setText("Worth:");
-                pane5Value2.setText(assignment.getPercentWorth() + "%");
+                pane5Label1.setText("Worth:");
+                pane5Value1.setText(assignment.getPercentWorth() + "%");
+
+                // Grade
+                pane5Label2.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane5Value2.setText(assignment.getGrade() + "%");
+                else pane5Value2.setText("-");
 
                 // Resets unused elements
                 pane5Label3.setText("");
@@ -775,15 +793,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane6Title.setText(assignment.getFullName());
 
-                // Grade
-                pane6Label1.setText("Grade:");
-                double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane6Value1.setText(assignment.getGrade() + "%");
-                else pane6Value1.setText("-");
-
                 // % Worth
-                pane6Label2.setText("Worth:");
-                pane6Value2.setText(assignment.getPercentWorth() + "%");
+                pane6Label1.setText("Worth:");
+                pane6Value1.setText(assignment.getPercentWorth() + "%");
+
+                // Grade
+                pane6Label2.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane6Value2.setText(assignment.getGrade() + "%");
+                else pane6Value2.setText("-");
 
                 // Resets unused elements
                 pane6Label3.setText("");
@@ -882,15 +900,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane7Title.setText(assignment.getFullName());
 
-                // Grade
-                pane7Label1.setText("Grade:");
-                double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane7Value1.setText(assignment.getGrade() + "%");
-                else pane7Value1.setText("-");
-
                 // % Worth
-                pane7Label2.setText("Worth:");
-                pane7Value2.setText(assignment.getPercentWorth() + "%");
+                pane7Label1.setText("Worth:");
+                pane7Value1.setText(assignment.getPercentWorth() + "%");
+
+                // Grade
+                pane7Label2.setText("Grade:");
+                double assignmentGrade = assignment.getGrade();
+                if (assignmentGrade != -1) pane7Value2.setText(assignment.getGrade() + "%");
+                else pane7Value2.setText("-");
 
                 // Resets unused elements
                 pane7Label3.setText("");
@@ -1222,5 +1240,49 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private void button1Hovered() {
         ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
+    }
+
+    /**
+     * Changes Add button styling to disabled.
+     */
+    private void disableAddButton(){
+        // Outline of the button
+        button2.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #7A7A7A; -fx-border-radius: 20;" +
+                "-fx-border-width: 3");
+
+        // Image of the button
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/add_icon_disabled.png");
+            button2Image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Disables the button
+        button2.setDisable(true);
+    }
+
+    /**
+     * Reverts back the styling of a disabled Add button.
+     */
+    private void enableAddButton(){
+        // Outline of the button
+        button2.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 20;" +
+                "-fx-border-width: 3");
+
+        // Image of the button
+        FileInputStream newImage = null;
+        try {
+            newImage = new FileInputStream("src/images/add_icon.png");
+            button2Image.setImage(new Image(newImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Enable the button
+        button2.setDisable(false);
     }
 }

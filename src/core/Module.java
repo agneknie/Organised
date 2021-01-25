@@ -323,6 +323,23 @@ public class Module {
     }
 
     /**
+     * Method which returns how many percent unallocated to Assignments
+     * does a module have.
+     *
+     * @return % of module unassigned to assignments
+     */
+    public double percentWorthLeft(){
+        List<Assignment> assignments = getAllAssignments();
+        double percentWorthTotal = 0;
+
+        for(Assignment assignment : assignments){
+            percentWorthTotal += assignment.getPercentWorth();
+        }
+
+        return (double)Math.round((100-percentWorthTotal) * 100) / 100;
+    }
+
+    /**
      * Adds a newly created assignment to the database.
      * Used when user creates a new assignment.
      *

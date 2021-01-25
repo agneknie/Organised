@@ -44,11 +44,12 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         // Sets the text of the title
         titleLabel.setText(sceneType + " Year.");
 
-        // Sets the prompt text of worth field
-        worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
-
         // Sets up the scene based on its type
         if (sceneType == MarksPopupType.EDIT) setupEdit();
+        else{
+            // Sets the prompt text of worth field
+            worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
+        }
     }
 
     /**
@@ -57,6 +58,10 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     private void setupEdit(){
         // Disables year number field
         yearNumberField.setDisable(true);
+
+        // Sets the prompt text of worth field
+        worthField.setPromptText("Percent left: " + (Year.percentWorthLeft(loggedUser)+
+                Session.getMarksYearSelected().getPercentWorth())+ "%");
 
         // Fills the fields with Year data
         Year thisYear = Session.getMarksYearSelected();
@@ -204,7 +209,8 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
             highlightWrongField(creditsField);
             valid = false;
         }
-        if(percentWorth < 0 || percentWorth > Year.percentWorthLeft(loggedUser)){
+        if(percentWorth < 0 || percentWorth > Year.percentWorthLeft(loggedUser)+
+                Session.getMarksYearSelected().getPercentWorth()){
             highlightWrongField(worthField);
             valid = false;
         }

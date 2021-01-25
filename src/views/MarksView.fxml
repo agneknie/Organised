@@ -177,7 +177,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane2Value" layoutY="82.0" prefHeight="30.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane2Value" textFill="WHITE">
+                  <Label fx:id="pane2Value" layoutY="82.0" prefHeight="27.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane2Value" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -191,7 +191,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane3Value" layoutY="82.0" prefHeight="31.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane3Value" textFill="WHITE">
+                  <Label fx:id="pane3Value" layoutY="82.0" prefHeight="27.0" prefWidth="327.0" style="-fx-wrap-text: true;" text="Pane3Value" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>

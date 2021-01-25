@@ -210,7 +210,7 @@ public class Year {
             creditsTotal += module.getCredits();
         }
 
-        return creditsTotal;
+        return this.credits-creditsTotal;
     }
 
     /**

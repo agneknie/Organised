@@ -3,6 +3,7 @@ package controllers;
 import controllers.utilities.MarksDefaultPopup;
 import core.Module;
 import core.User;
+import core.Year;
 import core.enums.MarksPopupType;
 import core.enums.Semester;
 import core.Session;
@@ -55,7 +56,11 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         titleLabel.setText(sceneType + " Module.");
 
         // If "Edit" is selected, disables module code field
-        if(sceneType == MarksPopupType.EDIT) moduleCodeField.setDisable(true);
+        if(sceneType == MarksPopupType.EDIT) setupEdit();
+        else {
+            // Sets the prompt text of worth field
+            creditsField.setPromptText("Credits left: " + Session.getMarksYearSelected().creditsLeft());
+        }
 
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
@@ -75,6 +80,15 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
                 }
             }
         });
+    }
+
+    private void setupEdit(){
+        // Disables module code field
+        moduleCodeField.setDisable(true);
+
+        // Sets the prompt text of worth field
+        creditsField.setPromptText("Credits left: " + (Session.getMarksYearSelected().creditsLeft() +
+                Session.getMarksModuleSelected().getCredits()));
     }
 
     /**
@@ -156,7 +170,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
             highlightWrongField(moduleCodeField);
             valid = false;
         }
-        if(credits < 0){
+        if(credits < 0 || credits > Session.getMarksYearSelected().creditsLeft()){
             highlightWrongField(creditsField);
             valid = false;
         }
