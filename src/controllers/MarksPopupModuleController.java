@@ -55,13 +55,6 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         // Sets the text of the title
         titleLabel.setText(sceneType + " Module.");
 
-        // If "Edit" is selected, disables module code field
-        if(sceneType == MarksPopupType.EDIT) setupEdit();
-        else {
-            // Sets the prompt text of worth field
-            creditsField.setPromptText("Credits left: " + Session.getMarksYearSelected().creditsLeft());
-        }
-
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
         // Styles semester combo box text
@@ -80,6 +73,13 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
                 }
             }
         });
+
+        // Setups the popup based on scene type
+        if(sceneType == MarksPopupType.EDIT) setupEdit();
+        else {
+            // Sets the prompt text of worth field
+            creditsField.setPromptText("Credits left: " + Session.getMarksYearSelected().creditsLeft());
+        }
     }
 
     /**

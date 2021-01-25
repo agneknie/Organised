@@ -50,7 +50,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="weightField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 25%" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+                  <TextField fx:id="worthField" layoutX="300.0" layoutY="7.0" prefHeight="56.0" prefWidth="224.0" promptText="e.g. 25%" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -64,7 +64,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <ToggleButton fx:id="attemptedButton" layoutX="300.0" layoutY="7.0" mnemonicParsing="false" onAction="#attemptedButtonClicked" prefHeight="56.0" prefWidth="224.0" style="-fx-background-color: none; -fx-text-fill: white; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" text="Yes  /  No">
+                  <ToggleButton fx:id="attemptedButton" layoutX="300.0" layoutY="7.0" mnemonicParsing="false" onAction="#attemptedButtonClicked" prefHeight="56.0" prefWidth="224.0" selected="true" style="-fx-background-color: none; -fx-text-fill: white; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" text="Yes  /  No">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>

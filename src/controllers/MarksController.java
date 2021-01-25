@@ -201,6 +201,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
      */
     private void popupClosedFromTaskBar(WindowEvent event){
         Session.setMarksPopupType(null);
+        Session.setMarksAssignmentSelected(null);
     }
 
     /**
@@ -266,6 +267,8 @@ public class MarksController extends DefaultNavigation implements Initializable 
         // If user just deleted an object, they need to return to the previous screen
         if(Session.getMarksJustDeleted()){
             Session.setMarksJustDeleted(false);
+            if(Session.getMarksAssignmentSelected() != null)
+                Session.setMarksSelectionType(MarksSelection.ASSIGNMENT);
             goBackClicked();
         }
         // Just refresh the panes in case there was an information update
@@ -1026,6 +1029,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
             case MODULE:
                 // Sets popup type
                 Session.setMarksPopupType(MarksPopupType.EDIT);
+                Session.setMarksAssignmentSelected(userAssignments.get(panePointer));
 
                 // Creates the popup
                 Stage popup = new Stage();
@@ -1124,7 +1128,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 loadYear();
                 break;
             case ASSIGNMENT:
-                // Nothing, assignment is a popup from Module display
+                // In case user deletes an Assignment
+                cleanCurrentSelection();
+                loadModule();
                 break;
         }
     }
