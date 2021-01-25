@@ -196,6 +196,24 @@ public class Year {
     }
 
     /**
+     * Method which goes through the modules of the year and returns
+     * how many credits unassigned to a module a yar has left.
+     *
+     * @return how many unused credits there are left
+     */
+    public int creditsLeft(){
+        List<Module> modules = this.getAllModules();
+        int creditsTotal = 0;
+
+        // Goes through modules and adds up credits
+        for(Module module : modules){
+            creditsTotal += module.getCredits();
+        }
+
+        return creditsTotal;
+    }
+
+    /**
      * Method which updates year information in the database.
      * Used when an already existing year has its information updated.
      *
@@ -245,24 +263,22 @@ public class Year {
      */
     public double getOverallGrade(){
         List<Module> modules = getAllModules();
+        // No modules added yet
         if (modules.isEmpty()) return -1;
 
-        // Variables to save interim calculation results
-        double overallAchieved = 0;
-        double creditsAvailable = 0;
+        double sum = 0;
+        double divisor = 0;
 
-        // Goes through modules and saves their data
-        for(Module module: modules){
-            double moduleMark = module.getOverallGrade()*module.getCredits();
-            if(moduleMark != 0){
-                overallAchieved += moduleMark;
-                creditsAvailable += module.getCredits();
+        for(Module module : modules){
+            if(module.getOverallGrade() != -1){
+                sum += module.getOverallGrade() * module.getCredits();
+                divisor += module.getCredits();
             }
         }
-        // If no modules with grades were present, avoids division by 0
-        if(creditsAvailable == 0) return -1;
-        // Calculates the grade and returns it
-        return (double)Math.round((overallAchieved/creditsAvailable) * 100) / 100;
+
+        // If no scores yet present
+        if(divisor == 0) return -1;
+        else return (double)Math.round((sum/divisor) * 100) / 100;
     }
 
     /**
@@ -271,14 +287,14 @@ public class Year {
      */
     public double getPercentComplete(){
         List<Module> modules = getAllModules();
-        int credits = 0;
+        double credits = 0;
 
         for(Module module : modules){
-            if(module.getOverallGrade() > 0) credits += module.getCredits();
+            if(module.getOverallGrade() != -1) credits += module.getCredits();
         }
 
         if (credits == 0) return 0;
-        else return (double)Math.round((credits/this.getCredits()*100) * 100) / 100;
+        else return (double)Math.round((credits/this.getCredits()) * 100) / 100;
     }
 
     /**
@@ -290,41 +306,28 @@ public class Year {
      */
     public double getSpringGrade(){
         List<Module> modules = getAllModules();
+        // No modules added yet
         if (modules.isEmpty()) return -1;
 
-        // Variables to save interim calculation results
-        double overallAchieved = 0;
-        double creditsAvailable = 0;
+        double sum = 0;
+        double divisor = 0;
 
-        // Goes through modules and saves their data
-        for(Module module: modules){
-            Semester thisSemester = module.getSemester();
-            switch (thisSemester){
-                case AUTUMN:
-                    // Does nothing, because calculated grade is Spring
-                    break;
-                case SPRING:
-                    // Weights as full credit sum
-                    double moduleMarkSpring = module.getOverallGrade()*module.getCredits();
-                    if(moduleMarkSpring != 0){
-                        overallAchieved += moduleMarkSpring;
-                        creditsAvailable += module.getCredits();
-                    }
-                    break;
-                case ALL_YEAR:
-                    // Weights as half credit sum
-                    double moduleMarkAllYear = module.getOverallGrade()*(module.getCredits()/2);
-                    if(moduleMarkAllYear != 0){
-                        overallAchieved += moduleMarkAllYear;
-                        creditsAvailable += module.getCredits()/2;
-                    }
-                    break;
+        for(Module module : modules){
+            if(module.getOverallGrade() != -1){
+                if(module.getSemester() == Semester.ALL_YEAR){
+                    sum += module.getOverallGrade() * ((double) module.getCredits()/2);
+                    divisor += (double) module.getCredits()/2;
+                }
+                if(module.getSemester() == Semester.SPRING){
+                    sum += module.getOverallGrade() * module.getCredits();
+                    divisor += module.getCredits();
+                }
             }
         }
-        // If no modules with grades were present, avoids division by 0
-        if(creditsAvailable == 0) return -1;
-        // Calculates the grade and returns it
-        return (double)Math.round((overallAchieved/creditsAvailable) * 100) / 100;
+
+        // If no scores yet present
+        if(divisor == 0) return -1;
+        else return (double)Math.round((sum/divisor) * 100) / 100;
     }
 
     /**
@@ -336,41 +339,28 @@ public class Year {
      */
     public double getAutumnGrade(){
         List<Module> modules = getAllModules();
+        // No modules added yet
         if (modules.isEmpty()) return -1;
 
-        // Variables to save interim calculation results
-        double overallAchieved = 0;
-        double creditsAvailable = 0;
+        double sum = 0;
+        double divisor = 0;
 
-        // Goes through modules and saves their data
-        for(Module module: modules){
-            Semester thisSemester = module.getSemester();
-            switch (thisSemester){
-                case AUTUMN:
-                    // Weights as full credit sum
-                    double moduleMarkSpring = module.getOverallGrade()*module.getCredits();
-                    if(moduleMarkSpring != 0){
-                        overallAchieved += moduleMarkSpring;
-                        creditsAvailable += module.getCredits();
-                    }
-                    break;
-                case SPRING:
-                    // Does nothing, because calculated grade is Autumn
-                    break;
-                case ALL_YEAR:
-                    // Weights as half credit sum
-                    double moduleMarkAllYear = module.getOverallGrade()*(module.getCredits()/2);
-                    if(moduleMarkAllYear != 0){
-                        overallAchieved += moduleMarkAllYear;
-                        creditsAvailable += module.getCredits()/2;
-                    }
-                    break;
+        for(Module module : modules){
+            if(module.getOverallGrade() != -1){
+                if(module.getSemester() == Semester.ALL_YEAR){
+                    sum += module.getOverallGrade() * ((double) module.getCredits()/2);
+                    divisor += (double) module.getCredits()/2;
+                }
+                if(module.getSemester() == Semester.AUTUMN){
+                    sum += module.getOverallGrade() * module.getCredits();
+                    divisor += module.getCredits();
+                }
             }
         }
-        // If no modules with grades were present, avoids division by 0
-        if(creditsAvailable == 0) return -1;
-        // Calculates the grade and returns it
-        return (double)Math.round((overallAchieved/creditsAvailable) * 100) / 100;
+
+        // If no scores yet present
+        if(divisor == 0) return -1;
+        else return (double)Math.round((sum/divisor) * 100) / 100;
     }
 
     // Methods concerning Modules of this year

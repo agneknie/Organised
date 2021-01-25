@@ -287,24 +287,23 @@ public class Module {
      */
     public double getOverallGrade(){
         List <Assignment> assignments = getAllAssignments();
+        // No assignments added yet
+        if(assignments.isEmpty()) return -1;
 
-        // Variables to save interim calculation results
-        double percentAchieved = 0;
-        double percentAvailable = 0;
+        double sum = 0;
+        double divisor = 0;
 
-        // Goes through assignments saves their data
         for(Assignment assignment : assignments){
-            double assignmentMark = assignment.getGrade()*assignment.getPercentWorth()/100;
-            // If assignment mark is -1, doesn't add it to overall score, because it's not yet attempted
-            if(assignmentMark != -1){
-                percentAchieved += assignmentMark;
-                percentAvailable += assignment.getPercentWorth();
+            if(assignment.getGrade() != -1){
+                sum += assignment.getGrade() * assignment.getPercentWorth();
+                divisor += assignment.getPercentWorth();
             }
         }
-        // If no assignments with grades were present, avoids division by 0
-        if(percentAvailable == 0) return -1;
-        // Calculates the grade and returns it
-        return percentAchieved/percentAvailable*100;
+
+        // If no scores yet present
+        if (divisor == 0) return -1;
+        else return (double)Math.round((sum/divisor) * 100) / 100;
+
     }
 
     /**
