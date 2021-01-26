@@ -382,7 +382,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 optionalTitleLabel.setText(Session.getMarksModuleSelected().getFullName() + ".");
                 loadPane5(userAssignments.get(pane5Pointer));
                 if(pane6Pointer!=-1) loadPane6(userAssignments.get(pane6Pointer));
-                else loadPane5(userAssignments.get(1));
+                else loadPane6(userAssignments.get(1));
                 break;
             default:
                 optionalTitleLabel.setText(Session.getMarksModuleSelected().getFullName() + ".");
@@ -555,7 +555,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
         pane1Label.setText("Grade:");
         double moduleGrade = thisModule.getOverallGrade();
         if(moduleGrade != -1) pane1Value.setText(moduleGrade + "%");
-        else pane1Label.setText("-");
+        else pane1Value.setText("-");
 
         // Sets Module % complete
         pane2Label.setText("Complete:");

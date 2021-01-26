@@ -136,19 +136,19 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         // Checks whether inputs are numbers/not null
         try {
             yearNumber = Integer.parseInt(yearNumberField.getText());
-        }catch(Exception e){
+        } catch(Exception e){
             highlightWrongField(yearNumberField);
             valid = false;
         }
         try{
             credits = Integer.parseInt(creditsField.getText());
-        }catch (Exception e){
+        } catch (Exception e){
             highlightWrongField(creditsField);
             valid = false;
         }
         try{
             percentWorth = Double.parseDouble(worthField.getText());
-        }catch (Exception e){
+        } catch (Exception e){
             highlightWrongField(worthField);
             valid = false;
         }
@@ -193,13 +193,13 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         // Checks whether inputs are numbers/not null
         try{
             credits = Integer.parseInt(creditsField.getText());
-        }catch (Exception e){
+        } catch (Exception e){
             highlightWrongField(creditsField);
             valid = false;
         }
         try{
             percentWorth = Double.parseDouble(worthField.getText());
-        }catch (Exception e){
+        } catch (Exception e){
             highlightWrongField(worthField);
             valid = false;
         }

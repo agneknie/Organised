@@ -171,7 +171,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         // Checks whether inputs are numbers where needed & not null
         try {
             credits = Integer.parseInt(creditsField.getText());
-        }catch (Exception e){
+        } catch (Exception e){
             highlightWrongField(creditsField);
             valid = false;
         }
