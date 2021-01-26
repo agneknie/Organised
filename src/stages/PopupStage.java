@@ -12,7 +12,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 /**
- * Class representing a popup stage/window in the application
+ * Class representing a popup stage/window in the application.
  */
 public class PopupStage {
     public PopupStage(Stage popup, String viewName) throws IOException {

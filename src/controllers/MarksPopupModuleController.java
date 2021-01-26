@@ -2,8 +2,6 @@ package controllers;
 
 import controllers.utilities.MarksDefaultPopup;
 import core.Module;
-import core.User;
-import core.Year;
 import core.enums.MarksPopupType;
 import core.enums.Semester;
 import core.Session;
@@ -133,6 +131,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     /**
      * Either Adds or Edits the Module based on the current popup scene type.
      */
+    @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
         if(sceneType == MarksPopupType.ADD) addButtonClicked();

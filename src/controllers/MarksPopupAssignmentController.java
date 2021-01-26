@@ -122,6 +122,7 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
     /**
      * Either Adds or Edits the Module based on the current popup scene type.
      */
+    @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
         if(sceneType == MarksPopupType.ADD) addButtonClicked();

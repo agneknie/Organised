@@ -2,7 +2,6 @@ package controllers;
 
 import controllers.utilities.MarksDefaultPopup;
 import core.Session;
-import core.User;
 import core.Year;
 import core.enums.MarksPopupType;
 import javafx.fxml.FXML;
@@ -101,6 +100,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     /**
      * Either Adds or Edits the Year based on the current popup scene type.
      */
+    @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
         if(sceneType == MarksPopupType.ADD) addButtonClicked();

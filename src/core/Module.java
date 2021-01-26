@@ -16,13 +16,13 @@ import java.util.Objects;
  * Class for representing a module in the system
  */
 public class Module {
-    private int id;
-    private int userId;
-    private String code;
+    private final int id;
+    private final int userId;
+    private final String code;
     private String fullName;
     private int credits;
     private Semester semester;
-    private int studyYear;
+    private final int studyYear;
     private Color colour;
 
     /**
@@ -31,14 +31,6 @@ public class Module {
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Getter for module userId
-     * @return userId
-     */
-    public int getUserId() {
-        return userId;
     }
 
     /**
@@ -240,14 +232,11 @@ public class Module {
     /**
      * Method which updates module information in the database.
      * Used when an already existing module has its information updated.
-     *
-     * @return boolean whether the update was successful
      */
-    public boolean updateModule (){
+    public void updateModule (){
         // Gets Database connection
         Connection connection = Database.getConnection();
         PreparedStatement pStatement = null;
-        int rowsAffected = 0;
 
         // Sets up the query
         String query = "UPDATE Module SET code = ?, fullName = ?, credits = ?, " +
@@ -261,10 +250,6 @@ public class Module {
             pStatement.setString(4, semester.toString());
             pStatement.setString(5, getColourAsString());
             pStatement.setInt(6, id);
-
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -277,8 +262,6 @@ public class Module {
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**
@@ -344,46 +327,40 @@ public class Module {
      * Used when user creates a new assignment.
      *
      * @param assignment Assignment to add
-     * @return true if operation was successful, false otherwise
      */
-    public boolean addAssignment(Assignment assignment){
-        // Assignment already exists in the database
-        if (assignment.getId() != 0) return false;
+    public void addAssignment(Assignment assignment){
+        // Checks if assignment already exists in the database
+        if (assignment.getId() != 0) {
 
-        // Gets Database connection
-        Connection connection = Database.getConnection();
-        PreparedStatement pStatement = null;
-        int rowsAffected = 0;
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
 
-        // Sets up the query
-        String query = "INSERT INTO Assignment VALUES(null,?,?,?,?,?,?);";
-        try {
-            // Fills prepared statement and executes
-            pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, userId);
-            pStatement.setString(2, assignment.getModuleCode());
-            pStatement.setString(3, assignment.getFullName());
-            pStatement.setDouble(4, assignment.getPercentWorth());
-            pStatement.setDouble(5, assignment.getMaxScore());
-            pStatement.setDouble(6, assignment.getScore());
+            // Sets up the query
+            String query = "INSERT INTO Assignment VALUES(null,?,?,?,?,?,?);";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, userId);
+                pStatement.setString(2, assignment.getModuleCode());
+                pStatement.setString(3, assignment.getFullName());
+                pStatement.setDouble(4, assignment.getPercentWorth());
+                pStatement.setDouble(5, assignment.getMaxScore());
+                pStatement.setDouble(6, assignment.getScore());
 
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Closes the prepared statement
-            if (pStatement != null) {
-                try {
-                    pStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**

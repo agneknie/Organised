@@ -477,44 +477,37 @@ public class User {
      * Used when user creates a new year.
      *
      * @param year Year to add
-     * @return true if operation was successful, false otherwise
      */
-    public boolean addYear(Year year){
-        // Year already exists in the database
-        if(year.getId() != 0) return false;
+    public void addYear(Year year){
+        // Checks if Year already exists in the database
+        if(year.getId() != 0) {
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
 
-        // Gets Database connection
-        Connection connection = Database.getConnection();
-        PreparedStatement pStatement = null;
-        int rowsAffected = 0;
+            // Sets up the query
+            String query = "INSERT INTO Year VALUES(null,?,?,?,?);";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, id);
+                pStatement.setInt(2, year.getYearNumber());
+                pStatement.setInt(3, year.getCredits());
+                pStatement.setDouble(4, year.getPercentWorth());
 
-        // Sets up the query
-        String query = "INSERT INTO Year VALUES(null,?,?,?,?);";
-        try {
-            // Fills prepared statement and executes
-            pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, id);
-            pStatement.setInt(2, year.getYearNumber());
-            pStatement.setInt(3, year.getCredits());
-            pStatement.setDouble(4, year.getPercentWorth());
-
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Closes the prepared statement
-            if (pStatement != null) {
-                try {
-                    pStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**
@@ -677,52 +670,45 @@ public class User {
      * tied to that Year as well.
      *
      * @param year year to delete
-     * @return true if deletion successful, false otherwise
      */
-    public boolean deleteYear(Year year){
-        // Year doesn't exist in the database
-        if(year.getId() == 0) return true;
+    public void deleteYear(Year year){
+        // Checks if Year exists in the database
+        if(year.getId() == 0) {
+            // Deletes all modules of the year
+            int counter = 0;
+            List <Module> modules = year.getAllModules();
+            for(Module module : modules){
+                if(this.deleteModule(module)) counter++;
+            }
 
-        // Deletes all modules of the year
-        int counter = 0;
-        List <Module> modules = year.getAllModules();
-        for(Module module : modules){
-            if(this.deleteModule(module)) counter++;
-        }
+            // If module deletion was successful, deletes the year
+            if (counter == modules.size()){
 
-        // If module deletion was successful, deletes the year
-        if (counter == modules.size()){
+                // Gets Database connection
+                Connection connection = Database.getConnection();
+                PreparedStatement pStatement = null;
 
-            // Gets Database connection
-            Connection connection = Database.getConnection();
-            PreparedStatement pStatement = null;
-            int rowsAffected = 0;
+                // Sets up the query
+                String query = "DELETE FROM Year WHERE id = ?;";
+                try {
+                    // Fills prepared statement and executes
+                    pStatement = connection.prepareStatement(query);
+                    pStatement.setInt(1, year.getId());
 
-            // Sets up the query
-            String query = "DELETE FROM Year WHERE id = ?;";
-            try {
-                // Fills prepared statement and executes
-                pStatement = connection.prepareStatement(query);
-                pStatement.setInt(1, year.getId());
-
-                // Result of query is true if SQL command worked
-                rowsAffected = pStatement.executeUpdate();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                // Closes the prepared statement
-                if (pStatement != null) {
-                    try {
-                        pStatement.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    // Closes the prepared statement
+                    if (pStatement != null) {
+                        try {
+                            pStatement.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-            return rowsAffected == 1;
         }
-        else return false;
     }
 
     @Override

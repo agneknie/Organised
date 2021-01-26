@@ -28,8 +28,7 @@ public enum Semester {
      * */
     public static Semester stringToSemester (String semesterString) {
         for (Semester semester : Semester.values()) {
-            String semesterName = semester.VALUE;
-            if(semesterString.equals(semesterName)) return semester;
+            if(semesterString.equals(semester.VALUE)) return semester;
         }
         throw new IllegalArgumentException("Semester " + semesterString + " does not exist");
     }

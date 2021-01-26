@@ -10,117 +10,117 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarksPopupModuleController">
-   <children>
-      <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
-         <children>
-            <Label fx:id="titleLabel" layoutX="79.0" layoutY="36.0" prefHeight="69.0" prefWidth="269.0" text="Word Module." textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
-               </font>
-            </Label>
-            <Line endX="421.0" layoutX="180.0" layoutY="105.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0" />
-            <Pane layoutX="78.0" layoutY="128.0" prefHeight="57.0" prefWidth="538.0">
-               <children>
-                  <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Module Code:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="moduleCodeField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. ORG1001" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </Pane>
-            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/close_icon.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/minimize_icon.png" />
-               </image>
-            </ImageView>
-            <Pane layoutX="78.0" layoutY="185.0" prefHeight="57.0" prefWidth="538.0">
-               <children>
-                  <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Module Name:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="moduleNameField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. Basics of Organisation" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </Pane>
-            <Pane layoutX="78.0" layoutY="242.0" prefHeight="57.0" prefWidth="538.0">
-               <children>
-                  <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Credits:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="creditsField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. 20" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </Pane>
-            <Pane layoutX="78.0" layoutY="299.0" prefHeight="57.0" prefWidth="538.0">
-               <children>
-                  <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Semester:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="semesterComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Semester:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-               </children>
-            </Pane>
-            <Pane fx:id="actionButton" layoutX="266.0" layoutY="428.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../images/more_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="88.0" style="-fx-wrap-text: true;" text="Word" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="deleteButton" layoutX="266.0" layoutY="507.0" onMouseClicked="#deleteButtonClicked" onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="deleteButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="15.0">
-                     <image>
-                        <Image url="@../images/delete_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="deleteButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="88.0" style="-fx-wrap-text: true;" text="Delete" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="78.0" layoutY="356.0" prefHeight="57.0" prefWidth="538.0">
-               <children>
-                  <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Colour:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <ColorPicker fx:id="colourPicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-color: white; -fx-color-label-visible: false; -fx-color-rect-width: 180; -fx-color-rect-height: 30;" />
-               </children>
-            </Pane>
-         </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed"
+      onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0"
+      style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.MarksPopupModuleController">
+   <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
+      <Label fx:id="titleLabel" layoutX="79.0" layoutY="36.0" prefHeight="69.0" prefWidth="269.0" text="Word Module."
+             textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Line endX="421.0" layoutX="180.0" layoutY="105.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0"/>
+      <Pane layoutX="78.0" layoutY="128.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Module Code:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="moduleCodeField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0"
+                    promptText="e.g. ORG1001"
+                    style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextField>
       </Pane>
-   </children>
+      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0"
+                 onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited"
+                 pickOnBounds="true">
+         <Image url="@../images/close_icon.png"/>
+      </ImageView>
+      <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0"
+                 onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited"
+                 pickOnBounds="true">
+         <Image url="@../images/minimize_icon.png"/>
+      </ImageView>
+      <Pane layoutX="78.0" layoutY="185.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Module Name:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="moduleNameField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0"
+                    promptText="e.g. Basics of Organisation"
+                    style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextField>
+      </Pane>
+      <Pane layoutX="78.0" layoutY="242.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Credits:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="creditsField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0"
+                    promptText="e.g. 20"
+                    style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextField>
+      </Pane>
+      <Pane layoutX="78.0" layoutY="299.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Semester:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <ComboBox fx:id="semesterComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0"
+                   promptText="Select Semester:"
+                   style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;"
+                   styleClass="combo-box-base"/>
+      </Pane>
+      <Pane fx:id="actionButton" layoutX="266.0" layoutY="428.0" onMouseClicked="#actionButtonClicked"
+            onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0"
+            prefWidth="161.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
+            <Image url="@../images/more_icon.png"/>
+         </ImageView>
+         <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0"
+                prefWidth="88.0" style="-fx-wrap-text: true;" text="Word" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Pane fx:id="deleteButton" layoutX="266.0" layoutY="507.0" onMouseClicked="#deleteButtonClicked"
+            onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0"
+            prefWidth="161.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="deleteButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="15.0">
+            <Image url="@../images/delete_icon.png"/>
+         </ImageView>
+         <Label fx:id="deleteButtonLabel" alignment="CENTER" layoutX="54.0" layoutY="14.0" prefHeight="36.0"
+                prefWidth="88.0" style="-fx-wrap-text: true;" text="Delete" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Pane layoutX="78.0" layoutY="356.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Colour:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <ColorPicker fx:id="colourPicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0"
+                      style="-fx-background-color: none; -fx-border-style: solid; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-color: white; -fx-color-label-visible: false; -fx-color-rect-width: 180; -fx-color-rect-height: 30;"/>
+      </Pane>
+   </Pane>
 </Pane>

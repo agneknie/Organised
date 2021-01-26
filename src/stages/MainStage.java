@@ -2,23 +2,19 @@ package stages;
 
 import core.Session;
 import core.User;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 /**
- * Class representing the main stage/window of the application
+ * Class representing the main stage/window of the application.
  */
 public class MainStage {
-    double xOffset = 0;
-    double yOffset = 0;
     public MainStage(Stage primaryStage) throws IOException {
         // Loads the required scene
         Parent root;

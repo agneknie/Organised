@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Database {
-    private static String localDir = System.getProperty("user.dir");
+    private final static String localDir = System.getProperty("user.dir");
     static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisationDB.db";
     private static Connection connection = null;
 

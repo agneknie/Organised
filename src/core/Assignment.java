@@ -11,9 +11,9 @@ import java.util.Objects;
  * Class to represent an Assignment in the application.
  */
 public class Assignment {
-    private int id;
-    private int userId;
-    private String moduleCode;
+    private final int id;
+    private final int userId;
+    private final String moduleCode;
     private String fullName;
     private double percentWorth;
     private double maxScore;
@@ -25,13 +25,6 @@ public class Assignment {
      */
     public int getId() {
         return id;
-    }
-    /**
-     * Getter for assignment user id
-     * @return user id of the assignment
-     */
-    public int getUserId() {
-        return userId;
     }
 
     /**
@@ -165,14 +158,11 @@ public class Assignment {
     /**
      * Method which updates assignment's data in the database.
      * Used when already existing assignment has it's information updated.
-     *
-     * @return boolean whether the update was successful
      */
-    public boolean updateAssignment(){
+    public void updateAssignment(){
         // Gets Database connection
         Connection connection = Database.getConnection();
         PreparedStatement pStatement = null;
-        int rowsAffected = 0;
 
         // Sets up the query
         String query = "UPDATE Assignment SET fullName = ?, percentWorth = ?, " +
@@ -185,10 +175,6 @@ public class Assignment {
             pStatement.setDouble(3, maxScore);
             pStatement.setDouble(4, score);
             pStatement.setInt(5, id);
-
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -201,8 +187,6 @@ public class Assignment {
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**

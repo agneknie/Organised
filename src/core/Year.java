@@ -15,9 +15,9 @@ import java.util.Objects;
  * Class for representing a year in the system
  */
 public class Year {
-    private int id;
-    private int userId;
-    private int yearNumber;
+    private final int id;
+    private final int userId;
+    private final int yearNumber;
     private int credits;
     private double percentWorth;
 
@@ -27,14 +27,6 @@ public class Year {
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Getter for userId.
-     * @return userId
-     */
-    public int getUserId() {
-        return userId;
     }
 
     /**
@@ -216,14 +208,11 @@ public class Year {
     /**
      * Method which updates year information in the database.
      * Used when an already existing year has its information updated.
-     *
-     * @return boolean whether the update was successful
      */
-    public boolean updateYear (){
+    public void updateYear (){
         // Gets Database connection
         Connection connection = Database.getConnection();
         PreparedStatement pStatement = null;
-        int rowsAffected = 0;
 
         // Sets up the query
         String query = "UPDATE Year SET yearNumber = ?, credits = ?, percentWorth = ? " +
@@ -235,9 +224,6 @@ public class Year {
             pStatement.setInt(2, credits);
             pStatement.setDouble(3, percentWorth);
             pStatement.setInt(4, id);
-
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -251,8 +237,6 @@ public class Year {
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**
@@ -370,47 +354,40 @@ public class Year {
      * Used when user creates a new module.
      *
      * @param module Module to add
-     * @return true if operation was successful, false otherwise
      */
-    public boolean addModule(Module module) {
+    public void addModule(Module module) {
         // Module already exists in the database
-        if (module.getId() != 0) return false;
+        if (module.getId() != 0) {
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
 
-        // Gets Database connection
-        Connection connection = Database.getConnection();
-        PreparedStatement pStatement = null;
-        int rowsAffected = 0;
+            // Sets up the query
+            String query = "INSERT INTO Module VALUES(null,?,?,?,?,?,?,?);";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, userId);
+                pStatement.setString(2, module.getCode());
+                pStatement.setString(3, module.getFullName());
+                pStatement.setInt(4, module.getCredits());
+                pStatement.setString(5, module.getSemester().toString());
+                pStatement.setInt(6, module.getStudyYear());
+                pStatement.setString(7, module.getColourAsString());
 
-        // Sets up the query
-        String query = "INSERT INTO Module VALUES(null,?,?,?,?,?,?,?);";
-        try {
-            // Fills prepared statement and executes
-            pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, userId);
-            pStatement.setString(2, module.getCode());
-            pStatement.setString(3, module.getFullName());
-            pStatement.setInt(4, module.getCredits());
-            pStatement.setString(5, module.getSemester().toString());
-            pStatement.setInt(6, module.getStudyYear());
-            pStatement.setString(7, module.getColourAsString());
-
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Closes the prepared statement
-            if (pStatement != null) {
-                try {
-                    pStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-        // Returns whether insertion was successful
-        return rowsAffected == 1;
     }
 
     /**
