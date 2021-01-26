@@ -1,5 +1,6 @@
 package controllers.utilities;
 
+import core.Session;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -7,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * Abstract class for default buttons. Enables styling and functionality
  * of minimize and close buttons.
+ * Also implements methods which enable stage dragging.
  */
 public abstract class DefaultButtons {
     // Navigation buttons
@@ -14,6 +16,39 @@ public abstract class DefaultButtons {
     private ImageView closeButton;
     @FXML
     private ImageView minimizeButton;
+
+    /**
+     * Method which saves the current mouse coordinates in the Session variable.
+     * Used for dragging the stage.
+     * @param event MouseEvent from which the coordinates are gotten
+     */
+    @FXML
+    public void mousePressed(MouseEvent event){
+        Session.setXMouseOffset(event.getSceneX());
+        Session.setYMouseOffset(event.getSceneY());
+    }
+
+    /**
+     * Method which moves the stage when dragged.
+     * Used for the main application window.
+     * @param event MouseEvent from which the coordinates are gotten
+     */
+    @FXML
+    public void mouseDragged(MouseEvent event){
+        Session.getMainStage().setX(event.getScreenX() - Session.getXMouseOffset());
+        Session.getMainStage().setY(event.getScreenY() - Session.getYMouseOffset());
+    }
+
+    /**
+     * Method which moves the stage when dragged.
+     * Used for the popup windows.
+     * @param event MouseEvent from which the coordinates are gotten
+     */
+    @FXML
+    public void mouseDraggedPopup(MouseEvent event){
+        Session.getPopupStage().setX(event.getScreenX() - Session.getXMouseOffset());
+        Session.getPopupStage().setY(event.getScreenY() - Session.getYMouseOffset());
+    }
 
     /**
      * Method which closes the window when close button is clicked.

@@ -1,5 +1,6 @@
 package stages;
 
+import core.Session;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,6 +38,9 @@ public class PopupStage {
 
         // Focuses away from the fields for prompt text to be visible
         root.requestFocus();
+
+        // Saves the stage of the popup, to use it for dragging
+        Session.setPopupStage(popup);
 
         // Shows the window
         popup.show();

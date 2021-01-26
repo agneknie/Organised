@@ -2,6 +2,7 @@ package core;
 
 import core.enums.MarksPopupType;
 import core.enums.MarksSelection;
+import javafx.stage.Stage;
 
 /**
  * Class which saves the user which is currently logged in.
@@ -12,6 +13,12 @@ import core.enums.MarksSelection;
  * application windows.
  */
 public class Session {
+    // Variables for dragging the Stage
+    private static Stage mainStage;
+    private static Stage popupStage;
+    private static double xMouseOffset = 0;
+    private static double yMouseOffset = 0;
+
     // User currently using the system
     private static User loggedUser = null;
     // Whether non-logged in user has just created a new user by registration
@@ -29,6 +36,70 @@ public class Session {
     private static MarksSelection marksSelectionType = null;
     // Marks: user just deleted an element
     private static boolean marksJustDeleted;
+
+    /**
+     * Getter for the primary stage of main window for stage dragging
+     * @return primary stage of main window
+     */
+    public static Stage getMainStage() {
+        return mainStage;
+    }
+
+    /**
+     * Setter for the primary scene of main window for stage dragging
+     * @param mainStage root node of primary scene
+     */
+    public static void setMainStage(Stage mainStage) {
+        Session.mainStage = mainStage;
+    }
+
+    /**
+     * Getter for the primary stage of popup window for stage dragging
+     * @return primary stage of popup window
+     */
+    public static Stage getPopupStage() {
+        return popupStage;
+    }
+
+    /**
+     * Setter for the  primary scene of popup window for stage dragging
+     * @param popupStage root node of primary scene
+     */
+    public static void setPopupStage(Stage popupStage) {
+        Session.popupStage = popupStage;
+    }
+
+    /**
+     * Getter for x coordinate of the mouse in relation to main stage/window
+     * @return x coordinate of the mouse when clicked
+     */
+    public static double getXMouseOffset() {
+        return xMouseOffset;
+    }
+
+    /**
+     * Setter for x coordinate of the mouse in relation to main stage/window
+     * @param xMouseOffset x coordinate of the mouse when clicked
+     */
+    public static void setXMouseOffset(double xMouseOffset) {
+        Session.xMouseOffset = xMouseOffset;
+    }
+
+    /**
+     * Getter for y coordinate of the mouse in relation to main stage/window
+     * @return y coordinate of the mouse when clicked
+     */
+    public static double getYMouseOffset() {
+        return yMouseOffset;
+    }
+
+    /**
+     * Setter for y coordinate of the mouse in relation to main stage/window
+     * @param yMouseOffset y coordinate of the mouse when clicked
+     */
+    public static void setYMouseOffset(double yMouseOffset) {
+        Session.yMouseOffset = yMouseOffset;
+    }
 
     /**
      * Cleans the session by resetting the logged in user to null.

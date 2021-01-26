@@ -6,7 +6,6 @@ import stages.MainStage;
 import java.io.IOException;
 
 public class Main extends Application {
-
     /**
      * Launching the application
      * @param args default parameter
