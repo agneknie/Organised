@@ -448,7 +448,7 @@ public class User {
         }
 
         if(percent == 0) return 0;
-        else return (double)Math.round((percent/100) * 100) / 100;
+        else return (double)Math.round((percent/100) * 10) / 10;
     }
 
     /**

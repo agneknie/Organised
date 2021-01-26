@@ -79,7 +79,7 @@ public class Year {
         if(percentWorth < 0)
             throw new IllegalArgumentException("Percentage worth can't be less than 0");
 
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Year {
         this.userId = userId;
         this.yearNumber = yearNumber;
         this.credits = credits;
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Year {
         this.userId = userId;
         this.yearNumber = yearNumber;
         this.credits = credits;
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
     }
 
     /**
@@ -192,7 +192,7 @@ public class Year {
             percentWorthTotal += year.getPercentWorth();
         }
 
-        return (double)Math.round((100-percentWorthTotal) * 100) / 100;
+        return (double)Math.round((100-percentWorthTotal) * 10) / 10;
     }
 
     /**
@@ -278,7 +278,7 @@ public class Year {
 
         // If no scores yet present
         if(divisor == 0) return -1;
-        else return (double)Math.round((sum/divisor) * 100) / 100;
+        else return (double)Math.round((sum/divisor) * 10) / 10;
     }
 
     /**
@@ -295,7 +295,7 @@ public class Year {
         }
 
         if (credits == 0) return 0;
-        return (double)Math.round((credits/this.credits) * 100) / 100;
+        return (double)Math.round((credits/this.credits) * 10) / 10;
     }
 
     /**
@@ -328,7 +328,7 @@ public class Year {
 
         // If no scores yet present
         if(divisor == 0) return -1;
-        else return (double)Math.round((sum/divisor) * 100) / 100;
+        else return (double)Math.round((sum/divisor) * 10) / 10;
     }
 
     /**
@@ -361,7 +361,7 @@ public class Year {
 
         // If no scores yet present
         if(divisor == 0) return -1;
-        else return (double)Math.round((sum/divisor) * 100) / 100;
+        else return (double)Math.round((sum/divisor) * 10) / 10;
     }
 
     // Methods concerning Modules of this year

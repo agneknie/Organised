@@ -42,6 +42,10 @@ public class PopupStage {
         // Saves the stage of the popup, to use it for dragging
         Session.setPopupStage(popup);
 
+        // Sets the coordinates of the stage to the middle of the main stage
+        popup.setX(Session.getMainStage().getX()+Session.getMainStage().getWidth()/4);
+        popup.setY(Session.getMainStage().getY()+Session.getMainStage().getHeight()/6);
+
         // Shows the window
         popup.show();
     }

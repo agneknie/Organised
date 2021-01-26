@@ -302,7 +302,7 @@ public class Module {
 
         // If no scores yet present
         if (divisor == 0) return -1;
-        else return (double)Math.round((sum/divisor) * 100) / 100;
+        else return (double)Math.round((sum/divisor) * 10) / 10;
 
     }
 
@@ -312,14 +312,14 @@ public class Module {
      */
     public double getPercentComplete(){
         List<Assignment> assignments = getAllAssignments();
-        int percent = 0;
+        double percent = 0;
 
         for(Assignment assignment : assignments){
             if(assignment.getMaxScore() != -1 && assignment.getScore() != -1)
                 percent += assignment.getPercentWorth();
         }
 
-        return (double)Math.round(percent * 100) / 100;
+        return (double)Math.round(percent * 10) / 10;
     }
 
     /**
@@ -336,7 +336,7 @@ public class Module {
             percentWorthTotal += assignment.getPercentWorth();
         }
 
-        return (double)Math.round((100-percentWorthTotal) * 100) / 100;
+        return (double)Math.round((100-percentWorthTotal) * 10) / 10;
     }
 
     /**

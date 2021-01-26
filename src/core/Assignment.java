@@ -74,7 +74,7 @@ public class Assignment {
     public void setPercentWorth(double percentWorth) {
         if (percentWorth > 100 || percentWorth < 0)
             throw new IllegalArgumentException("Percentage has to be between 0% and 100");
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Assignment {
     public void setMaxScore(double maxScore) {
         if (maxScore == 0)
             throw new IllegalArgumentException("Maximum Score can't be 0.");
-        this.maxScore = (double)Math.round(maxScore * 100) / 100;
+        this.maxScore = (double)Math.round(maxScore * 10) / 10;
     }
 
     /**
@@ -110,7 +110,7 @@ public class Assignment {
     public void setScore(double score) {
         if (score > maxScore)
             throw new IllegalArgumentException("Score can't be bigger than maximum score");
-        this.score = (double)Math.round(score * 100) / 100;
+        this.score = (double)Math.round(score * 10) / 10;
     }
 
     /**
@@ -130,9 +130,9 @@ public class Assignment {
         this.userId = userId;
         this.moduleCode = moduleCode;
         this.fullName = fullName;
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
-        this.maxScore = (double)Math.round(maxScore * 100) / 100;
-        this.score = (double)Math.round(score * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
+        this.maxScore = (double)Math.round(maxScore * 10) / 10;
+        this.score = (double)Math.round(score * 10) / 10;
     }
 
     /**
@@ -157,9 +157,9 @@ public class Assignment {
         this.userId = userId;
         this.moduleCode = moduleCode;
         this.fullName = fullName;
-        this.percentWorth = (double)Math.round(percentWorth * 100) / 100;
-        this.maxScore = (double)Math.round(maxScore * 100) / 100;
-        this.score = (double)Math.round(score * 100) / 100;
+        this.percentWorth = (double)Math.round(percentWorth * 10) / 10;
+        this.maxScore = (double)Math.round(maxScore * 10) / 10;
+        this.score = (double)Math.round(score * 10) / 10;
     }
 
     /**
@@ -218,7 +218,7 @@ public class Assignment {
         if(maxScore == -1 || score == -1){
             return -1;
         }
-        else return (double)Math.round((score/maxScore*100) * 100) / 100;
+        else return (double)Math.round((score/maxScore*100) * 10) / 10;
     }
 
     @Override
