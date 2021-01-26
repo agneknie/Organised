@@ -163,7 +163,7 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
             valid = false;
         }
         try{
-            worth = Integer.parseInt(worthField.getText());
+            worth = Double.parseDouble(worthField.getText());
         } catch(Exception e){
             highlightWrongField(worthField);
             valid = false;
@@ -171,13 +171,13 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
         // If assignment scores are present, checks them as well
         if(attempted){
             try{
-                score = Integer.parseInt(scoreField.getText());
+                score = Double.parseDouble(scoreField.getText());
             } catch(Exception e){
                 highlightWrongField(scoreField);
                 valid = false;
             }
             try{
-                maxScore = Integer.parseInt(maxScoreField.getText());
+                maxScore = Double.parseDouble(maxScoreField.getText());
             } catch(Exception e){
                 highlightWrongField(maxScoreField);
                 valid = false;
@@ -220,7 +220,76 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
      * Method which performs Assignment editing when action button is pressed.
      */
     private void editButtonClicked(){
-        //TODO editButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new Assignment construction
+        String name = nameField.getText();
+        double worth = -1;
+        boolean attempted = attemptedButton.isSelected();
+        double score = -1;
+        double maxScore = -1;
+        boolean valid = true;
+
+        // Checks whether inputs are numbers where needed and not null otherwise
+        if(name.isEmpty()){
+            highlightWrongField(nameField);
+            valid = false;
+        }
+        try{
+            worth = Double.parseDouble(worthField.getText());
+        } catch(Exception e){
+            highlightWrongField(worthField);
+            valid = false;
+        }
+        // If assignment scores are present, checks them as well
+        if(attempted){
+            try{
+                score = Double.parseDouble(scoreField.getText());
+            } catch(Exception e){
+                highlightWrongField(scoreField);
+                valid = false;
+            }
+            try{
+                maxScore = Double.parseDouble(maxScoreField.getText());
+            } catch(Exception e){
+                highlightWrongField(maxScoreField);
+                valid = false;
+            }
+        }
+
+        // Checks if inputs are valid
+        if(worth < 0 || worth > Session.getMarksModuleSelected().percentWorthLeft()+
+                Session.getMarksAssignmentSelected().getPercentWorth()){
+            highlightWrongField(worthField);
+            valid = false;
+        }
+        if(attempted){
+            if(score < 0 || score > maxScore){
+                highlightWrongField(scoreField);
+                valid = false;
+            }
+            if(maxScore < 0){
+                highlightWrongField(maxScoreField);
+                valid = false;
+            }
+        }
+
+        // If all inputs valid, edits the Assignment
+        if(valid){
+            Assignment thisAssignment = Session.getMarksAssignmentSelected();
+            // Sets the new values
+            thisAssignment.setFullName(name);
+            thisAssignment.setPercentWorth(worth);
+            thisAssignment.setMaxScore(maxScore);
+            thisAssignment.setScore(score);
+            // Updates the Assignment in the database
+            thisAssignment.updateAssignment();
+
+            // Closes the popup/stage
+            Session.setMarksPopupType(null);
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
     }
 
     /**
