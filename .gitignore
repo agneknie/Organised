@@ -4,3 +4,4 @@ out/
 /shelf/
 /workspace.xml
 *.iml
+marksDB.db

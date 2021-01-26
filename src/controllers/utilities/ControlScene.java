@@ -47,7 +47,7 @@ public class ControlScene {
      * @param image image/button to change
      */
     public static void controlButtonEffect(String imageName, ImageView image){
-        FileInputStream newImage = null;
+        FileInputStream newImage;
         try {
             newImage = new FileInputStream("src/images/"+imageName);
             image.setImage(new Image(newImage));
@@ -77,7 +77,7 @@ public class ControlScene {
      */
     public static void buttonHovered(Pane pane, ImageView image, Label label, String imageName){
         pane.setStyle("-fx-background-color: white; -fx-background-radius: 20");
-        FileInputStream newImage = null;
+        FileInputStream newImage;
         try {
             newImage = new FileInputStream("src/images/"+imageName);
             image.setImage(new Image(newImage));
@@ -110,7 +110,7 @@ public class ControlScene {
     public static void buttonExited(Pane pane, ImageView image, Label label, String imageName){
         pane.setStyle("-fx-background-color: none; -fx-background-radius: 20; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20");
-        FileInputStream newImage = null;
+        FileInputStream newImage;
         try {
             newImage = new FileInputStream("src/images/"+imageName);
             image.setImage(new Image(newImage));

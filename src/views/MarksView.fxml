@@ -156,7 +156,7 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Pane fx:id="pane1" layoutX="69.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane layoutX="69.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane1Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane1Label" textFill="#e6bb9a">
                      <font>
@@ -170,7 +170,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane2" layoutX="249.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
+            <Pane layoutX="249.0" layoutY="141.0" prefHeight="113.0" prefWidth="180.0">
                <children>
                   <Label fx:id="pane2Label" prefHeight="68.0" prefWidth="180.0" style="-fx-wrap-text: true;" text="Pane2Label" textFill="#e6bb9a">
                      <font>

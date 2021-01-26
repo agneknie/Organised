@@ -37,14 +37,10 @@ public class MarksController extends DefaultNavigation implements Initializable 
 
     // Small Panes and their elements
     @FXML
-    private Pane pane1;
-    @FXML
     private Label pane1Label;
     @FXML
     private Label pane1Value;
 
-    @FXML
-    private Pane pane2;
     @FXML
     private Label pane2Label;
     @FXML
@@ -294,7 +290,9 @@ public class MarksController extends DefaultNavigation implements Initializable 
                     else enableAddButton();
                     // Assignment addition could have changed some module data
                     pane1Value.setText(Session.getMarksModuleSelected().getOverallGrade() + "%");
-                    pane2Value.setText(Session.getMarksModuleSelected().getPercentComplete() + "%");
+                    double moduleGrade = Session.getMarksModuleSelected().getOverallGrade();
+                    if(moduleGrade != -1) pane1Value.setText(moduleGrade + "%");
+                    else pane1Value.setText("-");
                     refreshPanelsAssignments();
                     break;
             }
@@ -629,22 +627,22 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane5Title.setText("Year "+year.getYearNumber());
 
-                // Credits
-                pane5Label1.setText("Credits:");
-                pane5Value1.setText(Integer.toString(year.getCredits()));
-
-                // Worth in percent
-                pane5Label2.setText("Worth:");
-                pane5Value2.setText(year.getPercentWorth() + "%");
-
                 // Grade
-                pane5Label3.setText("Grade:");
-                if (year.getOverallGrade() == -1) pane5Value3.setText("-");
-                else pane5Value3.setText(year.getOverallGrade() + "%");
+                pane5Label1.setText("Grade:");
+                if (year.getOverallGrade() == -1) pane5Value1.setText("-");
+                else pane5Value1.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
-                pane5Label4.setText("Complete:");
-                pane5Value4.setText(year.getPercentComplete() + "%");
+                pane5Label2.setText("Complete:");
+                pane5Value2.setText(year.getPercentComplete() + "%");
+
+                // Credits
+                pane5Label3.setText("Credits:");
+                pane5Value3.setText(Integer.toString(year.getCredits()));
+
+                // Worth in percent
+                pane5Label4.setText("Worth:");
+                pane5Value4.setText(year.getPercentWorth() + "%");
 
                 // Marks pane as loaded
                 pane5Loaded = true;
@@ -660,23 +658,23 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane5Title.setText(module.getCode());
 
-                // Credits
-                pane5Label1.setText("Credits:");
-                pane5Value1.setText(Integer.toString(module.getCredits()));
+                // Grade
+                pane5Label1.setText("Grade:");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane5Value1.setText(moduleGrade + "%");
+                else pane5Value1.setText("-");
 
                 // Semester
                 pane5Label2.setText("Semester:");
                 pane5Value2.setText(module.getSemester().toString());
 
-                // Grade
-                pane5Label3.setText("Grade:");
-                double moduleGrade = module.getOverallGrade();
-                if(moduleGrade !=- 1) pane5Value3.setText(moduleGrade + "%");
-                else pane5Value3.setText("-");
+                // % Complete
+                pane5Label3.setText("Complete:");
+                pane5Value3.setText(module.getPercentComplete() + "%");
 
-                // Resets unused elements
-                pane5Label4.setText("");
-                pane5Value4.setText("");
+                // Credits
+                pane5Label4.setText("Credits:");
+                pane5Value4.setText(Integer.toString(module.getCredits()));
 
                 // Marks pane as loaded
                 pane5Loaded = true;
@@ -692,15 +690,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane5Title.setText(assignment.getFullName());
 
-                // % Worth
-                pane5Label1.setText("Worth:");
-                pane5Value1.setText(assignment.getPercentWorth() + "%");
-
                 // Grade
-                pane5Label2.setText("Grade:");
+                pane5Label1.setText("Grade:");
                 double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane5Value2.setText(assignment.getGrade() + "%");
-                else pane5Value2.setText("-");
+                if (assignmentGrade != -1) pane5Value1.setText(assignment.getGrade() + "%");
+                else pane5Value1.setText("-");
+
+                // % Worth
+                pane5Label2.setText("Worth:");
+                pane5Value2.setText(assignment.getPercentWorth() + "%");
 
                 // Resets unused elements
                 pane5Label3.setText("");
@@ -736,22 +734,22 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane6Title.setText("Year "+year.getYearNumber());
 
-                // Credits
-                pane6Label1.setText("Credits:");
-                pane6Value1.setText(String.valueOf(year.getCredits()));
-
-                // Worth in percent
-                pane6Label2.setText("Worth:");
-                pane6Value2.setText(year.getPercentWorth() + "%");
-
                 // Grade
-                pane6Label3.setText("Grade:");
-                if (year.getOverallGrade() == -1) pane6Value3.setText("-");
-                else pane6Value3.setText(year.getOverallGrade() + "%");
+                pane6Label1.setText("Grade:");
+                if (year.getOverallGrade() == -1) pane6Value1.setText("-");
+                else pane6Value1.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
-                pane6Label4.setText("Complete:");
-                pane6Value4.setText(year.getPercentComplete() + "%");
+                pane6Label2.setText("Complete:");
+                pane6Value2.setText(year.getPercentComplete() + "%");
+
+                // Credits
+                pane6Label3.setText("Credits:");
+                pane6Value3.setText(String.valueOf(year.getCredits()));
+
+                // Worth in percent
+                pane6Label4.setText("Worth:");
+                pane6Value4.setText(year.getPercentWorth() + "%");
 
                 // Marks pane as loaded
                 pane6Loaded = true;
@@ -767,23 +765,23 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane6Title.setText(module.getCode());
 
-                // Credits
-                pane6Label1.setText("Credits:");
-                pane6Value1.setText(Integer.toString(module.getCredits()));
+                // Grade
+                pane6Label1.setText("Grade:");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane6Value1.setText(moduleGrade + "%");
+                else pane6Value1.setText("-");
 
                 // Semester
                 pane6Label2.setText("Semester:");
                 pane6Value2.setText(module.getSemester().toString());
 
-                // Grade
-                pane6Label3.setText("Grade:");
-                double moduleGrade = module.getOverallGrade();
-                if(moduleGrade !=- 1) pane6Value3.setText(moduleGrade + "%");
-                else pane6Value3.setText("-");
+                // % Complete
+                pane6Label3.setText("Complete");
+                pane6Value3.setText(module.getPercentComplete() + "%");
 
-                // Resets unused elements
-                pane6Label4.setText("");
-                pane6Value4.setText("");
+                // Credits
+                pane6Label4.setText("Credits:");
+                pane6Value4.setText(Integer.toString(module.getCredits()));
 
                 // Marks pane as loaded
                 pane6Loaded = true;
@@ -799,15 +797,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane6Title.setText(assignment.getFullName());
 
-                // % Worth
-                pane6Label1.setText("Worth:");
-                pane6Value1.setText(assignment.getPercentWorth() + "%");
-
                 // Grade
-                pane6Label2.setText("Grade:");
+                pane6Label1.setText("Grade:");
                 double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane6Value2.setText(assignment.getGrade() + "%");
-                else pane6Value2.setText("-");
+                if (assignmentGrade != -1) pane6Value1.setText(assignment.getGrade() + "%");
+                else pane6Value1.setText("-");
+
+                // % Worth
+                pane6Label2.setText("Worth:");
+                pane6Value2.setText(assignment.getPercentWorth() + "%");
 
                 // Resets unused elements
                 pane6Label3.setText("");
@@ -843,22 +841,22 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane7Title.setText("Year "+year.getYearNumber());
 
-                // Credits
-                pane7Label1.setText("Credits:");
-                pane7Value1.setText(String.valueOf(year.getCredits()));
-
-                // Worth in percent
-                pane7Label2.setText("Worth:");
-                pane7Value2.setText(year.getPercentWorth() + "%");
-
                 // Grade
-                pane7Label3.setText("Grade:");
-                if (year.getOverallGrade() == -1) pane7Value3.setText("-");
-                else pane7Value3.setText(year.getOverallGrade() + "%");
+                pane7Label1.setText("Grade:");
+                if (year.getOverallGrade() == -1) pane7Value1.setText("-");
+                else pane7Value1.setText(year.getOverallGrade() + "%");
 
                 // % Complete:
-                pane7Label4.setText("Complete:");
-                pane7Value4.setText(year.getPercentComplete() + "%");
+                pane7Label2.setText("Complete:");
+                pane7Value2.setText(year.getPercentComplete() + "%");
+
+                // Credits
+                pane7Label3.setText("Credits:");
+                pane7Value3.setText(String.valueOf(year.getCredits()));
+
+                // Worth in percent
+                pane7Label4.setText("Worth:");
+                pane7Value4.setText(year.getPercentWorth() + "%");
 
                 // Marks pane as loaded
                 pane7Loaded = true;
@@ -874,23 +872,23 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane7Title.setText(module.getCode());
 
-                // Credits
-                pane7Label1.setText("Credits:");
-                pane7Value1.setText(Integer.toString(module.getCredits()));
+                // Grade
+                pane7Label1.setText("Grade:");
+                double moduleGrade = module.getOverallGrade();
+                if(moduleGrade !=- 1) pane7Value1.setText(moduleGrade + "%");
+                else pane7Value1.setText("-");
 
                 // Semester
                 pane7Label2.setText("Semester:");
                 pane7Value2.setText(module.getSemester().toString());
 
-                // Grade
-                pane7Label3.setText("Grade:");
-                double moduleGrade = module.getOverallGrade();
-                if(moduleGrade !=- 1) pane7Value3.setText(moduleGrade + "%");
-                else pane7Value3.setText("-");
+                // % Complete
+                pane7Label3.setText("Complete");
+                pane7Value3.setText(module.getPercentComplete() + "%");
 
-                // Resets unused elements
-                pane7Label4.setText("");
-                pane7Value4.setText("");
+                // Credits
+                pane7Label4.setText("Credits:");
+                pane7Value4.setText(Integer.toString(module.getCredits()));
 
                 // Marks pane as loaded
                 pane7Loaded = true;
@@ -906,15 +904,15 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 // Top Title
                 pane7Title.setText(assignment.getFullName());
 
-                // % Worth
-                pane7Label1.setText("Worth:");
-                pane7Value1.setText(assignment.getPercentWorth() + "%");
-
                 // Grade
-                pane7Label2.setText("Grade:");
+                pane7Label1.setText("Grade:");
                 double assignmentGrade = assignment.getGrade();
-                if (assignmentGrade != -1) pane7Value2.setText(assignment.getGrade() + "%");
-                else pane7Value2.setText("-");
+                if (assignmentGrade != -1) pane7Value1.setText(assignment.getGrade() + "%");
+                else pane7Value1.setText("-");
+
+                // % Worth
+                pane7Label2.setText("Worth:");
+                pane7Value2.setText(assignment.getPercentWorth() + "%");
 
                 // Resets unused elements
                 pane7Label3.setText("");
@@ -1261,7 +1259,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 "-fx-border-width: 3");
 
         // Image of the button
-        FileInputStream newImage = null;
+        FileInputStream newImage;
         try {
             newImage = new FileInputStream("src/images/add_icon_disabled.png");
             button2Image.setImage(new Image(newImage));
@@ -1283,7 +1281,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 "-fx-border-width: 3");
 
         // Image of the button
-        FileInputStream newImage = null;
+        FileInputStream newImage;
         try {
             newImage = new FileInputStream("src/images/add_icon.png");
             button2Image.setImage(new Image(newImage));

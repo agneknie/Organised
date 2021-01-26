@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
@@ -58,6 +59,24 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
         // Hides delete button if needed
         if(sceneType == MarksPopupType.ADD) deleteButton.setVisible(false);
     }
+
+    /**
+     * Listener for keyboard events.
+     * If enter is pressed, action button is activated.
+     * @param event used for identifying the key
+     */
+    @FXML
+    private void keyPressed(KeyEvent event) {
+        // Enter pressed
+        if(event.getCode().toString().equals("ENTER")) actionButtonClicked();
+    }
+
+    /**
+     * Action button which either Adds or Edits the Year, Module or Assignment.
+     * Should be overridden by methods implementing this class.
+     */
+    @FXML
+    public abstract void actionButtonClicked();
 
     /**
      * Reverts button styling back to normal.

@@ -133,8 +133,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     /**
      * Either Adds or Edits the Module based on the current popup scene type.
      */
-    @FXML
-    private void actionButtonClicked() {
+    public void actionButtonClicked() {
         // If action button is 'Add'
         if(sceneType == MarksPopupType.ADD) addButtonClicked();
 

@@ -101,8 +101,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     /**
      * Either Adds or Edits the Year based on the current popup scene type.
      */
-    @FXML
-    private void actionButtonClicked() {
+    public void actionButtonClicked() {
         // If action button is 'Add'
         if(sceneType == MarksPopupType.ADD) addButtonClicked();
 
