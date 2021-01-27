@@ -250,6 +250,9 @@ public class Module {
             pStatement.setString(4, semester.toString());
             pStatement.setString(5, getColourAsString());
             pStatement.setInt(6, id);
+
+            pStatement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -330,7 +333,7 @@ public class Module {
      */
     public void addAssignment(Assignment assignment){
         // Checks if assignment already exists in the database
-        if (assignment.getId() != 0) {
+        if (assignment.getId() == 0) {
 
             // Gets Database connection
             Connection connection = Database.getConnection();
@@ -347,6 +350,8 @@ public class Module {
                 pStatement.setDouble(4, assignment.getPercentWorth());
                 pStatement.setDouble(5, assignment.getMaxScore());
                 pStatement.setDouble(6, assignment.getScore());
+
+                pStatement.execute();
 
             } catch (SQLException e) {
                 e.printStackTrace();

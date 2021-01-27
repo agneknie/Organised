@@ -480,7 +480,7 @@ public class User {
      */
     public void addYear(Year year){
         // Checks if Year already exists in the database
-        if(year.getId() != 0) {
+        if(year.getId() == 0) {
             // Gets Database connection
             Connection connection = Database.getConnection();
             PreparedStatement pStatement = null;
@@ -494,6 +494,8 @@ public class User {
                 pStatement.setInt(2, year.getYearNumber());
                 pStatement.setInt(3, year.getCredits());
                 pStatement.setDouble(4, year.getPercentWorth());
+
+                pStatement.execute();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -673,7 +675,7 @@ public class User {
      */
     public void deleteYear(Year year){
         // Checks if Year exists in the database
-        if(year.getId() == 0) {
+        if(year.getId() != 0) {
             // Deletes all modules of the year
             int counter = 0;
             List <Module> modules = year.getAllModules();
@@ -694,6 +696,8 @@ public class User {
                     // Fills prepared statement and executes
                     pStatement = connection.prepareStatement(query);
                     pStatement.setInt(1, year.getId());
+
+                    pStatement.execute();
 
                 } catch (SQLException e) {
                     e.printStackTrace();

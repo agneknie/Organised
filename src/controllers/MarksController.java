@@ -265,6 +265,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
             Session.setMarksJustDeleted(false);
             if(Session.getMarksAssignmentSelected() != null)
                 Session.setMarksSelectionType(MarksSelection.ASSIGNMENT);
+            Session.setMarksAssignmentSelected(null);
             goBackClicked();
         }
         // Just refresh the panes in case there was an information update

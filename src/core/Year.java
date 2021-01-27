@@ -225,6 +225,8 @@ public class Year {
             pStatement.setDouble(3, percentWorth);
             pStatement.setInt(4, id);
 
+            pStatement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -356,8 +358,8 @@ public class Year {
      * @param module Module to add
      */
     public void addModule(Module module) {
-        // Module already exists in the database
-        if (module.getId() != 0) {
+        // Checks whether Module already exists in the database
+        if (module.getId() == 0) {
             // Gets Database connection
             Connection connection = Database.getConnection();
             PreparedStatement pStatement = null;
@@ -374,6 +376,8 @@ public class Year {
                 pStatement.setString(5, module.getSemester().toString());
                 pStatement.setInt(6, module.getStudyYear());
                 pStatement.setString(7, module.getColourAsString());
+
+                pStatement.execute();
 
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -175,6 +175,9 @@ public class Assignment {
             pStatement.setDouble(3, maxScore);
             pStatement.setDouble(4, score);
             pStatement.setInt(5, id);
+
+            pStatement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
