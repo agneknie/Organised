@@ -14,6 +14,16 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * Organised.
+ * Copyright (c) 2021, Agne Knietaite
+ * All rights reserved.
+ *
+ * This source code is licensed under the GNU General Public License, Version 3
+ * found in the LICENSE file in the root directory of this source tree.
+ *
+ * Class which captures main methods, which control a scene.
+ */
 public class ControlScene {
     /**
      * Method which closes the window when close button is clicked.

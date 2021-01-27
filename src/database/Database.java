@@ -5,6 +5,16 @@ import org.sqlite.SQLiteDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Organised.
+ * Copyright (c) 2021, Agne Knietaite
+ * All rights reserved.
+ *
+ * This source code is licensed under the GNU General Public License, Version 3
+ * found in the LICENSE file in the root directory of this source tree.
+ *
+ * Class which handles Database initialization and connections.
+ */
 public class Database {
     private final static String localDir = System.getProperty("user.dir");
     static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisationDB.db";
