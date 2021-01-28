@@ -21,6 +21,8 @@ public class Day {
     private final LocalDate date;
     private int hoursSpent;
 
+    private static final int MAX_WORK_HOURS = 12;
+
     /**
      * Getter for id.
      * @return id
@@ -58,7 +60,10 @@ public class Day {
      * @param hoursSpent hours of day spent working
      */
     public void setHoursSpent(int hoursSpent) {
-        this.hoursSpent = hoursSpent;
+        if (hoursSpent > MAX_WORK_HOURS)
+            throw new IllegalArgumentException("Hours are more than maximum work hours" +
+                    "allowed: " + MAX_WORK_HOURS);
+        else this.hoursSpent = hoursSpent;
     }
 
     /**
@@ -100,7 +105,35 @@ public class Day {
         this.id = id;
         this.userId = userId;
         this.weekId = weekId;
-        // Converts string to a date
-        this.date = LocalDate.parse(date);
+        this.date = LocalDate.parse(date);  // Converts string to a date
+        this.hoursSpent = hoursSpent;
+    }
+
+    /**
+     * Adds an hour to the hoursSpent variable of the day.
+     *
+     * Increments user's hours spent variable by one, indicating that
+     * one more hour has been spent working during this day.
+     */
+    public void addHour(){
+        if ((hoursSpent++)>MAX_WORK_HOURS)
+            throw new IllegalArgumentException("Hours are more than maximum work hours" +
+                    "allowed: " + MAX_WORK_HOURS);
+        else hoursSpent++;
+    }
+
+    /**
+     * Adds a specified amount of hours to the hoursSpent variable of the day.
+     *
+     * Increments user's hours spent variable by the specified amount,
+     * indicating that more hours have been spent working during this day.
+     *
+     * @param hours hours to increment hoursSpent by
+     */
+    public void addHour(int hours){
+        if ((hoursSpent+hours)>MAX_WORK_HOURS)
+            throw new IllegalArgumentException("Hours are more than maximum work hours" +
+                    "allowed: " + MAX_WORK_HOURS);
+        else hoursSpent += hours;
     }
 }
