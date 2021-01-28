@@ -41,4 +41,34 @@ CREATE TABLE Assignment(
         REFERENCES User (id)
 );
 
+CREATE TABLE Period(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    associatedYear INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
+CREATE TABLE Week(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    periodId INTEGER NOT NULL,
+    weekNumber INTEGER NOT NULL,
+    minutesLeft INTEGER NOT NULL,
+    startDate TEXT NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
+CREATE TABLE Day(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    weekId INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    hoursSpent INTEGER NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
 PRAGMA foreign_keys=on;
