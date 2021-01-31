@@ -180,6 +180,46 @@ public class Day {
         }
     }
 
+    /**
+     * Method which deletes a Day from the system.
+     *
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteDay(){
+        // Day doesn't exist in the database
+        if(this.getId() == 0) return true;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        int rowsAffected = 0;
+
+        // Sets up the query
+        String query = "DELETE FROM Day WHERE id = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, this.getId());
+
+            // Result of query is true if SQL command worked
+            rowsAffected = pStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns whether deletion was successful
+        return rowsAffected == 1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

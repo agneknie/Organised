@@ -273,6 +273,57 @@ public class Week {
         return days;
     }
 
+    /**
+     * Method which deletes a Week and all of its attached Days from the database.
+     *
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteWeek(){
+        int rowsAffected = 0;
+
+        // Checks if Week exists in the database
+        if(this.getId() != 0) {
+            // Deletes all Days of the Week
+            int counter = 0;
+            List <Day> days = this.getAllDays();
+            for(Day day : days){
+                if(day.deleteDay()) counter++;
+            }
+
+            // If day deletion was successful, deletes the week
+            if (counter == days.size()){
+
+                // Gets Database connection
+                Connection connection = Database.getConnection();
+                PreparedStatement pStatement = null;
+
+                // Sets up the query
+                String query = "DELETE FROM Week WHERE id = ?;";
+                try {
+                    // Fills prepared statement and executes
+                    pStatement = connection.prepareStatement(query);
+                    pStatement.setInt(1, this.getId());
+
+                    rowsAffected = pStatement.executeUpdate();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    // Closes the prepared statement
+                    if (pStatement != null) {
+                        try {
+                            pStatement.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        // If deletion was successful, returns true
+        return rowsAffected != 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

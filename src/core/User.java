@@ -805,6 +805,54 @@ public class User {
         return periods;
     }
 
+    /**
+     * Method which deletes a Period from the database.
+     * Also deletes all attached Weeks and Days.
+     *
+     * @param period Period to delete
+     */
+    public void deletePeriod(Period period){
+        // Checks if Period exists in the database
+        if(period.getId() != 0) {
+            // Deletes all Weeks of the Period
+            int counter = 0;
+            List <Week> weeks = period.getAllWeeks();
+            for(Week week : weeks){
+                if(week.deleteWeek()) counter++;
+            }
+
+            // If week deletion was successful, deletes the period
+            if (counter == weeks.size()){
+
+                // Gets Database connection
+                Connection connection = Database.getConnection();
+                PreparedStatement pStatement = null;
+
+                // Sets up the query
+                String query = "DELETE FROM Period WHERE id = ?;";
+                try {
+                    // Fills prepared statement and executes
+                    pStatement = connection.prepareStatement(query);
+                    pStatement.setInt(1, period.getId());
+
+                    pStatement.execute();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    // Closes the prepared statement
+                    if (pStatement != null) {
+                        try {
+                            pStatement.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
