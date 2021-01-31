@@ -749,6 +749,62 @@ public class User {
         }
     }
 
+    /**
+     * Method which returns all Periods of the user.
+     *
+     * @return List of all Periods of the User.
+     */
+    public List<Period> getAllPeriods(){
+        ArrayList<Period> periods = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Period WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Periods and saves them in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int associatedYear = rs.getInt("associatedYear");
+                String name = rs.getString("name");
+
+                Period newPeriod = new Period(id, this.id, associatedYear, name);
+                periods.add(newPeriod);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns a list of Period objects
+        return periods;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

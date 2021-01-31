@@ -4,8 +4,11 @@ import database.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -210,6 +213,64 @@ public class Week {
                 }
             }
         }
+    }
+
+    /**
+     * Method which returns all days of the Week.
+     *
+     * @return List of all Days belonging to this Week.
+     */
+    public List<Day> getAllDays(){
+        ArrayList<Day> days = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Day WHERE weekId = ? AND userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, userId);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Days and saves them in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int userId = rs.getInt("userId");
+                String date = rs.getString("date");
+                int hoursSpent = rs.getInt("hoursSpent");
+
+                Day newDay = new Day(id, userId, this.id, date, hoursSpent);
+                days.add(newDay);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns a list of Year objects
+        return days;
     }
 
     @Override

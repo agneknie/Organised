@@ -4,7 +4,10 @@ import database.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -161,6 +164,65 @@ public class Period {
                 }
             }
         }
+    }
+
+    /**
+     * Method which gets all Weeks of the Period existing in the database.
+     *
+     * @return List of Weeks of the Period
+     */
+    public List<Week> getAllWeeks(){
+        ArrayList<Week> weeks = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Week WHERE periodId = ? AND userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, userId);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Weeks and saves them in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int userId = rs.getInt("userId");
+                int weekNumber = rs.getInt("weekNumber");
+                int minutesLeft = rs.getInt("minutesLeft");
+                String startDate = rs.getString("startDate");
+
+                Week newWeek = new Week(id, userId, this.id, weekNumber, startDate, minutesLeft);
+                weeks.add(newWeek);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns a list of Week objects
+        return weeks;
     }
 
     @Override
