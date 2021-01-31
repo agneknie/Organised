@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -720,6 +721,31 @@ public class User {
                     }
                 }
             }
+        }
+    }
+
+    // Methods concerning Periods, Weeks & Days
+    /**
+     * Method which constructs a Period instance with Weeks & Days and adds them all
+     * to the database.
+     *
+     * @param numberOfWeeks number of weeks a period has
+     * @param startOfPeriod start date of the period (Monday)
+     */
+    public void constructPeriod(int associatedYear, String name, int numberOfWeeks, LocalDate startOfPeriod){
+        // Adds the period to the database
+        Period newPeriod = new Period(this.id, associatedYear, name);
+        newPeriod.addPeriod();
+        int periodId = Period.getLastId();
+
+        // Adds all weeks of the period to the database
+        LocalDate startOfWeek = startOfPeriod;
+        for(int i=1; i<=numberOfWeeks; i++){
+            Week newWeek = new Week(this.id, periodId, i, startOfWeek);
+            newWeek.constructWeek();
+
+            // Updates the start date for the following week
+            startOfWeek = startOfWeek.plusWeeks(1);
         }
     }
 

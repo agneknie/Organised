@@ -1,5 +1,10 @@
 package core;
 
+import database.Database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -113,6 +118,98 @@ public class Week {
         this.weekNumber = weekNumber;
         this.startDate = LocalDate.parse(startDate);  // Converts string to a date
         this.minutesLeft = minutesLeft;
+    }
+
+    /**
+     * Method which goes through the database and returns the id of the week,
+     * which is the last added week.
+     *
+     * @return id of the most recent added week. -1 if something is wrong.
+     */
+    protected static int getLastId() {
+        int lastPeriod = -1;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Week ORDER BY id DESC LIMIT 1;";
+        try {
+            // Executes the statement
+            pStatement = connection.prepareStatement(query);
+            // Gets the number of the most recent period
+            lastPeriod = pStatement.executeQuery().getInt("id");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // Returns the id of last week
+        return lastPeriod;
+    }
+
+    /**
+     * Method which adds the week instance to the database along with
+     * creation and addition to the database of all days belonging to this
+     * week.
+     */
+    protected void constructWeek(){
+        // Adds the week to the database
+        this.addWeek();
+        int weekId = Week.getLastId();
+
+        // Creates all days of the Week and adds them to the database
+        for(int i=0; i<7; i++){
+            Day newDay = new Day(this.userId, weekId, this.startDate.plusDays(i));
+            newDay.addDay();
+        }
+    }
+
+    /**
+     * Method which adds a Week to the database.
+     */
+    private void addWeek(){
+        // Checks if week is not in the database
+        if(id == 0){
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
+
+            // Sets up the query
+            String query = "INSERT INTO Week VALUES(null,?,?,?,?,?);";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, userId);
+                pStatement.setInt(2, periodId);
+                pStatement.setInt(3, weekNumber);
+                pStatement.setInt(4, minutesLeft);
+                pStatement.setString(5, startDate.toString());
+
+                pStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement and result set
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
     @Override

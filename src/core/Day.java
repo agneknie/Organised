@@ -1,5 +1,10 @@
 package core;
 
+import database.Database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -89,7 +94,7 @@ public class Day {
         this.userId = userId;
         this.weekId = weekId;
         this.date = date;
-        this.hoursSpent = 0;    // Day just added, no hours spent yet
+        this.hoursSpent = 0;    // Day just created, no hours spent yet
     }
 
     /**
@@ -136,6 +141,43 @@ public class Day {
             throw new IllegalArgumentException("Hours are more than maximum work hours" +
                     "allowed: " + MAX_WORK_HOURS);
         else hoursSpent += hours;
+    }
+
+    /**
+     * Method which adds a Day to the database
+     */
+    protected void addDay(){
+        // Checks if day is not in the database
+        if(id == 0){
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
+
+            // Sets up the query
+            String query = "INSERT INTO Day VALUES(null,?,?,?,?);";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, userId);
+                pStatement.setInt(2, weekId);
+                pStatement.setString(3, date.toString());
+                pStatement.setInt(4, hoursSpent);
+
+                pStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement and result set
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
     @Override
