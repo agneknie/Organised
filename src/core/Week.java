@@ -1,6 +1,7 @@
 package core;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Organised.
@@ -10,14 +11,14 @@ import java.time.LocalDate;
  * This source code is licensed under the GNU General Public License, Version 3
  * found in the LICENSE file in the root directory of this source tree.
  *
- * Class to represent a Week in the system
+ * Class to represent a Week in the system.
  */
 public class Week {
     private final int id;
     private final int userId;
     private final int periodId;
     private final int weekNumber;
-    private LocalDate startDate;
+    private final LocalDate startDate;
     private int minutesLeft;
 
     /**
@@ -112,5 +113,18 @@ public class Week {
         this.weekNumber = weekNumber;
         this.startDate = LocalDate.parse(startDate);  // Converts string to a date
         this.minutesLeft = minutesLeft;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Week week = (Week) o;
+        return id == week.id && userId == week.userId && periodId == week.periodId && weekNumber == week.weekNumber && minutesLeft == week.minutesLeft && startDate.equals(week.startDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, periodId, weekNumber, startDate, minutesLeft);
     }
 }

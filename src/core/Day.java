@@ -3,6 +3,7 @@ package core;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Organised.
@@ -12,7 +13,7 @@ import java.util.Locale;
  * This source code is licensed under the GNU General Public License, Version 3
  * found in the LICENSE file in the root directory of this source tree.
  *
- * Class to represent a Day in the system
+ * Class to represent a Day in the system.
  */
 public class Day {
     private final int id;
@@ -135,5 +136,18 @@ public class Day {
             throw new IllegalArgumentException("Hours are more than maximum work hours" +
                     "allowed: " + MAX_WORK_HOURS);
         else hoursSpent += hours;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Day day = (Day) o;
+        return id == day.id && userId == day.userId && weekId == day.weekId && hoursSpent == day.hoursSpent && date.equals(day.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, weekId, date, hoursSpent);
     }
 }

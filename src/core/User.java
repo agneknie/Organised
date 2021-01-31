@@ -470,6 +470,7 @@ public class User {
 
         if (userGrade == -1) classification = "-";
         else if(userGrade < 40) classification = "Non-Honours";
+        else if(userGrade < 45) classification = "Pass";
         else if(userGrade < 50) classification = "Third (3rd)";
         else if(userGrade < 60) classification = "Lower-Second (2:2)";
         else if(userGrade < 70) classification = "Upper-Second (2:1)";
