@@ -853,6 +853,52 @@ public class User {
         }
     }
 
+    /**
+     * Method which returns how many hours on average the user
+     * spends working per day.
+     *
+     * @return hours spent on average per day
+     */
+    public double getOverallHoursSpentDay(){
+        double days = 0;
+        double hours = 0;
+
+        // Goes through all user periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all user weeks
+            for(Week week : period.getAllWeeks()){
+                days += 7;      // There are 7 days in a week
+                hours += week.getAllWeekHours();
+            }
+        }
+        // Calculates the result
+        if (days == 0) return 0;
+        else return hours/days;
+    }
+
+    /**
+     * Method which returns how many hours on average the user
+     * spends working per week.
+     *
+     * @return hours spent on average per week
+     */
+    public double getOverallHoursSpentWeek(){
+        double weeks = 0;
+        double hours = 0;
+
+        // Goes through all user periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all user weeks
+            for(Week week : period.getAllWeeks()){
+                weeks++;
+                hours += week.getAllWeekHours();
+            }
+        }
+        // Calculates the result
+        if (weeks == 0) return 0;
+        else return hours/weeks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

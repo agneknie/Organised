@@ -274,6 +274,20 @@ public class Week {
     }
 
     /**
+     * Method which gets all days of the week and returns the cumulative
+     * number of hours spent working.
+     *
+     * @return hours spent working during the week
+     */
+    public int getAllWeekHours(){
+        int hours = 0;
+        for(Day day : this.getAllDays()){
+            hours += day.getHoursSpent();
+        }
+        return hours;
+    }
+
+    /**
      * Method which deletes a Week and all of its attached Days from the database.
      *
      * @return true if successful, false otherwise

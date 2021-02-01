@@ -144,6 +144,17 @@ public class Day {
     }
 
     /**
+     * Method which removes a specified number of hours from the Day's hoursSpent variable.
+     *
+     * @param hours hours to decrease hoursSpent by
+     */
+    public void removeHours(int hours){
+        if((hoursSpent-hours)<0)
+            throw new IllegalArgumentException("If hours are removed, day work hours fall below 0");
+        else hoursSpent -= hours;
+    }
+
+    /**
      * Method which adds a Day to the database
      */
     protected void addDay(){
