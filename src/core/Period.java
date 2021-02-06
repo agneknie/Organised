@@ -178,6 +178,29 @@ public class Period {
     }
 
     /**
+     * Method which gets the average number of hours spent working
+     * per week during this period.
+     *
+     * @return average hours working per week during period
+     */
+    public double getWeeklyAverage(){
+        double numberOfWeeks = 0;
+        double hoursWorking = 0;
+
+        // Goes through all weeks
+        for(Week week : this.getAllWeeks()){
+            if(week.getAllWeekHours() != 0){
+                numberOfWeeks++;
+                hoursWorking += week.getAllWeekHours();
+            }
+        }
+
+        // If no week that have hours exist (period is new) returns 0
+        if(numberOfWeeks == 0) return 0;
+        else return hoursWorking / numberOfWeeks;
+    }
+
+    /**
      * Method which adds the Period to the database.
      */
     public void addPeriod(){

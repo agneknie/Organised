@@ -287,6 +287,17 @@ public class Week {
     }
 
     /**
+     * Method which returns how many minutes per day on average during
+     * this week are spent working.
+     *
+     * @return average minutes spent working per day this week
+     */
+    public double getDailyAverage(){
+        // 7 days in a week
+        return (double) Math.round((this.getAllWeekHours() * 60 / 7.0) * 1);
+    }
+
+    /**
      * Method which deletes a Week and all of its attached Days from the database.
      *
      * @return true if successful, false otherwise
