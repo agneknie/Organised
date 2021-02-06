@@ -144,6 +144,30 @@ public class Day {
     }
 
     /**
+     * Method which checks whether given number of minutes can be added to a day.
+     * Minutes cannot be added if they go over the MAX_WORK_HOURS limit.
+     *
+     * @param minutes minutes to add
+     * @return true if minutes can be added, false otherwise
+     */
+    public boolean canAdd(int minutes){
+        if((minutes/60+hoursSpent)>MAX_WORK_HOURS) return false;
+        else return true;
+    }
+
+    /**
+     * Method which checks whether given number of minutes can be removed from a day.
+     * Minutes cannot be removed if they the day's hours spent variable will go bellow 0.
+     *
+     * @param minutes minutes to remove
+     * @return true if minutes can be removed, false otherwise
+     */
+    public boolean canRemove(int minutes){
+        if((hoursSpent-minutes/60)<0) return false;
+        else return true;
+    }
+
+    /**
      * Method which removes a specified number of hours from the Day's hoursSpent variable.
      *
      * @param hours hours to decrease hoursSpent by

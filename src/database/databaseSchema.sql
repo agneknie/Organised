@@ -46,6 +46,7 @@ CREATE TABLE Period(
     userId INTEGER NOT NULL,
     associatedYear INTEGER NOT NULL,
     name TEXT NOT NULL,
+    minutesLeft INTEGER NOT NULL,
     FOREIGN KEY (userId)
         REFERENCES User (id)
 );
@@ -55,7 +56,6 @@ CREATE TABLE Week(
     userId INTEGER NOT NULL,
     periodId INTEGER NOT NULL,
     weekNumber INTEGER NOT NULL,
-    minutesLeft INTEGER NOT NULL,
     startDate TEXT NOT NULL,
     FOREIGN KEY (userId)
         REFERENCES User (id)

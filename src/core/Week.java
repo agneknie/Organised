@@ -27,7 +27,6 @@ public class Week {
     private final int periodId;
     private final int weekNumber;
     private final LocalDate startDate;
-    private int minutesLeft;
 
     /**
      * Getter for week id.
@@ -70,22 +69,6 @@ public class Week {
     }
 
     /**
-     * Getter for the minutes, that are left unturned into hours for this week.
-     * @return minutesLeft of the week
-     */
-    public int getMinutesLeft() {
-        return minutesLeft;
-    }
-
-    /**
-     * Setter for the minutesLeft variable of the week instance.
-     * @param minutesLeft minutesLeft to set
-     */
-    public void setMinutesLeft(int minutesLeft) {
-        this.minutesLeft = minutesLeft;
-    }
-
-    /**
      * Constructor for creating a new Week instance.
      * Used when user is adding a new Period with Weeks.
      *
@@ -100,7 +83,6 @@ public class Week {
         this.periodId = periodId;
         this.weekNumber = weekNumber;
         this.startDate = startDate;
-        this.minutesLeft = 0;   // No minutes left yet
     }
 
     /**
@@ -112,15 +94,13 @@ public class Week {
      * @param periodId id of the period the week belongs to
      * @param weekNumber number of the week
      * @param startDate date of the Monday of the week
-     * @param minutesLeft minutes left unturned to hours for the week
      */
-    public Week (int id, int userId, int periodId, int weekNumber, String startDate, int minutesLeft){
+    public Week (int id, int userId, int periodId, int weekNumber, String startDate){
         this.id = id;
         this.userId = userId;
         this.periodId = periodId;
         this.weekNumber = weekNumber;
         this.startDate = LocalDate.parse(startDate);  // Converts string to a date
-        this.minutesLeft = minutesLeft;
     }
 
     /**
@@ -161,6 +141,26 @@ public class Week {
     }
 
     /**
+     * Method which given a list of weeks returns the last available week
+     * which has hours recorded, thus finding the current week of the period
+     * if the provided list is a list of all weeks in a period.
+     * Assumes that weeks are sorted by their week number (like in database).
+     *
+     * @param weeks list of weeks (All weeks of period)
+     * @return current week
+     */
+    public static Week getCurrentWeek(List<Week> weeks){
+        // Selects first available week in case all weeks are new
+        Week current = weeks.get(0);
+
+        // Goes through all weeks and selects the most recent week with hours added
+        for(Week week : weeks){
+            if(week.getAllWeekHours()>0) current = week;
+        }
+        return current;
+    }
+
+    /**
      * Method which adds the week instance to the database along with
      * creation and addition to the database of all days belonging to this
      * week.
@@ -188,15 +188,14 @@ public class Week {
             PreparedStatement pStatement = null;
 
             // Sets up the query
-            String query = "INSERT INTO Week VALUES(null,?,?,?,?,?);";
+            String query = "INSERT INTO Week VALUES(null,?,?,?,?);";
             try {
                 // Fills prepared statement and executes
                 pStatement = connection.prepareStatement(query);
                 pStatement.setInt(1, userId);
                 pStatement.setInt(2, periodId);
                 pStatement.setInt(3, weekNumber);
-                pStatement.setInt(4, minutesLeft);
-                pStatement.setString(5, startDate.toString());
+                pStatement.setString(4, startDate.toString());
 
                 pStatement.executeUpdate();
 
@@ -343,11 +342,11 @@ public class Week {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Week week = (Week) o;
-        return id == week.id && userId == week.userId && periodId == week.periodId && weekNumber == week.weekNumber && minutesLeft == week.minutesLeft && startDate.equals(week.startDate);
+        return id == week.id && userId == week.userId && periodId == week.periodId && weekNumber == week.weekNumber && startDate.equals(week.startDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, periodId, weekNumber, startDate, minutesLeft);
+        return Objects.hash(id, userId, periodId, weekNumber, startDate);
     }
 }

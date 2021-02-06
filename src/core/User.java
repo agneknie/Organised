@@ -777,8 +777,9 @@ public class User {
                 int id = rs.getInt("id");
                 int associatedYear = rs.getInt("associatedYear");
                 String name = rs.getString("name");
+                int minutesLeft = rs.getInt("minutesLeft");
 
-                Period newPeriod = new Period(id, this.id, associatedYear, name);
+                Period newPeriod = new Period(id, this.id, associatedYear, name, minutesLeft);
                 periods.add(newPeriod);
             }
 
@@ -913,3 +914,5 @@ public class User {
         return Objects.hash(forename, username, passwordHash, keepLoggedIn, id);
     }
 }
+
+

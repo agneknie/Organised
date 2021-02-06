@@ -25,6 +25,7 @@ public class Period {
     private final int userId;
     private final int associatedYear;
     private final String name;
+    private int minutesLeft;
 
     /**
      * Getter for the period id.
@@ -60,6 +61,24 @@ public class Period {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Getter for minutes left unused.
+     *
+     * @return minutesLeft unused for Period
+     */
+    public int getMinutesLeft() {
+        return minutesLeft;
+    }
+
+    /**
+     * Setter for minutesLeft variable of Period
+     *
+     * @param minutesLeft minutes to set
+     */
+    public void setMinutesLeft(int minutesLeft) {
+        this.minutesLeft = minutesLeft;
     }
 
     /**
@@ -107,12 +126,14 @@ public class Period {
      * @param userId id of the user the period belongs to
      * @param associatedYear year number associated with the period
      * @param name name of the period
+     * @param minutesLeft minutes left unused for the period
      */
-    protected Period(int id, int userId, int associatedYear, String name) {
+    protected Period(int id, int userId, int associatedYear, String name, int minutesLeft) {
         this.id = id;
         this.userId = userId;
         this.associatedYear = associatedYear;
         this.name = name;
+        this.minutesLeft = minutesLeft;
     }
 
     /**
@@ -128,6 +149,7 @@ public class Period {
         this.userId = userId;
         this.associatedYear = associatedYear;
         this.name = name;
+        this.minutesLeft = 0;   // No minutes left yet
     }
 
     /**
@@ -141,13 +163,14 @@ public class Period {
             PreparedStatement pStatement = null;
 
             // Sets up the query
-            String query = "INSERT INTO Period VALUES(null,?,?,?);";
+            String query = "INSERT INTO Period VALUES(null,?,?,?,?);";
             try {
                 // Fills prepared statement and executes
                 pStatement = connection.prepareStatement(query);
                 pStatement.setInt(1, userId);
                 pStatement.setInt(2, associatedYear);
                 pStatement.setString(3, name);
+                pStatement.setInt(4, minutesLeft);
 
                 pStatement.executeUpdate();
 
@@ -195,10 +218,9 @@ public class Period {
                 int id = rs.getInt("id");
                 int userId = rs.getInt("userId");
                 int weekNumber = rs.getInt("weekNumber");
-                int minutesLeft = rs.getInt("minutesLeft");
                 String startDate = rs.getString("startDate");
 
-                Week newWeek = new Week(id, userId, this.id, weekNumber, startDate, minutesLeft);
+                Week newWeek = new Week(id, userId, this.id, weekNumber, startDate);
                 weeks.add(newWeek);
             }
 
@@ -230,11 +252,11 @@ public class Period {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Period period = (Period) o;
-        return id == period.id && userId == period.userId && associatedYear == period.associatedYear && name.equals(period.name);
+        return id == period.id && userId == period.userId && associatedYear == period.associatedYear && name.equals(period.name) && minutesLeft == period.minutesLeft;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, associatedYear, name);
+        return Objects.hash(id, userId, associatedYear, name, minutesLeft);
     }
 }
