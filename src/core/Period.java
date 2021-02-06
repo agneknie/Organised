@@ -153,6 +153,31 @@ public class Period {
     }
 
     /**
+     * Method which takes minutes and a day to add those minutes to
+     * and adds them to the day. If some minutes are leftover, adds them
+     * to the leftover minutes of the period.
+     *
+     * @param day day to add the minutes to
+     * @param minutesToAdd minutes to add to the week
+     */
+    public void addMinutes(Day day, int minutesToAdd){
+        // Adds leftover minutes of the period
+        minutesToAdd += this.minutesLeft;
+
+        // Splits the time into hours an minutes
+        int hours = minutesToAdd / 60;
+        int minutes = minutesToAdd % 60;
+
+        // Assigns the hours to day and unused minutes to the period
+        day.addHour(hours);
+        minutesLeft = minutes;
+
+        // Updates both the day and the period in the database
+        this.updatePeriod();
+        day.updateDay();
+    }
+
+    /**
      * Method which adds the Period to the database.
      */
     public void addPeriod(){
@@ -245,6 +270,39 @@ public class Period {
         }
         // Returns a list of Week objects
         return weeks;
+    }
+
+    /**
+     * Method which updates the minutesLeft variable of the period
+     * in the database.
+     */
+    public void updatePeriod(){
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+
+        // Sets up the query
+        String query = "UPDATE Period SET minutesLeft = ? WHERE id = ?";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, minutesLeft);
+            pStatement.setInt(2, id);
+
+            pStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

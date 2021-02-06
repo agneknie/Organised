@@ -255,6 +255,39 @@ public class Day {
         return rowsAffected == 1;
     }
 
+    /**
+     * Method which updates the hoursSpent variable of the day
+     * in the database.
+     */
+    public void updateDay(){
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+
+        // Sets up the query
+        String query = "UPDATE Day SET hoursSpent = ? WHERE id = ?";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, hoursSpent);
+            pStatement.setInt(2, id);
+
+            pStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
