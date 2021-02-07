@@ -1,9 +1,12 @@
 package controllers.utilities;
 
+import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -147,5 +150,55 @@ public class ControlScene {
      */
     public static void menuPaneExited(Pane pane){
         pane.setStyle("-fx-background-color: none");
+    }
+
+    /**
+     * Changes the styling of a text field if the input cannot be accepted.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicField field to highlight as wrong
+     */
+    public static void highlightWrongField(TextField problematicField){
+        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
+     * Changes the styling of a combo box if the input cannot be accepted.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicComboBox combo box to highlight as wrong
+     */
+    public static void highlightWrongField(ComboBox<Semester> problematicComboBox){
+        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
+     * Method which reverts the styling of a text field back to normal, after a
+     * wrong input was received.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicField text field to un-highlight
+     */
+    public static void normaliseWrongField(TextField problematicField){
+        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
+    }
+
+    /**
+     * Method which reverts the styling of a combo box back to normal, after a
+     * wrong input was received.
+     * UUsed when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicComboBox combo box to un-highlight
+     */
+    public static void normaliseWrongField(ComboBox<Semester> problematicComboBox){
+        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
+                "-fx-border-width: 3");
     }
 }

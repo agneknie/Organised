@@ -128,9 +128,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
      * @param problematicField field to highlight as wrong
      */
     public void highlightWrongField(TextField problematicField){
-        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
-                "-fx-border-width: 3");
+        ControlScene.highlightWrongField(problematicField);
     }
 
     /**
@@ -140,9 +138,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
      * @param problematicComboBox combo box to highlight as wrong
      */
     public void highlightWrongField(ComboBox<Semester> problematicComboBox){
-        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
-                "-fx-border-width: 3");
+        ControlScene.highlightWrongField(problematicComboBox);
     }
 
     /**
@@ -153,9 +149,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
      * @param problematicField text field to un-highlight
      */
     public void normaliseWrongField(TextField problematicField){
-        problematicField.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
-                "-fx-border-width: 3");
+        ControlScene.normaliseWrongField(problematicField);
     }
 
     /**
@@ -166,8 +160,6 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
      * @param problematicComboBox combo box to un-highlight
      */
     public void normaliseWrongField(ComboBox<Semester> problematicComboBox){
-        problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
-                "-fx-border-width: 3");
+        ControlScene.normaliseWrongField(problematicComboBox);
     }
 }
