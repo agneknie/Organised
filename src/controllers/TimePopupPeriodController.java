@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.util.StringConverter;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -126,11 +126,63 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
     }
 
     /**
+     * Normalises all field borders in case they were highlighted
+     * as wrong previously.
+     */
+    private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(nameField);
+        ControlScene.normaliseWrongField(numberOfWeeksField);
+        ControlScene.normaliseWrongField(yearComboBox);
+    }
+
+    /**
      * Method which tries to add a period when an action button is clicked.
      */
     @FXML
     void actionButtonClicked() {
-        //TODO action button clicked
+        // Normalises all fields in case they were highlighted as wrong previously
+        normaliseAllFields();
+        boolean valid = true;
+
+        // Variables for new Period construction
+        String name = nameField.getText();
+        int yearNumber = -1;
+        int numberOfWeeks = -1;
+        LocalDate periodStart = startOfPeriodDatePicker.getValue();
+
+        // Checks whether inputs are numbers where needed & not null
+        try{
+           yearNumber = yearComboBox.getValue().getYearNumber();
+        } catch (Exception e){
+            ControlScene.highlightWrongField(yearComboBox);
+            valid = false;
+        }
+        try{
+            numberOfWeeks = Integer.parseInt(numberOfWeeksField.getText());
+        } catch (Exception e){
+            ControlScene.highlightWrongField(numberOfWeeksField);
+            valid = false;
+        }
+
+        // Checks if inputs are valid
+        // Maximum number of weeks in a year is 53
+        if(numberOfWeeks <= 0 || numberOfWeeks > 53){
+            ControlScene.highlightWrongField(numberOfWeeksField);
+            valid = false;
+        }
+        if(name.isEmpty()){
+            ControlScene.highlightWrongField(nameField);
+            valid = false;
+        }
+
+        // If all inputs are valid, adds the new period
+        if(valid){
+            // Adds the Period
+            Session.getSession().constructPeriod(yearNumber, name, numberOfWeeks, periodStart);
+
+            // Closes the popup/stage
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
     }
 
     /**

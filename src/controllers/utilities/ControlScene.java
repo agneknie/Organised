@@ -1,5 +1,6 @@
 package controllers.utilities;
 
+import core.Year;
 import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -170,7 +171,7 @@ public class ControlScene {
      *
      * @param problematicComboBox combo box to highlight as wrong
      */
-    public static void highlightWrongField(ComboBox<Semester> problematicComboBox){
+    public static void highlightWrongField(ComboBox problematicComboBox){
         problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
                 "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
                 "-fx-border-width: 3");
@@ -196,7 +197,7 @@ public class ControlScene {
      *
      * @param problematicComboBox combo box to un-highlight
      */
-    public static void normaliseWrongField(ComboBox<Semester> problematicComboBox){
+    public static void normaliseWrongField(ComboBox problematicComboBox){
         problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
                 "-fx-border-width: 3");
