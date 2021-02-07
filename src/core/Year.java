@@ -475,4 +475,9 @@ public class Year {
     public int hashCode() {
         return Objects.hash(id, userId, yearNumber, credits, percentWorth);
     }
+
+    @Override
+    public String toString(){
+        return "Year " + this.yearNumber;
+    }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimePopupViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimePopupPeriodController">
    <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
       <Label layoutX="79.0" layoutY="36.0" prefHeight="69.0" prefWidth="269.0" text="Add Period." textFill="WHITE">
          <font>
@@ -62,7 +62,7 @@
                <Font name="Arial Rounded MT Bold" size="25.0" />
             </font>
          </Label>
-         <DatePicker fx:id="startOfPeriodDatePicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Start Date:" style="-fx-control-inner-background: white; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: white; -fx-background-insets: 3 3 3 3; -fx-border-color: white;" />
+         <DatePicker fx:id="startOfPeriodDatePicker" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Start Date:" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: white; -fx-background-insets: 3 3 3 3; -fx-border-color: white; -fx-base: #E6BB9A; -fx-control-inner-background: #2B2B2B; -fx-font: 12pt &quot;Arial&quot;; -fx-prompt-text-fill: white;" />
       </Pane>
       <Pane fx:id="actionButton" layoutX="269.0" layoutY="455.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
