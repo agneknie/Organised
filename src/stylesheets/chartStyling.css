@@ -1,0 +1,30 @@
+.chart {
+    -fx-background-color: none;
+    -fx-font-size: 22px;
+}
+
+.chart-plot-background {
+    -fx-background-color: none;
+}
+
+.axis{
+    -fx-minor-tick-visible: false;
+    -fx-tick-label-fill: white;
+    -fx-color: white;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke-width: 0.4;
+}
+
+.chart-bar {
+    -fx-bar-fill: #E6BB9A;
+}
+
+.chart-series-line{
+    -fx-stroke: #E6BB9A;
+}
+
+.chart-line-symbol{
+    -fx-background-color: white;
+}

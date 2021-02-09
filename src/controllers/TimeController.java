@@ -3,13 +3,22 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.Period;
+import core.Session;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
-import java.util.List;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Organised.
@@ -21,7 +30,7 @@ import java.util.List;
  *
  * Class which handles Time Tab functionality and UI.
  */
-public class TimeController extends DefaultNavigation {
+public class TimeController extends DefaultNavigation implements Initializable {
 
     // Top pane values
     @FXML
@@ -74,6 +83,68 @@ public class TimeController extends DefaultNavigation {
     private Label navigationPane4Year;
     @FXML
     private Label navigationPane4Period;
+
+    @FXML
+    private BarChart<String, Number> barChart;
+    @FXML
+    private LineChart<String, Number> lineChart;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Sets up top information panel
+        // TODO Sets up navigation panels
+
+        // Sets up the bar chart
+        setupBarChart();
+
+        // Sets up line chart
+        setupLineChart();
+    }
+
+    /**
+     * Method which setups the bar chart of the scene.
+     */
+    private void setupBarChart(){
+        // Disables the legend
+        barChart.setLegendVisible(false);
+
+        // Sets the font & size of the chart text
+        barChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+        barChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+
+        // Populates the bar chart with user data
+        // Creates a series for the chart
+        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
+
+        // TODO Adds user data to the series
+
+        // Adds the data to the chart
+        barChart.getData().add(barChartSeries);
+
+        // Adjusts bar size based on the number of user data
+        final int DEFAULT_CATEGORY_GAP = 100;
+        final int GAP_ADJUSTING_INCREMENT = 20;
+        final int NEED_TO_ADJUST_SIZE = 8;
+        final int STARTING_BARS = 3;
+        if(barChartSeries.getData().size() < NEED_TO_ADJUST_SIZE){
+            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(barChartSeries.getData().size()
+                    -STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+        }
+    }
+
+    /**
+     * Method which setups the line chart of the scene
+     */
+    private void setupLineChart(){
+        // Disables the legend
+        lineChart.setLegendVisible(false);
+
+        // Sets the font & size of the chart text
+        lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+        lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+
+        // TODO Populates line chart with user data
+    }
 
     /**
      * Method which brings a popup to add a Period if action button
