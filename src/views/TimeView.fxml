@@ -141,6 +141,119 @@
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
+            <Label layoutX="66.0" layoutY="59.0" prefHeight="27.0" prefWidth="393.0" text="Your Time." textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <Pane layoutX="66.0" layoutY="101.0" prefHeight="113.0" prefWidth="221.0">
+               <children>
+                  <Label prefHeight="68.0" prefWidth="221.0" style="-fx-wrap-text: true;" text="Daily Average:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dailyAverage" layoutY="82.0" prefHeight="27.0" prefWidth="221.0" style="-fx-wrap-text: true;" text="dailyAverage" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="349.0" layoutY="108.0" prefHeight="113.0" prefWidth="221.0">
+               <children>
+                  <Label prefHeight="68.0" prefWidth="221.0" style="-fx-wrap-text: true;" text="Weekly Average:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="weeklyAverage" layoutY="82.0" prefHeight="27.0" prefWidth="221.0" style="-fx-wrap-text: true;" text="weeklyAverage" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="actionButton" layoutX="901.0" layoutY="137.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="54.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="32.0" layoutY="9.0" prefHeight="37.0" prefWidth="189.0" style="-fx-wrap-text: true;" text="Add Period" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="actionButtonImage" layoutX="14.0" layoutY="9.0">
+                     <image>
+                        <Image url="@../images/add_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fx:id="goLeftButton" layoutX="7.0" layoutY="326.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/next_element_left.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="navigationPane1" layoutX="66.0" layoutY="254.0" onMouseClicked="#navigationPane1Clicked" onMouseEntered="#navigationPane1Hovered" onMouseExited="#navigationPane1Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="navigationPane1Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="navigationPane1Period" alignment="CENTER" layoutX="9.0" layoutY="63.0" prefHeight="113.0" prefWidth="204.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="navigationPane2" layoutX="349.0" layoutY="254.0" onMouseClicked="#navigationPane2Clicked" onMouseEntered="#navigationPane2Hovered" onMouseExited="#navigationPane2Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="navigationPane2Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="navigationPane2Period" alignment="CENTER" layoutX="9.0" layoutY="63.0" prefHeight="113.0" prefWidth="204.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="navigationPane3" layoutX="622.0" layoutY="254.0" onMouseClicked="#navigationPane3Clicked" onMouseEntered="#navigationPane3Hovered" onMouseExited="#navigationPane3Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="navigationPane3Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="navigationPane3Period" alignment="CENTER" layoutX="9.0" layoutY="63.0" prefHeight="113.0" prefWidth="204.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="navigationPane4" layoutX="901.0" layoutY="254.0" onMouseClicked="#navigationPane4Clicked" onMouseEntered="#navigationPane4Hovered" onMouseExited="#navigationPane4Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="navigationPane4Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="navigationPane4Period" alignment="CENTER" layoutX="9.0" layoutY="63.0" prefHeight="113.0" prefWidth="204.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fx:id="goRightButton" layoutX="1145.0" layoutY="326.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/next_element_right.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </AnchorPane>
