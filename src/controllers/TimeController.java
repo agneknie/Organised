@@ -2,13 +2,10 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
-import core.Period;
-import core.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
