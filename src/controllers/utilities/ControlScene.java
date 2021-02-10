@@ -1,7 +1,5 @@
 package controllers.utilities;
 
-import core.Year;
-import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

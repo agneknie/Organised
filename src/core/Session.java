@@ -44,6 +44,9 @@ public class Session {
     // Marks: user just deleted an element
     private static boolean marksJustDeleted;
 
+    // Time: currently selected Period
+    private static Period timePeriodSelected = null;
+
     /**
      * Getter for the primary stage of main window for stage dragging
      * @return primary stage of main window
@@ -244,5 +247,21 @@ public class Session {
      */
     public static void setMarksJustDeleted(boolean marksJustDeleted) {
         Session.marksJustDeleted = marksJustDeleted;
+    }
+
+    /**
+     * Getter for the currently selected Period in the Time tab
+     * @return user selected Period
+     */
+    public static Period getTimePeriodSelected() {
+        return timePeriodSelected;
+    }
+
+    /**
+     * Setter for the currently selected Period in the Time tab
+     * @param timePeriodSelected Period which is selected by the user
+     */
+    public static void setTimePeriodSelected(Period timePeriodSelected) {
+        Session.timePeriodSelected = timePeriodSelected;
     }
 }

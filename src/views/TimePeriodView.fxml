@@ -240,7 +240,17 @@
                   <Font name="Arial Rounded MT Bold" size="27.0" />
                </font>
             </Label>
-            <Pane fx:id="actionButton1" layoutX="617.0" layoutY="181.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="269.0" prefWidth="532.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Label layoutX="71.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Daily Average:" textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="dailyAverageField" alignment="CENTER" layoutX="354.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Label>
+            <Pane layoutX="617.0" layoutY="181.0" prefHeight="269.0" prefWidth="532.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label layoutX="37.0" layoutY="29.0" prefHeight="37.0" prefWidth="244.0" text="Minutes:" textFill="WHITE">
                      <font>
@@ -272,7 +282,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane fx:id="deleteMinutesButton" layoutX="318.0" layoutY="148.0" onMouseClicked="#deleteMinutesButton" onMouseEntered="#deleteMinutesButtonHovered" onMouseExited="#deleteMinutesButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="deleteMinutesButton" layoutX="318.0" layoutY="148.0" onMouseClicked="#deleteMinutesButtonClicked" onMouseEntered="#deleteMinutesButtonHovered" onMouseExited="#deleteMinutesButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <Label fx:id="deleteMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Remove" textFill="#e6bb9a">
                            <font>
@@ -281,7 +291,7 @@
                         </Label>
                         <ImageView fx:id="deleteMinutesButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="13.0">
                            <image>
-                              <Image url="@../images/delete_icon.png" />
+                              <Image url="@../images/subtract_icon.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -293,16 +303,6 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="71.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Daily Average:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
-               </font>
-            </Label>
-            <Label fx:id="dailyAverageField" alignment="CENTER" layoutX="354.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
-               </font>
-            </Label>
             <Label layoutX="617.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Week Overall:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="27.0" />

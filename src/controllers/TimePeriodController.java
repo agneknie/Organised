@@ -1,6 +1,27 @@
 package controllers;
 
+import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Day;
+import core.Period;
+import core.Session;
+import core.Week;
+import core.enums.Semester;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+
+import java.net.URL;
+import java.time.DayOfWeek;
+import java.util.ResourceBundle;
 
 /**
  * Organised.
@@ -12,5 +33,307 @@ import controllers.utilities.DefaultNavigation;
  *
  * Class which handles Time Tab functionality and UI when a Period is selected.
  */
-public class TimePeriodController extends DefaultNavigation {
+public class TimePeriodController extends DefaultNavigation implements Initializable {
+    // Top information pane elements
+    @FXML
+    private Label periodNameLabel;
+    @FXML
+    private Label weekNameLabel;
+
+    // Navigation between weeks
+    @FXML
+    private ImageView goLeftButton;
+    @FXML
+    private ImageView goRightButton;
+
+    // Delete period button
+    @FXML
+    private Pane actionButton;
+    @FXML
+    private ImageView actionButtonImage;
+    @FXML
+    private Label actionButtonLabel;
+
+    // Timer Pane elements
+    @FXML
+    private Label timerLabel;
+    // Timer start/stop button
+    @FXML
+    private Pane timerActionButton;
+    @FXML
+    private Label timerActionButtonLabel;
+    @FXML
+    private ImageView timerActionButtonImage;
+
+    // Timer reset button
+    @FXML
+    private Pane timerResetButton;
+    @FXML
+    private Label timerResetButtonLabel;
+    @FXML
+    private ImageView timerResetButtonImage;
+
+    // Below timer information fields
+    @FXML
+    private Label minutesLeftForPeriodField;
+    @FXML
+    private Label dailyAverageField;
+
+    // Add Minutes to Day Pane
+    @FXML
+    private TextField minutesField;
+    @FXML
+    private ComboBox<Day> daysComboBox;
+    @FXML
+    private Label errorMessage;
+    // Add minutes button
+    @FXML
+    private Pane addMinutesButton;
+    @FXML
+    private Label addMinutesButtonLabel;
+    @FXML
+    private ImageView addMinutesButtonImage;
+    // Remove minutes button
+    @FXML
+    private Pane deleteMinutesButton;
+    @FXML
+    private Label deleteMinutesButtonLabel;
+    @FXML
+    private ImageView deleteMinutesButtonImage;
+
+    // Information bellow minutes addition pane
+    @FXML
+    private Label weekOverallField;
+
+    // Line chart to display days of the week data
+    @FXML
+    private LineChart<String, Number> lineChart;
+    // Bar chart to display weeks of the period data
+    @FXML
+    private BarChart<String, Number> barChart;
+
+    // Variables to store user data
+    private final Period userSelectedPeriod = Session.getTimePeriodSelected();
+    private Week userSelectedWeek;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //TODO Initialize
+
+        // Finds out which week should be selected by the user
+        userSelectedWeek = Week.getCurrentWeek(userSelectedPeriod.getAllWeeks());
+
+        // Setups the combo box for days in the minutes addition panel
+        daysComboBox.getItems().setAll(userSelectedWeek.getAllDays());
+        // Styles semester combo box text
+        daysComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when "Delete Period" button is clicked.
+     */
+    @FXML
+    private void actionButtonClicked() {
+        //TODO deletePeriod button clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when "Add Minutes" button is clicked.
+     */
+    @FXML
+    private void addMinutesButtonClicked() {
+        //TODO addMinutes button clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when "Delete Minutes" button is clicked.
+     */
+    @FXML
+    private void deleteMinutesButtonClicked() {
+        //TODO deleteMinutes button clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when "timer action" button is clicked.
+     *
+     * Either starts or stops the timer.
+     */
+    @FXML
+    private void timerActionButtonClicked() {
+        //TODO timer start/stop button clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when "timer reset" button is clicked.
+     */
+    @FXML
+    private void timerResetButtonClicked() {
+        //TODO timer reset button clicked
+    }
+
+    // Methods responsible for navigation
+    /**
+     * Method which is responsible for the behaviour
+     * when "go back" button is clicked.
+     */
+    @FXML
+    private void goBackClicked() {
+        //TODO goBack clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when left navigation arrow is clicked.
+     */
+    @FXML
+    private void goLeftClicked() {
+        // TODO goLeft clicked
+    }
+
+    /**
+     * Method which is responsible for the behaviour
+     * when right navigation arrow is clicked.
+     */
+    @FXML
+    private void goRightClicked() {
+        // TODO goRight clicked
+    }
+
+    // Methods which deal with styling of UI elements
+    /**
+     * Reverts the styling back to normal if actionButton (delete period button)
+     * is no longer hovered.
+     */
+    @FXML
+    private void actionButtonExited() {
+        ControlScene.buttonExited(actionButton, actionButtonImage, actionButtonLabel, "delete_icon.png");
+    }
+
+    /**
+     * Changes the styling of actionButton (delete period button) if hovered.
+     */
+    @FXML
+    private void actionButtonHovered() {
+        ControlScene.buttonHovered(actionButton, actionButtonImage, actionButtonLabel, "delete_icon_selected.png");
+    }
+
+    /**
+     * Reverts the styling back to normal if addMinutesButton is no
+     * longer hovered.
+     */
+    @FXML
+    private void addMinutesButtonExited() {
+        ControlScene.buttonExited(addMinutesButton, addMinutesButtonImage, addMinutesButtonLabel, "add_icon.png");
+    }
+
+    /**
+     * Changes the styling of addMinutesButton if hovered.
+     */
+    @FXML
+    private void addMinutesButtonHovered() {
+        ControlScene.buttonHovered(addMinutesButton, addMinutesButtonImage, addMinutesButtonLabel, "add_icon_selected.png");
+    }
+
+    /**
+     * Reverts the styling back to normal if deleteMinutesButton is no
+     * longer hovered.
+     */
+    @FXML
+    private void deleteMinutesButtonExited() {
+        ControlScene.buttonExited(deleteMinutesButton, deleteMinutesButtonImage, deleteMinutesButtonLabel, "subtract_icon.png");
+    }
+
+    /**
+     * Changes the styling of deleteMinutesButton if hovered.
+     */
+    @FXML
+    private void deleteMinutesButtonHovered() {
+        ControlScene.buttonHovered(deleteMinutesButton, deleteMinutesButtonImage, deleteMinutesButtonLabel, "subtract_icon_selected.png");
+    }
+
+    /**
+     * Reverts to usual goLeft button colour if exited.
+     */
+    @FXML
+    private void goLeftExited() {
+        ControlScene.controlButtonEffect("next_element_left.png", goLeftButton);
+    }
+
+    /**
+     * Changes goLeft button colour if hovered.
+     */
+    @FXML
+    private void goLeftHovered() {
+        ControlScene.controlButtonEffect("next_element_left_selected.png", goLeftButton);
+    }
+
+    /**
+     * Reverts to usual goRight button colour if exited.
+     */
+    @FXML
+    private void goRightExited() {
+        ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
+    }
+
+    /**
+     * Changes goRight button colour if hovered.
+     */
+    @FXML
+    private void goRightHovered() {
+        ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
+    }
+
+    /**
+     * Reverts the styling back to normal if timerActionButton is no
+     * longer hovered.
+     */
+    @FXML
+    private void timerActionButtonExited() {
+        ControlScene.buttonExited(timerActionButton, timerActionButtonImage, timerActionButtonLabel, "timer_icon.png");
+    }
+
+    /**
+     * Changes the styling of timerActionButton if hovered.
+     */
+    @FXML
+    private void timerActionButtonHovered() {
+        ControlScene.buttonHovered(timerActionButton, timerActionButtonImage, timerActionButtonLabel, "timer_icon_selected.png");
+    }
+
+    /**
+     * Reverts the styling back to normal if timerResetButton is no
+     * longer hovered.
+     */
+    @FXML
+    private void timerResetButtonExited() {
+        ControlScene.buttonExited(timerResetButton, timerResetButtonImage, timerResetButtonLabel, "reset_icon.png");
+    }
+
+    /**
+     * Changes the styling of timerResetButton if hovered.
+     */
+    @FXML
+    private void timerResetButtonHovered() {
+        ControlScene.buttonHovered(timerResetButton, timerResetButtonImage, timerResetButtonLabel, "reset_icon_selected.png");
+    }
+
 }
