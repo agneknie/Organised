@@ -2,10 +2,9 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
-import core.Day;
+import controllers.utilities.SetupScene;
 import core.Period;
 import core.Session;
-import core.Week;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -103,21 +102,142 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private LineChart<String, Number> lineChart;
 
     // Variables for storing user data
-    private List<Period> userPeriods = Session.getSession().getAllPeriods();
+    private List<Period> userPeriods;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Cleans session variables in case they exist
+        Session.setTimePeriodSelected(null);
+
+        // Gets all user periods
+        userPeriods = Session.getSession().getAllPeriods();
+
         // Sets up top information panel
         dailyAverage.setText(Session.getSession().getOverallHoursSpentDay());
         weeklyAverage.setText(Session.getSession().getOverallHoursSpentWeek());
 
-        // TODO Sets up navigation panels
+        // Sets up navigation panes
+        setupNavigation();
 
         // Sets up the bar chart
         setupBarChart();
 
         // Sets up line chart
         setupLineChart();
+    }
+
+    /**
+     * Method which sets up the navigation panes.
+     */
+    private void setupNavigation(){
+        switch(userPeriods.size()){
+            // No periods to display
+            case 0:
+                // Hides all panes
+                navigationPane1.setVisible(false);
+                navigationPane2.setVisible(false);
+                navigationPane3.setVisible(false);
+                navigationPane4.setVisible(false);
+                break;
+            // One period available
+            case 1:
+                // Hides unused panes
+                navigationPane2.setVisible(false);
+                navigationPane3.setVisible(false);
+                navigationPane4.setVisible(false);
+
+                // Setups the first pane
+                navigationPane1Pointer = 0;
+                setupNavigationPane1();
+                break;
+            // Two periods available
+            case 2:
+                // Hides unused panes
+                navigationPane3.setVisible(false);
+                navigationPane4.setVisible(false);
+
+                // Setups the first two panes
+                navigationPane1Pointer = 0;
+                navigationPane2Pointer = 1;
+                setupNavigationPane1();
+                setupNavigationPane2();
+                break;
+            // Three periods available
+            case 3:
+                // Hides unused pane
+                navigationPane4.setVisible(false);
+
+                // Setups the first three panes
+                navigationPane1Pointer = 0;
+                navigationPane2Pointer = 1;
+                navigationPane3Pointer = 2;
+                setupNavigationPane1();
+                setupNavigationPane2();
+                setupNavigationPane3();
+                break;
+            // Four or more periods available
+            default:
+                // Setups all panes
+                navigationPane1Pointer = 0;
+                navigationPane2Pointer = 1;
+                navigationPane3Pointer = 2;
+                navigationPane4Pointer = 3;
+                setupNavigationPane1();
+                setupNavigationPane2();
+                setupNavigationPane3();
+                setupNavigationPane4();
+        }
+
+        // Setups navigation arrow visibility
+        setupNavigationArrowVisibility();
+    }
+
+    /**
+     * Method which setups navigation pane 1 with period data.
+     */
+    private void setupNavigationPane1(){
+        // Makes visible in case previously hidden
+        navigationPane1.setVisible(true);
+
+        // Populates fields with period data
+        navigationPane1Year.setText("Year "+userPeriods.get(navigationPane1Pointer).getAssociatedYear());
+        navigationPane1Period.setText(userPeriods.get(navigationPane1Pointer).getName());
+    }
+
+    /**
+     * Method which setups navigation pane 2 with period data.
+     */
+    private void setupNavigationPane2(){
+        // Makes visible in case previously hidden
+        navigationPane2.setVisible(true);
+
+        // Populates fields with period data
+        navigationPane2Year.setText("Year "+userPeriods.get(navigationPane2Pointer).getAssociatedYear());
+        navigationPane2Period.setText(userPeriods.get(navigationPane2Pointer).getName());
+    }
+
+    /**
+     * Method which setups navigation pane 3 with period data.
+     */
+    private void setupNavigationPane3(){
+        // Makes visible in case previously hidden
+        navigationPane3.setVisible(true);
+
+        // Populates fields with period data
+        navigationPane3Year.setText("Year "+userPeriods.get(navigationPane3Pointer).getAssociatedYear());
+        navigationPane3Period.setText(userPeriods.get(navigationPane3Pointer).getName());
+    }
+
+    /**
+     * Method which setups navigation pane 4 with period data.
+     */
+    private void setupNavigationPane4(){
+        // Makes visible in case previously hidden
+        navigationPane4.setVisible(true);
+
+        // Populates fields with period data
+        navigationPane4Year.setText("Year "+userPeriods.get(navigationPane4Pointer).getAssociatedYear());
+        navigationPane4Period.setText(userPeriods.get(navigationPane4Pointer).getName());
     }
 
     /**
@@ -144,6 +264,29 @@ public class TimeController extends DefaultNavigation implements Initializable {
     }
 
     /**
+     * Method which configures navigation arrow visibility based on the number
+     * of Periods the user has and how are they currently displayed.
+     */
+    private void setupNavigationArrowVisibility(){
+        int periodNumber = userPeriods.size();
+        // Enables both arrows to remove previous configurations
+        goRightButton.setVisible(true);
+        goLeftButton.setVisible(true);
+
+        // If there are less than 4 periods, navigation arrows are not needed
+        if(periodNumber <= 4){
+            goLeftButton.setVisible(false);
+            goRightButton.setVisible(false);
+        }
+
+        // Otherwise, one or both arrows might be needed
+        else {
+            if(navigationPane1Pointer == 0) goLeftButton.setVisible(false);
+            if(navigationPane4Pointer == periodNumber-1) goRightButton.setVisible(false);
+        }
+    }
+
+    /**
      * Method which loads user data for the bar chart.
      * Displays information about weekly averages of all Periods.
      *
@@ -151,14 +294,14 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     private int loadUserDataBarChart(){
         // Creates a series for the chart
-        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<>();
 
         // Adds each Period's weekly average as data to the bar chart
         int periodCounter = 0;
         for(Period period : userPeriods){
             periodCounter++;
-            barChartSeries.getData().add(new XYChart.Data<String, Number>("Y"+period.getAssociatedYear()
-                    +" P"+periodCounter, period.getWeeklyAverage()));
+            barChartSeries.getData().add(new XYChart.Data<>("Y" + period.getAssociatedYear()
+                    + " P" + periodCounter, period.getWeeklyAverage()));
         }
 
         // Adds the data to the chart
@@ -189,14 +332,14 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     private void loadUserDataLineChart(){
         // Creates a series for this period
-        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<>();
 
         // Goes through user's periods one by one adding week data to corresponding series
         int periodCounter = 0;
         for(Period period : userPeriods){
             periodCounter ++;
-            lineChartSeries.getData().add(new XYChart.Data<String, Number>("Y"+period.getAssociatedYear()
-                    +" P"+periodCounter, period.getDailyAverage()));
+            lineChartSeries.getData().add(new XYChart.Data<>("Y" + period.getAssociatedYear()
+                    + " P" + periodCounter, period.getDailyAverage()));
         }
 
         // Adds period data to the chart
@@ -220,7 +363,20 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void goLeftClicked(){
-        // TODO goLeft clicked
+        // Updates the navigation pane pointers
+        navigationPane1Pointer--;
+        navigationPane2Pointer--;
+        navigationPane3Pointer--;
+        navigationPane4Pointer--;
+
+        // Updates the navigation panes
+        setupNavigationPane1();
+        setupNavigationPane2();
+        setupNavigationPane3();
+        setupNavigationPane4();
+
+        // Updates navigation arrow visibility
+        setupNavigationArrowVisibility();
     }
 
     /**
@@ -229,7 +385,20 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void goRightClicked(){
-        // TODO goRight clicked
+        // Updates the navigation pane pointers
+        navigationPane1Pointer++;
+        navigationPane2Pointer++;
+        navigationPane3Pointer++;
+        navigationPane4Pointer++;
+
+        // Updates the navigation panes
+        setupNavigationPane1();
+        setupNavigationPane2();
+        setupNavigationPane3();
+        setupNavigationPane4();
+
+        // Updates navigation arrow visibility
+        setupNavigationArrowVisibility();
     }
 
     /**
@@ -238,7 +407,16 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void navigationPane1Clicked(){
-        // TODO navigationPane1Clicked
+        // Sets the session variable for selected Period for Period specific view to use
+        Session.setTimePeriodSelected(userPeriods.get(navigationPane1Pointer));
+
+        // Changes the scene to the Period specific scene
+        try {
+            SetupScene.changeScene("TimePeriodView.fxml", navigationPane1);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+        }
     }
 
     /**
@@ -247,7 +425,16 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void navigationPane2Clicked(){
-        // TODO navigationPane2Clicked
+        // Sets the session variable for selected Period for Period specific view to use
+        Session.setTimePeriodSelected(userPeriods.get(navigationPane2Pointer));
+
+        // Changes the scene to the Period specific scene
+        try {
+            SetupScene.changeScene("TimePeriodView.fxml", navigationPane2);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+        }
     }
 
     /**
@@ -256,7 +443,16 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void navigationPane3Clicked(){
-        // TODO navigationPane3Clicked
+        // Sets the session variable for selected Period for Period specific view to use
+        Session.setTimePeriodSelected(userPeriods.get(navigationPane3Pointer));
+
+        // Changes the scene to the Period specific scene
+        try {
+            SetupScene.changeScene("TimePeriodView.fxml", navigationPane3);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+        }
     }
 
     /**
@@ -265,7 +461,16 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void navigationPane4Clicked(){
-        // TODO navigationPane4Clicked
+        // Sets the session variable for selected Period for Period specific view to use
+        Session.setTimePeriodSelected(userPeriods.get(navigationPane4Pointer));
+
+        // Changes the scene to the Period specific scene
+        try {
+            SetupScene.changeScene("TimePeriodView.fxml", navigationPane4);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+        }
     }
 
     /**
