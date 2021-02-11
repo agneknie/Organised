@@ -292,9 +292,9 @@ public class Week {
      *
      * @return average minutes spent working per day this week
      */
-    public double getDailyAverage(){
+    public int getDailyAverage(){
         // 7 days in a week
-        return (double) Math.round((this.getAllWeekHours() * 60 / 7.0) * 1);
+        return (int) Math.round((this.getAllWeekHours() * 60 / 7.0) * 1);
     }
 
     /**

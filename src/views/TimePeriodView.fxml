@@ -158,9 +158,9 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="102.0" prefHeight="27.0" prefWidth="189.0" text="Week N." textFill="#e6bb9a">
+            <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="105.0" prefHeight="27.0" prefWidth="189.0" text="Week N." textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
+                  <Font name="Arial Rounded MT Bold" size="30.0" />
                </font>
             </Label>
             <ImageView fx:id="goLeftButton" layoutX="255.0" layoutY="105.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
@@ -188,23 +188,24 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="66.0" layoutY="181.0" prefHeight="160.0" prefWidth="532.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Line endX="969.0" endY="-8.0" layoutX="180.0" layoutY="189.0" startX="-109.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+            <Pane layoutX="66.0" layoutY="181.0" prefHeight="160.0" prefWidth="532.0">
                <children>
-                  <Label layoutX="43.0" layoutY="24.0" prefHeight="32.0" prefWidth="221.0" text="Time Elapsed:" textFill="WHITE">
+                  <Label layoutX="43.0" layoutY="27.0" prefHeight="32.0" prefWidth="221.0" text="Time Elapsed:" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="timerLabel" layoutX="358.0" layoutY="24.0" prefHeight="37.0" prefWidth="131.0" text="00:00:00" textFill="#e6bb9a">
+                  <Label fx:id="timerLabel" layoutX="383.0" layoutY="25.0" prefHeight="37.0" prefWidth="106.0" text="00:00:00" textFill="#e6bb9a">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
                   <Pane fx:id="timerActionButton" layoutX="43.0" layoutY="77.0" onMouseClicked="#timerActionButtonClicked" onMouseEntered="#timerActionButtonHovered" onMouseExited="#timerActionButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <Label fx:id="timerActionButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Action" textFill="#e6bb9a">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="25.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="timerActionButtonImage" layoutX="14.0" layoutY="11.0">
@@ -218,7 +219,7 @@
                      <children>
                         <Label fx:id="timerResetButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Reset" textFill="#e6bb9a">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="25.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="timerResetButtonImage" layoutX="14.0" layoutY="11.0">
@@ -230,31 +231,32 @@
                   </Pane>
                </children>
             </Pane>
-            <Label layoutX="71.0" layoutY="349.0" prefHeight="101.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Minutes left unused for Period:" textFill="#e6bb9a">
+            <Line endX="391.0" endY="-10.0" layoutX="180.0" layoutY="359.0" startX="-109.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+            <Label layoutX="71.0" layoutY="362.0" prefHeight="68.0" prefWidth="275.0" style="-fx-wrap-text: true;" text="Minutes left unused for Period:" textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="minutesLeftForPeriodField" alignment="CENTER" layoutX="350.0" layoutY="349.0" prefHeight="101.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="59 min" textFill="WHITE">
+            <Label fx:id="minutesLeftForPeriodField" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="374.0" prefHeight="45.0" prefWidth="145.0" style="-fx-wrap-text: true;" text="59 min" textFill="WHITE">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="22.0" />
                </font>
             </Label>
             <Label layoutX="71.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Daily Average:" textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="dailyAverageField" alignment="CENTER" layoutX="354.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
+            <Label fx:id="dailyAverageField" alignment="CENTER_RIGHT" layoutX="384.0" layoutY="460.0" prefHeight="36.0" prefWidth="173.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Pane layoutX="617.0" layoutY="181.0" prefHeight="269.0" prefWidth="532.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane layoutX="617.0" layoutY="181.0" prefHeight="269.0" prefWidth="532.0">
                <children>
                   <Label layoutX="37.0" layoutY="29.0" prefHeight="37.0" prefWidth="244.0" text="Minutes:" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
                   <TextField fx:id="minutesField" layoutX="318.0" layoutY="25.0" prefHeight="45.0" prefWidth="173.0" promptText="e.g. 10" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
@@ -264,7 +266,7 @@
                   </TextField>
                   <Label layoutX="37.0" layoutY="87.0" prefHeight="37.0" prefWidth="228.0" text="Day:" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
                   <ComboBox fx:id="daysComboBox" layoutX="318.0" layoutY="83.0" prefHeight="45.0" prefWidth="173.0" promptText="Select Day:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
@@ -272,7 +274,7 @@
                      <children>
                         <Label fx:id="addMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Add" textFill="#e6bb9a">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="25.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="addMinutesButtonImage" layoutX="14.0" layoutY="11.0">
@@ -286,7 +288,7 @@
                      <children>
                         <Label fx:id="deleteMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Remove" textFill="#e6bb9a">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="25.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="deleteMinutesButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="13.0">
@@ -296,21 +298,21 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label fx:id="errorMessage" alignment="TOP_LEFT" layoutX="37.0" layoutY="213.0" prefHeight="42.0" prefWidth="455.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                  <Label fx:id="errorMessage" alignment="CENTER" layoutX="37.0" layoutY="213.0" prefHeight="45.0" prefWidth="455.0" style="-fx-wrap-text: true;" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
             <Label layoutX="617.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Week Overall:" textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="weekOverallField" alignment="CENTER" layoutX="905.0" layoutY="460.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="35h" textFill="WHITE">
+            <Label fx:id="weekOverallField" alignment="TOP_RIGHT" layoutX="905.0" layoutY="460.0" prefHeight="36.0" prefWidth="228.0" style="-fx-wrap-text: true;" text="35h" textFill="WHITE">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
             <LineChart fx:id="lineChart" layoutX="41.0" layoutY="496.0" prefHeight="396.0" prefWidth="532.0" stylesheets="@../stylesheets/chartStyling.css">

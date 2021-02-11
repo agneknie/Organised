@@ -82,6 +82,15 @@ public class Day {
     }
 
     /**
+     * Returns the short name of the day as a String.
+     * e.g. Mon, Fri, etc.
+     * @return name of the day
+     */
+    public String getShortName(){
+        return this.getDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    }
+
+    /**
      * Constructor for creating a new Day instance.
      * Used for when user is adding a new Period with Weeks and Days.
      *

@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import controllers.utilities.SetupScene;
 import core.Day;
 import core.Period;
 import core.Session;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.util.ResourceBundle;
@@ -115,12 +118,15 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     private BarChart<String, Number> barChart;
 
     // Variables to store user data
-    private final Period userSelectedPeriod = Session.getTimePeriodSelected();
+    private Period userSelectedPeriod;
     private Week userSelectedWeek;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO Initialize
+
+        // Gets the period selected by the user
+        userSelectedPeriod = Session.getTimePeriodSelected();
 
         // Finds out which week should be selected by the user
         userSelectedWeek = Week.getCurrentWeek(userSelectedPeriod.getAllWeeks());
@@ -144,11 +150,32 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
             }
         });
 
+        // Setups the fields with user information
+        setupUserInformation();
+
+        // Sets the name of the action button in timer panel
+        timerActionButtonLabel.setText("Start");
+
         // Setups line chart
         setupLineChart();
 
         // Setups bar chart
         setupBarChart();
+    }
+
+    /**
+     * Method which setups the scene fields with user information.
+     */
+    private void setupUserInformation(){
+        // Setups top fields
+        periodNameLabel.setText(userSelectedPeriod.getName());
+        weekNameLabel.setText(userSelectedWeek.toString());
+
+        // Setups bottom fields
+        minutesLeftForPeriodField.setText(userSelectedPeriod.getMinutesLeft()+" min");
+        dailyAverageField.setText(userSelectedWeek.getDailyAverage()/60+"h  "
+                +userSelectedWeek.getDailyAverage()%60+"min");
+        weekOverallField.setText(userSelectedWeek.getAllWeekHours()+"h");
     }
 
     /**
@@ -162,24 +189,39 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         barChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
         barChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
-        // Populates the bar chart with user data
-        // Creates a series for the chart
-        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
-
-        // TODO Adds user data to the series
-
-        // Adds the data to the chart
-        barChart.getData().add(barChartSeries);
+        // Adds user data to the series
+        int elementNumber = loadUserDataBarChart();
 
         // Adjusts bar size based on the number of user data
         final int DEFAULT_CATEGORY_GAP = 100;
         final int GAP_ADJUSTING_INCREMENT = 20;
         final int NEED_TO_ADJUST_SIZE = 8;
         final int STARTING_BARS = 3;
-        if(barChartSeries.getData().size() < NEED_TO_ADJUST_SIZE){
-            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(barChartSeries.getData().size()
-                    -STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+        if(elementNumber < NEED_TO_ADJUST_SIZE){
+            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(elementNumber-STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
         }
+    }
+
+    /**
+     * Method which loads user's week data of the given Period into the
+     * bar chart.
+     *
+     * @return number of elements(bars) in the chart.
+     */
+    private int loadUserDataBarChart(){
+        // Creates a series for the chart
+        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<>();
+
+        // Adds each Week's of the Period data to the series
+        for(Week week : userSelectedPeriod.getAllWeeks()){
+            barChartSeries.getData().add(new XYChart.Data<>(week.toString(), week.getAllWeekHours()));
+        }
+
+        // Adds the data to the chart
+        barChart.getData().add(barChartSeries);
+
+        // Returns the number of elements(bars) in the chart
+        return barChartSeries.getData().size();
     }
 
     /**
@@ -193,7 +235,24 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
         lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
-        // TODO Populates line chart with user data
+        // Populates line chart with user data
+        loadUserDataLineChart();
+    }
+
+    /**
+     * Method which loads user data about days of a given week into the line chart.
+     */
+    private void loadUserDataLineChart(){
+        // Creates a series for the chart
+        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<>();
+
+        // Adds each Day's of the selected Week average as data to the bar chart
+        for(Day day : userSelectedWeek.getAllDays()){
+            lineChartSeries.getData().add(new XYChart.Data<>(day.getShortName(), day.getHoursSpent()));
+        }
+
+        // Adds the data to the chart
+        lineChart.getData().add(lineChartSeries);
     }
 
     /**
@@ -250,7 +309,13 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void goBackClicked() {
-        //TODO goBack clicked
+        // Changes the scene to the the general Time scene scene
+        try {
+            SetupScene.changeScene("TimeView.fxml", goBackButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Period specific Time to general Time view.");
+        }
     }
 
     /**
