@@ -27,7 +27,7 @@ public class Day {
     private final LocalDate date;
     private int hoursSpent;
 
-    private static final int MAX_WORK_HOURS = 12;
+    public static final int MAX_WORK_HOURS = 12;
 
     /**
      * Getter for id.

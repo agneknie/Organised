@@ -7,7 +7,6 @@ import core.Day;
 import core.Period;
 import core.Session;
 import core.Week;
-import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -25,7 +24,6 @@ import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.util.ResourceBundle;
 
 /**
@@ -217,6 +215,13 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
             barChartSeries.getData().add(new XYChart.Data<>(week.toString(), week.getAllWeekHours()));
         }
 
+        // Setups Y axis bounds and tick mark density
+        final int WORK_DAYS = 5;
+        barChart.getYAxis().setAutoRanging(false);
+        ((NumberAxis) barChart.getYAxis()).setTickUnit(5.0);
+        ((NumberAxis) barChart.getYAxis()).setLowerBound(0);
+        ((NumberAxis) barChart.getYAxis()).setUpperBound(Day.MAX_WORK_HOURS*WORK_DAYS);
+
         // Adds the data to the chart
         barChart.getData().add(barChartSeries);
 
@@ -235,8 +240,17 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
         lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
+        // Setups Y axis bounds and tick mark density
+        lineChart.getYAxis().setAutoRanging(false);
+        ((NumberAxis) lineChart.getYAxis()).setTickUnit(1.0);
+        ((NumberAxis) lineChart.getYAxis()).setLowerBound(0);
+        ((NumberAxis) lineChart.getYAxis()).setUpperBound(Day.MAX_WORK_HOURS);
+
         // Populates line chart with user data
         loadUserDataLineChart();
+
+        // Adds the baseline to the line chart
+        addBaselineToLineChart();
     }
 
     /**
@@ -249,6 +263,20 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Adds each Day's of the selected Week average as data to the bar chart
         for(Day day : userSelectedWeek.getAllDays()){
             lineChartSeries.getData().add(new XYChart.Data<>(day.getShortName(), day.getHoursSpent()));
+        }
+
+        // Adds the data to the chart
+        lineChart.getData().add(lineChartSeries);
+    }
+
+    private void addBaselineToLineChart(){
+        // Creates a series for the chart
+        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<>();
+
+        // Adds each point of the baseline
+        double baseline = userSelectedWeek.getDailyAverage()/60.0;
+        for(Day day : userSelectedWeek.getAllDays()){
+            lineChartSeries.getData().add(new XYChart.Data<>(day.getShortName(), baseline));
         }
 
         // Adds the data to the chart

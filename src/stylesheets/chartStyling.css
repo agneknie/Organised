@@ -1,6 +1,7 @@
 .chart {
     -fx-background-color: none;
     -fx-font-size: 22px;
+    -fx-vertical-grid-lines-visible: false;
 }
 
 .chart-plot-background {
@@ -9,12 +10,14 @@
 
 .axis{
     -fx-minor-tick-visible: false;
-    -fx-tick-label-fill: white;
+    -fx-tick-label-fill: #FFFFFF;
     -fx-color: white;
 }
 
 .chart-horizontal-grid-lines {
-    -fx-stroke-width: 0.4;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 0.3;
+    -fx-stroke-dash-array: 0.1;
 }
 
 .chart-bar {
@@ -26,5 +29,13 @@
 }
 
 .chart-line-symbol{
-    -fx-background-color: white;
+    -fx-background-color: #E6BB9A;
+}
+
+.default-color1.chart-series-line {
+    -fx-stroke: #FFFFFF;
+}
+
+.default-color1.chart-line-symbol{
+    -fx-background-color: #FFFFFF;
 }
