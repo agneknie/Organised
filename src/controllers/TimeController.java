@@ -244,6 +244,12 @@ public class TimeController extends DefaultNavigation implements Initializable {
      * Method which setups the bar chart of the scene.
      */
     private void setupBarChart(){
+        // Disables chart animation
+        barChart.setAnimated(false);
+
+        // Cleans the chart of previous data
+        barChart.getData().clear();
+
         // Disables the legend
         barChart.setLegendVisible(false);
 
@@ -315,6 +321,12 @@ public class TimeController extends DefaultNavigation implements Initializable {
      * Method which setups the line chart of the scene
      */
     private void setupLineChart(){
+        // Disables chart animation
+        lineChart.setAnimated(false);
+
+        // Cleans the chart of previous data
+        lineChart.getData().clear();
+
         // Disables the legend
         lineChart.setLegendVisible(false);
 
@@ -485,6 +497,24 @@ public class TimeController extends DefaultNavigation implements Initializable {
         if (key.equals(KeyCode.LEFT)) goLeftClicked();
         // If right arrow is clicked
         if (key.equals(KeyCode.RIGHT)) goRightClicked();
+    }
+
+    /**
+     * Method which refreshes the view/scene if a Period was added.
+     */
+    @FXML
+    private void refreshView(){
+        // Gets all user periods, because one was added
+        userPeriods = Session.getSession().getAllPeriods();
+
+        // Refreshes navigation panes
+        setupNavigation();
+
+        // Refreshes the bar chart
+        setupBarChart();
+
+        // Refreshes line chart
+        setupLineChart();
     }
 
     // Methods concerning the styling of elements

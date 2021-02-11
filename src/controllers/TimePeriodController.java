@@ -18,12 +18,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import stages.AlertStage;
+import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -121,8 +127,6 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO Initialize
-
         // Gets the period selected by the user
         userSelectedPeriod = Session.getTimePeriodSelected();
 
@@ -151,6 +155,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Setups the fields with user information
         setupUserInformation();
 
+        // Configures navigation arrow visibility
+        configureNavigationArrows();
+
         // Sets the name of the action button in timer panel
         timerActionButtonLabel.setText("Start");
 
@@ -159,6 +166,16 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // Setups bar chart
         setupBarChart();
+    }
+
+    /**
+     * Refreshes the screen if user deleted a Period
+     */
+    @FXML
+    private void refreshView(){
+        // If a Period was just deleted, forwards to general Time View
+        if(Session.getTimePeriodSelected() == null)
+            goBackClicked();
     }
 
     /**
@@ -180,8 +197,14 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      * Method which setups the bar chart of the scene.
      */
     private void setupBarChart(){
+        // Disables chart animation
+        barChart.setAnimated(false);
+
         // Disables the legend
         barChart.setLegendVisible(false);
+
+        // Cleans previous data in case needed
+        barChart.getData().clear();
 
         // Sets the font & size of the chart text
         barChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
@@ -233,6 +256,12 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      * Method which setups the line chart of the scene
      */
     private void setupLineChart(){
+        // Disables chart animation
+        lineChart.setAnimated(false);
+
+        // Cleans chart data, in case there was something displayed
+        lineChart.getData().clear();
+
         // Disables the legend
         lineChart.setLegendVisible(false);
 
@@ -284,12 +313,46 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     }
 
     /**
+     * Method which configures the visibility of navigation arrows,
+     * which are used for navigation between weeks.
+     */
+    private void configureNavigationArrows(){
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = userSelectedPeriod.getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Makes both arrows visible, in case previously disabled
+        goLeftButton.setVisible(true);
+        goRightButton.setVisible(true);
+
+        // Disables the arrows, based on current week selection
+        if(indexOfSelectedWeek == 0) goLeftButton.setVisible(false);
+        if(indexOfSelectedWeek == userWeeks.size()-1) goRightButton.setVisible(false);
+    }
+
+    /**
+     * Listener for keyboard events.
+     * If right/left arrow is pressed, changes the pane information (triggers
+     * the navigation arrows actions)
+     * @param event used for identifying the key
+     */
+    public void keyPressed(KeyEvent event){
+        KeyCode key = event.getCode();
+        // If left arrow is clicked
+        if (key.equals(KeyCode.LEFT)) goLeftClicked();
+        // If right arrow is clicked
+        if (key.equals(KeyCode.RIGHT)) goRightClicked();
+    }
+
+    /**
      * Method which is responsible for the behaviour
      * when "Delete Period" button is clicked.
      */
     @FXML
-    private void actionButtonClicked() {
-        //TODO deletePeriod button clicked
+    private void actionButtonClicked() throws IOException {
+        // Opens alert popup to confirm deletion
+        Stage alert = new Stage();
+        new AlertStage(alert, "TimeDeletePeriodAlertView.fxml");
     }
 
     /**
@@ -352,7 +415,24 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void goLeftClicked() {
-        // TODO goLeft clicked
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = userSelectedPeriod.getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
+
+        // Setups the fields with user information
+        setupUserInformation();
+
+        // Configures navigation arrow visibility
+        configureNavigationArrows();
+
+        // Setups line chart
+        setupLineChart();
+
+        // Setups bar chart
+        setupBarChart();
     }
 
     /**
@@ -361,7 +441,24 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void goRightClicked() {
-        // TODO goRight clicked
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = userSelectedPeriod.getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
+
+        // Setups the fields with user information
+        setupUserInformation();
+
+        // Configures navigation arrow visibility
+        configureNavigationArrows();
+
+        // Setups line chart
+        setupLineChart();
+
+        // Setups bar chart
+        setupBarChart();
     }
 
     // Methods which deal with styling of UI elements
