@@ -858,46 +858,63 @@ public class User {
      * Method which returns how many hours on average the user
      * spends working per day.
      *
-     * @return hours spent on average per day
+     * Only takes in days, whose weekly hours spent are not
+     * equal to 0.
+     *
+     * @return hours spent on average per day in the format of X h Y min
      */
-    public double getOverallHoursSpentDay(){
-        double days = 0;
-        double hours = 0;
+    public String getOverallHoursSpentDay(){
+        int days = 0;
+        int hours = 0;
 
         // Goes through all user periods
         for(Period period : this.getAllPeriods()){
             // Goes through all user weeks
             for(Week week : period.getAllWeeks()){
-                days += 7;      // There are 7 days in a week
-                hours += week.getAllWeekHours();
+                if(week.getAllWeekHours()>0){
+                    days += 7;      // There are 7 days in a week
+                    hours += week.getAllWeekHours();
+                }
             }
         }
         // Calculates the result
-        if (days == 0) return 0;
-        else return hours/days;
+        if (days == 0) return "0h 0min";
+        else {
+            String h = hours/days + "h ";
+            String min = hours%days*60/days+ "min ";
+            return h+min;
+        }
     }
 
     /**
      * Method which returns how many hours on average the user
      * spends working per week.
      *
-     * @return hours spent on average per week
+     * Only takes weeks, which have at least one work hour in them.
+     *
+     * @return hours spent on average per week in the format of Xh
      */
-    public double getOverallHoursSpentWeek(){
-        double weeks = 0;
-        double hours = 0;
+    public String getOverallHoursSpentWeek(){
+        int weeks = 0;
+        int hours = 0;
 
         // Goes through all user periods
         for(Period period : this.getAllPeriods()){
             // Goes through all user weeks
             for(Week week : period.getAllWeeks()){
-                weeks++;
-                hours += week.getAllWeekHours();
+                if(week.getAllWeekHours()>0){
+                    weeks++;
+                    hours += week.getAllWeekHours();
+                }
             }
         }
         // Calculates the result
-        if (weeks == 0) return 0;
-        else return hours/weeks;
+        if (weeks == 0) return "0h 0min";
+        else {
+            String h = hours/weeks + "h ";
+            String min = hours%weeks*60/weeks+ "min ";
+            return h+min;
+        }
     }
 
     @Override

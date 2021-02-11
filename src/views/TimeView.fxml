@@ -133,7 +133,7 @@
                </children>
             </Pane>
          </children></Pane>
-      <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
+      <Pane layoutX="211.0" onKeyPressed="#keyPressed" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
          <children>
             <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true" preserveRatio="true">
                <image>

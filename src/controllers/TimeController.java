@@ -2,6 +2,10 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Day;
+import core.Period;
+import core.Session;
+import core.Week;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -9,12 +13,18 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import stages.PopupStage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -50,6 +60,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private ImageView goRightButton;
 
     // Navigation pane 1
+    private int navigationPane1Pointer = -1;
     @FXML
     private Pane navigationPane1;
     @FXML
@@ -58,6 +69,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private Label navigationPane1Period;
 
     // Navigation pane 2
+    private int navigationPane2Pointer = -1;
     @FXML
     private Pane navigationPane2;
     @FXML
@@ -66,6 +78,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private Label navigationPane2Period;
 
     // Navigation pane 3
+    private int navigationPane3Pointer = -1;
     @FXML
     private Pane navigationPane3;
     @FXML
@@ -74,6 +87,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private Label navigationPane3Period;
 
     // Navigation pane 4
+    private int navigationPane4Pointer = -1;
     @FXML
     private Pane navigationPane4;
     @FXML
@@ -81,14 +95,22 @@ public class TimeController extends DefaultNavigation implements Initializable {
     @FXML
     private Label navigationPane4Period;
 
+    // Bar chart for Week data
     @FXML
     private BarChart<String, Number> barChart;
+    // Line chart for Day data
     @FXML
     private LineChart<String, Number> lineChart;
 
+    // Variables for storing user data
+    private List<Period> userPeriods = Session.getSession().getAllPeriods();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Sets up top information panel
+        // Sets up top information panel
+        dailyAverage.setText(Session.getSession().getOverallHoursSpentDay());
+        weeklyAverage.setText(Session.getSession().getOverallHoursSpentWeek());
+
         // TODO Sets up navigation panels
 
         // Sets up the bar chart
@@ -110,23 +132,40 @@ public class TimeController extends DefaultNavigation implements Initializable {
         barChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
         // Populates the bar chart with user data
-        // Creates a series for the chart
-        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
-
-        // TODO Adds user data to the series
-
-        // Adds the data to the chart
-        barChart.getData().add(barChartSeries);
+        int dataCount = loadUserDataBarChart();
 
         // Adjusts bar size based on the number of user data
         final int DEFAULT_CATEGORY_GAP = 100;
         final int GAP_ADJUSTING_INCREMENT = 20;
         final int NEED_TO_ADJUST_SIZE = 8;
         final int STARTING_BARS = 3;
-        if(barChartSeries.getData().size() < NEED_TO_ADJUST_SIZE){
-            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(barChartSeries.getData().size()
-                    -STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+        if(dataCount < NEED_TO_ADJUST_SIZE)
+            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(dataCount-STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+    }
+
+    /**
+     * Method which loads user data for the bar chart.
+     * Displays information about weekly averages of all Periods.
+     *
+     * @return the number of elements (bars) in the chart
+     */
+    private int loadUserDataBarChart(){
+        // Creates a series for the chart
+        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
+
+        // Adds each Period's weekly average as data to the bar chart
+        int periodCounter = 0;
+        for(Period period : userPeriods){
+            periodCounter++;
+            barChartSeries.getData().add(new XYChart.Data<String, Number>("Y"+period.getAssociatedYear()
+                    +" P"+periodCounter, period.getWeeklyAverage()));
         }
+
+        // Adds the data to the chart
+        barChart.getData().add(barChartSeries);
+
+        // Returns the number of elements(bars) in the chart
+        return barChartSeries.getData().size();
     }
 
     /**
@@ -140,7 +179,28 @@ public class TimeController extends DefaultNavigation implements Initializable {
         lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
         lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
-        // TODO Populates line chart with user data
+        // Populates line chart with user data
+        loadUserDataLineChart();
+    }
+
+    /**
+     * Method which loads user data for the line chart.
+     * Displays information about daily average of all user Periods.
+     */
+    private void loadUserDataLineChart(){
+        // Creates a series for this period
+        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<String, Number>();
+
+        // Goes through user's periods one by one adding week data to corresponding series
+        int periodCounter = 0;
+        for(Period period : userPeriods){
+            periodCounter ++;
+            lineChartSeries.getData().add(new XYChart.Data<String, Number>("Y"+period.getAssociatedYear()
+                    +" P"+periodCounter, period.getDailyAverage()));
+        }
+
+        // Adds period data to the chart
+        lineChart.getData().add(lineChartSeries);
     }
 
     /**
@@ -148,8 +208,10 @@ public class TimeController extends DefaultNavigation implements Initializable {
      * (period addition button) is pressed.
      */
     @FXML
-    private void actionButtonClicked(){
-        // TODO add Period actionButton clicked
+    private void actionButtonClicked() throws IOException {
+        // Creates Period addition popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TimePopupViewPeriod.fxml");
     }
 
     /**
@@ -204,6 +266,20 @@ public class TimeController extends DefaultNavigation implements Initializable {
     @FXML
     private void navigationPane4Clicked(){
         // TODO navigationPane4Clicked
+    }
+
+    /**
+     * Listener for keyboard events.
+     * If right/left arrow is pressed, changes the pane information (triggers
+     * the navigation arrows actions)
+     * @param event used for identifying the key
+     */
+    public void keyPressed(KeyEvent event){
+        KeyCode key = event.getCode();
+        // If left arrow is clicked
+        if (key.equals(KeyCode.LEFT)) goLeftClicked();
+        // If right arrow is clicked
+        if (key.equals(KeyCode.RIGHT)) goRightClicked();
     }
 
     // Methods concerning the styling of elements

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -141,6 +143,57 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
                 }
             }
         });
+
+        // Setups line chart
+        setupLineChart();
+
+        // Setups bar chart
+        setupBarChart();
+    }
+
+    /**
+     * Method which setups the bar chart of the scene.
+     */
+    private void setupBarChart(){
+        // Disables the legend
+        barChart.setLegendVisible(false);
+
+        // Sets the font & size of the chart text
+        barChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+        barChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+
+        // Populates the bar chart with user data
+        // Creates a series for the chart
+        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<String, Number>();
+
+        // TODO Adds user data to the series
+
+        // Adds the data to the chart
+        barChart.getData().add(barChartSeries);
+
+        // Adjusts bar size based on the number of user data
+        final int DEFAULT_CATEGORY_GAP = 100;
+        final int GAP_ADJUSTING_INCREMENT = 20;
+        final int NEED_TO_ADJUST_SIZE = 8;
+        final int STARTING_BARS = 3;
+        if(barChartSeries.getData().size() < NEED_TO_ADJUST_SIZE){
+            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(barChartSeries.getData().size()
+                    -STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+        }
+    }
+
+    /**
+     * Method which setups the line chart of the scene
+     */
+    private void setupLineChart(){
+        // Disables the legend
+        lineChart.setLegendVisible(false);
+
+        // Sets the font & size of the chart text
+        lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+        lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+
+        // TODO Populates line chart with user data
     }
 
     /**

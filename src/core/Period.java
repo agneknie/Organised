@@ -195,9 +195,33 @@ public class Period {
             }
         }
 
-        // If no week that have hours exist (period is new) returns 0
+        // If no week that has hours exists (period is new) returns 0
         if(numberOfWeeks == 0) return 0;
-        else return hoursWorking / numberOfWeeks;
+        else return hoursWorking/numberOfWeeks;
+    }
+
+    /**
+     * Method which gets the average number of hours spent working
+     * per day during this period.
+     *
+     * @return average hours working per day during period
+     */
+    public double getDailyAverage(){
+        double numberOfDays = 0;
+        double hoursWorking = 0;
+
+        // Goes through all days
+        for(Week week : this.getAllWeeks()){
+            // If week is started/has some hours of work its days are included
+            if(week.getAllWeekHours() != 0){
+                numberOfDays += 7;  // 7 days in a week
+                hoursWorking += week.getAllWeekHours();
+            }
+        }
+
+        // If no week that has hours exists (period is new) returns 0
+        if(numberOfDays == 0) return 0;
+        else return hoursWorking/numberOfDays;
     }
 
     /**
