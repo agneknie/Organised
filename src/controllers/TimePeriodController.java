@@ -25,7 +25,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import stages.AlertStage;
-import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -361,7 +360,50 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void addMinutesButtonClicked() {
-        //TODO addMinutes button clicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+        // Resets error message field
+        errorMessage.setText("");
+
+        // Variables for minute addition
+        int minutes = -1;
+        Day day = daysComboBox.getValue();
+        boolean valid = true;
+
+        // Checks whether inputs are numbers where needed & not null
+        try {
+            minutes = Integer.parseInt(minutesField.getText());
+        } catch (Exception e){
+            ControlScene.highlightWrongField(minutesField);
+            valid = false;
+        }
+        if(day == null){
+            ControlScene.highlightWrongField(daysComboBox);
+            valid = false;
+        }
+
+        // Displays error message if inputs incorrect
+        if(!valid) errorMessage.setText("Wrong input.");
+
+        // If minutes cannot be added to a selected day, displays error message
+        if(valid && !day.canAdd(minutes)) errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS);
+
+        // If everything is good, adds the time to the day
+        if(valid && day.canAdd(minutes)){
+            // Adds the time
+            userSelectedPeriod.addMinutes(day, minutes);
+            errorMessage.setText("Time addition successful!");
+
+            // Refreshes the screen
+            // Updates the fields with user information
+            setupUserInformation();
+
+            // Updates line chart
+            setupLineChart();
+
+            // Updates bar chart
+            setupBarChart();
+        }
     }
 
     /**
@@ -370,7 +412,57 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void deleteMinutesButtonClicked() {
-        //TODO deleteMinutes button clicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+        // Resets error message field
+        errorMessage.setText("");
+
+        // Variables for minute deletion
+        int minutes = -1;
+        Day day = daysComboBox.getValue();
+        boolean valid = true;
+
+        // Checks whether inputs are numbers where needed & not null
+        try {
+            minutes = Integer.parseInt(minutesField.getText());
+        } catch (Exception e){
+            ControlScene.highlightWrongField(minutesField);
+            valid = false;
+        }
+        if(day == null){
+            ControlScene.highlightWrongField(daysComboBox);
+            valid = false;
+        }
+
+        // Displays error message if inputs incorrect
+        if(!valid) errorMessage.setText("Wrong input.");
+
+        // Minutes have to be hours, to be deleted from a day
+        if(valid && minutes%60 != 0){
+            valid = false;
+            errorMessage.setText("Minutes have to translate exactly to hours to be removed.");
+        }
+
+        // If minutes cannot be deleted from a selected day, displays error message
+        if(valid && !day.canRemove(minutes)) errorMessage.setText("Hours for the day would be below 0.");
+
+        // If everything is good, deletes the time from the day
+        if(valid && day.canRemove(minutes)){
+            // Deletes the time
+            day.removeHours(minutes/60);
+            day.updateDay();
+            errorMessage.setText("Time deletion successful!");
+
+            // Refreshes the screen
+            // Updates the fields with user information
+            setupUserInformation();
+
+            // Updates line chart
+            setupLineChart();
+
+            // Updates bar chart
+            setupBarChart();
+        }
     }
 
     /**
@@ -462,6 +554,15 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     }
 
     // Methods which deal with styling of UI elements
+    /**
+     * Normalises all text field borders in case they were highlighted
+     * as wrong previously.
+     */
+    private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(minutesField);
+        ControlScene.normaliseWrongField(daysComboBox);
+    }
+
     /**
      * Reverts the styling back to normal if actionButton (delete period button)
      * is no longer hovered.

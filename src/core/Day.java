@@ -125,19 +125,6 @@ public class Day {
     }
 
     /**
-     * Adds an hour to the hoursSpent variable of the day.
-     *
-     * Increments user's hours spent variable by one, indicating that
-     * one more hour has been spent working during this day.
-     */
-    public void addHour(){
-        if ((hoursSpent++)>MAX_WORK_HOURS)
-            throw new IllegalArgumentException("Hours are more than maximum work hours" +
-                    "allowed: " + MAX_WORK_HOURS);
-        else hoursSpent++;
-    }
-
-    /**
      * Adds a specified amount of hours to the hoursSpent variable of the day.
      *
      * Increments user's hours spent variable by the specified amount,
@@ -160,8 +147,7 @@ public class Day {
      * @return true if minutes can be added, false otherwise
      */
     public boolean canAdd(int minutes){
-        if((minutes/60+hoursSpent)>MAX_WORK_HOURS) return false;
-        else return true;
+        return (minutes / 60 + hoursSpent) <= MAX_WORK_HOURS;
     }
 
     /**
@@ -172,8 +158,7 @@ public class Day {
      * @return true if minutes can be removed, false otherwise
      */
     public boolean canRemove(int minutes){
-        if((hoursSpent-minutes/60)<0) return false;
-        else return true;
+        return (hoursSpent * 60 - minutes) >= 0;
     }
 
     /**
