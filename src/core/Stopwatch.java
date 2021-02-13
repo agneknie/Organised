@@ -24,6 +24,8 @@ public class Stopwatch {
 
         // If stopwatch is started for the first time, assigns start time
         if(isReset()) startTime = System.nanoTime();
+        // If stopwatch isn't started for the first time, notes the break
+        else startTime = startTime+(System.nanoTime()-endTime);
 
         // Starts the stopwatch
         running = true;

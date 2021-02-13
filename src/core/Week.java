@@ -268,11 +268,6 @@ public class Week {
                 }
             }
         }
-        // Moves Sunday and Saturday to the end of the list
-        days.add(days.get(0));      // Adds Saturday to the end of list
-        days.add(days.get(1));      // Adds Sunday to the end of list
-        days.remove(0);       // Removes Saturday in the front of the list
-        days.remove(0);       // Removes Sunday in the front of the list
 
         // Returns a list of Day objects
         return days;

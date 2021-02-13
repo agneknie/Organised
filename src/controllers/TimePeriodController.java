@@ -3,10 +3,10 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
-import core.Day;
-import core.Period;
-import core.Session;
-import core.Week;
+import core.*;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -24,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import stages.AlertStage;
 
 import java.io.IOException;
@@ -123,6 +124,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     // Variables to store user data
     private Period userSelectedPeriod;
     private Week userSelectedWeek;
+    private Stopwatch stopwatch = new Stopwatch();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -133,6 +135,29 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         userSelectedWeek = Week.getCurrentWeek(userSelectedPeriod.getAllWeeks());
 
         // Setups the combo box for days in the minutes addition panel
+        setupDayComboBox();
+
+        // Setups the fields with user information
+        setupUserInformation();
+
+        // Configures navigation arrow visibility
+        configureNavigationArrows();
+
+        // Sets the name of the action button in timer panel
+        timerActionButtonLabel.setText("Start");
+
+        // Setups line chart
+        setupLineChart();
+
+        // Setups bar chart
+        setupBarChart();
+    }
+
+    /**
+     * Method which setups the day combo box in minutes panel with
+     * selected week's days.
+     */
+    private void setupDayComboBox(){
         daysComboBox.getItems().setAll(userSelectedWeek.getAllDays());
         // Styles semester combo box text
         daysComboBox.setButtonCell(new ListCell(){
@@ -150,21 +175,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
                 }
             }
         });
-
-        // Setups the fields with user information
-        setupUserInformation();
-
-        // Configures navigation arrow visibility
-        configureNavigationArrows();
-
-        // Sets the name of the action button in timer panel
-        timerActionButtonLabel.setText("Start");
-
-        // Setups line chart
-        setupLineChart();
-
-        // Setups bar chart
-        setupBarChart();
+        daysComboBox.setValue(null);
     }
 
     /**
@@ -386,10 +397,11 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         if(!valid) errorMessage.setText("Wrong input.");
 
         // If minutes cannot be added to a selected day, displays error message
-        if(valid && !day.canAdd(minutes)) errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS);
+        if(valid && !day.canAdd(minutes+userSelectedPeriod.getMinutesLeft()))
+            errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS);
 
         // If everything is good, adds the time to the day
-        if(valid && day.canAdd(minutes)){
+        if(valid && day.canAdd(minutes+userSelectedPeriod.getMinutesLeft())){
             // Adds the time
             userSelectedPeriod.addMinutes(day, minutes);
             errorMessage.setText("Time addition successful!");
@@ -473,7 +485,33 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void timerActionButtonClicked() {
-        //TODO timer start/stop button clicked
+        // Acts based on the current label
+        // Starts the timer
+        if(timerActionButtonLabel.getText().equals("Start")){
+            stopwatch.start();
+            final Timeline timeline = new Timeline(
+                    new KeyFrame(
+                            Duration.millis(500),
+                            event -> {
+                                timerLabel.setText(stopwatch.getElapsedTime());
+                            }
+                    )
+            );
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+
+            // Changes timer button label
+            timerActionButtonLabel.setText("Stop");
+        }
+
+        // Stops the timer
+        else {
+            stopwatch.stop();
+            // Forwards elapsed time to the minutes field
+            minutesField.setText(Integer.toString(stopwatch.getMinutes()));
+            // Changes timer button label
+            timerActionButtonLabel.setText("Start");
+        }
     }
 
     /**
@@ -482,7 +520,12 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void timerResetButtonClicked() {
-        //TODO timer reset button clicked
+        // Resets the timer
+        stopwatch.reset();
+
+        // Removes the time from relevant fields
+        timerLabel.setText("reset");
+        minutesField.setText("");
     }
 
     // Methods responsible for navigation
@@ -514,6 +557,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Updates the displayed week
         userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
 
+        // Updates day combo box in minutes panel
+        setupDayComboBox();
+
         // Setups the fields with user information
         setupUserInformation();
 
@@ -539,6 +585,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // Updates the displayed week
         userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
+
+        // Updates day combo box in minutes panel
+        setupDayComboBox();
 
         // Setups the fields with user information
         setupUserInformation();
