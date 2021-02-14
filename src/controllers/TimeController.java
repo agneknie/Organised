@@ -3,8 +3,10 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Day;
 import core.Period;
 import core.Session;
+import core.Week;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -97,9 +99,6 @@ public class TimeController extends DefaultNavigation implements Initializable {
     // Bar chart for Week data
     @FXML
     private BarChart<String, Number> barChart;
-    // Line chart for Day data
-    @FXML
-    private LineChart<String, Number> lineChart;
 
     // Variables for storing user data
     private List<Period> userPeriods;
@@ -121,9 +120,6 @@ public class TimeController extends DefaultNavigation implements Initializable {
 
         // Sets up the bar chart
         setupBarChart();
-
-        // Sets up line chart
-        setupLineChart();
     }
 
     /**
@@ -250,23 +246,12 @@ public class TimeController extends DefaultNavigation implements Initializable {
         // Cleans the chart of previous data
         barChart.getData().clear();
 
-        // Disables the legend
-        barChart.setLegendVisible(false);
-
         // Sets the font & size of the chart text
         barChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
         barChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
 
         // Populates the bar chart with user data
-        int dataCount = loadUserDataBarChart();
-
-        // Adjusts bar size based on the number of user data
-        final int DEFAULT_CATEGORY_GAP = 100;
-        final int GAP_ADJUSTING_INCREMENT = 20;
-        final int NEED_TO_ADJUST_SIZE = 8;
-        final int STARTING_BARS = 3;
-        if(dataCount < NEED_TO_ADJUST_SIZE)
-            barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(dataCount-STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
+        loadUserDataBarChart();
     }
 
     /**
@@ -295,67 +280,19 @@ public class TimeController extends DefaultNavigation implements Initializable {
     /**
      * Method which loads user data for the bar chart.
      * Displays information about weekly averages of all Periods.
-     *
-     * @return the number of elements (bars) in the chart
      */
-    private int loadUserDataBarChart(){
-        // Creates a series for the chart
-        XYChart.Series<String, Number> barChartSeries = new XYChart.Series<>();
-
-        // Adds each Period's weekly average as data to the bar chart
-        int periodCounter = 0;
+    private void loadUserDataBarChart(){
         for(Period period : userPeriods){
-            periodCounter++;
-            barChartSeries.getData().add(new XYChart.Data<>("Y" + period.getAssociatedYear()
-                    + " P" + periodCounter, period.getWeeklyAverage()));
+            // Creates a series for the period
+            XYChart.Series<String, Number> barChartSeries = new XYChart.Series<>();
+            barChartSeries.setName(period.getName());
+            // Adds all weeks to this series
+            for(Week week : period.getAllWeeks()){
+                barChartSeries.getData().add(new XYChart.Data<String, Number>("W"+week.getWeekNumber(), week.getAllWeekHours()));
+            }
+            // Adds the data to the chart
+            barChart.getData().add(barChartSeries);
         }
-
-        // Adds the data to the chart
-        barChart.getData().add(barChartSeries);
-
-        // Returns the number of elements(bars) in the chart
-        return barChartSeries.getData().size();
-    }
-
-    /**
-     * Method which setups the line chart of the scene
-     */
-    private void setupLineChart(){
-        // Disables chart animation
-        lineChart.setAnimated(false);
-
-        // Cleans the chart of previous data
-        lineChart.getData().clear();
-
-        // Disables the legend
-        lineChart.setLegendVisible(false);
-
-        // Sets the font & size of the chart text
-        lineChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
-        lineChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
-
-        // Populates line chart with user data
-        loadUserDataLineChart();
-    }
-
-    /**
-     * Method which loads user data for the line chart.
-     * Displays information about daily average of all user Periods.
-     */
-    private void loadUserDataLineChart(){
-        // Creates a series for this period
-        XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<>();
-
-        // Goes through user's periods one by one adding week data to corresponding series
-        int periodCounter = 0;
-        for(Period period : userPeriods){
-            periodCounter ++;
-            lineChartSeries.getData().add(new XYChart.Data<>("Y" + period.getAssociatedYear()
-                    + " P" + periodCounter, period.getDailyAverage()));
-        }
-
-        // Adds period data to the chart
-        lineChart.getData().add(lineChartSeries);
     }
 
     /**
@@ -512,9 +449,6 @@ public class TimeController extends DefaultNavigation implements Initializable {
 
         // Refreshes the bar chart
         setupBarChart();
-
-        // Refreshes line chart
-        setupLineChart();
     }
 
     // Methods concerning the styling of elements

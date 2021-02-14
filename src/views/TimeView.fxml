@@ -2,7 +2,6 @@
 
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -192,12 +191,12 @@
                   </ImageView>
                </children>
             </Pane>
-            <ImageView fx:id="goLeftButton" layoutX="7.0" layoutY="326.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+            <ImageView fx:id="goLeftButton" layoutX="8.0" layoutY="317.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_left.png" />
                </image>
             </ImageView>
-            <Pane fx:id="navigationPane1" layoutX="66.0" layoutY="254.0" onMouseClicked="#navigationPane1Clicked" onMouseEntered="#navigationPane1Hovered" onMouseExited="#navigationPane1Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="navigationPane1" layoutX="67.0" layoutY="245.0" onMouseClicked="#navigationPane1Clicked" onMouseEntered="#navigationPane1Hovered" onMouseExited="#navigationPane1Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="navigationPane1Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
                      <font>
@@ -211,7 +210,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="navigationPane2" layoutX="349.0" layoutY="254.0" onMouseClicked="#navigationPane2Clicked" onMouseEntered="#navigationPane2Hovered" onMouseExited="#navigationPane2Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="navigationPane2" layoutX="350.0" layoutY="245.0" onMouseClicked="#navigationPane2Clicked" onMouseEntered="#navigationPane2Hovered" onMouseExited="#navigationPane2Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="navigationPane2Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
                      <font>
@@ -225,7 +224,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="navigationPane3" layoutX="622.0" layoutY="254.0" onMouseClicked="#navigationPane3Clicked" onMouseEntered="#navigationPane3Hovered" onMouseExited="#navigationPane3Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="navigationPane3" layoutX="623.0" layoutY="245.0" onMouseClicked="#navigationPane3Clicked" onMouseEntered="#navigationPane3Hovered" onMouseExited="#navigationPane3Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="navigationPane3Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
                      <font>
@@ -239,7 +238,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="navigationPane4" layoutX="901.0" layoutY="254.0" onMouseClicked="#navigationPane4Clicked" onMouseEntered="#navigationPane4Hovered" onMouseExited="#navigationPane4Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="navigationPane4" layoutX="902.0" layoutY="245.0" onMouseClicked="#navigationPane4Clicked" onMouseEntered="#navigationPane4Hovered" onMouseExited="#navigationPane4Exited" prefHeight="180.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="navigationPane4Year" alignment="CENTER" layoutY="14.0" prefHeight="54.0" prefWidth="221.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Year N" textFill="WHITE">
                      <font>
@@ -253,17 +252,17 @@
                   </Label>
                </children>
             </Pane>
-            <ImageView fx:id="goRightButton" layoutX="1145.0" layoutY="326.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+            <ImageView fx:id="goRightButton" layoutX="1146.0" layoutY="317.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Label layoutX="78.0" layoutY="450.0" prefHeight="42.0" prefWidth="518.0" style="-fx-wrap-text: true;" text="Weekly Average of All Periods:" textFill="#e6bb9a">
+            <Label layoutX="80.0" layoutY="446.0" prefHeight="37.0" prefWidth="518.0" style="-fx-wrap-text: true;" text="All Weeks from All Periods:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <BarChart fx:id="barChart" layoutX="25.0" layoutY="495.0" prefHeight="391.0" prefWidth="571.0" stylesheets="@../stylesheets/chartStyling.css">
+            <BarChart fx:id="barChart" layoutX="25.0" layoutY="483.0" prefHeight="411.0" prefWidth="1146.0" styleClass="main-time-chart" stylesheets="@../stylesheets/chartStyling.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -271,19 +270,6 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <LineChart fx:id="lineChart" layoutX="599.0" layoutY="495.0" prefHeight="391.0" prefWidth="571.0" stylesheets="@../stylesheets/chartStyling.css">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
-            <Label layoutX="652.0" layoutY="450.0" prefHeight="42.0" prefWidth="518.0" style="-fx-wrap-text: true;" text="Daily Average of All Periods:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
          </children></Pane>
    </children>
 </AnchorPane>

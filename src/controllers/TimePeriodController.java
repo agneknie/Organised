@@ -560,6 +560,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         List<Week> userWeeks = userSelectedPeriod.getAllWeeks();
         int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
 
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
+
         // Updates the scene
         updateAfterNavigation();
     }
