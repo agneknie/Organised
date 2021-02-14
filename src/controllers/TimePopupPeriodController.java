@@ -165,8 +165,7 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
         }
 
         // Checks if inputs are valid
-        // Maximum number of weeks in a year is 53
-        if(numberOfWeeks <= 0 || numberOfWeeks > 53){
+        if(numberOfWeeks <= 0 || numberOfWeeks > 53){   // Maximum number of weeks in a year is 53
             ControlScene.highlightWrongField(numberOfWeeksField);
             valid = false;
         }

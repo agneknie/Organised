@@ -2,10 +2,7 @@ package controllers.utilities;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -191,7 +188,7 @@ public class ControlScene {
     /**
      * Method which reverts the styling of a combo box back to normal, after a
      * wrong input was received.
-     * UUsed when user adds/edits something in a popup and the value is unacceptable.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
      *
      * @param problematicComboBox combo box to un-highlight
      */
