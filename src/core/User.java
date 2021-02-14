@@ -861,6 +861,35 @@ public class User {
      * Only takes in days, whose weekly hours spent are not
      * equal to 0.
      *
+     * @return hours spent on average per day
+     */
+    public double getOverallHoursSpentDayBaseline(){
+        double days = 0;
+        double hours = 0;
+
+        // Goes through all user periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all user weeks
+            for(Week week : period.getAllWeeks()){
+                if(week.getAllWeekHours()>0){
+                    days += 7;      // There are 7 days in a week
+                    hours += week.getAllWeekHours();
+                }
+            }
+        }
+
+        // Calculates the result
+        if(days == 0) return 0;
+        else return hours/days;
+    }
+
+    /**
+     * Method which returns how many hours on average the user
+     * spends working per day.
+     *
+     * Only takes in days, whose weekly hours spent are not
+     * equal to 0.
+     *
      * @return hours spent on average per day in the format of X h Y min
      */
     public String getOverallHoursSpentDay(){

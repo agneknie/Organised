@@ -48,6 +48,8 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     private Label periodNameLabel;
     @FXML
     private Label weekNameLabel;
+    @FXML
+    private Label weekDateLabel;
 
     // Navigation between weeks
     @FXML
@@ -195,6 +197,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Setups top fields
         periodNameLabel.setText(userSelectedPeriod.getName());
         weekNameLabel.setText(userSelectedWeek.toString());
+        weekDateLabel.setText(userSelectedWeek.getWeekDate());
 
         // Setups bottom fields
         minutesLeftForPeriodField.setText(userSelectedPeriod.getMinutesLeft()+" min");
@@ -245,7 +248,10 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // Adds each Week's of the Period data to the series
         for(Week week : userSelectedPeriod.getAllWeeks()){
-            barChartSeries.getData().add(new XYChart.Data<>(week.toString(), week.getAllWeekHours()));
+            String name = week.toString();
+            // If there are more weeks, changes the naming convention to fit nicely
+            if(userSelectedPeriod.getAllWeeks().size()>5) name = "W"+week.getWeekNumber();
+            barChartSeries.getData().add(new XYChart.Data<>(name, week.getAllWeekHours()));
         }
 
         // Setups Y axis bounds and tick mark density
@@ -285,11 +291,11 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         ((NumberAxis) lineChart.getYAxis()).setLowerBound(0);
         ((NumberAxis) lineChart.getYAxis()).setUpperBound(Day.MAX_WORK_HOURS);
 
-        // Populates line chart with user data
-        loadUserDataLineChart();
-
         // Adds the baseline to the line chart
         addBaselineToLineChart();
+
+        // Populates line chart with user data
+        loadUserDataLineChart();
     }
 
     /**
@@ -313,7 +319,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         XYChart.Series<String, Number> lineChartSeries = new XYChart.Series<>();
 
         // Adds each point of the baseline
-        double baseline = userSelectedWeek.getDailyAverage()/60.0;
+        double baseline = Session.getSession().getOverallHoursSpentDayBaseline();
         for(Day day : userSelectedWeek.getAllDays()){
             lineChartSeries.getData().add(new XYChart.Data<>(day.getShortName(), baseline));
         }
@@ -398,7 +404,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // If minutes cannot be added to a selected day, displays error message
         if(valid && !day.canAdd(minutes+userSelectedPeriod.getMinutesLeft()))
-            errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS);
+            errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS+"h.");
 
         // If everything is good, adds the time to the day
         if(valid && day.canAdd(minutes+userSelectedPeriod.getMinutesLeft())){
@@ -554,23 +560,8 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         List<Week> userWeeks = userSelectedPeriod.getAllWeeks();
         int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
 
-        // Updates the displayed week
-        userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
-
-        // Updates day combo box in minutes panel
-        setupDayComboBox();
-
-        // Setups the fields with user information
-        setupUserInformation();
-
-        // Configures navigation arrow visibility
-        configureNavigationArrows();
-
-        // Setups line chart
-        setupLineChart();
-
-        // Setups bar chart
-        setupBarChart();
+        // Updates the scene
+        updateAfterNavigation();
     }
 
     /**
@@ -586,6 +577,15 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Updates the displayed week
         userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
 
+        // Updates the scene
+        updateAfterNavigation();
+    }
+
+    /**
+     * Method which updates/resets the scene fields & elements
+     * after a navigation arrow was pressed.
+     */
+    private void updateAfterNavigation(){
         // Updates day combo box in minutes panel
         setupDayComboBox();
 
@@ -600,6 +600,15 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // Setups bar chart
         setupBarChart();
+
+        // Removes possible error messages if any
+        errorMessage.setText("");
+
+        // Cleans minutes panel field if any leftovers
+        minutesField.setText("");
+
+        // Normalises the fields if they were marked as wrong before
+        normaliseAllFields();
     }
 
     // Methods which deal with styling of UI elements

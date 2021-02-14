@@ -299,11 +299,11 @@ public class MarksController extends DefaultNavigation implements Initializable 
                 case MODULE:
                     if(Session.getMarksModuleSelected().percentWorthLeft() == 0) disableAddButton();
                     else enableAddButton();
-                    // Assignment addition could have changed some module data
-                    pane1Value.setText(Session.getMarksModuleSelected().getOverallGrade() + "%");
+                    // Assignment addition/editing could have changed some module data
                     double moduleGrade = Session.getMarksModuleSelected().getOverallGrade();
                     if(moduleGrade != -1) pane1Value.setText(moduleGrade + "%");
                     else pane1Value.setText("-");
+                    pane2Value.setText(Session.getMarksModuleSelected().getPercentComplete() + "%");
                     refreshPanelsAssignments();
                     break;
             }

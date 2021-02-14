@@ -158,18 +158,23 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="105.0" prefHeight="27.0" prefWidth="189.0" text="Week N." textFill="#e6bb9a">
+            <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="105.0" prefHeight="36.0" prefWidth="154.0" text="Week N:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="30.0" />
                </font>
             </Label>
-            <ImageView fx:id="goLeftButton" layoutX="255.0" layoutY="105.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+            <Label fx:id="weekDateLabel" layoutX="207.0" layoutY="105.0" prefHeight="27.0" prefWidth="320.0" text="2020 Jan 23 - Jan 30 " textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="goLeftButton" layoutX="554.0" layoutY="103.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_left.png" />
                </image>
             </ImageView>
-            <Line endX="-100.0" endY="26.0" layoutX="413.0" layoutY="117.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
-            <ImageView fx:id="goRightButton" layoutX="332.0" layoutY="105.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+            <Line endX="-100.0" endY="26.0" layoutX="712.0" layoutY="115.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+            <ImageView fx:id="goRightButton" layoutX="631.0" layoutY="103.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_right.png" />
                </image>

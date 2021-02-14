@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -101,6 +103,20 @@ public class Week {
         this.periodId = periodId;
         this.weekNumber = weekNumber;
         this.startDate = LocalDate.parse(startDate);  // Converts string to a date
+    }
+
+    /**
+     * Returns date range of the week for display in the UI.
+     *
+     * @return week date
+     */
+    public String getWeekDate(){
+        String startMonth = startDate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+        String endMonth = startDate.plusDays(6).getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+        String startDay = Integer.toString(startDate.getDayOfMonth());
+        String endDay = Integer.toString(startDate.plusDays(6).getDayOfMonth());
+        String year = Integer.toString(startDate.getYear());
+        return year+" "+startMonth+" "+startDay+" - "+endMonth+" "+endDay;
     }
 
     /**
