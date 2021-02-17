@@ -3,14 +3,17 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
-import core.Day;
 import core.Period;
 import core.Session;
 import core.Week;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -18,11 +21,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import stages.PopupStage;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -103,6 +108,9 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private BarChart<String, Number> barChart;
     @FXML
     private Label barChartLabel;
+    @FXML
+    private Pane barChartPane;
+    private final Line baseLine = new Line();
 
     // Variables for storing user data
     private List<Period> userPeriods;
@@ -121,6 +129,9 @@ public class TimeController extends DefaultNavigation implements Initializable {
 
         // Sets up navigation panes
         setupNavigation();
+
+        // Adds the baseline to the bar chart pane
+        barChartPane.getChildren().addAll(baseLine);
 
         // If user doesn't have any periods yet
         if(userPeriods.isEmpty()){
@@ -266,6 +277,43 @@ public class TimeController extends DefaultNavigation implements Initializable {
 
         // Populates the bar chart with user data
         loadUserDataBarChart();
+
+        // Draws the baseline for the data
+        drawBarChartBaseline();
+    }
+
+    /**
+     * Method which draws the baseline for the bar chart.
+     */
+    private void drawBarChartBaseline(){
+        // Find chart area Node
+        Node chartArea = barChart.lookup(".chart-plot-background");
+        // Remember scene position of chart area
+        Bounds chartAreaBounds = chartArea.localToParent(chartArea.getBoundsInLocal());
+
+        // Listener to update the baseline upon initial start
+        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                Platform.runLater(() -> {
+                    drawBarChartBaseline();
+                });
+            }
+        });
+
+        // Sets x coordinate of the baseline
+        baseLine.setStartX(chartAreaBounds.getMinX());
+        baseLine.setEndX(chartAreaBounds.getMaxX());
+
+        // Sets y coordinate of the baseline
+        double yShift = chartAreaBounds.getMinY();
+        // Find pixel position of the specified value
+        double userAverageHours = barChart.getYAxis().getDisplayPosition(Session.getSession().getOverallHoursSpentWeekBaseline());
+        baseLine.setStartY(yShift + userAverageHours);
+        baseLine.setEndY(yShift + userAverageHours);
+
+        // Sets line style and adds it to the bar chart pane
+        baseLine.setStyle("-fx-stroke: white; -fx-stroke-width: 3");
     }
 
     /**

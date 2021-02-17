@@ -177,6 +177,11 @@
                   </Label>
                </children>
             </Pane>
+            <Label fx:id="noPeriodsYetLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="623.0" layoutY="128.0" prefHeight="93.0" prefWidth="242.0" style="-fx-wrap-text: true; -fx-text-alignment: left;" text="Add some Periods to start getting Organised." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
             <Pane fx:id="actionButton" layoutX="901.0" layoutY="137.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="54.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="32.0" layoutY="9.0" prefHeight="37.0" prefWidth="189.0" style="-fx-wrap-text: true;" text="Add Period" textFill="#e6bb9a">
@@ -262,19 +267,18 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <BarChart fx:id="barChart" layoutX="25.0" layoutY="483.0" prefHeight="411.0" prefWidth="1146.0" styleClass="main-time-chart" stylesheets="@../stylesheets/chartStyling.css">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <Label fx:id="noPeriodsYetLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="623.0" layoutY="128.0" prefHeight="93.0" prefWidth="242.0" style="-fx-wrap-text: true; -fx-text-alignment: left;" text="Add some Periods to start getting Organised." textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
+            <Pane fx:id="barChartPane" layoutX="26.0" layoutY="483.0" prefHeight="411.0" prefWidth="1146.0">
+               <children>
+                  <BarChart fx:id="barChart" prefHeight="411.0" prefWidth="1146.0" styleClass="main-time-chart" stylesheets="@../stylesheets/chartStyling.css">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </Pane>
          </children></Pane>
    </children>
 </AnchorPane>

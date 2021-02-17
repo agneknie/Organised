@@ -338,14 +338,18 @@
                 <NumberAxis prefWidth="18.0" side="LEFT" />
               </yAxis>
             </LineChart>
-            <BarChart fx:id="barChart" layoutX="577.0" layoutY="513.0" prefHeight="385.0" prefWidth="573.0" stylesheets="@../stylesheets/chartStyling.css">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
+            <Pane fx:id="barChartPane" layoutX="589.0" layoutY="513.0" prefHeight="385.0" prefWidth="573.0">
+               <children>
+                  <BarChart fx:id="barChart" prefHeight="385.0" prefWidth="573.0" stylesheets="@../stylesheets/chartStyling.css">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </Pane>
          </children></Pane>
    </children>
 </AnchorPane>

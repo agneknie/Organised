@@ -946,6 +946,34 @@ public class User {
         }
     }
 
+    /**
+     * Method which returns how many hours on average the user
+     * spends working per week.
+     *
+     * Only takes weeks, which have at least one work hour in them.
+     *
+     * @return hours spent on average per week
+     */
+    public double getOverallHoursSpentWeekBaseline(){
+        double weeks = 0;
+        double hours = 0;
+
+        // Goes through all user periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all user weeks
+            for(Week week : period.getAllWeeks()){
+                if(week.getAllWeekHours()>0){
+                    weeks++;
+                    hours += week.getAllWeekHours();
+                }
+            }
+        }
+
+        // Calculates the result
+        if(weeks == 0) return 0;
+        else return hours/weeks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
