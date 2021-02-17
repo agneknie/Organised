@@ -45,6 +45,8 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private Label dailyAverage;
     @FXML
     private Label weeklyAverage;
+    @FXML
+    private Label noPeriodsYetLabel;
 
     // Add Period button
     @FXML
@@ -99,6 +101,8 @@ public class TimeController extends DefaultNavigation implements Initializable {
     // Bar chart for Week data
     @FXML
     private BarChart<String, Number> barChart;
+    @FXML
+    private Label barChartLabel;
 
     // Variables for storing user data
     private List<Period> userPeriods;
@@ -118,8 +122,18 @@ public class TimeController extends DefaultNavigation implements Initializable {
         // Sets up navigation panes
         setupNavigation();
 
-        // Sets up the bar chart
-        setupBarChart();
+        // If user doesn't have any periods yet
+        if(userPeriods.isEmpty()){
+            barChart.setVisible(false);
+            barChartLabel.setVisible(false);
+        }
+        // If user has periods
+        else{
+            noPeriodsYetLabel.setVisible(false);
+
+            // Sets up the bar chart
+            setupBarChart();
+        }
     }
 
     /**
@@ -441,14 +455,22 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void refreshView(){
-        // Gets all user periods, because one was added
+        // Gets all user periods, in case one was added
         userPeriods = Session.getSession().getAllPeriods();
 
         // Refreshes navigation panes
         setupNavigation();
 
-        // Refreshes the bar chart
-        setupBarChart();
+        // If user has periods, loads the chart
+        if(!userPeriods.isEmpty()){
+            // Configures visibility of fields
+            barChart.setVisible(true);
+            barChartLabel.setVisible(true);
+            noPeriodsYetLabel.setVisible(false);
+
+            // Refreshes the bar chart
+            setupBarChart();
+        }
     }
 
     // Methods concerning the styling of elements

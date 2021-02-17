@@ -149,7 +149,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Pane layoutX="66.0" layoutY="101.0" prefHeight="113.0" prefWidth="221.0">
+            <Pane layoutX="67.0" layoutY="108.0" prefHeight="113.0" prefWidth="221.0">
                <children>
                   <Label prefHeight="68.0" prefWidth="221.0" style="-fx-wrap-text: true;" text="Daily Average:" textFill="#e6bb9a">
                      <font>
@@ -257,7 +257,7 @@
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Label layoutX="80.0" layoutY="446.0" prefHeight="37.0" prefWidth="518.0" style="-fx-wrap-text: true;" text="All Weeks from All Periods:" textFill="#e6bb9a">
+            <Label fx:id="barChartLabel" layoutX="80.0" layoutY="446.0" prefHeight="37.0" prefWidth="518.0" style="-fx-wrap-text: true;" text="All Weeks from All Periods:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
@@ -270,6 +270,11 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
+            <Label fx:id="noPeriodsYetLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="623.0" layoutY="128.0" prefHeight="93.0" prefWidth="242.0" style="-fx-wrap-text: true; -fx-text-alignment: left;" text="Add some Periods to start getting Organised." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>
