@@ -160,11 +160,14 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Setups line chart
         setupLineChart();
 
-        // Adds the baseline to the bar chart pane
-        barChartPane.getChildren().addAll(baseLine);
+        // Setups the baseline for the barchart
+        setupBaselineOfBarChart();
 
         // Setups bar chart
         setupBarChart();
+
+        // Draws the baseline for the data
+        drawBarChartBaseline();
     }
 
     /**
@@ -247,7 +250,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
             barChart.setCategoryGap(DEFAULT_CATEGORY_GAP-(elementNumber-STARTING_BARS)*GAP_ADJUSTING_INCREMENT);
         }
 
-        // Draws the baseline for the data
+        // Draws the baseline of the chart
         drawBarChartBaseline();
     }
 
@@ -292,16 +295,6 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Remember scene position of chart area
         Bounds chartAreaBounds = chartArea.localToParent(chartArea.getBoundsInLocal());
 
-        // Listener to update the baseline upon initial start
-        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                Platform.runLater(() -> {
-                    drawBarChartBaseline();
-                });
-            }
-        });
-
         // Sets x coordinate of the baseline
         baseLine.setStartX(chartAreaBounds.getMinX());
         baseLine.setEndX(chartAreaBounds.getMaxX());
@@ -312,9 +305,27 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         double userAverageHours = barChart.getYAxis().getDisplayPosition(Session.getSession().getOverallHoursSpentWeekBaseline());
         baseLine.setStartY(yShift + userAverageHours);
         baseLine.setEndY(yShift + userAverageHours);
+    }
+
+    /**
+     * Method which initially sets up the baseline for the barchart.
+     */
+    private void setupBaselineOfBarChart(){
+        // Adds the baseline to the bar chart pane
+        barChartPane.getChildren().addAll(baseLine);
 
         // Sets line style and adds it to the bar chart pane
         baseLine.setStyle("-fx-stroke: white; -fx-stroke-width: 3");
+
+        // Listener to update the baseline after initial start
+        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                Platform.runLater(() -> {
+                    drawBarChartBaseline();
+                });
+            }
+        });
     }
 
     /**
@@ -649,9 +660,6 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
 
         // Setups line chart
         setupLineChart();
-
-        // Setups bar chart
-        setupBarChart();
 
         // Removes possible error messages if any
         errorMessage.setText("");

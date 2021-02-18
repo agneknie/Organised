@@ -130,8 +130,8 @@ public class TimeController extends DefaultNavigation implements Initializable {
         // Sets up navigation panes
         setupNavigation();
 
-        // Adds the baseline to the bar chart pane
-        barChartPane.getChildren().addAll(baseLine);
+        // Sets up the baseline of bar chart
+        setupBaselineOfBarChart();
 
         // If user doesn't have any periods yet
         if(userPeriods.isEmpty()){
@@ -291,16 +291,6 @@ public class TimeController extends DefaultNavigation implements Initializable {
         // Remember scene position of chart area
         Bounds chartAreaBounds = chartArea.localToParent(chartArea.getBoundsInLocal());
 
-        // Listener to update the baseline upon initial start
-        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                Platform.runLater(() -> {
-                    drawBarChartBaseline();
-                });
-            }
-        });
-
         // Sets x coordinate of the baseline
         baseLine.setStartX(chartAreaBounds.getMinX());
         baseLine.setEndX(chartAreaBounds.getMaxX());
@@ -311,9 +301,27 @@ public class TimeController extends DefaultNavigation implements Initializable {
         double userAverageHours = barChart.getYAxis().getDisplayPosition(Session.getSession().getOverallHoursSpentWeekBaseline());
         baseLine.setStartY(yShift + userAverageHours);
         baseLine.setEndY(yShift + userAverageHours);
+    }
+
+    /**
+     * Method which initially sets up the baseline for the barchart.
+     */
+    private void setupBaselineOfBarChart(){
+        // Adds the baseline to the bar chart pane
+        barChartPane.getChildren().addAll(baseLine);
 
         // Sets line style and adds it to the bar chart pane
         baseLine.setStyle("-fx-stroke: white; -fx-stroke-width: 3");
+
+        // Listener to update the baseline after initial start
+        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                Platform.runLater(() -> {
+                    drawBarChartBaseline();
+                });
+            }
+        });
     }
 
     /**
