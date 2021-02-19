@@ -96,7 +96,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     @FXML
     private Label dailyAverageField;
 
-    // Add Minutes to Day Pane
+    // Add Time to Day Pane
+    @FXML
+    private TextField hoursField;
     @FXML
     private TextField minutesField;
     @FXML
@@ -442,7 +444,8 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Resets error message field
         errorMessage.setText("");
 
-        // Variables for minute addition
+        // Variables for time addition
+        int hours = -1;
         int minutes = -1;
         Day day = daysComboBox.getValue();
         boolean valid = true;
@@ -453,34 +456,58 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         } catch (Exception e){
             ControlScene.highlightWrongField(minutesField);
             valid = false;
+            errorMessage.setText("Wrong minutes input.");
+        }
+        try {
+            hours = Integer.parseInt(hoursField.getText());
+        } catch (Exception e){
+            ControlScene.highlightWrongField(hoursField);
+            valid = false;
+            errorMessage.setText("Wrong hours input.");
         }
         if(day == null){
             ControlScene.highlightWrongField(daysComboBox);
             valid = false;
+            errorMessage.setText("Please select valid day of week.");
+        }
+        if(minutes < 0){
+            errorMessage.setText("Minutes have to be more than or equal to 0.");
+            valid = false;
+            ControlScene.highlightWrongField(minutesField);
+        }
+        if(minutes > 59){
+            errorMessage.setText("Minutes have to be less than 60.");
+            valid = false;
+            ControlScene.highlightWrongField(minutesField);
+        }
+        if(hours < 0){
+            errorMessage.setText("Hours have to be more than or equal to 0.");
+            valid = false;
+            ControlScene.highlightWrongField(hoursField);
         }
 
-        // Displays error message if inputs incorrect
-        if(!valid) errorMessage.setText("Wrong input.");
+        // If field values are correct
+        if(valid){
+            // If minutes cannot be added to a selected day, displays error message
+            if(!day.canAdd(hours*60+minutes+userSelectedPeriod.getMinutesLeft()))
+                errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS+"h.");
 
-        // If minutes cannot be added to a selected day, displays error message
-        if(valid && !day.canAdd(minutes+userSelectedPeriod.getMinutesLeft()))
-            errorMessage.setText("Time exceeds maximum allowed time per day: "+Day.MAX_WORK_HOURS+"h.");
+            // If everything is good, adds the time to the day
+           else {
+                // Adds the time
+                userSelectedPeriod.addMinutes(day, hours*60+minutes);
+                errorMessage.setText("Time addition successful!");
 
-        // If everything is good, adds the time to the day
-        if(valid && day.canAdd(minutes+userSelectedPeriod.getMinutesLeft())){
-            // Adds the time
-            userSelectedPeriod.addMinutes(day, minutes);
-            errorMessage.setText("Time addition successful!");
+                // Refreshes the screen
+                // Updates the fields with user information
+                setupUserInformation();
 
-            // Refreshes the screen
-            // Updates the fields with user information
-            setupUserInformation();
+                // Updates line chart
+                setupLineChart();
 
-            // Updates line chart
-            setupLineChart();
-
-            // Updates bar chart
-            setupBarChart();
+                // Updates bar chart
+                setupBarChart();
+            }
         }
     }
 
@@ -495,51 +522,48 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Resets error message field
         errorMessage.setText("");
 
-        // Variables for minute deletion
-        int minutes = -1;
+        // Variables for time deletion
+        int hours = -1;
         Day day = daysComboBox.getValue();
         boolean valid = true;
 
         // Checks whether inputs are numbers where needed & not null
         try {
-            minutes = Integer.parseInt(minutesField.getText());
+            hours = Integer.parseInt(hoursField.getText());
         } catch (Exception e){
-            ControlScene.highlightWrongField(minutesField);
+            ControlScene.highlightWrongField(hoursField);
             valid = false;
+            errorMessage.setText("Wrong hours input.");
         }
+        if(!minutesField.getText().isEmpty()) errorMessage.setText("Minutes cannot be subtracted from day.");
         if(day == null){
             ControlScene.highlightWrongField(daysComboBox);
             valid = false;
+            errorMessage.setText("Please select valid day of week.");
         }
 
-        // Displays error message if inputs incorrect
-        if(!valid) errorMessage.setText("Wrong input.");
+        // If all fields are valid
+        if(valid){
+            // If hours cannot be deleted from a selected day, displays error message
+            if(!day.canRemove(hours*60)) errorMessage.setText("Hours for the day would be below 0.");
 
-        // Minutes have to be hours, to be deleted from a day
-        if(valid && minutes%60 != 0){
-            valid = false;
-            errorMessage.setText("Minutes have to translate exactly to hours to be removed.");
-        }
+            // If everything is good, deletes the time from the day
+            else {
+                // Deletes the time
+                day.removeHours(hours);
+                day.updateDay();
+                errorMessage.setText("Time deletion successful!");
 
-        // If minutes cannot be deleted from a selected day, displays error message
-        if(valid && !day.canRemove(minutes)) errorMessage.setText("Hours for the day would be below 0.");
+                // Refreshes the screen
+                // Updates the fields with user information
+                setupUserInformation();
 
-        // If everything is good, deletes the time from the day
-        if(valid && day.canRemove(minutes)){
-            // Deletes the time
-            day.removeHours(minutes/60);
-            day.updateDay();
-            errorMessage.setText("Time deletion successful!");
+                // Updates line chart
+                setupLineChart();
 
-            // Refreshes the screen
-            // Updates the fields with user information
-            setupUserInformation();
-
-            // Updates line chart
-            setupLineChart();
-
-            // Updates bar chart
-            setupBarChart();
+                // Updates bar chart
+                setupBarChart();
+            }
         }
     }
 
@@ -573,8 +597,10 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Stops the timer
         else {
             stopwatch.stop();
-            // Forwards elapsed time to the minutes field
-            minutesField.setText(Integer.toString(stopwatch.getMinutes()));
+            // Forwards elapsed time to the hours and minutes field
+            hoursField.setText(Integer.toString(stopwatch.getHours()));
+            minutesField.setText(Integer.toString(
+                    stopwatch.getMinutes()-stopwatch.getHours()*60));
             // Changes timer button label
             timerActionButtonLabel.setText("Start");
         }
@@ -590,8 +616,10 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         stopwatch.reset();
 
         // Removes the time from relevant fields
-        timerLabel.setText("reset");
+        timerLabel.setText("00:00:00");
+        timerActionButtonLabel.setText("Start");
         minutesField.setText("");
+        hoursField.setText("");
     }
 
     // Methods responsible for navigation
@@ -664,8 +692,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Removes possible error messages if any
         errorMessage.setText("");
 
-        // Cleans minutes panel field if any leftovers
+        // Cleans minutes panel fields if any leftovers
         minutesField.setText("");
+        hoursField.setText("");
 
         // Normalises the fields if they were marked as wrong before
         normaliseAllFields();
@@ -677,6 +706,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      * as wrong previously.
      */
     private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(hoursField);
         ControlScene.normaliseWrongField(minutesField);
         ControlScene.normaliseWrongField(daysComboBox);
     }
