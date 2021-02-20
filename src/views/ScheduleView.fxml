@@ -253,7 +253,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane2AddEventButton" layoutX="26.0" layoutY="393.0" onMouseClicked="#pane2AddEventButtonCllicked" onMouseEntered="#pane2AddEventButtonHovered" onMouseExited="#pane2AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane2AddEventButton" layoutX="26.0" layoutY="393.0" onMouseClicked="#pane2AddEventButtonClicked" onMouseEntered="#pane2AddEventButtonHovered" onMouseExited="#pane2AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane2AddEventButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -316,6 +316,11 @@
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="847.0" layoutY="242.0" prefHeight="60.0" prefWidth="237.0" style="-fx-wrap-text: true;" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="21.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>
