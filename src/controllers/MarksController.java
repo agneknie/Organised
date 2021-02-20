@@ -283,22 +283,16 @@ public class MarksController extends DefaultNavigation implements Initializable 
             switch(Session.getMarksSelectionType()){
                 // Scene type is Degree
                 case DEGREE:
-                    if(Year.percentWorthLeft(Session.getSession()) == 0) disableAddButton();
-                    else enableAddButton();
                     refreshPanelsYears();
                     break;
 
                 // Scene type is Year
                 case YEAR:
-                    if(Session.getMarksYearSelected().creditsLeft() == 0) disableAddButton();
-                    else enableAddButton();
                     refreshPanelsModules();
                     break;
 
                 // Scene type is Module
                 case MODULE:
-                    if(Session.getMarksModuleSelected().percentWorthLeft() == 0) disableAddButton();
-                    else enableAddButton();
                     // Assignment addition/editing could have changed some module data
                     double moduleGrade = Session.getMarksModuleSelected().getOverallGrade();
                     if(moduleGrade != -1) pane1Value.setText(moduleGrade + "%");
@@ -422,8 +416,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1.setVisible(false);
         button2Label.setText("Add Year");
         goBackButton.setVisible(false);
-        if(Year.percentWorthLeft(Session.getSession()) == 0) disableAddButton();
-        else enableAddButton();
 
         // Sets degree overall grade
         pane1Label.setText("Grade:");
@@ -488,8 +480,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1Label.setText("Edit Year");
         button2Label.setText("Add Module");
         goBackButton.setVisible(true);
-        if(Session.getMarksYearSelected().creditsLeft() == 0) disableAddButton();
-        else enableAddButton();
 
         // Sets Year overall grade
         pane1Label.setText("Overall   Grade:");
@@ -560,8 +550,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         button1Label.setText("Edit Module");
         button2Label.setText("Add Assignment");
         goBackButton.setVisible(true);
-        if(Session.getMarksModuleSelected().percentWorthLeft() == 0) disableAddButton();
-        else enableAddButton();
 
         // Sets Module overall grade
         pane1Label.setText("Grade:");
@@ -1258,49 +1246,5 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private void button1Hovered() {
         ControlScene.buttonHovered(button1, button1Image, button1Label, "edit_icon_selected.png");
-    }
-
-    /**
-     * Changes Add button styling to disabled.
-     */
-    private void disableAddButton(){
-        // Outline of the button
-        button2.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: #7A7A7A; -fx-border-radius: 20;" +
-                "-fx-border-width: 3");
-
-        // Image of the button
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/add_icon_disabled.png");
-            button2Image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Disables the button
-        button2.setDisable(true);
-    }
-
-    /**
-     * Reverts back the styling of a disabled Add button.
-     */
-    private void enableAddButton(){
-        // Outline of the button
-        button2.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
-                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 20;" +
-                "-fx-border-width: 3");
-
-        // Image of the button
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/add_icon.png");
-            button2Image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Enable the button
-        button2.setDisable(false);
     }
 }
