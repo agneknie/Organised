@@ -71,4 +71,17 @@ CREATE TABLE Day(
         REFERENCES User (id)
 );
 
+CREATE TABLE Event(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    dayId INTEGER NOT NULL,
+    moduleId INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    startTime TEXT NOT NULL,
+    endTime TEXT NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
 PRAGMA foreign_keys=on;
