@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -228,6 +229,46 @@ public class Week {
                 }
             }
         }
+    }
+
+    /**
+     * Method which returns a day of belonging to the week based on
+     * the requested day of week.
+     *
+     * @param dayOfWeek day to be returned
+     * @return day belonging to this week
+     */
+    public Day getDay(DayOfWeek dayOfWeek){
+        List<Day> daysOfWeek = this.getAllDays();
+        Day day = null;
+
+        // Selects the needed day
+        switch (dayOfWeek){
+            case MONDAY:
+                day = daysOfWeek.get(0);
+                break;
+            case TUESDAY:
+                day = daysOfWeek.get(1);
+                break;
+            case WEDNESDAY:
+                day = daysOfWeek.get(2);
+                break;
+            case THURSDAY:
+                day = daysOfWeek.get(3);
+                break;
+            case FRIDAY:
+                day = daysOfWeek.get(4);
+                break;
+            case SATURDAY:
+                day = daysOfWeek.get(5);
+                break;
+            case SUNDAY:
+                day = daysOfWeek.get(6);
+                break;
+        }
+
+        // Returns the day
+        return day;
     }
 
     /**

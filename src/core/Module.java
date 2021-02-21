@@ -186,6 +186,66 @@ public class Module {
     }
 
     /**
+     * Constructor for module.
+     * Constructs a module instance from the database based on module id.
+     *
+     * @param id id of the module
+     */
+    public static Module moduleFromId(int id){
+        // Creates empty module object
+        Module newModule = null;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Day WHERE id = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Module
+            int userId = rs.getInt("userId");
+            String code = rs.getString("code");
+            String fullName = rs.getString("fullName");
+            int credits = rs.getInt("credits");
+            String semester = rs.getString("semester");
+            int studyYear = rs.getInt("studyYear");
+            String colour = rs.getString("colour");
+
+            newModule = new Module(id, userId, code, fullName, credits, semester, studyYear, colour);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Returns the module
+        return newModule;
+    }
+
+    /**
      * Method which takes a string, which is supposed to be the new module code
      * and checks in the database whether that module code already exists for a given user.
      *
