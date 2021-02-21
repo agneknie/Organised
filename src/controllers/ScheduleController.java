@@ -2,12 +2,14 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import controllers.utilities.SetupScene;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -143,6 +145,13 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     @FXML
     private void goToTodayButtonClicked() {
         //TODO goToTodayButtonClicked
+        // Changes the scene to the Period specific scene
+        try {
+            SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
+        }
     }
 
     /**
