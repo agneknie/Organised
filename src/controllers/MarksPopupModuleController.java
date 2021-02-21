@@ -2,7 +2,7 @@ package controllers;
 
 import controllers.utilities.MarksDefaultPopup;
 import core.Module;
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import core.enums.Semester;
 import core.Session;
 import javafx.fxml.FXML;
@@ -80,7 +80,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         });
 
         // Setups the popup based on scene type
-        if(sceneType == MarksPopupType.EDIT) setupEdit();
+        if(sceneType == PopupType.EDIT) setupEdit();
         else {
             // Sets the prompt text of worth field
             creditsField.setPromptText("Credits left: " + Session.getMarksYearSelected().creditsLeft());
@@ -141,7 +141,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
     @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
-        if(sceneType == MarksPopupType.ADD) addButtonClicked();
+        if(sceneType == PopupType.ADD) addButtonClicked();
 
         // If action button is 'Edit'
         else editButtonClicked();

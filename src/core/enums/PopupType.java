@@ -8,15 +8,14 @@ package core.enums;
  * This source code is licensed under the GNU General Public License, Version 3
  * found in the LICENSE file in the root directory of this source tree.
  *
- * Enum representing Marks Tab popup type for
- * differing action button.
+ * Enum representing popup type for differing action button.
  */
-public enum MarksPopupType {
+public enum PopupType {
     EDIT("Edit"),
     ADD("Add");
 
     public final String VALUE;
-    MarksPopupType(String value){
+    PopupType(String value){
         VALUE = value;
     }
 

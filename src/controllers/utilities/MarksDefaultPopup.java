@@ -2,7 +2,7 @@ package controllers.utilities;
 
 import core.Session;
 import core.User;
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -45,7 +45,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     protected Label deleteButtonLabel;
 
     // Variable to determine popup type
-    public MarksPopupType sceneType = Session.getMarksPopupType();
+    public PopupType sceneType = Session.getMarksPopupType();
 
     // Variable for storing user data
     public User loggedUser = Session.getSession();
@@ -64,7 +64,7 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
         }
 
         // Hides delete button if needed
-        if(sceneType == MarksPopupType.ADD) deleteButton.setVisible(false);
+        if(sceneType == PopupType.ADD) deleteButton.setVisible(false);
     }
 
     /**

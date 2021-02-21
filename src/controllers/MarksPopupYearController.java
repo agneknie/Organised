@@ -3,7 +3,7 @@ package controllers;
 import controllers.utilities.MarksDefaultPopup;
 import core.Session;
 import core.Year;
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -51,7 +51,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
         titleLabel.setText(sceneType + " Year.");
 
         // Sets up the scene based on its type
-        if (sceneType == MarksPopupType.EDIT) setupEdit();
+        if (sceneType == PopupType.EDIT) setupEdit();
         else{
             // Sets the prompt text of worth field
             worthField.setPromptText("Percent left: " + Year.percentWorthLeft(loggedUser) + "%");
@@ -110,7 +110,7 @@ public class MarksPopupYearController extends MarksDefaultPopup implements Initi
     @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
-        if(sceneType == MarksPopupType.ADD) addButtonClicked();
+        if(sceneType == PopupType.ADD) addButtonClicked();
 
         // If action button is 'Edit'
         else editButtonClicked();

@@ -3,7 +3,7 @@ package controllers;
 import controllers.utilities.MarksDefaultPopup;
 import core.Assignment;
 import core.Session;
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -67,7 +67,7 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
         attemptedButtonClicked();
 
         // Setups the popup based on scene type
-        if(sceneType == MarksPopupType.EDIT) setupEdit();
+        if(sceneType == PopupType.EDIT) setupEdit();
         else {
             // Sets the prompt text of worth field
             worthField.setPromptText("Percent left: " + Session.getMarksModuleSelected().percentWorthLeft());
@@ -132,7 +132,7 @@ public class MarksPopupAssignmentController extends MarksDefaultPopup implements
     @Override
     public void actionButtonClicked() {
         // If action button is 'Add'
-        if(sceneType == MarksPopupType.ADD) addButtonClicked();
+        if(sceneType == PopupType.ADD) addButtonClicked();
 
             // If action button is 'Edit'
         else editButtonClicked();

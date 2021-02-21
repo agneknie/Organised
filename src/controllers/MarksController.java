@@ -6,12 +6,11 @@ import core.Assignment;
 import core.Module;
 import core.Session;
 import core.Year;
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import core.enums.MarksSelection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -20,8 +19,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import stages.PopupStage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -974,7 +971,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private void button1Clicked() throws IOException {
         // Sets the popup type
-        Session.setMarksPopupType(MarksPopupType.EDIT);
+        Session.setMarksPopupType(PopupType.EDIT);
 
         // Creates the popup
         MarksSelection actionViewName = Session.getMarksSelectionType();
@@ -988,7 +985,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
     @FXML
     private void button2Clicked() throws IOException {
         // Sets the popup type
-        Session.setMarksPopupType(MarksPopupType.ADD);
+        Session.setMarksPopupType(PopupType.ADD);
 
         // Creates the popup
         MarksSelection actionViewName = Session.getMarksSelectionType().next();
@@ -1028,7 +1025,7 @@ public class MarksController extends DefaultNavigation implements Initializable 
             // Creates a popup for assignment
             case MODULE:
                 // Sets popup type
-                Session.setMarksPopupType(MarksPopupType.EDIT);
+                Session.setMarksPopupType(PopupType.EDIT);
                 Session.setMarksAssignmentSelected(userAssignments.get(panePointer));
 
                 // Creates the popup
