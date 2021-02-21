@@ -1,0 +1,7 @@
+.text-area {
+    text-area-background: #2B2B2B;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background;
+}

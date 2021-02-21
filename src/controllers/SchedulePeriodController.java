@@ -2,13 +2,20 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Session;
+import core.enums.MarksSelection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import stages.BiggerPopupStage;
+import stages.PopupStage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -108,8 +115,10 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      * add event button is clicked.
      */
     @FXML
-    private void addEventButtonClicked() {
+    private void addEventButtonClicked() throws IOException {
         //TODO addEventButtonClicked
+        Stage popup = new Stage();
+        new BiggerPopupStage(popup, "SchedulePopupViewEvent.fxml");
     }
 
     /**
