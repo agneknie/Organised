@@ -122,7 +122,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Method which handles left navigation arrow clicked.
      */
     @FXML
-    void goLeftClicked() {
+    private void goLeftClicked() {
         //TODO goLeftClicked
     }
 
@@ -130,7 +130,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Method which handles right navigation arrow clicked.
      */
     @FXML
-    void goRightClicked() {
+    private void goRightClicked() {
         //TODO goRightClicked
     }
 
@@ -141,7 +141,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * If no today is present among the periods, displays error message.
      */
     @FXML
-    void goToTodayButtonClicked() {
+    private void goToTodayButtonClicked() {
         //TODO goToTodayButtonClicked
     }
 
@@ -150,7 +150,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane1.
      */
     @FXML
-    void pane1AddEventButtonClicked() {
+    private void pane1AddEventButtonClicked() {
         //TODO pane1AddEventButtonClicked
     }
 
@@ -159,7 +159,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * specified by pane1.
      */
     @FXML
-    void pane1GoToPeriodButtonClicked() {
+    private void pane1GoToPeriodButtonClicked() {
         //TODO pane1GoToPeriodButtonClicked
     }
 
@@ -168,7 +168,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane2.
      */
     @FXML
-    void pane2AddEventButtonClicked() {
+    private void pane2AddEventButtonClicked() {
         //TODO pane2AddEventButtonClicked
     }
 
@@ -177,7 +177,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * specified by pane2.
      */
     @FXML
-    void pane2GoToPeriodButtonClicked() {
+    private void pane2GoToPeriodButtonClicked() {
         //TODO pane2GoToPeriodButtonClicked
     }
 
@@ -186,7 +186,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane3.
      */
     @FXML
-    void pane3AddEventButtonClicked() {
+    private void pane3AddEventButtonClicked() {
         //TODO pane3AddEventButtonClicked
     }
 
@@ -195,7 +195,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * specified by pane3.
      */
     @FXML
-    void pane3GoToPeriodButtonClicked() {
+    private void pane3GoToPeriodButtonClicked() {
         //TODO pane3GoToPeriodButtonClicked
     }
 
@@ -205,7 +205,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void goLeftExited() {
+    private void goLeftExited() {
         ControlScene.controlButtonEffect("next_element_left.png", goLeftButton);
     }
 
@@ -213,7 +213,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the goLeftButton when hovered.
      */
     @FXML
-    void goLeftHovered() {
+    private void goLeftHovered() {
         ControlScene.controlButtonEffect("next_element_left_selected.png", goLeftButton);
     }
 
@@ -222,7 +222,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void goRightExited() {
+    private void goRightExited() {
         ControlScene.controlButtonEffect("next_element_right.png", goRightButton);
     }
 
@@ -230,7 +230,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the goRightButton when hovered.
      */
     @FXML
-    void goRightHovered() {
+    private void goRightHovered() {
         ControlScene.controlButtonEffect("next_element_right_selected.png", goRightButton);
     }
 
@@ -239,7 +239,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void goToTodayButtonExited() {
+    private void goToTodayButtonExited() {
         ControlScene.buttonExited(goToTodayButton, goToTodayButtonImage,
                 goToTodayButtonLabel, "go_to_icon.png");
     }
@@ -248,7 +248,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the goToTodayButton when hovered.
      */
     @FXML
-    void goToTodayButtonHovered() {
+    private void goToTodayButtonHovered() {
         ControlScene.buttonHovered(goToTodayButton, goToTodayButtonImage,
                 goToTodayButtonLabel, "go_to_icon_selected.png");
     }
@@ -258,7 +258,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane1AddEventButtonExited() {
+    private void pane1AddEventButtonExited() {
         ControlScene.buttonExited(pane1AddEventButton, pane1AddEventButtonImage,
                 pane1AddEventButtonLabel, "add_icon.png");
     }
@@ -267,7 +267,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane1AddEventButton when hovered.
      */
     @FXML
-    void pane1AddEventButtonHovered() {
+    private void pane1AddEventButtonHovered() {
         ControlScene.buttonHovered(pane1AddEventButton, pane1AddEventButtonImage,
                 pane1AddEventButtonLabel, "add_icon_selected.png");
     }
@@ -277,7 +277,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane1GoToPeriodButtonExited() {
+    private void pane1GoToPeriodButtonExited() {
         ControlScene.buttonExited(pane1GoToPeriodButton, pane1GoToPeriodButtonImage,
                 pane1GoToPeriodButtonLabel, "go_to_icon.png");
     }
@@ -286,7 +286,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane1GoToPeriodButton when hovered.
      */
     @FXML
-    void pane1GoToPeriodButtonHovered() {
+    private void pane1GoToPeriodButtonHovered() {
         ControlScene.buttonHovered(pane1GoToPeriodButton, pane1GoToPeriodButtonImage,
                 pane1GoToPeriodButtonLabel, "go_to_icon_selected.png");
     }
@@ -296,7 +296,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane2AddEventButtonExited() {
+    private void pane2AddEventButtonExited() {
         ControlScene.buttonExited(pane2AddEventButton, pane2AddEventButtonImage,
                 pane2AddEventButtonLabel, "add_icon.png");
     }
@@ -305,7 +305,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane2AddEventButton when hovered.
      */
     @FXML
-    void pane2AddEventButtonHovered() {
+    private void pane2AddEventButtonHovered() {
         ControlScene.buttonHovered(pane2AddEventButton, pane2AddEventButtonImage,
                 pane2AddEventButtonLabel, "add_icon_selected.png");
     }
@@ -315,7 +315,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane2GoToPeriodButtonExited() {
+    private void pane2GoToPeriodButtonExited() {
         ControlScene.buttonExited(pane2GoToPeriodButton, pane2GoToPeriodButtonImage,
                 pane2GoToPeriodButtonLabel, "go_to_icon.png");
     }
@@ -324,7 +324,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane2GoToPeriodButton when hovered.
      */
     @FXML
-    void pane2GoToPeriodButtonHovered() {
+    private void pane2GoToPeriodButtonHovered() {
         ControlScene.buttonHovered(pane2GoToPeriodButton, pane2GoToPeriodButtonImage,
                 pane2GoToPeriodButtonLabel, "go_to_icon_selected.png");
     }
@@ -334,7 +334,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane3AddEventButtonExited() {
+    private void pane3AddEventButtonExited() {
         ControlScene.buttonExited(pane3AddEventButton, pane3AddEventButtonImage,
                 pane3AddEventButtonLabel, "add_icon.png");
     }
@@ -343,7 +343,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane3AddEventButton when hovered.
      */
     @FXML
-    void pane3AddEventButtonHovered() {
+    private void pane3AddEventButtonHovered() {
         ControlScene.buttonHovered(pane3AddEventButton, pane3AddEventButtonImage,
                 pane3AddEventButtonLabel, "add_icon_selected.png");
     }
@@ -353,7 +353,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * when hover ends/button is exited.
      */
     @FXML
-    void pane3GoToPeriodButtonExited() {
+    private void pane3GoToPeriodButtonExited() {
         ControlScene.buttonExited(pane3GoToPeriodButton, pane3GoToPeriodButtonImage,
                 pane3GoToPeriodButtonLabel, "go_to_icon.png");
     }
@@ -362,7 +362,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * Handles styling of the pane3GoToPeriodButton when hovered.
      */
     @FXML
-    void pane3GoToPeriodButtonHovered() {
+    private void pane3GoToPeriodButtonHovered() {
         ControlScene.buttonHovered(pane3GoToPeriodButton, pane3GoToPeriodButtonImage,
                 pane3GoToPeriodButtonLabel, "go_to_icon_selected.png");
     }
