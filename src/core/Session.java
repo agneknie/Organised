@@ -1,6 +1,6 @@
 package core;
 
-import core.enums.MarksPopupType;
+import core.enums.PopupType;
 import core.enums.MarksSelection;
 import javafx.stage.Stage;
 
@@ -38,7 +38,7 @@ public class Session {
     // Marks: which Assignment selected
     private static Assignment marksAssignmentSelected = null;
     // Marks: whether add or edit button is clicked
-    private static MarksPopupType marksPopupType = null;
+    private static PopupType marksPopupType = null;
     // Marks: current selection/display window
     private static MarksSelection marksSelectionType = null;
     // Marks: user just deleted an element
@@ -46,6 +46,11 @@ public class Session {
 
     // Time: currently selected Period
     private static Period timePeriodSelected = null;
+
+    // Schedule: type of popup for event
+    private static PopupType schedulePopupType = null;
+    // Schedule: currently selected event
+    private static Event scheduleEventSelected = null;
 
     /**
      * Getter for the primary stage of main window for stage dragging
@@ -187,7 +192,7 @@ public class Session {
      * in Marks tab. Used for setting up the popup scene.
      * @return Either "Edit" or "Add"
      */
-    public static MarksPopupType getMarksPopupType() {
+    public static PopupType getMarksPopupType() {
         return marksPopupType;
     }
 
@@ -195,10 +200,10 @@ public class Session {
      * Setter for the variable, which determines what button was clicked in Marks
      * tab and is used for popup stage scene setup.
      * Parameter can only be "Edit" or "Add".
-     * @param marksPopupType "Edit" or "Add"
+     * @param popupType "Edit" or "Add"
      */
-    public static void setMarksPopupType(MarksPopupType marksPopupType) {
-        Session.marksPopupType = marksPopupType;
+    public static void setMarksPopupType(PopupType popupType) {
+        Session.marksPopupType = popupType;
     }
 
     /**
@@ -263,5 +268,37 @@ public class Session {
      */
     public static void setTimePeriodSelected(Period timePeriodSelected) {
         Session.timePeriodSelected = timePeriodSelected;
+    }
+
+    /**
+     * Getter for the current popup type in Schedule tab
+     * @return user opened popup type
+     */
+    public static PopupType getSchedulePopupType() {
+        return schedulePopupType;
+    }
+
+    /**
+     * Setter for the current popup type in Schedule tab
+     * @param schedulePopupType PopupType of the Schedule tab popup
+     */
+    public static void setSchedulePopupType(PopupType schedulePopupType) {
+        Session.schedulePopupType = schedulePopupType;
+    }
+
+    /**
+     * Getter for the currently selected event in Schedule tab
+     * @return currently selected event by the user
+     */
+    public static Event getScheduleEventSelected() {
+        return scheduleEventSelected;
+    }
+
+    /**
+     * Setter for the currently selected event in Schedule tab
+     * @param scheduleEventSelected currently selected event
+     */
+    public static void setScheduleEventSelected(Event scheduleEventSelected) {
+        Session.scheduleEventSelected = scheduleEventSelected;
     }
 }

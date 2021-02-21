@@ -12,6 +12,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SchedulePopupEventController">
    <Pane layoutX="4.0" layoutY="4.0" prefHeight="793.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
+      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
+         <Image url="@../images/close_icon.png" />
+      </ImageView>
+      <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
+         <Image url="@../images/minimize_icon.png" />
+      </ImageView>
       <Label fx:id="titleLabel" layoutX="79.0" layoutY="36.0" prefHeight="69.0" prefWidth="269.0" text="Word Event." textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="35.0" />
@@ -24,43 +30,66 @@
                <Font name="Arial Rounded MT Bold" size="25.0" />
             </font>
          </Label>
-         <ComboBox fx:id="semesterComboBox1" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Day:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
+         <ComboBox fx:id="dayOfWeekComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Day:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
       </Pane>
-      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
-         <Image url="@../images/close_icon.png" />
-      </ImageView>
-      <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
-         <Image url="@../images/minimize_icon.png" />
-      </ImageView>
-      <Pane layoutX="78.0" layoutY="185.0" prefHeight="57.0" prefWidth="538.0">
-         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Select Event:" textFill="WHITE">
-            <font>
-               <Font name="Arial Rounded MT Bold" size="25.0" />
-            </font>
-         </Label>
-         <ComboBox fx:id="semesterComboBox11" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Event:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-      </Pane>
-      <Pane layoutX="78.0" layoutY="242.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="185.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Associated Module:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
             </font>
          </Label>
-         <ComboBox fx:id="semesterComboBox2" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Module:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
+         <ComboBox fx:id="associatedModuleComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Module:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
       </Pane>
-      <Pane layoutX="78.0" layoutY="299.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="242.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Name:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
             </font>
          </Label>
-         <TextField fx:id="creditsField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. Lecture" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+         <TextField fx:id="nameField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. Lecture" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
             <font>
                <Font name="Arial" size="16.0" />
             </font>
          </TextField>
       </Pane>
-      <Pane fx:id="actionButton" layoutX="268.0" layoutY="643.0" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane layoutX="79.0" layoutY="299.0" prefHeight="57.0" prefWidth="538.0">
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Start Time:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0" />
+            </font>
+         </Label>
+         <ComboBox fx:id="startTimeComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Start Time:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
+      </Pane>
+      <Pane layoutX="80.0" layoutY="356.0" prefHeight="57.0" prefWidth="538.0">
+         <children>
+            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="End Time:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="endTimeComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select End Time:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
+         </children>
+      </Pane>
+      <Pane layoutX="78.0" layoutY="420.0" prefHeight="175.0" prefWidth="538.0">
+         <children>
+            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Description:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="descriptionField" layoutX="300.0" layoutY="3.0" prefHeight="167.0" prefWidth="224.0" promptText="e.g. Synchronous Organisation Session " style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;" stylesheets="@../stylesheets/textAreaStyling.css">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </TextArea>
+            <Label layoutY="52.0" prefHeight="119.0" prefWidth="289.0" style="-fx-wrap-text: true;" text="Special symbols, which insert     Week numbers:                                         • = current Week number.                      • &lt; previous Week number.                    • &gt; following Week number." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="actionButton" layoutX="269.0" layoutY="617.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
             <Image url="@../images/more_icon.png" />
          </ImageView>
@@ -70,7 +99,7 @@
             </font>
          </Label>
       </Pane>
-      <Pane fx:id="deleteButton" layoutX="268.0" layoutY="716.0" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane fx:id="deleteButton" layoutX="269.0" layoutY="690.0" onMouseClicked="#deleteButtonClicked" onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="deleteButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="15.0">
             <Image url="@../images/delete_icon.png" />
          </ImageView>
@@ -79,38 +108,6 @@
                <Font name="Arial Rounded MT Bold" size="22.0" />
             </font>
          </Label>
-      </Pane>
-      <Pane layoutX="78.0" layoutY="356.0" prefHeight="57.0" prefWidth="538.0">
-         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Start Time:" textFill="WHITE">
-            <font>
-               <Font name="Arial Rounded MT Bold" size="25.0" />
-            </font>
-         </Label>
-         <ComboBox fx:id="semesterComboBox21" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Start Time:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-      </Pane>
-      <Pane layoutX="79.0" layoutY="413.0" prefHeight="57.0" prefWidth="538.0">
-         <children>
-            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="End Time:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="semesterComboBox211" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select End Time:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-         </children>
-      </Pane>
-      <Pane layoutX="79.0" layoutY="470.0" prefHeight="156.0" prefWidth="538.0">
-         <children>
-            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Description:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <TextArea layoutX="299.0" layoutY="6.0" prefHeight="150.0" prefWidth="224.0" promptText="e.g. Synchronous Organisation Session " style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white; -fx-region-background-color: transparent; -fx-highlight-text-fill: none;" stylesheets="@../stylesheets/textAreaStyling.css">
-               <font>
-                  <Font name="Arial" size="16.0" />
-               </font>
-            </TextArea>
-         </children>
       </Pane>
    </Pane>
 </Pane>

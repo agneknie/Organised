@@ -3,7 +3,7 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.Session;
-import core.enums.MarksSelection;
+import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -11,9 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import stages.BiggerPopupStage;
-import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -116,7 +114,10 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void addEventButtonClicked() throws IOException {
-        //TODO addEventButtonClicked
+        // Sets the popup type
+        Session.setSchedulePopupType(PopupType.ADD);
+
+        // Opens the popup
         Stage popup = new Stage();
         new BiggerPopupStage(popup, "SchedulePopupViewEvent.fxml");
     }
@@ -126,8 +127,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      * edit event button is clicked.
      */
     @FXML
-    private void editEventButtonClicked() {
-        //TODO editEventButtonClicked
+    private void editEventButtonClicked() throws IOException {
+        // Sets the popup type
+        Session.setSchedulePopupType(PopupType.EDIT);
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new BiggerPopupStage(popup, "SchedulePopupViewEvent.fxml");
     }
 
     /**
