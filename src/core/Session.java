@@ -51,6 +51,10 @@ public class Session {
     private static PopupType schedulePopupType = null;
     // Schedule: currently selected event
     private static Event scheduleEventSelected = null;
+    // Schedule: currently selected week
+    private static Week scheduleWeekSelected = null;
+    // Schedule: currently selected period
+    private static Period schedulePeriodSelected = null;
 
     /**
      * Getter for the primary stage of main window for stage dragging
@@ -300,5 +304,37 @@ public class Session {
      */
     public static void setScheduleEventSelected(Event scheduleEventSelected) {
         Session.scheduleEventSelected = scheduleEventSelected;
+    }
+
+    /**
+     * Getter for the week, which is selected in the Schedule Period scene
+     * @return currently selected week in Schedule
+     */
+    public static Week getScheduleWeekSelected() {
+        return scheduleWeekSelected;
+    }
+
+    /**
+     * Setter for the week, which is selected in the Schedule Period scene
+     * @param scheduleWeekSelected week to set as selected in Schedule
+     */
+    public static void setScheduleWeekSelected(Week scheduleWeekSelected) {
+        Session.scheduleWeekSelected = scheduleWeekSelected;
+    }
+
+    /**
+     * Getter for the period, which is selected in Schedule scene
+     * @return period selected in Schedule
+     */
+    public static Period getSchedulePeriodSelected() {
+        return schedulePeriodSelected;
+    }
+
+    /**
+     * Setter for the period, which is selected in Schedule scene
+     * @param schedulePeriodSelected period selected in Schedule
+     */
+    public static void setSchedulePeriodSelected(Period schedulePeriodSelected) {
+        Session.schedulePeriodSelected = schedulePeriodSelected;
     }
 }

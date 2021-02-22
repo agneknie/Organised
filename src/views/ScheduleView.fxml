@@ -151,7 +151,7 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="todayLabel" layoutX="69.0" layoutY="200.0" prefHeight="68.0" prefWidth="211.0" style="-fx-wrap-text: true;" text="Wednesday, 15 September 2021" textFill="WHITE">
+            <Label fx:id="todayLabel" layoutX="69.0" layoutY="200.0" prefHeight="68.0" prefWidth="211.0" style="-fx-wrap-text: true;" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
@@ -161,7 +161,7 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="timeLabel" layoutX="439.0" layoutY="200.0" prefHeight="68.0" prefWidth="211.0" style="-fx-wrap-text: true;" text="00:00:00" textFill="WHITE">
+            <Label fx:id="timeLabel" layoutX="439.0" layoutY="200.0" prefHeight="68.0" prefWidth="211.0" style="-fx-wrap-text: true;" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>

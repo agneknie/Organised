@@ -3,14 +3,23 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -115,9 +124,36 @@ public class ScheduleController extends DefaultNavigation implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO Initialize
+        // Sets up top pane with data
+        initializeTopPane();
     }
 
+    /**
+     * Method which sets up top pane with data concerning
+     * today's date and time.
+     */
+    private void initializeTopPane(){
+        // Creates date formatter
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
+        // Gets current day and day of week
+        LocalDate today = LocalDate.now();
+        // Sets the date
+        todayLabel.setText(today.format(dateFormatter));
+
+        // Sets the time label
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        timeLabel.setText(LocalDateTime.now().format(timeFormatter));
+        final Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.millis(500),
+                        event -> {
+                            timeLabel.setText(LocalDateTime.now().format(timeFormatter));
+                        }
+                )
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
 
     // Navigation buttons
     /**
@@ -145,22 +181,12 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     @FXML
     private void goToTodayButtonClicked() {
         //TODO goToTodayButtonClicked
-        // Changes the scene to the Period specific scene
         try {
             SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
         }
-    }
-
-    /**
-     * Method which opens recurring event addition popup for
-     * period, which is described by pane1.
-     */
-    @FXML
-    private void pane1AddEventButtonClicked() {
-        //TODO pane1AddEventButtonClicked
     }
 
     /**
@@ -173,15 +199,6 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     }
 
     /**
-     * Method which opens recurring event addition popup for
-     * period, which is described by pane2.
-     */
-    @FXML
-    private void pane2AddEventButtonClicked() {
-        //TODO pane2AddEventButtonClicked
-    }
-
-    /**
      * Method which changes the scene to the period, which is
      * specified by pane2.
      */
@@ -191,21 +208,39 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     }
 
     /**
-     * Method which opens recurring event addition popup for
-     * period, which is described by pane3.
-     */
-    @FXML
-    private void pane3AddEventButtonClicked() {
-        //TODO pane3AddEventButtonClicked
-    }
-
-    /**
      * Method which changes the scene to the period, which is
      * specified by pane3.
      */
     @FXML
     private void pane3GoToPeriodButtonClicked() {
         //TODO pane3GoToPeriodButtonClicked
+    }
+
+    /**
+     * Method which opens recurring event addition popup for
+     * period, which is described by pane1.
+     */
+    @FXML
+    private void pane1AddEventButtonClicked() {
+        //TODO pane1AddEventButtonClicked
+    }
+
+    /**
+     * Method which opens recurring event addition popup for
+     * period, which is described by pane2.
+     */
+    @FXML
+    private void pane2AddEventButtonClicked() {
+        //TODO pane2AddEventButtonClicked
+    }
+
+    /**
+     * Method which opens recurring event addition popup for
+     * period, which is described by pane1.
+     */
+    @FXML
+    private void pane3AddEventButtonClicked() {
+        //TODO pane1AddEventButtonClicked
     }
 
     // Methods concerning styling of scene
