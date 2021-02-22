@@ -2,7 +2,9 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import controllers.utilities.SetupScene;
 import core.Session;
+import core.Week;
 import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +17,8 @@ import stages.BiggerPopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.DayOfWeek;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -102,9 +106,132 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
     @FXML
     private Pane fridayEventsPane;
 
+    // User specific variables
+    private Week userSelectedWeek;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Initialize
+        // Finds out which week should be selected by the user
+        userSelectedWeek = Week.getCurrentWeek(Session.getSchedulePeriodSelected().getAllWeeks());
+
+        // Sets up navigation arrow visibility
+        configureNavigationArrows();
+
+        // Sets up period and week information at the top
+        setupTopInformation();
+
+        // Sets up dates of days in the calendar
+        setupWeekdaysDates();
+    }
+
+    /**
+     * Method which setups period and week information at the
+     * top of the scene.
+     */
+    private void setupTopInformation(){
+        // Sets up period name label
+        periodNameLabel.setText("Year " + Session.getSchedulePeriodSelected().getAssociatedYear() +
+                ": " + Session.getSchedulePeriodSelected().getName());
+
+        // Sets up week information labels
+        weekNameLabel.setText(userSelectedWeek.toString());
+        weekDateLabel.setText(userSelectedWeek.getWeekDate());
+    }
+
+    /**
+     * Method which setups the dates of each weekday in the calendar.
+     */
+    private void setupWeekdaysDates(){
+        mondayDateLabel.setText(userSelectedWeek.getDay(DayOfWeek.MONDAY).getShortDate());
+        tuesdayDateLabel.setText(userSelectedWeek.getDay(DayOfWeek.TUESDAY).getShortDate());
+        wednesdayDateLabel.setText(userSelectedWeek.getDay(DayOfWeek.WEDNESDAY).getShortDate());
+        thursdayDateLabel.setText(userSelectedWeek.getDay(DayOfWeek.THURSDAY).getShortDate());
+        fridayDateLabel.setText(userSelectedWeek.getDay(DayOfWeek.FRIDAY).getShortDate());
+    }
+
+    /**
+     * Method which configures the visibility of navigation arrows,
+     * which are used for navigation between weeks.
+     */
+    private void configureNavigationArrows(){
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getSchedulePeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Makes both arrows visible, in case previously disabled
+        goLeftButton.setVisible(true);
+        goRightButton.setVisible(true);
+
+        // Disables the arrows, based on current week selection
+        if(indexOfSelectedWeek == 0) goLeftButton.setVisible(false);
+        if(indexOfSelectedWeek == userWeeks.size()-1) goRightButton.setVisible(false);
+    }
+
+    /**
+     * Method which updates the scene after user navigates from one week to other.
+     */
+    private void updateAfterNavigation(){
+        //TODO updateAfterNavigation
+
+        // Updates weekdays' labels
+        setupWeekdaysDates();
+
+        // Updates week information
+        weekNameLabel.setText(userSelectedWeek.toString());
+        weekDateLabel.setText(userSelectedWeek.getWeekDate());
+
+        // Configures navigation arrows
+        configureNavigationArrows();
+    }
+
+    // Methods for navigation buttons
+    /**
+     * Method which forwards user to the main Schedule scene
+     * for selecting periods when go back button is clicked.
+     */
+    @FXML
+    private void goBackClicked(){
+        // Changes the scene to the the general Time scene scene
+        try {
+            SetupScene.changeScene("ScheduleView.fxml", goBackButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Period specific Schedule to general Schedule view.");
+        }
+    }
+
+    /**
+     * Method which handles navigation between weeks.
+     * Goes to the previous week.
+     */
+    @FXML
+    private void goLeftClicked() {
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getSchedulePeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
+
+        // Updates the scene
+        updateAfterNavigation();
+    }
+
+    /**
+     * Method which handles navigation between weeks.
+     * Goes to the next week.
+     */
+    @FXML
+    private void goRightClicked() {
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getSchedulePeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
+
+        // Updates the scene
+        updateAfterNavigation();
     }
 
     // Methods handling button functionality
@@ -143,33 +270,6 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
     @FXML
     private void moduleInfoButtonClicked() {
         //TODO moduleInfoButtonClicked
-    }
-
-    /**
-     * Method which forwards user to the main Schedule scene
-     * for selecting periods when go back button is clicked.
-     */
-    @FXML
-    private void goBackClicked() {
-        //TODO goBackClicked
-    }
-
-    /**
-     * Method which handles navigation between weeks.
-     * Goes to the previous week.
-     */
-    @FXML
-    private void goLeftClicked() {
-        //TODO goLeftClicked
-    }
-
-    /**
-     * Method which handles navigation between weeks.
-     * Goes to the next week.
-     */
-    @FXML
-    private void goRightClicked() {
-        //TODO goRightClicked
     }
 
     // Methods which handle clicking on timetabled events

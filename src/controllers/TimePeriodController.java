@@ -212,7 +212,8 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     private void setupUserInformation(){
         // Setups top fields
-        periodNameLabel.setText(userSelectedPeriod.getName());
+        periodNameLabel.setText("Year " + userSelectedPeriod.getAssociatedYear() +
+                ": " + userSelectedPeriod.getName());
         weekNameLabel.setText(userSelectedWeek.toString());
         weekDateLabel.setText(userSelectedWeek.getWeekDate());
 

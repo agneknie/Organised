@@ -322,6 +322,18 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     @FXML
     private void goToTodayButtonClicked() {
         //TODO goToTodayButtonClicked
+    }
+
+    /**
+     * Method which changes the scene to the period, which is
+     * specified by pane1.
+     */
+    @FXML
+    private void pane1GoToPeriodButtonClicked() {
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane1Pointer));
+
+        // Changes the scene to Period specific view
         try {
             SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
 
@@ -332,20 +344,20 @@ public class ScheduleController extends DefaultNavigation implements Initializab
 
     /**
      * Method which changes the scene to the period, which is
-     * specified by pane1.
-     */
-    @FXML
-    private void pane1GoToPeriodButtonClicked() {
-        //TODO pane1GoToPeriodButtonClicked
-    }
-
-    /**
-     * Method which changes the scene to the period, which is
      * specified by pane2.
      */
     @FXML
     private void pane2GoToPeriodButtonClicked() {
-        //TODO pane2GoToPeriodButtonClicked
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane2Pointer));
+
+        // Changes the scene to Period specific view
+        try {
+            SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
+        }
     }
 
     /**
@@ -354,7 +366,16 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void pane3GoToPeriodButtonClicked() {
-        //TODO pane3GoToPeriodButtonClicked
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane3Pointer));
+
+        // Changes the scene to Period specific view
+        try {
+            SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
+        }
     }
 
     /**

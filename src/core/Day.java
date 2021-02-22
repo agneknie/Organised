@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Objects;
@@ -88,6 +89,17 @@ public class Day {
      */
     public String getShortName(){
         return this.getDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    }
+
+    /**
+     * Returns short date of the day as a String. The date includes month and day.
+     * e.g. 05/28, 07/08, 04/25
+     * @return date of day
+     */
+    public String getShortDate(){
+        // Creates date formatter
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd");
+        return this.getDate().format(dateFormatter);
     }
 
     /**
