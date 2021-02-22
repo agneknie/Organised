@@ -197,7 +197,7 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane1GoToPeriodButton" layoutX="26.0" layoutY="298.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane1GoToPeriodButton" layoutX="25.0" layoutY="392.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane1GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -211,7 +211,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane1AddEventButton" layoutX="26.0" layoutY="393.0" onMouseClicked="#pane1AddEventButtonClicked" onMouseEntered="#pane1AddEventButtonHovered" onMouseExited="#pane1AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane1AddEventButton" layoutX="26.0" layoutY="301.0" onMouseClicked="#pane1AddEventButtonClicked" onMouseEntered="#pane1AddEventButtonHovered" onMouseExited="#pane1AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane1AddEventButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -239,7 +239,7 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="298.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="391.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane2GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -253,7 +253,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane2AddEventButton" layoutX="26.0" layoutY="393.0" onMouseClicked="#pane2AddEventButtonClicked" onMouseEntered="#pane2AddEventButtonHovered" onMouseExited="#pane2AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane2AddEventButton" layoutX="26.0" layoutY="300.0" onMouseClicked="#pane2AddEventButtonClicked" onMouseEntered="#pane2AddEventButtonHovered" onMouseExited="#pane2AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane2AddEventButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -281,7 +281,7 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane3GoToPeriodButton" layoutX="26.0" layoutY="300.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane3GoToPeriodButton" layoutX="27.0" layoutY="389.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane3GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -295,7 +295,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane3AddEventButton" layoutX="26.0" layoutY="395.0" onMouseClicked="#pane3AddEventButtonClicked" onMouseEntered="#pane3AddEventButtonHovered" onMouseExited="#pane3AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane3AddEventButton" layoutX="27.0" layoutY="298.0" onMouseClicked="#pane3AddEventButtonClicked" onMouseEntered="#pane3AddEventButtonHovered" onMouseExited="#pane3AddEventButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane3AddEventButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
