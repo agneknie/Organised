@@ -3,6 +3,8 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Session;
+import core.Period;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,11 +17,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -63,6 +64,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     private Label pane1YearLabel;
     @FXML
     private Label pane1PeriodLabel;
+    private int pane1Pointer;
     // Pane 1 go to today button
     @FXML
     private Pane pane1GoToPeriodButton;
@@ -85,6 +87,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     private Label pane2YearLabel;
     @FXML
     private Label pane2PeriodLabel;
+    private int pane2Pointer;
     // Pane 2 go to today button
     @FXML
     private Pane pane2GoToPeriodButton;
@@ -107,6 +110,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     private Label pane3YearLabel;
     @FXML
     private Label pane3PeriodLabel;
+    private int pane3Pointer;
     // Pane 3 go to today button
     @FXML
     private Pane pane3GoToPeriodButton;
@@ -122,10 +126,22 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     @FXML
     private Label pane3AddEventButtonLabel;
 
+    // User specific variables
+    private List<Period> userPeriods;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Gets user periods
+        userPeriods = Session.getSession().getAllPeriods();
+
         // Sets up top pane with data
         initializeTopPane();
+
+        // Sets up panes with information
+        setupNavigationPanes();
+
+        // Sets up navigation
+        setupNavigation();
     }
 
     /**
@@ -155,13 +171,127 @@ public class ScheduleController extends DefaultNavigation implements Initializab
         timeline.play();
     }
 
+    /**
+     * Method which setups the navigation panes with information
+     */
+    private void setupNavigationPanes(){
+        switch(userPeriods.size()){
+            // No periods to display
+            case 0:
+                // Hides all panes
+                pane1.setVisible(false);
+                pane2.setVisible(false);
+                pane3.setVisible(false);
+                break;
+            // One period available
+            case 1:
+                // Hides unused panes
+                pane2.setVisible(false);
+                pane3.setVisible(false);
+
+                // Setups the first pane
+                pane1Pointer = 0;
+                setupPane1();
+                break;
+            // Two periods available
+            case 2:
+                // Hides unused panes
+                pane3.setVisible(false);
+
+                // Setups the first two panes
+                pane1Pointer = 0;
+                pane2Pointer = 1;
+                setupPane1();
+                setupPane2();
+                break;
+            // Three or more periods available
+            default:
+                // Setups all panes
+                pane1Pointer = 0;
+                pane2Pointer = 1;
+                pane3Pointer = 2;
+                setupPane1();
+                setupPane2();
+                setupPane3();
+        }
+    }
+
+    /**
+     * Method which setups the first pane with user information.
+     */
+    private void setupPane1(){
+        // Makes visible if previously invisible
+        pane1.setVisible(true);
+
+        // Sets up pane labels
+        pane1YearLabel.setText("Year " + userPeriods.get(pane1Pointer).getAssociatedYear());
+        pane1PeriodLabel.setText(userPeriods.get(pane1Pointer).getName());
+    }
+
+    /**
+     * Method which setups the second pane with user information.
+     */
+    private void setupPane2(){
+        // Makes visible if previously invisible
+        pane2.setVisible(true);
+
+        // Sets up pane labels
+        pane2YearLabel.setText("Year " + userPeriods.get(pane2Pointer).getAssociatedYear());
+        pane2PeriodLabel.setText(userPeriods.get(pane2Pointer).getName());
+    }
+
+    /**
+     * Method which setups the first pane with user information.
+     */
+    private void setupPane3(){
+        // Makes visible if previously invisible
+        pane3.setVisible(true);
+
+        // Sets up pane labels
+        pane3YearLabel.setText("Year " + userPeriods.get(pane3Pointer).getAssociatedYear());
+        pane3PeriodLabel.setText(userPeriods.get(pane3Pointer).getName());
+    }
+
+    /**
+     * Method which setups the navigation arrow visibility.
+     */
+    private void setupNavigation(){
+        int periodNumber = userPeriods.size();
+        // Enables both arrows to remove previous configurations
+        goRightButton.setVisible(true);
+        goLeftButton.setVisible(true);
+
+        // If there are less than 3 periods, navigation arrows are not needed
+        if(periodNumber <= 3){
+            goLeftButton.setVisible(false);
+            goRightButton.setVisible(false);
+        }
+
+        // Otherwise, one or both arrows might be needed
+        else {
+            if(pane1Pointer == 0) goLeftButton.setVisible(false);
+            if(pane3Pointer == periodNumber-1) goRightButton.setVisible(false);
+        }
+    }
+
     // Navigation buttons
     /**
      * Method which handles left navigation arrow clicked.
      */
     @FXML
     private void goLeftClicked() {
-        //TODO goLeftClicked
+        // Updates the navigation pane pointers
+        pane1Pointer--;
+        pane2Pointer--;
+        pane3Pointer--;
+
+        // Updates the navigation panes
+        setupPane1();
+        setupPane2();
+        setupPane3();
+
+        // Updates navigation arrow visibility
+        setupNavigation();
     }
 
     /**
@@ -169,7 +299,18 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void goRightClicked() {
-        //TODO goRightClicked
+        // Updates the navigation pane pointers
+        pane1Pointer++;
+        pane2Pointer++;
+        pane3Pointer++;
+
+        // Updates the navigation panes
+        setupPane1();
+        setupPane2();
+        setupPane3();
+
+        // Updates navigation arrow visibility
+        setupNavigation();
     }
 
     // Methods handling button functionality

@@ -187,12 +187,12 @@
             </ImageView>
             <Pane fx:id="pane1" layoutX="69.0" layoutY="334.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="pane1YearLabel" alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1Year" textFill="WHITE">
+                  <Label fx:id="pane1YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="94.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1Year" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutY="108.0" prefHeight="177.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="13.0" layoutY="108.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
@@ -229,12 +229,12 @@
             </Pane>
             <Pane fx:id="pane2" layoutX="439.0" layoutY="334.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="pane2YearLabel" alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2Year" textFill="WHITE">
+                  <Label fx:id="pane2YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="94.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2Year" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutY="108.0" prefHeight="177.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="108.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
@@ -271,12 +271,12 @@
             </Pane>
             <Pane fx:id="pane3" layoutX="808.0" layoutY="334.0" prefHeight="484.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="pane3YearLabel" alignment="CENTER" layoutY="14.0" prefHeight="94.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3Year" textFill="WHITE">
+                  <Label fx:id="pane3YearLabel" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="94.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3Year" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutY="108.0" prefHeight="177.0" prefWidth="315.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="108.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
