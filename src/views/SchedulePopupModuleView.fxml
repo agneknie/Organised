@@ -4,7 +4,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SchedulePopupModuleController">
@@ -34,7 +33,6 @@
             </Label>
          </children>
       </Pane>
-      <Line endX="421.0" layoutX="190.0" layoutY="119.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0" />
       <Pane fx:id="pane1" layoutX="89.0" layoutY="127.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
             <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code1" textFill="WHITE">
