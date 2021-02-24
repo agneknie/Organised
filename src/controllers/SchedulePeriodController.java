@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import stages.BiggerPopupStage;
+import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -268,8 +269,10 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      * information about the modules of the period.
      */
     @FXML
-    private void moduleInfoButtonClicked() {
-        //TODO moduleInfoButtonClicked
+    private void moduleInfoButtonClicked() throws IOException {
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "SchedulePopupModuleView.fxml");
     }
 
     // Methods which handle clicking on timetabled events
