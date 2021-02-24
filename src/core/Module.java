@@ -201,7 +201,7 @@ public class Module {
         ResultSet rs = null;
 
         // Sets up the query
-        String query = "SELECT * FROM Day WHERE id = ?;";
+        String query = "SELECT * FROM Module WHERE id = ?;";
         try {
             // Fills prepared statement and executes
             pStatement = connection.prepareStatement(query);

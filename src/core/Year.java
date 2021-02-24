@@ -122,6 +122,65 @@ public class Year {
     }
 
     /**
+     * Constructor for year.
+     * Constructs a year instance from the database based on user id
+     * and year number.
+     *
+     * @param userId id of the user the year belongs to
+     * @param yearNumber year number of the year
+     */
+    public static Year yearFromUserIdAndNumber(int userId, int yearNumber){
+        // Creates empty year object
+        Year newYear = null;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Year WHERE userId = ? AND yearNumber = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, userId);
+            pStatement.setInt(2, yearNumber);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Module
+            int id = rs.getInt("id");
+            int credits = rs.getInt("credits");
+            double percentWorth = rs.getInt("percentWorth");
+
+            newYear = new Year(id, userId, yearNumber, credits, percentWorth);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Returns the year
+        return newYear;
+    }
+
+    /**
      * Method which takes an integer, which is supposed to be the new year number
      * and checks in the database whether that yearNumber already exists for a given user.
      *
