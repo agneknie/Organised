@@ -1,13 +1,17 @@
 package core;
 
+import core.enums.ScheduleTime;
 import database.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -292,6 +296,68 @@ public class Day {
                 }
             }
         }
+    }
+
+    /**
+     * Method which returns all events of the Day.
+     *
+     * @return List of all Events belonging to this Day.
+     */
+    public List<Event> getAllEvents(){
+        ArrayList<Event> events = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Event WHERE dayId = ? AND userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, userId);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Days and saves them in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int userId = rs.getInt("userId");
+                int moduleId = rs.getInt("moduleId");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                ScheduleTime startTime = ScheduleTime.stringToScheduleTime(rs.getString("startTime"));
+                ScheduleTime endTime = ScheduleTime.stringToScheduleTime(rs.getString("endTime"));
+
+                Event newEvent = new Event(id, userId, this.id, moduleId, name, description, startTime, endTime);
+                events.add(newEvent);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Returns a list of event objects
+        return events;
     }
 
     @Override

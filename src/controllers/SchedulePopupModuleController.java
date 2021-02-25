@@ -70,10 +70,8 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
     private List<Module> userModules;
     private int currentlyDisplayedBatch;
 
-    // Constants
-    private final int MAX_PANES = 5;
-    private final double COLOR_THRESHOLD = 500.0;
-
+    // Number of panes on the window
+    final int MAX_PANES = 5;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,6 +86,9 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
         // Setups the table which displays module data
         currentlyDisplayedBatch = 0;
         updateModuleTable();
+
+        // Determines visibility of moreButton
+        moreButton.setVisible(userModules.size() > MAX_PANES);
     }
 
     /**
@@ -107,6 +108,9 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
      * relevant module information.
      */
     private void updateModuleTable(){
+        // Constant for colour to change text colour
+        final double COLOR_THRESHOLD = 500.0;
+
         // Makes all panes visible in case they weren't before
         for(Pane pane : modulePanes){
             pane.setVisible(true);
@@ -156,9 +160,6 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
                 modulePanes.get(MAX_PANES-panesLeft).setVisible(false);
             }
         }
-
-        // Determines visibility of moreButton
-        moreButton.setVisible(userModules.size() > MAX_PANES);
     }
 
     // Methods concerning button clicks

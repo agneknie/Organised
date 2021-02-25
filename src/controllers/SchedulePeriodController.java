@@ -123,6 +123,15 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
         // Sets up dates of days in the calendar
         setupWeekdaysDates();
+
+        // Disables visibility of event pane
+        eventInformationPane.setVisible(false);
+
+        // Disables visibility of edit event button, because no event is selected yet
+        editEventButton.setVisible(false);
+
+        // Setups the schedule
+        setupSchedule();
     }
 
     /**
@@ -172,8 +181,6 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      * Method which updates the scene after user navigates from one week to other.
      */
     private void updateAfterNavigation(){
-        //TODO updateAfterNavigation
-
         // Updates weekdays' labels
         setupWeekdaysDates();
 
@@ -183,6 +190,31 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
         // Configures navigation arrows
         configureNavigationArrows();
+
+        // Disables visibility of event pane
+        eventInformationPane.setVisible(false);
+
+        // Disables visibility of edit event button, because no event is selected yet
+        editEventButton.setVisible(false);
+
+        // Setups the schedule
+        cleanSchedule();
+        setupSchedule();
+    }
+
+    /**
+     * Cleans the schedule/calendar area of the scene.
+     */
+    private void cleanSchedule(){
+        //TODO cleanSchedule
+    }
+
+    /**
+     * Setups the schedule/calendar area of the scene with
+     * event information.
+     */
+    private void setupSchedule(){
+        // TODO setupSchedule
     }
 
     // Methods for navigation buttons
