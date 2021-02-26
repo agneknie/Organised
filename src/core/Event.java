@@ -200,6 +200,16 @@ public class Event {
     }
 
     /**
+     * Method which returns the code of the module, which is associated
+     * with the event.
+     *
+     * @return code of module associated with event
+     */
+    public String getModuleCode(){
+        return Module.moduleFromId(moduleId).getCode();
+    }
+
+    /**
      * Method which adds an Event to the database.
      */
     public void addEvent(){

@@ -214,7 +214,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventDescriptionLabel" layoutX="312.0" layoutY="67.0" prefHeight="83.0" prefWidth="339.0" style="-fx-wrap-text: true;" text="descriptionLabel" textFill="WHITE">
+                  <Label fx:id="eventDescriptionLabel" layoutX="312.0" layoutY="67.0" prefHeight="83.0" prefWidth="331.0" style="-fx-wrap-text: true;" text="descriptionLabel" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>

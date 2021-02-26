@@ -3,11 +3,11 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
-import core.Day;
 import core.Event;
 import core.Session;
 import core.Week;
 import core.enums.PopupType;
+import core.enums.ScheduleTime;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -115,6 +115,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
     // User specific variables
     private Week userSelectedWeek;
+    private Event[] mondayEventsList;
+    private Event[] tuesdayEventsList;
+    private Event[] wednesdayEventsList;
+    private Event[] thursdayEventsList;
+    private Event[] fridayEventsList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -232,6 +237,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
                 timeSlot.setText("");
             }
         }
+
+        // Deletes all references from references lists
+        mondayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+        tuesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+        wednesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+        thursdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+        fridayEventsList = new Event[]{null, null, null, null, null, null, null, null};
     }
 
     /**
@@ -253,7 +265,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.MONDAY).getAllEvents();
         // Goes through all events of that day
         for(Event event : dayEvents){
-            setupEvent(event, event.getTimeSlotsOfEvent(mondayEventsPane));
+            List<Label> timeSlots = event.getTimeSlotsOfEvent(mondayEventsPane);
+            // Adds event to references list
+            addToEventList(event, mondayEventsList);
+            // Sets up the event
+            setupEvent(event, timeSlots);
         }
     }
 
@@ -265,7 +281,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.TUESDAY).getAllEvents();
         // Goes through all events of that day
         for(Event event : dayEvents){
-            setupEvent(event, event.getTimeSlotsOfEvent(tuesdayEventsPane));
+            List<Label> timeSlots = event.getTimeSlotsOfEvent(tuesdayEventsPane);
+            // Adds event to references list
+            addToEventList(event, tuesdayEventsList);
+            // Sets up the event
+            setupEvent(event, timeSlots);
         }
     }
 
@@ -277,7 +297,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.WEDNESDAY).getAllEvents();
         // Goes through all events of that day
         for(Event event : dayEvents){
-            setupEvent(event, event.getTimeSlotsOfEvent(wednesdayEventsPane));
+            List<Label> timeSlots = event.getTimeSlotsOfEvent(wednesdayEventsPane);
+            // Adds event to references list
+            addToEventList(event, wednesdayEventsList);
+            // Sets up the event
+            setupEvent(event, timeSlots);
         }
     }
 
@@ -289,7 +313,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.THURSDAY).getAllEvents();
         // Goes through all events of that day
         for(Event event : dayEvents){
-            setupEvent(event, event.getTimeSlotsOfEvent(thursdayEventsPane));
+            List<Label> timeSlots = event.getTimeSlotsOfEvent(thursdayEventsPane);
+            // Adds event to references list
+            addToEventList(event, thursdayEventsList);
+            // Sets up the event
+            setupEvent(event, timeSlots);
         }
     }
 
@@ -301,7 +329,57 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.FRIDAY).getAllEvents();
         // Goes through all events of that day
         for(Event event : dayEvents){
-            setupEvent(event, event.getTimeSlotsOfEvent(fridayEventsPane));
+            List<Label> timeSlots = event.getTimeSlotsOfEvent(fridayEventsPane);
+            // Adds event to references list
+            addToEventList(event, fridayEventsList);
+            // Sets up the event
+            setupEvent(event, timeSlots);
+        }
+    }
+
+    /**
+     * Method which takes an event and adds it to the relevant event list.
+     * Each event list has 8 elements, for each time slot/label.
+     *
+     * @param event event to add to the list
+     * @param eventArray list to add the event to
+     */
+    private void addToEventList(Event event, Event[] eventArray){
+        // Picks the time slot which is the start of the event
+        int timeSlotNumber = 0;
+        switch (event.getStartTime()){
+            case NINE:
+                timeSlotNumber = 0;
+                break;
+            case TEN:
+                timeSlotNumber = 1;
+                break;
+            case ELEVEN:
+                timeSlotNumber = 2;
+                break;
+            case TWELVE:
+                timeSlotNumber = 3;
+                break;
+            case THIRTEEN:
+                timeSlotNumber = 4;
+                break;
+            case FOURTEEN:
+                timeSlotNumber = 5;
+                break;
+            case FIFTEEN:
+                timeSlotNumber = 6;
+                break;
+            case SIXTEEN:
+                timeSlotNumber = 7;
+                break;
+        }
+
+        // Finds event length and adds that event to the reference for each time slot
+        int eventLength = ScheduleTime.hoursBetweenTimes(event.getStartTime(), event.getEndTime());
+        while(eventLength!=0){
+            eventArray[timeSlotNumber] = event;
+            timeSlotNumber++;
+            eventLength--;
         }
     }
 
@@ -454,7 +532,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void mondayEventsPaneClicked(MouseEvent event){
-        //TODO mondayEventsPaneClicked
+        double yCoordinate = event.getY();
+        // If click was on an event timeslot
+        if(yCoordinate<=512){
+            Session.setScheduleEventSelected(mondayEventsList[findClickedTimeSlot(yCoordinate)]);
+            // Displays event information in the event pane
+            displayEventInfo();
+        }
     }
 
     /**
@@ -464,7 +548,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void tuesdayEventsPaneClicked(MouseEvent event){
-        //TODO tuesdayEventsPaneClicked
+        double yCoordinate = event.getY();
+        // If click was on an event timeslot
+        if(yCoordinate<=512){
+            Session.setScheduleEventSelected(tuesdayEventsList[findClickedTimeSlot(yCoordinate)]);
+            // Displays event information in the event pane
+            displayEventInfo();
+        }
     }
 
     /**
@@ -474,7 +564,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void wednesdayEventsPaneClicked(MouseEvent event){
-        //TODO wednesdayEventsPaneClicked
+        double yCoordinate = event.getY();
+        // If click was on an event timeslot
+        if(yCoordinate<=512){
+            Session.setScheduleEventSelected(wednesdayEventsList[findClickedTimeSlot(yCoordinate)]);
+            // Displays event information in the event pane
+            displayEventInfo();
+        }
     }
 
     /**
@@ -484,7 +580,13 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void thursdayEventsPaneClicked(MouseEvent event){
-        //TODO thursdayEventsPaneClicked
+        double yCoordinate = event.getY();
+        // If click was on an event timeslot
+        if(yCoordinate<=512){
+            Session.setScheduleEventSelected(thursdayEventsList[findClickedTimeSlot(yCoordinate)]);
+            // Displays event information in the event pane
+            displayEventInfo();
+        }
     }
 
     /**
@@ -494,7 +596,49 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void fridayEventsPaneClicked(MouseEvent event){
-        //TODO fridayEventsPaneClicked
+        double yCoordinate = event.getY();
+        // If click was on an event timeslot
+        if(yCoordinate<=512){
+            Session.setScheduleEventSelected(fridayEventsList[findClickedTimeSlot(yCoordinate)]);
+            // Displays event information in the event pane
+            displayEventInfo();
+        }
+    }
+
+    /**
+     * Method which finds the number of the time slot which was clicked
+     * in a weekday event pane.
+     *
+     * @param yCoordinate y coordinate of the mouse click
+     */
+    private int findClickedTimeSlot(double yCoordinate){
+        final int TIME_SLOT_HEIGHT = 64;
+        if(yCoordinate<=TIME_SLOT_HEIGHT) return 0;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*2) return 1;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*3) return 2;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*4) return 3;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*5) return 4;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*6) return 5;
+        else if(yCoordinate<=TIME_SLOT_HEIGHT*7) return 6;
+        else return 7;
+    }
+
+    /**
+     * Method which sets up the event information pane.
+     * Sets up with event, which is selected in Session variable.
+     */
+    private void displayEventInfo(){
+        Event event = Session.getScheduleEventSelected();
+        if(event!=null){
+            // Populates event information pane with event data
+            eventInformationPane.setVisible(true);
+            moduleCodeLabel.setText(event.getModuleCode());
+            eventNameLabel.setText(event.getName());
+            eventDescriptionLabel.setText(event.getDescription());
+
+            // Enables the edit button
+            editEventButton.setVisible(true);
+        }
     }
 
     // Methods handling styling of scene elements
