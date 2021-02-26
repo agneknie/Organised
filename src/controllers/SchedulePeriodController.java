@@ -126,6 +126,9 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         // Finds out which week should be selected by the user
         userSelectedWeek = Week.getCurrentWeek(Session.getSchedulePeriodSelected().getAllWeeks());
 
+        // Saves selected week in session
+        Session.setScheduleWeekSelected(userSelectedWeek);
+
         // Sets up navigation arrow visibility
         configureNavigationArrows();
 
@@ -463,6 +466,9 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         // Updates the displayed week
         userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
 
+        // Saves selected week in session
+        Session.setScheduleWeekSelected(userSelectedWeek);
+
         // Updates the scene
         updateAfterNavigation();
     }
@@ -479,6 +485,9 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
         // Updates the displayed week
         userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
+
+        // Saves selected week in session
+        Session.setScheduleWeekSelected(userSelectedWeek);
 
         // Updates the scene
         updateAfterNavigation();

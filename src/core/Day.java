@@ -141,6 +141,63 @@ public class Day {
     }
 
     /**
+     * Constructor for day.
+     * Constructs a day instance from the database based on day id.
+     *
+     * @param id id of the day
+     */
+    public static Day dayFromId(int id){
+        // Creates empty day object
+        Day newDay = null;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Day WHERE id = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Module
+            int userId = rs.getInt("userId");
+            int weekId = rs.getInt("weekId");
+            String date = rs.getString("date");
+            int hoursSpent = rs.getInt("hoursSpent");
+
+            newDay = new Day(id, userId, weekId, date, hoursSpent);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Returns the day
+        return newDay;
+    }
+
+    /**
      * Adds a specified amount of hours to the hoursSpent variable of the day.
      *
      * Increments user's hours spent variable by the specified amount,

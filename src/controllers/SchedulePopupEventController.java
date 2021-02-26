@@ -2,24 +2,22 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
-import core.Day;
-import core.Module;
-import core.Session;
+import core.*;
 import core.enums.PopupType;
 import core.enums.ScheduleTime;
+import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -74,7 +72,87 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
         // Sets up the popup according to its type
         setupPopupBasedOnType();
 
-        //TODO Initialize
+        // Sets up Day of Week combo box
+        // Populates the combo box with Day of Week values
+        dayOfWeekComboBox.getItems().setAll(Session.getScheduleWeekSelected().getAllDays());
+        // Styles Day of Week combo box text
+        dayOfWeekComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
+
+        // Sets up the associated module combo box
+        // Populates the combo box with modules of period
+        int yearNumber = Session.getSchedulePeriodSelected().getAssociatedYear();
+        int userId = Session.getSession().getId();
+        associatedModuleComboBox.getItems().setAll(Year.yearFromUserIdAndNumber(userId, yearNumber).getAllModules());
+        // Styles modules combo box text
+        associatedModuleComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
+
+        // Sets up start time combo box
+        // Populates the combo box with available start times
+        startTimeComboBox.getItems().setAll(ScheduleTime.getStartTimes());
+        // Styles start times combo box text
+        startTimeComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
+
+        // Sets up end time combo box
+        // Populates the combo box with available end times
+        endTimeComboBox.getItems().setAll(ScheduleTime.getEndTimes());
+        // Styles end times combo box text
+        endTimeComboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
     }
 
     /**
@@ -99,7 +177,13 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
         if(sceneType == PopupType.ADD) deleteButton.setVisible(false);
         // Fills popup fields with selected event data if popup is Edit
         else{
-            //TODO fill popup fields with selected event data
+            Event selectedEvent = Session.getScheduleEventSelected();
+            dayOfWeekComboBox.setValue(selectedEvent.getDay());
+            associatedModuleComboBox.setValue(selectedEvent.getModule());
+            nameField.setText(selectedEvent.getName());
+            startTimeComboBox.setValue(selectedEvent.getStartTime());
+            endTimeComboBox.setValue(selectedEvent.getEndTime());
+            descriptionField.setText(selectedEvent.getDescription());
         }
     }
 

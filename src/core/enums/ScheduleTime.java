@@ -1,5 +1,8 @@
 package core.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Organised.
  * Copyright (c) 2021, Agne Knietaite
@@ -73,5 +76,39 @@ public enum ScheduleTime {
      */
     public static int hoursBetweenTimes(ScheduleTime start, ScheduleTime end){
         return scheduleTimeToInt(end) - scheduleTimeToInt(start);
+    }
+
+    /**
+     * Method which returns all possible event start times.
+     * @return List of start times
+     */
+    public static List<ScheduleTime> getStartTimes(){
+        List<ScheduleTime> startTimes = new ArrayList<>();
+        startTimes.add(ScheduleTime.NINE);
+        startTimes.add(ScheduleTime.TEN);
+        startTimes.add(ScheduleTime.ELEVEN);
+        startTimes.add(ScheduleTime.TWELVE);
+        startTimes.add(ScheduleTime.THIRTEEN);
+        startTimes.add(ScheduleTime.FOURTEEN);
+        startTimes.add(ScheduleTime.FIFTEEN);
+        startTimes.add(ScheduleTime.SIXTEEN);
+        return startTimes;
+    }
+
+    /**
+     * Method which returns all possible event end times.
+     * @return List of end times
+     */
+    public static List<ScheduleTime> getEndTimes(){
+        List<ScheduleTime> endTimes = new ArrayList<>();
+        endTimes.add(ScheduleTime.TEN);
+        endTimes.add(ScheduleTime.ELEVEN);
+        endTimes.add(ScheduleTime.TWELVE);
+        endTimes.add(ScheduleTime.THIRTEEN);
+        endTimes.add(ScheduleTime.FOURTEEN);
+        endTimes.add(ScheduleTime.FIFTEEN);
+        endTimes.add(ScheduleTime.SIXTEEN);
+        endTimes.add(ScheduleTime.SEVENTEEN);
+        return endTimes;
     }
 }

@@ -496,6 +496,11 @@ public class Module {
     }
 
     @Override
+    public String toString(){
+        return this.code;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

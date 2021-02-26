@@ -186,7 +186,7 @@ public class Event {
      * @return colour of event as a string
      */
     public String getEventColourString(){
-        return Module.moduleFromId(moduleId).getColourAsString();
+        return this.getModule().getColourAsString();
     }
 
     /**
@@ -196,7 +196,7 @@ public class Event {
      * @return colour as colour object of event
      */
     public Color getEventColour(){
-        return Module.moduleFromId(moduleId).getColour();
+        return this.getModule().getColour();
     }
 
     /**
@@ -206,7 +206,25 @@ public class Event {
      * @return code of module associated with event
      */
     public String getModuleCode(){
-        return Module.moduleFromId(moduleId).getCode();
+        return this.getModule().getCode();
+    }
+
+    /**
+     * Method which returns the module associated with the event.
+     *
+     * @return module of the event
+     */
+    public Module getModule(){
+        return Module.moduleFromId(moduleId);
+    }
+
+    /**
+     * Method which returns the day associated with the event.
+     *
+     * @return day of the event
+     */
+    public Day getDay(){
+        return Day.dayFromId(dayId);
     }
 
     /**

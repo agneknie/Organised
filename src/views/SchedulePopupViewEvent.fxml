@@ -77,7 +77,7 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <TextArea fx:id="descriptionField" layoutX="300.0" layoutY="3.0" prefHeight="167.0" prefWidth="224.0" promptText="e.g. Synchronous Organisation Session " style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;" stylesheets="@../stylesheets/textAreaStyling.css">
+            <TextArea fx:id="descriptionField" layoutX="300.0" layoutY="3.0" prefHeight="167.0" prefWidth="224.0" promptText="e.g. Synchronous Organisation Session " style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white; -fx-wrap-text: true;" stylesheets="@../stylesheets/textAreaStyling.css">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
