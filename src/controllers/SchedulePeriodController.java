@@ -3,15 +3,20 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Day;
+import core.Event;
 import core.Session;
 import core.Week;
 import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import stages.BiggerPopupStage;
 import stages.PopupStage;
@@ -19,6 +24,7 @@ import stages.PopupStage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -206,15 +212,148 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      * Cleans the schedule/calendar area of the scene.
      */
     private void cleanSchedule(){
-        //TODO cleanSchedule
+        // Adds all panes to a list of panes
+        List<Pane> weekdaysPanes = new ArrayList<>();
+        weekdaysPanes.add(mondayEventsPane);
+        weekdaysPanes.add(tuesdayEventsPane);
+        weekdaysPanes.add(wednesdayEventsPane);
+        weekdaysPanes.add(thursdayEventsPane);
+        weekdaysPanes.add(fridayEventsPane);
+
+        // Goes through all panes
+        for(Pane weekdayPane : weekdaysPanes){
+            // Goes through all time slot labels of the weekday
+            for(Node timeSlotNode : weekdayPane.getChildren()){
+                Label timeSlot = (Label) timeSlotNode;
+                // Resets the background of the time slot
+                timeSlot.setStyle("-fx-background-color: transparent; " +
+                        "-fx-background-radius: 10;");
+                // Resets the text of time slot
+                timeSlot.setText("");
+            }
+        }
     }
 
     /**
-     * Setups the schedule/calendar area of the scene with
-     * event information.
+     * Setups the schedule/calendar area of the scene with event information.
      */
     private void setupSchedule(){
-        // TODO setupSchedule
+        setupMondaySchedule();
+        setupTuesdaySchedule();
+        setupWednesdaySchedule();
+        setupThursdaySchedule();
+        setupFridaySchedule();
+    }
+
+    /**
+     * Method which setups schedule of Monday.
+     */
+    private void setupMondaySchedule(){
+        // Gets all events of Monday
+        List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.MONDAY).getAllEvents();
+        // Goes through all events of that day
+        for(Event event : dayEvents){
+            setupEvent(event, event.getTimeSlotsOfEvent(mondayEventsPane));
+        }
+    }
+
+    /**
+     * Method which setups schedule of Tuesday.
+     */
+    private void setupTuesdaySchedule(){
+        // Gets all events of Tuesday
+        List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.TUESDAY).getAllEvents();
+        // Goes through all events of that day
+        for(Event event : dayEvents){
+            setupEvent(event, event.getTimeSlotsOfEvent(tuesdayEventsPane));
+        }
+    }
+
+    /**
+     * Method which setups schedule of Wednesday.
+     */
+    private void setupWednesdaySchedule(){
+        // Gets all events of Wednesday
+        List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.WEDNESDAY).getAllEvents();
+        // Goes through all events of that day
+        for(Event event : dayEvents){
+            setupEvent(event, event.getTimeSlotsOfEvent(wednesdayEventsPane));
+        }
+    }
+
+    /**
+     * Method which setups schedule of Wednesday.
+     */
+    private void setupThursdaySchedule(){
+        // Gets all events of Thursday
+        List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.THURSDAY).getAllEvents();
+        // Goes through all events of that day
+        for(Event event : dayEvents){
+            setupEvent(event, event.getTimeSlotsOfEvent(thursdayEventsPane));
+        }
+    }
+
+    /**
+     * Method which setups schedule of Wednesday.
+     */
+    private void setupFridaySchedule(){
+        // Gets all events of Friday
+        List<Event> dayEvents = userSelectedWeek.getDay(DayOfWeek.FRIDAY).getAllEvents();
+        // Goes through all events of that day
+        for(Event event : dayEvents){
+            setupEvent(event, event.getTimeSlotsOfEvent(fridayEventsPane));
+        }
+    }
+
+    /**
+     * Method which setups the event in the schedule.
+     *
+     * @param event event to setup
+     * @param timeSlots List of labels which represent time slots during which
+     *                  the event takes place.
+     */
+    private void setupEvent(Event event, List<Label> timeSlots){
+        // Gets the colour of event, because it's more efficient than querying the db each time
+        String eventColorString = event.getEventColourString();
+        Color eventColor = event.getEventColour();
+
+        // Constant for colour to change text colour
+        final double COLOR_THRESHOLD = 500.0;
+        // Configures text colour if background is too fair
+        double colourOverall = eventColor.getRed()*255 + eventColor.getBlue()*255 + eventColor.getGreen()*255;
+        if(colourOverall >= COLOR_THRESHOLD)
+            timeSlots.get(0).setTextFill(Paint.valueOf("#2B2B2B"));
+        else
+            timeSlots.get(0).setTextFill(Paint.valueOf("#FFFFFF"));
+
+        // If event is just an hour long
+        if(timeSlots.size()==1){
+            timeSlots.get(0).setText(event.getName());
+            timeSlots.get(0).setStyle("-fx-background-color: "+eventColorString+"; " +
+                    "-fx-background-radius: 10;");
+        }
+        // If event is more than an hour long
+        else{
+            // Sets the name of event in the first time slot
+            timeSlots.get(0).setText(event.getName());
+            // Sets the style of the first time slot
+            timeSlots.get(0).setStyle("-fx-background-color: "+eventColorString+"; " +
+                    "-fx-background-radius: 10 10 0 0;");
+
+            // Sets the style of the last time slot
+            timeSlots.get(timeSlots.size()-1).setStyle("-fx-background-color: "+eventColorString+"; " +
+                    "-fx-background-radius: 0 0 10 10;");
+
+            // Removes the first and last time slots form the list of time slots
+            timeSlots.remove(0);
+            timeSlots.remove(timeSlots.size()-1);
+
+            // Sets the style of remaining time slots
+            for(Label timeSlot : timeSlots){
+                timeSlot.setStyle("-fx-background-color: "+eventColorString+"; " +
+                        "-fx-background-radius: 0 0 0 0;");
+            }
+        }
     }
 
     // Methods for navigation buttons

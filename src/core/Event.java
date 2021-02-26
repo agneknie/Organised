@@ -2,6 +2,9 @@ package core;
 
 import core.enums.ScheduleTime;
 import database.Database;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.sql.Connection;
@@ -180,10 +183,20 @@ public class Event {
      * Returns the colour in which the event should be coloured.
      * Corresponds to the colour of the module.
      *
-     * @return colour of event
+     * @return colour of event as a string
+     */
+    public String getEventColourString(){
+        return Module.moduleFromId(moduleId).getColourAsString();
+    }
+
+    /**
+     * Returns the colour in which the event should be coloured.
+     * Corresponds to the colour of the module.
+     *
+     * @return colour as colour object of event
      */
     public Color getEventColour(){
-        return Module.moduleFromId(this.id).getColour();
+        return Module.moduleFromId(moduleId).getColour();
     }
 
     /**
@@ -362,5 +375,61 @@ public class Event {
                 }
             }
         }
+    }
+
+    /**
+     * Method which takes an event and from its start and end times figures out
+     * which time slots of the given weekdayPane have to be populated with event data.
+     *
+     * @param weekdayPane pane which holds all time slots/labels
+     * @return List of Labels/time slots which should be populated with event data.
+     */
+    public List<Label> getTimeSlotsOfEvent(Pane weekdayPane){
+        // Gets the list of all time slots of weekday pane
+        List<Label> timeSlotsOfDay = new ArrayList<>();
+        for(Node child : weekdayPane.getChildren()){
+            timeSlotsOfDay.add((Label)child);
+        }
+
+        // Picks the time slot which is the start of the event
+        int timeSlotNumber = 0;
+        switch (this.startTime){
+            case NINE:
+                timeSlotNumber = 0;
+                break;
+            case TEN:
+                timeSlotNumber = 1;
+                break;
+            case ELEVEN:
+                timeSlotNumber = 2;
+                break;
+            case TWELVE:
+                timeSlotNumber = 3;
+                break;
+            case THIRTEEN:
+                timeSlotNumber = 4;
+                break;
+            case FOURTEEN:
+                timeSlotNumber = 5;
+                break;
+            case FIFTEEN:
+                timeSlotNumber = 6;
+                break;
+            case SIXTEEN:
+                timeSlotNumber = 7;
+                break;
+        }
+
+        // Goes through time slots of the day and picks the ones that belong to the event
+        List<Label> timeSlotsOfEvent = new ArrayList<>();
+        int eventLength = ScheduleTime.hoursBetweenTimes(this.startTime, this.endTime);
+        while(eventLength!=0){
+            timeSlotsOfEvent.add(timeSlotsOfDay.get(timeSlotNumber));
+            timeSlotNumber++;
+            eventLength--;
+        }
+
+        // Returns the time slots belonging to event
+        return timeSlotsOfEvent;
     }
 }

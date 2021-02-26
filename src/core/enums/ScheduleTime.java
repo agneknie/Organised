@@ -46,4 +46,32 @@ public enum ScheduleTime {
         }
         throw new IllegalArgumentException("ScheduleTime " + timeString + " does not exist");
     }
+
+    /**
+     * Method which converts schedule time to an integer.
+     * E.g. 9:00 to 9, 10:00 to 10.
+     * @param scheduleTime ScheduleTime to convert
+     * @return int representation of given ScheduleTime
+     */
+    private static int scheduleTimeToInt(ScheduleTime scheduleTime){
+        if(scheduleTime == NINE){
+            return Integer.parseInt(scheduleTime.toString().substring(0,1));
+        }
+        else{
+            return Integer.parseInt(scheduleTime.toString().substring(0,2));
+        }
+    }
+
+    /**
+     * Method which takes two Schedule times, which are supposed to
+     * represent start and end of the event and returns the number of
+     * hours between this range.
+     *
+     * @param start start of range
+     * @param end end of range
+     * @return how long the range spans/event takes
+     */
+    public static int hoursBetweenTimes(ScheduleTime start, ScheduleTime end){
+        return scheduleTimeToInt(end) - scheduleTimeToInt(start);
+    }
 }
