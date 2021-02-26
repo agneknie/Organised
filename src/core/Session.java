@@ -55,6 +55,8 @@ public class Session {
     private static Week scheduleWeekSelected = null;
     // Schedule: currently selected period
     private static Period schedulePeriodSelected = null;
+    // Schedule: event just added, edited or deleted
+    private static boolean scheduleCalendarChanged;
 
     /**
      * Getter for the primary stage of main window for stage dragging
@@ -336,5 +338,23 @@ public class Session {
      */
     public static void setSchedulePeriodSelected(Period schedulePeriodSelected) {
         Session.schedulePeriodSelected = schedulePeriodSelected;
+    }
+
+    /**
+     * Getter for variable which is true, if user has just added a new event,
+     * edited a an old event or deleted an event.
+     * @return true if schedule just changed, false otherwise
+     */
+    public static boolean isScheduleCalendarChanged() {
+        return scheduleCalendarChanged;
+    }
+
+    /**
+     * Setter for variable which is true, if user has just added a new event,
+     * edited a an old event or deleted an event.
+     * @param scheduleCalendarChanged value to set
+     */
+    public static void setScheduleCalendarChanged(boolean scheduleCalendarChanged) {
+        Session.scheduleCalendarChanged = scheduleCalendarChanged;
     }
 }

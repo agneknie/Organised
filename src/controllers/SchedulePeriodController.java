@@ -149,6 +149,24 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
     }
 
     /**
+     * Method which refreshes the schedule/calendar area of the screen
+     * in case user added/edited an event.
+     */
+    @FXML
+    private void refreshScene(){
+        // If calendar/schedule changed
+        if(Session.isScheduleCalendarChanged()){
+            // Resets session variable
+            Session.setScheduleCalendarChanged(false);
+            // Hides the event pane in case event modified or deleted
+            eventInformationPane.setVisible(false);
+            // Updates the calendar/schedule
+            cleanSchedule();
+            setupSchedule();
+        }
+    }
+
+    /**
      * Method which setups period and week information at the
      * top of the scene.
      */

@@ -5,19 +5,18 @@ import controllers.utilities.DefaultNavigation;
 import core.*;
 import core.enums.PopupType;
 import core.enums.ScheduleTime;
-import core.enums.Semester;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -200,8 +199,15 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
      * Method which handles actions when delete button is clicked.
      */
     @FXML
-    private void deleteButtonClicked(){
-        //TODO deleteButtonClicked
+    private void deleteButtonClicked(MouseEvent event){
+        // Deletes the event
+        Session.getScheduleEventSelected().deleteEvent();
+        // Removes event from session
+        Session.setScheduleEventSelected(null);
+        // Changes session variable to reflect the change
+        Session.setScheduleCalendarChanged(true);
+        // Closes the popup window
+        this.closeClicked(event);
     }
 
     // Methods handling styling of scene
