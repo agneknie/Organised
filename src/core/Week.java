@@ -406,6 +406,27 @@ public class Week {
         return rowsAffected != 0;
     }
 
+    /**
+     * Method which returns a list of dummy Day objects which represent
+     * a Week. Used for filling a combo box.
+     * NOT TO BE USED FOR ACTUAL WEEK CONSTRUCTION!
+     *
+     * @return List of Day objects representing a week.
+     */
+    public static List<Day> daysForComboBox(){
+        // Creates array for days
+        List<Day> days = new ArrayList<>();
+
+        // Creates dummy week
+        LocalDate date = LocalDate.of(2000, 07, 03);
+        for(int i=0; i<7; i++){
+            days.add(new Day(0, 0, date.plusDays(i)));
+        }
+
+        // Returns the week/days
+        return days;
+    }
+
     @Override
     public String toString(){
         return "Week " + weekNumber;

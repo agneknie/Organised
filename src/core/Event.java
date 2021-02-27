@@ -28,7 +28,7 @@ import java.util.Objects;
 public class Event {
     private final int id;
     private final int userId;
-    private final int dayId;
+    private int dayId;
     private final int moduleId;
     private String name;
     private String description;
@@ -57,6 +57,14 @@ public class Event {
      */
     public int getDayId() {
         return dayId;
+    }
+
+    /**
+     * Setter for dayId.
+     * @param dayId of the day the event belongs to
+     */
+    public void setDayId(int dayId) {
+        this.dayId = dayId;
     }
 
     /**

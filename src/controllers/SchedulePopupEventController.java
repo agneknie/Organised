@@ -260,7 +260,7 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
             if(newEvent.isTimeConflicting()){
                 ControlScene.highlightWrongField(startTimeComboBox);
                 ControlScene.highlightWrongField(endTimeComboBox);
-                errorMessageField.setText("Event's time clashes with another event's time. Please change the times.");
+                errorMessageField.setText("Event's time clashes with another event's time.");
             }
             // If event doesn't clash it is added to the database
             else{
