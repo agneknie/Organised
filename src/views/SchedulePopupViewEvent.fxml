@@ -89,7 +89,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="actionButton" layoutX="269.0" layoutY="617.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane fx:id="actionButton" layoutX="269.0" layoutY="645.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
             <Image url="@../images/more_icon.png" />
          </ImageView>
@@ -99,7 +99,7 @@
             </font>
          </Label>
       </Pane>
-      <Pane fx:id="deleteButton" layoutX="269.0" layoutY="690.0" onMouseClicked="#deleteButtonClicked" onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane fx:id="deleteButton" layoutX="269.0" layoutY="716.0" onMouseClicked="#deleteButtonClicked" onMouseEntered="#deleteButtonHovered" onMouseExited="#deleteButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="deleteButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="15.0">
             <Image url="@../images/delete_icon.png" />
          </ImageView>
@@ -109,5 +109,10 @@
             </font>
          </Label>
       </Pane>
+      <Label fx:id="errorMessageField" layoutX="80.0" layoutY="595.0" prefHeight="19.0" prefWidth="524.0" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
    </Pane>
 </Pane>

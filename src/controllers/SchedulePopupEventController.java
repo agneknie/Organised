@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +50,8 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
     private ComboBox<ScheduleTime> endTimeComboBox;
     @FXML
     private TextArea descriptionField;
+    @FXML
+    private Label errorMessageField;
 
     // Action button (either add or edit)
     @FXML
@@ -192,14 +195,115 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
      */
     @FXML
     private void actionButtonClicked(){
-        //TODO actionButtonClicked
+        // If action button is 'Add'
+        if(Session.getSchedulePopupType() == PopupType.ADD) addButtonClicked();
+
+        // If action button is 'Edit'
+        else editButtonClicked();
+    }
+
+    /**
+     * Method which adds a new event if action button is clicked when
+     * it is supposed to be and add button.
+     */
+    private void addButtonClicked(){
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new event construction
+        boolean valid = true;
+        Day day = dayOfWeekComboBox.getValue();
+        Module module = associatedModuleComboBox.getValue();
+        String name = nameField.getText();
+        ScheduleTime startTime = startTimeComboBox.getValue();
+        ScheduleTime endTime = endTimeComboBox.getValue();
+        String description = descriptionField.getText();
+
+        // Checks whether inputs are not null/not empty
+        if(day==null){
+            valid = false;
+            ControlScene.highlightWrongField(dayOfWeekComboBox);
+        }
+        if(module==null){
+            valid = false;
+            ControlScene.highlightWrongField(associatedModuleComboBox);
+        }
+        if(name.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(nameField);
+        }
+        if(startTime==null){
+            valid = false;
+            ControlScene.highlightWrongField(startTimeComboBox);
+        }
+        if(endTime==null){
+            valid = false;
+            ControlScene.highlightWrongField(endTimeComboBox);
+        }
+        if(description.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(descriptionField);
+        }
+
+        // Checks if inputs are valid
+        if(valid && ScheduleTime.scheduleTimeToInt(startTime)>=ScheduleTime.scheduleTimeToInt(endTime)){
+            valid = false;
+            ControlScene.highlightWrongField(startTimeComboBox);
+            ControlScene.highlightWrongField(endTimeComboBox);
+        }
+
+        // If all fields are valid creates the event
+        if(valid){
+            Event newEvent = new Event(Session.getSession().getId(), day.getId(), module.getId(), name,
+                    Event.alterEventDescription(Session.getScheduleWeekSelected().getWeekNumber(), description),
+                    startTime, endTime);
+            // If newly created event clashes with existing events in the database it is not added
+            if(newEvent.isTimeConflicting()){
+                ControlScene.highlightWrongField(startTimeComboBox);
+                ControlScene.highlightWrongField(endTimeComboBox);
+                errorMessageField.setText("Event's time clashes with another event's time. Please change the times.");
+            }
+            // If event doesn't clash it is added to the database
+            else{
+                // Adds event to the database
+                newEvent.addEvent();
+                // Updates the session for calendar change
+                Session.setScheduleCalendarChanged(true);
+                // Closes the popup window
+                // Session.setSchedulePopupType(null);
+                ((Stage) actionButton.getScene().getWindow()).close();
+            }
+        }
+    }
+
+    /**
+     * Method which edits an event if action button is clicked when
+     * it is supposed to be and edit button.
+     */
+    private void editButtonClicked(){
+        // TODO editButtonClicked
+    }
+
+    /**
+     * Normalises all text field and combo box borders in case they
+     * were highlighted as wrong previously.
+     * Also resets the message of errorMessageField to none.
+     */
+    private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(dayOfWeekComboBox);
+        ControlScene.normaliseWrongField(associatedModuleComboBox);
+        ControlScene.normaliseWrongField(nameField);
+        ControlScene.normaliseWrongField(startTimeComboBox);
+        ControlScene.normaliseWrongField(endTimeComboBox);
+        ControlScene.normaliseWrongField(descriptionField);
+        errorMessageField.setText("");
     }
 
     /**
      * Method which handles actions when delete button is clicked.
      */
     @FXML
-    private void deleteButtonClicked(MouseEvent event){
+    private void deleteButtonClicked(){
         // Deletes the event
         Session.getScheduleEventSelected().deleteEvent();
         // Removes event from session
@@ -207,7 +311,8 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
         // Changes session variable to reflect the change
         Session.setScheduleCalendarChanged(true);
         // Closes the popup window
-        this.closeClicked(event);
+        Session.setSchedulePopupType(null);
+        ((Stage) actionButton.getScene().getWindow()).close();
     }
 
     // Methods handling styling of scene

@@ -56,7 +56,7 @@ public enum ScheduleTime {
      * @param scheduleTime ScheduleTime to convert
      * @return int representation of given ScheduleTime
      */
-    private static int scheduleTimeToInt(ScheduleTime scheduleTime){
+    public static int scheduleTimeToInt(ScheduleTime scheduleTime){
         if(scheduleTime == NINE){
             return Integer.parseInt(scheduleTime.toString().substring(0,1));
         }

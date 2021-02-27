@@ -339,6 +339,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
+            e.printStackTrace();
         }
     }
 

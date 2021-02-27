@@ -460,4 +460,31 @@ public class Event {
         // Returns the time slots belonging to event
         return timeSlotsOfEvent;
     }
+
+    /**
+     * Checks if the event conflicts (is scheduled at the same time) as any
+     * other event.
+     *
+     * @return true if event's time conflicts with another event's time.
+     */
+    public boolean isTimeConflicting(){
+        // Gets all events of the day during which this event takes place
+        List<Event> dayEvents = this.getDay().getAllEvents();
+        dayEvents.remove(this);
+
+        // Goes through that list and checks event times against times of this event
+        int startTime = ScheduleTime.scheduleTimeToInt(this.startTime);
+        int endTime = ScheduleTime.scheduleTimeToInt(this.endTime);
+        for(Event event : dayEvents){
+            int eventStartTime = ScheduleTime.scheduleTimeToInt(event.getStartTime());
+            int eventEndTime = ScheduleTime.scheduleTimeToInt(event.getEndTime());
+            // If event starts during another event
+            if((eventStartTime>=startTime && eventStartTime<endTime) ||
+                    (startTime>=eventEndTime && endTime<eventStartTime)) return true;
+            // If event ends during another event
+            if((eventEndTime>startTime && eventEndTime<=endTime) ||
+                    (startTime>eventEndTime && endTime<=eventEndTime)) return true;
+        }
+        return false;
+    }
 }

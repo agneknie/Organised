@@ -173,6 +173,18 @@ public class ControlScene {
     }
 
     /**
+     * Changes the styling of a text area if the input cannot be accepted.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicTextArea text area to highlight as wrong
+     */
+    public static void highlightWrongField(TextArea problematicTextArea){
+        problematicTextArea.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: #C75450; -fx-border-radius: 10;" +
+                "-fx-border-width: 3; -fx-wrap-text: true");
+    }
+
+    /**
      * Method which reverts the styling of a text field back to normal, after a
      * wrong input was received.
      * Used when user adds/edits something in a popup and the value is unacceptable.
@@ -196,5 +208,18 @@ public class ControlScene {
         problematicComboBox.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
                 "-fx-border-width: 3");
+    }
+
+    /**
+     * Method which reverts the styling of a text area back to normal, after a
+     * wrong input was received.
+     * Used when user adds/edits something in a popup and the value is unacceptable.
+     *
+     * @param problematicTextArea text area to un-highlight
+     */
+    public static void normaliseWrongField(TextArea problematicTextArea){
+        problematicTextArea.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
+                "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
+                "-fx-border-width: 3; -fx-wrap-text: true");
     }
 }

@@ -115,11 +115,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
     // User specific variables
     private Week userSelectedWeek;
-    private Event[] mondayEventsList;
-    private Event[] tuesdayEventsList;
-    private Event[] wednesdayEventsList;
-    private Event[] thursdayEventsList;
-    private Event[] fridayEventsList;
+    private Event[] mondayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
+    private Event[] tuesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
+    private Event[] wednesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
+    private Event[] thursdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
+    private Event[] fridayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -160,6 +160,8 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
             Session.setScheduleCalendarChanged(false);
             // Hides the event pane in case event modified or deleted
             eventInformationPane.setVisible(false);
+            // Hides the edit button in case event modified or deleted
+            editEventButton.setVisible(false);
             // Updates the calendar/schedule
             cleanSchedule();
             setupSchedule();
