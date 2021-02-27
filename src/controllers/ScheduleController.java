@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import stages.BiggerPopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -384,8 +386,13 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane1.
      */
     @FXML
-    private void pane1AddEventButtonClicked() {
-        //TODO pane1AddEventButtonClicked
+    private void pane1AddEventButtonClicked() throws IOException {
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane1Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new BiggerPopupStage(popup, "SchedulePopupViewRecurringEvent.fxml");
     }
 
     /**
@@ -393,8 +400,13 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane2.
      */
     @FXML
-    private void pane2AddEventButtonClicked() {
-        //TODO pane2AddEventButtonClicked
+    private void pane2AddEventButtonClicked() throws IOException {
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane2Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new BiggerPopupStage(popup, "SchedulePopupViewRecurringEvent.fxml");
     }
 
     /**
@@ -402,8 +414,13 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      * period, which is described by pane1.
      */
     @FXML
-    private void pane3AddEventButtonClicked() {
-        //TODO pane1AddEventButtonClicked
+    private void pane3AddEventButtonClicked() throws IOException {
+        // Saves selected Period in Session
+        Session.setSchedulePeriodSelected(userPeriods.get(pane3Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new BiggerPopupStage(popup, "SchedulePopupViewRecurringEvent.fxml");
     }
 
     // Methods concerning styling of scene

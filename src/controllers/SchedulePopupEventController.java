@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -322,7 +321,7 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
             if(thisEvent.isTimeConflicting()){
                 ControlScene.highlightWrongField(startTimeComboBox);
                 ControlScene.highlightWrongField(endTimeComboBox);
-                errorMessageField.setText("Event's time clashes with another event's time. Please change the times.");
+                errorMessageField.setText("Event's time clashes with another event's time.");
                 // Reverts the event back to its old time
                 thisEvent.setStartTime(oldStartTime);
                 thisEvent.setEndTime(oldEndTime);
