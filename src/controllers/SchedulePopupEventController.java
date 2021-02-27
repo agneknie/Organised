@@ -270,7 +270,6 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
                 // Updates the session for calendar change
                 Session.setScheduleCalendarChanged(true);
                 // Closes the popup window
-                // Session.setSchedulePopupType(null);
                 ((Stage) actionButton.getScene().getWindow()).close();
             }
         }
@@ -281,7 +280,67 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
      * it is supposed to be and edit button.
      */
     private void editButtonClicked(){
-        // TODO editButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for event updating
+        boolean valid = true;
+        Day day = dayOfWeekComboBox.getValue();
+        Module module = associatedModuleComboBox.getValue();
+        String name = nameField.getText();
+        ScheduleTime startTime = startTimeComboBox.getValue();
+        ScheduleTime endTime = endTimeComboBox.getValue();
+        String description = descriptionField.getText();
+
+        // Checks whether inputs are not empty
+        if(name.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(nameField);
+        }
+        if(description.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(descriptionField);
+        }
+
+        // Checks if inputs are valid
+        if(valid && ScheduleTime.scheduleTimeToInt(startTime)>=ScheduleTime.scheduleTimeToInt(endTime)){
+            valid = false;
+            ControlScene.highlightWrongField(startTimeComboBox);
+            ControlScene.highlightWrongField(endTimeComboBox);
+        }
+
+        // If all fields are valid updates the event
+        if(valid){
+            Event thisEvent = Session.getScheduleEventSelected();
+            // Updates the time to check if it would clash
+            ScheduleTime oldStartTime = thisEvent.getStartTime();
+            ScheduleTime oldEndTime = thisEvent.getEndTime();
+            thisEvent.setStartTime(startTime);
+            thisEvent.setEndTime(endTime);
+            thisEvent.updateEvent();
+            // If newly updated event time clashes with existing events in the database the update is reversed
+            if(thisEvent.isTimeConflicting()){
+                ControlScene.highlightWrongField(startTimeComboBox);
+                ControlScene.highlightWrongField(endTimeComboBox);
+                errorMessageField.setText("Event's time clashes with another event's time. Please change the times.");
+                // Reverts the event back to its old time
+                thisEvent.setStartTime(oldStartTime);
+                thisEvent.setEndTime(oldEndTime);
+                thisEvent.updateEvent();
+            }
+            // If event doesn't clash all of its fields are updated
+            else{
+                // Updates all fields and updates the database
+                thisEvent.setName(name);
+                thisEvent.setDescription(Event.alterEventDescription
+                        (Session.getScheduleWeekSelected().getWeekNumber(), description));
+                thisEvent.updateEvent();
+                // Updates the session for calendar change
+                Session.setScheduleCalendarChanged(true);
+                // Closes the popup window
+                ((Stage) actionButton.getScene().getWindow()).close();
+            }
+        }
     }
 
     /**

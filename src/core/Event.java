@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Organised.
@@ -486,5 +487,18 @@ public class Event {
                     (startTime>eventEndTime && endTime<=eventEndTime)) return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return id == event.id && userId == event.userId && dayId == event.dayId && moduleId == event.moduleId && name.equals(event.name) && description.equals(event.description) && startTime == event.startTime && endTime == event.endTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, dayId, moduleId, name, description, startTime, endTime);
     }
 }
