@@ -29,7 +29,7 @@ public class Event {
     private final int id;
     private final int userId;
     private int dayId;
-    private final int moduleId;
+    private int moduleId;
     private String name;
     private String description;
     private ScheduleTime startTime;
@@ -137,6 +137,14 @@ public class Event {
      */
     public void setEndTime(ScheduleTime endTime) {
         this.endTime = endTime;
+    }
+
+    /**
+     * Setter for event module id
+     * @param moduleId id of the module the event belongs to
+     */
+    public void setModuleId(int moduleId) {
+        this.moduleId = moduleId;
     }
 
     /**
@@ -386,17 +394,18 @@ public class Event {
         PreparedStatement pStatement = null;
 
         // Sets up the query
-        String query = "UPDATE Event SET moduleId = ?, name = ?, description = ?,  " +
+        String query = "UPDATE Event SET dayId = ?, moduleId = ?, name = ?, description = ?,  " +
                 "startTime = ?, endTime = ? WHERE id = ?";
         try {
             // Fills prepared statement and executes
             pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, moduleId);
-            pStatement.setString(2, name);
-            pStatement.setString(3, description);
-            pStatement.setString(4, startTime.toString());
-            pStatement.setString(5, endTime.toString());
-            pStatement.setInt(6, id);
+            pStatement.setInt(1, dayId);
+            pStatement.setInt(2, moduleId);
+            pStatement.setString(3, name);
+            pStatement.setString(4, description);
+            pStatement.setString(5, startTime.toString());
+            pStatement.setString(6, endTime.toString());
+            pStatement.setInt(7, id);
 
             pStatement.execute();
 

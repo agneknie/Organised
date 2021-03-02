@@ -90,7 +90,7 @@
             <ComboBox fx:id="endWeekComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select End Week:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
          </children>
       </Pane>
-      <Pane layoutX="76.0" layoutY="510.0" prefHeight="175.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="510.0" prefHeight="175.0" prefWidth="538.0">
          <children>
             <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Description:" textFill="WHITE">
                <font>

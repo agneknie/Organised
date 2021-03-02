@@ -331,6 +331,23 @@ public class Week {
     }
 
     /**
+     * Method which returns only the working days of the week:
+     * Monday, Tuesday, Wednesday, Thursday, Friday.
+     *
+     * @return List of workdays of the Week
+     */
+    public List<Day> getWorkingDays(){
+        // Gets all days of the week
+        List<Day> allDays = this.getAllDays();
+
+        // Removes Saturday and Sunday
+        allDays.remove(allDays.size()-1);
+        allDays.remove(allDays.size()-1);
+
+        return allDays;
+    }
+
+    /**
      * Method which gets all days of the week and returns the cumulative
      * number of hours spent working.
      *
@@ -408,19 +425,22 @@ public class Week {
 
     /**
      * Method which returns a list of dummy Day objects which represent
-     * a Week. Used for filling a combo box.
+     * a Week. Used for filling a combo box. Returns only Monday to Friday.
      * NOT TO BE USED FOR ACTUAL WEEK CONSTRUCTION!
      *
-     * @return List of Day objects representing a week.
+     * @return List of Day objects representing a working week.
      */
     public static List<Day> daysForComboBox(){
         // Creates array for days
         List<Day> days = new ArrayList<>();
 
+        // Creates constants for dummy week creation
+        final LocalDate DATE = LocalDate.of(2000, 07, 03);
+        final int WORK_DAYS = 5;
+
         // Creates dummy week
-        LocalDate date = LocalDate.of(2000, 07, 03);
-        for(int i=0; i<7; i++){
-            days.add(new Day(0, 0, date.plusDays(i)));
+        for(int i=0; i<WORK_DAYS; i++){
+            days.add(new Day(0, 0, DATE.plusDays(i)));
         }
 
         // Returns the week/days

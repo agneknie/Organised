@@ -75,7 +75,7 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
 
         // Sets up Day of Week combo box
         // Populates the combo box with Day of Week values
-        dayOfWeekComboBox.getItems().setAll(Session.getScheduleWeekSelected().getAllDays());
+        dayOfWeekComboBox.getItems().setAll(Session.getScheduleWeekSelected().getWorkingDays());
         // Styles Day of Week combo box text
         dayOfWeekComboBox.setButtonCell(new ListCell(){
             @Override
@@ -333,6 +333,8 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
                 thisEvent.setName(name);
                 thisEvent.setDescription(Event.alterEventDescription
                         (Session.getScheduleWeekSelected().getWeekNumber(), description));
+                thisEvent.setDayId(day.getId());
+                thisEvent.setModuleId(module.getId());
                 thisEvent.updateEvent();
                 // Updates the session for calendar change
                 Session.setScheduleCalendarChanged(true);
