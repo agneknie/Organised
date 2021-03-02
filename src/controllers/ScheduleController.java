@@ -3,8 +3,10 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Day;
 import core.Session;
 import core.Period;
+import core.Week;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -323,7 +325,30 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void goToTodayButtonClicked() {
-        //TODO goToTodayButtonClicked
+        // Gets today's date
+        LocalDate today = LocalDate.now();
+
+        // Goes through all periods of user
+        for(Period period : Session.getSession().getAllPeriods()){
+            // Goes through all weeks of all periods
+            for(Week week : period.getAllWeeks()){
+                // Goes through all days of week
+                for(Day day : week.getAllDays()){
+                    // If current day is today, forwards to period of that day.
+                    // Week configuration is done in SchedulePeriod
+                    if(day.getDate().equals(today)){
+                        Session.setSchedulePeriodSelected(period);
+                        // Changes the scene to Period specific view
+                        try {
+                            SetupScene.changeScene("SchedulePeriodView.fxml", goToTodayButton);
+
+                        } catch (IOException e) {
+                            System.out.println("Exception whilst changing scene from general Schedule to Period specific Schedule.");
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
