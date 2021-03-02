@@ -18,7 +18,7 @@
          </font>
       </Label>
       <Line endX="421.0" layoutX="180.0" layoutY="105.0" startX="-100.0" stroke="#e6bb9a" strokeWidth="3.0" />
-      <Pane layoutX="80.0" layoutY="141.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="141.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Name:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -36,7 +36,7 @@
       <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
          <Image url="@../images/minimize_icon.png" />
       </ImageView>
-      <Pane layoutX="80.0" layoutY="212.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="203.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Select Year:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -44,7 +44,7 @@
          </Label>
          <ComboBox fx:id="yearComboBox" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Associated Year:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
       </Pane>
-      <Pane layoutX="80.0" layoutY="281.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="269.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Number of Weeks:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -56,7 +56,7 @@
             </font>
          </TextField>
       </Pane>
-      <Pane layoutX="82.0" layoutY="354.0" prefHeight="57.0" prefWidth="538.0">
+      <Pane layoutX="79.0" layoutY="335.0" prefHeight="57.0" prefWidth="538.0">
          <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Start of Period:" textFill="WHITE">
             <font>
                <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -64,7 +64,7 @@
          </Label>
          <DatePicker fx:id="startOfPeriodDatePicker" editable="false" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="Select Start Date:" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: white; -fx-background-insets: 3 3 3 3; -fx-border-color: white; -fx-base: #E6BB9A; -fx-control-inner-background: #2B2B2B; -fx-font: 12pt &quot;Arial&quot;; -fx-prompt-text-fill: white;" />
       </Pane>
-      <Pane fx:id="actionButton" layoutX="269.0" layoutY="455.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane fx:id="actionButton" layoutX="268.0" layoutY="492.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
             <Image url="@../images/add_icon.png" />
          </ImageView>
@@ -73,6 +73,20 @@
                <Font name="Arial Rounded MT Bold" size="22.0" />
             </font>
          </Label>
+      </Pane>
+      <Pane layoutX="79.0" layoutY="401.0" prefHeight="57.0" prefWidth="538.0">
+         <children>
+            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Start Week Number:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="startWeekNumberField" layoutX="300.0" layoutY="6.0" prefHeight="45.0" prefWidth="224.0" promptText="e.g. 12" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;" text="1">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </TextField>
+         </children>
       </Pane>
    </Pane>
 </Pane>

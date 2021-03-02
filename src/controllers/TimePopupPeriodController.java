@@ -42,6 +42,10 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
     // Start of period date picker
     @FXML
     private DatePicker startOfPeriodDatePicker;
+    // Start week number field
+    @FXML
+    private TextField startWeekNumberField;
+
     // Add period button pane
     @FXML
     private Pane actionButton;
@@ -133,6 +137,7 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
         ControlScene.normaliseWrongField(nameField);
         ControlScene.normaliseWrongField(numberOfWeeksField);
         ControlScene.normaliseWrongField(yearComboBox);
+        ControlScene.normaliseWrongField(startWeekNumberField);
     }
 
     /**
@@ -149,6 +154,7 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
         int yearNumber = -1;
         int numberOfWeeks = -1;
         LocalDate periodStart = startOfPeriodDatePicker.getValue();
+        int startWeekNumber = -1;
 
         // Checks whether inputs are numbers where needed & not null
         try{
@@ -163,6 +169,12 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
             ControlScene.highlightWrongField(numberOfWeeksField);
             valid = false;
         }
+        try{
+            startWeekNumber = Integer.parseInt(startWeekNumberField.getText());
+        } catch (Exception e){
+            ControlScene.highlightWrongField(startWeekNumberField);
+            valid = false;
+        }
 
         // Checks if inputs are valid
         if(numberOfWeeks <= 0 || numberOfWeeks > 53){   // Maximum number of weeks in a year is 53
@@ -173,11 +185,15 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
             ControlScene.highlightWrongField(nameField);
             valid = false;
         }
+        if(startWeekNumber<=0){
+            ControlScene.highlightWrongField(startWeekNumberField);
+            valid = false;
+        }
 
         // If all inputs are valid, adds the new period
         if(valid){
             // Adds the Period
-            Session.getSession().constructPeriod(yearNumber, name, numberOfWeeks, periodStart);
+            Session.getSession().constructPeriod(yearNumber, name, numberOfWeeks, periodStart, startWeekNumber);
 
             // Closes the popup/stage
             ((Stage) actionButton.getScene().getWindow()).close();

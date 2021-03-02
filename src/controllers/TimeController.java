@@ -488,6 +488,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+            e.printStackTrace();
         }
     }
 

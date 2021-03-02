@@ -729,10 +729,13 @@ public class User {
      * Method which constructs a Period instance with Weeks & Days and adds them all
      * to the database.
      *
+     * @param associatedYear year associated with the period
+     * @param name name of the period
      * @param numberOfWeeks number of weeks a period has
      * @param startOfPeriod start date of the period (Monday)
+     * @param startWeekNumber number from which the week numeration should start
      */
-    public void constructPeriod(int associatedYear, String name, int numberOfWeeks, LocalDate startOfPeriod){
+    public void constructPeriod(int associatedYear, String name, int numberOfWeeks, LocalDate startOfPeriod, int startWeekNumber){
         // Adds the period to the database
         Period newPeriod = new Period(this.id, associatedYear, name);
         newPeriod.addPeriod();
@@ -740,7 +743,7 @@ public class User {
 
         // Adds all weeks of the period to the database
         LocalDate startOfWeek = startOfPeriod;
-        for(int i=1; i<=numberOfWeeks; i++){
+        for(int i=startWeekNumber; i<numberOfWeeks+startWeekNumber; i++){
             Week newWeek = new Week(this.id, periodId, i, startOfWeek);
             newWeek.constructWeek();
 
