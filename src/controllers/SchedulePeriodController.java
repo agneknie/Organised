@@ -115,11 +115,11 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
 
     // User specific variables
     private Week userSelectedWeek;
-    private Event[] mondayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
-    private Event[] tuesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
-    private Event[] wednesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
-    private Event[] thursdayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
-    private Event[] fridayEventsList = new Event[]{null, null, null, null, null, null, null, null};;
+    private Event[] mondayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+    private Event[] tuesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+    private Event[] wednesdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+    private Event[] thursdayEventsList = new Event[]{null, null, null, null, null, null, null, null};
+    private Event[] fridayEventsList = new Event[]{null, null, null, null, null, null, null, null};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -458,7 +458,7 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
             // Sets the style of remaining time slots
             for(Label timeSlot : timeSlots){
                 timeSlot.setStyle("-fx-background-color: "+eventColorString+"; " +
-                        "-fx-background-radius: 0 0 15 15;" +
+                        "-fx-background-radius: 0;" +
                         "-fx-wrap-text: true; -fx-text-alignment: center;");
             }
         }

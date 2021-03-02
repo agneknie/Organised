@@ -73,15 +73,6 @@ public class Period {
     }
 
     /**
-     * Setter for minutesLeft variable of Period
-     *
-     * @param minutesLeft minutes to set
-     */
-    public void setMinutesLeft(int minutesLeft) {
-        this.minutesLeft = minutesLeft;
-    }
-
-    /**
      * Method which goes through the database and returns the id of the period,
      * which is the last added period.
      *

@@ -7,8 +7,6 @@ import core.Period;
 import core.Session;
 import core.Week;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
@@ -313,14 +311,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
         baseLine.setStyle("-fx-stroke: white; -fx-stroke-width: 3");
 
         // Listener to update the baseline after initial start
-        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                Platform.runLater(() -> {
-                    drawBarChartBaseline();
-                });
-            }
-        });
+        barChart.boundsInLocalProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(this::drawBarChartBaseline));
     }
 
     /**
@@ -357,7 +348,7 @@ public class TimeController extends DefaultNavigation implements Initializable {
             barChartSeries.setName(period.getName());
             // Adds all weeks to this series
             for(Week week : period.getAllWeeks()){
-                barChartSeries.getData().add(new XYChart.Data<String, Number>("W"+week.getWeekNumber(), week.getAllWeekHours()));
+                barChartSeries.getData().add(new XYChart.Data<>("W"+week.getWeekNumber(), week.getAllWeekHours()));
             }
             // Adds the data to the chart
             barChart.getData().add(barChartSeries);

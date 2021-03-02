@@ -43,14 +43,6 @@ public class Day {
     }
 
     /**
-     * Getter for week id.
-     * @return weekId of the week this day belongs to
-     */
-    public int getWeekId() {
-        return weekId;
-    }
-
-    /**
      * Getter for the Date variable.
      * @return date of the day
      */
@@ -64,17 +56,6 @@ public class Day {
      */
     public int getHoursSpent() {
         return hoursSpent;
-    }
-
-    /**
-     * Setter for our spent studying/working this day
-     * @param hoursSpent hours of day spent working
-     */
-    public void setHoursSpent(int hoursSpent) {
-        if (hoursSpent > MAX_WORK_HOURS)
-            throw new IllegalArgumentException("Hours are more than maximum work hours" +
-                    "allowed: " + MAX_WORK_HOURS);
-        else this.hoursSpent = hoursSpent;
     }
 
     /**

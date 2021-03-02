@@ -48,27 +48,11 @@ public class Week {
     }
 
     /**
-     * Getter for the id of the period the week belongs to.
-     * @return periodId of the week
-     */
-    public int getPeriodId() {
-        return periodId;
-    }
-
-    /**
      * Getter for the week number of the week.
      * @return weekNumber of the week
      */
     public int getWeekNumber() {
         return weekNumber;
-    }
-
-    /**
-     * Getter for the start date of the week.
-     * @return date of the first day (Monday) of the week
-     */
-    public LocalDate getStartDate() {
-        return startDate;
     }
 
     /**
@@ -435,7 +419,7 @@ public class Week {
         List<Day> days = new ArrayList<>();
 
         // Creates constants for dummy week creation
-        final LocalDate DATE = LocalDate.of(2000, 07, 03);
+        final LocalDate DATE = LocalDate.of(2000, 7, 3);
         final int WORK_DAYS = 5;
 
         // Creates dummy week

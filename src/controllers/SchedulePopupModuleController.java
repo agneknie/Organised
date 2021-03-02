@@ -64,7 +64,7 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
     private Pane pane4;
     @FXML
     private Pane pane5;
-    private final List<Pane> modulePanes = new ArrayList<Pane>();
+    private final List<Pane> modulePanes = new ArrayList<>();
 
     // User specific variables
     private List<Module> userModules;

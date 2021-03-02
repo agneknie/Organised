@@ -166,9 +166,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
         final Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.millis(500),
-                        event -> {
-                            timeLabel.setText(LocalDateTime.now().format(timeFormatter));
-                        }
+                        event -> timeLabel.setText(LocalDateTime.now().format(timeFormatter))
                 )
         );
         timeline.setCycleCount(Animation.INDEFINITE);

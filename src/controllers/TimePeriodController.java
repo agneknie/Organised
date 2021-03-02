@@ -8,8 +8,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
@@ -137,7 +135,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     // Variables to store user data
     private Period userSelectedPeriod;
     private Week userSelectedWeek;
-    private Stopwatch stopwatch = new Stopwatch();
+    private final Stopwatch stopwatch = new Stopwatch();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -321,14 +319,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         baseLine.setStyle("-fx-stroke: white; -fx-stroke-width: 3");
 
         // Listener to update the baseline after initial start
-        barChart.boundsInLocalProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                Platform.runLater(() -> {
-                    drawBarChartBaseline();
-                });
-            }
-        });
+        barChart.boundsInLocalProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(this::drawBarChartBaseline));
     }
 
     /**
@@ -583,9 +574,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
             final Timeline timeline = new Timeline(
                     new KeyFrame(
                             Duration.millis(500),
-                            event -> {
-                                timerLabel.setText(stopwatch.getElapsedTime());
-                            }
+                            event -> timerLabel.setText(stopwatch.getElapsedTime())
                     )
             );
             timeline.setCycleCount(Animation.INDEFINITE);

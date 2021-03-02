@@ -52,27 +52,11 @@ public class Event {
     }
 
     /**
-     * Getter for dayId.
-     * @return id of the day the event belongs to
-     */
-    public int getDayId() {
-        return dayId;
-    }
-
-    /**
      * Setter for dayId.
      * @param dayId of the day the event belongs to
      */
     public void setDayId(int dayId) {
         this.dayId = dayId;
-    }
-
-    /**
-     * Getter for moduleId.
-     * @return id of the module the event is associated with
-     */
-    public int getModuleId() {
-        return moduleId;
     }
 
     /**
@@ -298,8 +282,6 @@ public class Event {
      */
     public static void addRecurringEvent(int userId, DayOfWeek day, List<Week> weeksOfEvent, int moduleId, String name,
                                   String description, ScheduleTime startTime, ScheduleTime endTime){
-        // List to save the events in
-        List<Event> recurringEvents = new ArrayList<>();
 
         // Goes through all weeks the event has to appear on and creates the events
         for(Week week : weeksOfEvent){
@@ -346,17 +328,14 @@ public class Event {
 
     /**
      * Method which deletes an Event from the system.
-     *
-     * @return true if successful, false otherwise
      */
-    public boolean deleteEvent(){
+    public void deleteEvent(){
         // Event doesn't exist in the database
-        if(this.getId() == 0) return true;
+        if(this.getId() == 0) return;
 
         // Gets Database connection
         Connection connection = Database.getConnection();
         PreparedStatement pStatement = null;
-        int rowsAffected = 0;
 
         // Sets up the query
         String query = "DELETE FROM Event WHERE id = ?;";
@@ -366,7 +345,7 @@ public class Event {
             pStatement.setInt(1, this.getId());
 
             // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
+            pStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -380,8 +359,6 @@ public class Event {
                 }
             }
         }
-        // Returns whether deletion was successful
-        return rowsAffected == 1;
     }
 
     /**
