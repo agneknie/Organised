@@ -35,12 +35,12 @@
       </Pane>
       <Pane fx:id="pane1" layoutX="89.0" layoutY="127.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code1" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code1" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="138.0" prefHeight="63.0" prefWidth="383.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name1" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name1" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
@@ -49,12 +49,12 @@
       </Pane>
       <Pane fx:id="pane2" layoutX="89.0" layoutY="204.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code2" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code2" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="138.0" prefHeight="63.0" prefWidth="383.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name2" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name2" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
@@ -63,12 +63,12 @@
       </Pane>
       <Pane fx:id="pane3" layoutX="89.0" layoutY="281.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code3" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code3" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="138.0" prefHeight="63.0" prefWidth="383.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name3" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name3" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
@@ -77,12 +77,12 @@
       </Pane>
       <Pane fx:id="pane4" layoutX="89.0" layoutY="360.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code4" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code4" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="138.0" prefHeight="63.0" prefWidth="383.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name4" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name4" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
@@ -91,12 +91,12 @@
       </Pane>
       <Pane fx:id="pane5" layoutX="89.0" layoutY="438.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="115.0" text="code5" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code5" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="138.0" prefHeight="63.0" prefWidth="383.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name5" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name5" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>

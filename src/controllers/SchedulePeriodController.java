@@ -431,7 +431,9 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
         if(timeSlots.size()==1){
             timeSlots.get(0).setText(event.getName());
             timeSlots.get(0).setStyle("-fx-background-color: "+eventColorString+"; " +
-                    "-fx-background-radius: 10;");
+                    "-fx-background-radius: 15; -fx-border-style: solid; " +
+                    "-fx-border-color: #2B2B2B; -fx-border-width: 2; -fx-border-radius: 10;" +
+                    "-fx-wrap-text: true; -fx-text-alignment: center;");
         }
         // If event is more than an hour long
         else{
@@ -439,11 +441,15 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
             timeSlots.get(0).setText(event.getName());
             // Sets the style of the first time slot
             timeSlots.get(0).setStyle("-fx-background-color: "+eventColorString+"; " +
-                    "-fx-background-radius: 10 10 0 0;");
+                    "-fx-background-radius: 15 15 0 0; -fx-border-style: solid solid hidden solid; " +
+                    "-fx-border-color: #2B2B2B; -fx-border-width: 2; -fx-border-radius: 10 10 0 0;" +
+                    "-fx-wrap-text: true; -fx-text-alignment: center;");
 
             // Sets the style of the last time slot
             timeSlots.get(timeSlots.size()-1).setStyle("-fx-background-color: "+eventColorString+"; " +
-                    "-fx-background-radius: 0 0 10 10;");
+                    "-fx-background-radius: 0 0 15 15; -fx-border-style: hidden solid solid solid; " +
+                    "-fx-border-color: #2B2B2B; -fx-border-width: 2; -fx-border-radius: 0 0 10 10;" +
+                    "-fx-wrap-text: true; -fx-text-alignment: center;");
 
             // Removes the first and last time slots form the list of time slots
             timeSlots.remove(0);
@@ -452,7 +458,8 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
             // Sets the style of remaining time slots
             for(Label timeSlot : timeSlots){
                 timeSlot.setStyle("-fx-background-color: "+eventColorString+"; " +
-                        "-fx-background-radius: 0 0 0 0;");
+                        "-fx-background-radius: 0 0 15 15;" +
+                        "-fx-wrap-text: true; -fx-text-alignment: center;");
             }
         }
     }

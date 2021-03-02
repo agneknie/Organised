@@ -187,41 +187,43 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="eventInformationPane" layoutX="69.0" layoutY="167.0" prefHeight="151.0" prefWidth="650.0">
+            <Pane fx:id="eventInformationPane" layoutX="69.0" layoutY="167.0" prefHeight="137.0" prefWidth="627.0">
                <children>
-                  <Label prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Module Code:" textFill="#e6bb9a">
+                  <Label layoutY="5.0" prefHeight="31.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Module:" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="155.0" prefHeight="68.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Name:" textFill="#e5bb9a">
+                  <Label layoutX="173.0" layoutY="5.0" prefHeight="31.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="Name:" textFill="#e5bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moduleCodeLabel" layoutY="67.0" prefHeight="83.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="codeLabel" textFill="WHITE">
+                  <Label fx:id="moduleCodeLabel" alignment="TOP_LEFT" layoutY="39.0" prefHeight="91.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="codeLabel" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventNameLabel" layoutX="155.0" layoutY="67.0" prefHeight="83.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="nameLabel" textFill="WHITE">
+                  <Label fx:id="eventNameLabel" alignment="TOP_LEFT" layoutX="173.0" layoutY="39.0" prefHeight="91.0" prefWidth="139.0" style="-fx-wrap-text: true;" text="nameLabel" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="312.0" prefHeight="68.0" prefWidth="164.0" style="-fx-wrap-text: true;" text="Description:" textFill="#e6bb9a">
+                  <Label layoutX="350.0" layoutY="5.0" prefHeight="31.0" prefWidth="164.0" style="-fx-wrap-text: true;" text="Description:" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventDescriptionLabel" layoutX="312.0" layoutY="67.0" prefHeight="83.0" prefWidth="331.0" style="-fx-wrap-text: true;" text="descriptionLabel" textFill="WHITE">
+                  <Label fx:id="eventDescriptionLabel" alignment="TOP_LEFT" layoutX="350.0" layoutY="39.0" prefHeight="91.0" prefWidth="272.0" style="-fx-wrap-text: true;" text="descriptionLabel" textFill="WHITE">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
                   </Label>
+                  <Line endX="527.0" endY="-10.0" layoutX="113.0" layoutY="147.0" startX="-121.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+                  <Line endX="527.0" endY="-10.0" layoutX="113.0" layoutY="10.0" startX="-121.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
                </children>
             </Pane>
-            <Pane fx:id="addEventButton" layoutX="744.0" layoutY="214.0" onMouseClicked="#addEventButtonClicked" onMouseEntered="#addEventButtonHovered" onMouseExited="#addEventButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="addEventButton" layoutX="741.0" layoutY="185.0" onMouseClicked="#addEventButtonClicked" onMouseEntered="#addEventButtonHovered" onMouseExited="#addEventButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="addEventButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Add Event" textFill="#e6bb9a">
                      <font>
@@ -235,7 +237,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="editEventButton" layoutX="963.0" layoutY="214.0" onMouseClicked="#editEventButtonClicked" onMouseEntered="#editEventButtonHovered" onMouseExited="#editEventButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="editEventButton" layoutX="960.0" layoutY="185.0" onMouseClicked="#editEventButtonClicked" onMouseEntered="#editEventButtonHovered" onMouseExited="#editEventButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="editEventButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Edit Event" textFill="#e6bb9a">
                      <font>
@@ -249,10 +251,10 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="9.0" layoutY="318.0" prefHeight="579.0" prefWidth="1177.0">
+            <Pane layoutX="9.0" layoutY="312.0" prefHeight="579.0" prefWidth="1177.0">
                <children>
                   <Line endX="1064.0" endY="-12.0" layoutX="112.0" layoutY="70.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
-                  <Line endX="-99.0" endY="555.0" layoutX="297.0" layoutY="19.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-100.0" endY="560.0" layoutX="297.0" layoutY="19.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="196.0" style="-fx-wrap-text: true;" text="Time" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -314,48 +316,50 @@
                   </Label>
                   <Pane fx:id="mondayEventsPane" layoutX="200.0" layoutY="62.0" onMouseClicked="#mondayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="64.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="128.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="130.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="192.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="195.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="256.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="260.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="320.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="325.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="384.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="390.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="448.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="455.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
+                  <Line endX="-99.0" endY="558.5" layoutX="301.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-99.0" endY="558.5" layoutX="487.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                   <Label alignment="CENTER" layoutX="392.0" prefHeight="27.0" prefWidth="196.0" style="-fx-wrap-text: true;" text="Tuesday" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
@@ -366,50 +370,52 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="tuesdayEventsPane" layoutX="396.0" layoutY="62.0" onMouseClicked="#tuesdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
+                  <Pane fx:id="tuesdayEventsPane" layoutX="395.0" layoutY="62.0" onMouseClicked="#tuesdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="64.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="128.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="130.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="192.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="195.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="256.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="260.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="320.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="325.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="384.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="390.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="448.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="455.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
+                  <Line endX="-99.0" endY="558.5" layoutX="496.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-99.0" endY="558.5" layoutX="682.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                   <Label alignment="CENTER" layoutX="588.0" prefHeight="27.0" prefWidth="196.0" style="-fx-wrap-text: true;" text="Wednesday" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
@@ -420,50 +426,52 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="wednesdayEventsPane" layoutX="592.0" layoutY="62.0" onMouseClicked="#wednesdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
+                  <Pane fx:id="wednesdayEventsPane" layoutX="591.0" layoutY="62.0" onMouseClicked="#wednesdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="64.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="128.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="130.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="192.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="195.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="256.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="260.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="320.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="325.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="384.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="390.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="448.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="455.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
+                  <Line endX="-99.0" endY="558.5" layoutX="692.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-99.0" endY="558.5" layoutX="878.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                   <Label alignment="CENTER" layoutX="784.0" prefHeight="27.0" prefWidth="196.0" style="-fx-wrap-text: true;" text="Thursday" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
@@ -474,50 +482,52 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="thursdayEventsPane" layoutX="788.0" layoutY="62.0" onMouseClicked="#thursdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
+                  <Pane fx:id="thursdayEventsPane" layoutX="787.0" layoutY="62.0" onMouseClicked="#thursdayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="64.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="128.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="130.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="192.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="195.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="256.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="260.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="320.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="325.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="384.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="390.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="448.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="455.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
+                  <Line endX="-99.0" endY="558.5" layoutX="888.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-99.0" endY="558.5" layoutX="1074.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                   <Label alignment="CENTER" layoutX="980.0" prefHeight="27.0" prefWidth="196.0" style="-fx-wrap-text: true;" text="Friday" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
@@ -528,50 +538,52 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="fridayEventsPane" layoutX="984.0" layoutY="62.0" onMouseClicked="#fridayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
+                  <Pane fx:id="fridayEventsPane" layoutX="983.0" layoutY="62.0" onMouseClicked="#fridayEventsPaneClicked" prefHeight="517.0" prefWidth="189.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="64.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="128.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="130.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="192.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="195.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="256.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="260.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="320.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="325.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="384.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="390.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutY="448.0" prefHeight="64.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="455.0" prefHeight="65.0" prefWidth="188.0" style="-fx-wrap-text: true; -fx-background-radius: 10;" textFill="#2b2b2b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
+                  <Line endX="-99.0" endY="558.5" layoutX="1084.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
+                  <Line endX="-99.0" endY="558.5" layoutX="1270.0" layoutY="18.0" startX="-99.0" startY="46.0" stroke="#2b2b2b" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
                </children>
             </Pane>
          </children></Pane>
