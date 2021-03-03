@@ -243,7 +243,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     }
 
     /**
-     * Method which setups the first pane with user information.
+     * Method which setups the third pane with user information.
      */
     private void setupPane3(){
         // Makes visible if previously invisible
@@ -282,6 +282,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void goLeftClicked() {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         // Updates the navigation pane pointers
         pane1Pointer--;
         pane2Pointer--;
@@ -301,6 +304,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void goRightClicked() {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         // Updates the navigation pane pointers
         pane1Pointer++;
         pane2Pointer++;
@@ -347,6 +353,8 @@ public class ScheduleController extends DefaultNavigation implements Initializab
                 }
             }
         }
+        // If no today was found, displays error message
+        errorMessage.setText("No today was found.");
     }
 
     /**
@@ -409,6 +417,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void pane1AddEventButtonClicked() throws IOException {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         // Saves selected Period in Session
         Session.setSchedulePeriodSelected(userPeriods.get(pane1Pointer));
 
@@ -423,6 +434,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void pane2AddEventButtonClicked() throws IOException {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         // Saves selected Period in Session
         Session.setSchedulePeriodSelected(userPeriods.get(pane2Pointer));
 
@@ -437,6 +451,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
      */
     @FXML
     private void pane3AddEventButtonClicked() throws IOException {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         // Saves selected Period in Session
         Session.setSchedulePeriodSelected(userPeriods.get(pane3Pointer));
 

@@ -471,7 +471,7 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void goBackClicked(){
-        // Changes the scene to the the general Time scene scene
+        // Changes the scene to the the general Schedule scene
         try {
             SetupScene.changeScene("ScheduleView.fxml", goBackButton);
 
