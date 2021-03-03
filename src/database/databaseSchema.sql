@@ -84,4 +84,15 @@ CREATE TABLE Event(
         REFERENCES User (id)
 );
 
+CREATE TABLE Task(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    moduleId INTEGER NOT NULL,
+    weekId INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    status TEXT NOT NULL,
+    FOREIGN KEY (userId)
+        REFERENCES User (id)
+);
+
 PRAGMA foreign_keys=on;
