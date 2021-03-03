@@ -3,17 +3,18 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Session;
+import core.Week;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -85,13 +86,85 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
     @FXML
     private Pane allTasksPane;
 
+    // User specific variables
+    private Week userSelectedWeek;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO Initialize
+        // Finds out which week should be selected by the user
+        userSelectedWeek = Week.getCurrentWeek(Session.getTasksPeriodSelected().getAllWeeks());
+
+        // Saves selected week in session
+        Session.setTasksWeekSelected(userSelectedWeek);
+
+        // Sets up navigation arrow visibility
+        configureNavigationArrows();
+
+        // Sets up period and week information at the top
+        setupTopInformation();
+
+        // Sets up the progress bar and label
+        setupProgressBar();
+
+        // Hides more tasks button
+        moreTasksButton.setVisible(false);
+
+        // Setups task list
+        setupTaskList();
+    }
+
+    /**
+     * Method which refreshes the task list area of the screen
+     * in case user added/edited a task.
+     */
+    @FXML
+    private void refreshScene(){
+        // If task list changed
+        if(Session.isTaskTaskListChanged()){
+            // Resets session variable
+            Session.setTaskTaskListChanged(false);
+            //TODO refreshScene
+        }
+    }
+
+    /**
+     * Method which setups period and week information at the
+     * top of the scene.
+     */
+    private void setupTopInformation(){
+        // Sets up period name label
+        periodNameLabel.setText("Year " + Session.getTasksPeriodSelected().getAssociatedYear() +
+                ": " + Session.getTasksPeriodSelected().getName());
+
+        // Sets up week information labels
+        weekNameLabel.setText(userSelectedWeek.toString());
+        weekDateLabel.setText(userSelectedWeek.getWeekDate());
+    }
+
+    /**
+     * Method which setups the progress bar and label, which
+     * indicates the percentage of tasks completed for week.
+     */
+    private void setupProgressBar(){
+        //TODO setupProgressBar
+    }
+
+    /**
+     * Method which sets up the task list.
+     */
+    private void setupTaskList(){
+        //TODO setupTaskList
+    }
+
+    /**
+     * Method which cleans the task list of task data thus preparing for
+     * a fresh task update.
+     */
+    private void cleanTaskList(){
+        //TODO cleanTaskList
     }
 
     // Methods handling event clicks
-
     /**
      * Method which opens the task addition popup when
      * add task button is clicked.
@@ -149,7 +222,18 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     @FXML
     private void goLeftClicked() {
-        //TODO goLeftClicked
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getTasksPeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek-1);
+
+        // Saves selected week in session
+        Session.setTasksWeekSelected(userSelectedWeek);
+
+        // Updates the scene
+        updateAfterNavigation();
     }
 
     /**
@@ -158,7 +242,55 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     @FXML
     private void goRightClicked() {
-        //TODO goRightClicked
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getTasksPeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Updates the displayed week
+        userSelectedWeek = userWeeks.get(indexOfSelectedWeek+1);
+
+        // Saves selected week in session
+        Session.setTasksWeekSelected(userSelectedWeek);
+
+        // Updates the scene
+        updateAfterNavigation();
+    }
+
+    /**
+     * Method which updates the scene after user navigates from one week to other.
+     */
+    private void updateAfterNavigation(){
+        // Updates week information
+        weekNameLabel.setText(userSelectedWeek.toString());
+        weekDateLabel.setText(userSelectedWeek.getWeekDate());
+
+        // Configures navigation arrows
+        configureNavigationArrows();
+
+        // Disables visibility of more tasks button
+        moreTasksButton.setVisible(false);
+
+        // Setups the task list
+        cleanTaskList();
+        setupTaskList();
+    }
+
+    /**
+     * Method which configures the visibility of navigation arrows,
+     * which are used for navigation between weeks.
+     */
+    private void configureNavigationArrows(){
+        // Finds the index of the selected Week in the list of all Weeks of Period
+        List<Week> userWeeks = Session.getTasksPeriodSelected().getAllWeeks();
+        int indexOfSelectedWeek = userWeeks.indexOf(userSelectedWeek);
+
+        // Makes both arrows visible, in case previously disabled
+        goLeftButton.setVisible(true);
+        goRightButton.setVisible(true);
+
+        // Disables the arrows, based on current week selection
+        if(indexOfSelectedWeek == 0) goLeftButton.setVisible(false);
+        if(indexOfSelectedWeek == userWeeks.size()-1) goRightButton.setVisible(false);
     }
 
     // Methods handling scene styling

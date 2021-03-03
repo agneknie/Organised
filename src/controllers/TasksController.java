@@ -316,7 +316,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
                     // If current day is today, forwards to period of that day.
                     // Week configuration is done in TasksPeriod
                     if(day.getDate().equals(today)){
-                        Session.setSchedulePeriodSelected(period);
+                        Session.setTasksPeriodSelected(period);
                         // Changes the scene to Period specific scene
                         try {
                             SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
