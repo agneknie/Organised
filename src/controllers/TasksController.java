@@ -3,14 +3,21 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Day;
+import core.Period;
+import core.Session;
+import core.Week;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -24,6 +31,9 @@ import java.util.ResourceBundle;
  * Class which handles Tasks Tab functionality and UI.
  */
 public class TasksController extends DefaultNavigation implements Initializable {
+    // Stacked bar chart
+    @FXML
+    private StackedBarChart<String, Number> stackedBarChart;
 
     // Go to today button
     @FXML
@@ -32,6 +42,8 @@ public class TasksController extends DefaultNavigation implements Initializable 
     private ImageView goToTodayButtonImage;
     @FXML
     private Label goToTodayButtonLabel;
+    @FXML
+    private Label errorMessage;
 
     // Navigation arrows
     @FXML
@@ -42,6 +54,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
     // Navigation Pane 1
     @FXML
     private Pane pane1;
+    private int pane1Pointer;
     @FXML
     private Label pane1YearLabel;
     @FXML
@@ -64,6 +77,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
     // Navigation Pane 2
     @FXML
     private Pane pane2;
+    private int pane2Pointer;
     @FXML
     private Label pane2YearLabel;
     @FXML
@@ -86,6 +100,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
     // Navigation Pane 3
     @FXML
     private Pane pane3;
+    private int pane3Pointer;
     @FXML
     private Label pane3YearLabel;
     @FXML
@@ -105,9 +120,30 @@ public class TasksController extends DefaultNavigation implements Initializable 
     @FXML
     private Label pane3AddTaskButtonLabel;
 
+    // User specific variables
+    private List<Period> userPeriods;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO Initialize
+        // Gets user periods
+        userPeriods = Session.getSession().getAllPeriods();
+
+        // Sets up the stacked bar chart
+        setupStackedBarChart();
+
+        // Sets up panes with information
+        setupNavigationPanes();
+
+        // Sets up navigation
+        setupNavigation();
+    }
+
+    /**
+     * Method which sets up the stacked bar chart of the scene with
+     * task completion data of each period.
+     */
+    private void setupStackedBarChart(){
+        //TODO setupStackedBarChart
     }
 
     // Methods responsible for navigation between panes displaying periods
@@ -117,7 +153,21 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void goLeftClicked() {
-        //TODO goLeftClicked
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
+        // Updates the navigation pane pointers
+        pane1Pointer--;
+        pane2Pointer--;
+        pane3Pointer--;
+
+        // Updates the navigation panes
+        setupPane1();
+        setupPane2();
+        setupPane3();
+
+        // Updates navigation arrow visibility
+        setupNavigation();
     }
 
     /**
@@ -126,7 +176,124 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void goRightClicked() {
-        //TODO goRightClicked
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
+        // Updates the navigation pane pointers
+        pane1Pointer++;
+        pane2Pointer++;
+        pane3Pointer++;
+
+        // Updates the navigation panes
+        setupPane1();
+        setupPane2();
+        setupPane3();
+
+        // Updates navigation arrow visibility
+        setupNavigation();
+    }
+
+    /**
+     * Method which setups the navigation panes with information
+     */
+    private void setupNavigationPanes(){
+        switch(userPeriods.size()){
+            // No periods to display
+            case 0:
+                // Hides all panes
+                pane1.setVisible(false);
+                pane2.setVisible(false);
+                pane3.setVisible(false);
+                break;
+            // One period available
+            case 1:
+                // Hides unused panes
+                pane2.setVisible(false);
+                pane3.setVisible(false);
+
+                // Setups the first pane
+                pane1Pointer = 0;
+                setupPane1();
+                break;
+            // Two periods available
+            case 2:
+                // Hides unused panes
+                pane3.setVisible(false);
+
+                // Setups the first two panes
+                pane1Pointer = 0;
+                pane2Pointer = 1;
+                setupPane1();
+                setupPane2();
+                break;
+            // Three or more periods available
+            default:
+                // Setups all panes
+                pane1Pointer = 0;
+                pane2Pointer = 1;
+                pane3Pointer = 2;
+                setupPane1();
+                setupPane2();
+                setupPane3();
+        }
+    }
+
+    /**
+     * Method which setups the first pane with user information.
+     */
+    private void setupPane1(){
+        // Makes visible if previously invisible
+        pane1.setVisible(true);
+
+        // Sets up pane labels
+        pane1YearLabel.setText("Year " + userPeriods.get(pane1Pointer).getAssociatedYear());
+        pane1PeriodLabel.setText(userPeriods.get(pane1Pointer).getName());
+    }
+
+    /**
+     * Method which setups the second pane with user information.
+     */
+    private void setupPane2(){
+        // Makes visible if previously invisible
+        pane2.setVisible(true);
+
+        // Sets up pane labels
+        pane2YearLabel.setText("Year " + userPeriods.get(pane2Pointer).getAssociatedYear());
+        pane2PeriodLabel.setText(userPeriods.get(pane2Pointer).getName());
+    }
+
+    /**
+     * Method which setups the third pane with user information.
+     */
+    private void setupPane3(){
+        // Makes visible if previously invisible
+        pane3.setVisible(true);
+
+        // Sets up pane labels
+        pane3YearLabel.setText("Year " + userPeriods.get(pane3Pointer).getAssociatedYear());
+        pane3PeriodLabel.setText(userPeriods.get(pane3Pointer).getName());
+    }
+
+    /**
+     * Method which setups the navigation arrow visibility.
+     */
+    private void setupNavigation(){
+        int periodNumber = userPeriods.size();
+        // Enables both arrows to remove previous configurations
+        goRightButton.setVisible(true);
+        goLeftButton.setVisible(true);
+
+        // If there are less than 3 periods, navigation arrows are not needed
+        if(periodNumber <= 3){
+            goLeftButton.setVisible(false);
+            goRightButton.setVisible(false);
+        }
+
+        // Otherwise, one or both arrows might be needed
+        else {
+            if(pane1Pointer == 0) goLeftButton.setVisible(false);
+            if(pane3Pointer == periodNumber-1) goRightButton.setVisible(false);
+        }
     }
 
     // Methods responsible for handling button clicks
@@ -137,13 +304,32 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void goToTodayButtonClicked() {
-        //TODO goToTodayButtonClicked
-        try {
-            SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
+        // Gets today's date
+        LocalDate today = LocalDate.now();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Goes through all periods of user
+        for(Period period : Session.getSession().getAllPeriods()){
+            // Goes through all weeks of all periods
+            for(Week week : period.getAllWeeks()){
+                // Goes through all days of week
+                for(Day day : week.getAllDays()){
+                    // If current day is today, forwards to period of that day.
+                    // Week configuration is done in TasksPeriod
+                    if(day.getDate().equals(today)){
+                        Session.setSchedulePeriodSelected(period);
+                        // Changes the scene to Period specific scene
+                        try {
+                            SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
+
+                        } catch (IOException e) {
+                            System.out.println("Exception whilst changing scene from general Tasks to Period specific Tasks.");
+                        }
+                    }
+                }
+            }
         }
+        // If no today was found, displays error message
+        errorMessage.setText("No today was found.");
     }
 
     /**
@@ -152,6 +338,9 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane1AddTaskButtonClicked() {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         //TODO pane1AddTaskButtonClicked
     }
 
@@ -161,6 +350,9 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane2AddTaskButtonClicked() {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         //TODO pane2AddTaskButtonClicked
     }
 
@@ -170,6 +362,9 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane3AddTaskButtonClicked() {
+        // Cleans error message field in case it was displaying something
+        errorMessage.setText("");
+
         //TODO pane3AddTaskButtonClicked
     }
 
@@ -179,7 +374,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane1GoToPeriodButtonClicked() {
-        //TODO pane1GoToPeriodButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane1Pointer));
+
+        // Changes the scene to Period specific view
+        try {
+            SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Tasks to Period specific Tasks.");
+        }
     }
 
     /**
@@ -188,7 +392,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane2GoToPeriodButtonClicked() {
-        //TODO pane2GoToPeriodButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane2Pointer));
+
+        // Changes the scene to Period specific view
+        try {
+            SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Tasks to Period specific Tasks.");
+        }
     }
 
     /**
@@ -197,7 +410,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void pane3GoToPeriodButtonClicked() {
-        //TODO pane3GoToPeriodButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane3Pointer));
+
+        // Changes the scene to Period specific view
+        try {
+            SetupScene.changeScene("TasksPeriodView.fxml", goToTodayButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from general Tasks to Period specific Tasks.");
+        }
     }
 
     // Methods responsible for handling element styling

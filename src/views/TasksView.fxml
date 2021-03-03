@@ -149,7 +149,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Pane fx:id="goToTodayButton" layoutX="859.0" layoutY="57.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="goToTodayButton" layoutX="859.0" layoutY="72.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <ImageView fx:id="goToTodayButtonImage" layoutX="14.0" layoutY="9.0">
                      <image>
@@ -175,9 +175,9 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
                   <Pane fx:id="pane1GoToPeriodButton" layoutX="25.0" layoutY="336.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
@@ -217,9 +217,9 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
                   <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="335.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
@@ -259,9 +259,9 @@
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
+                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
                   <Pane fx:id="pane3GoToPeriodButton" layoutX="26.0" layoutY="334.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
@@ -304,7 +304,7 @@
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
             </Label>
-            <StackedBarChart layoutX="23.0" layoutY="174.0" prefHeight="249.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
+            <StackedBarChart fx:id="stackedBarChart" layoutX="23.0" layoutY="174.0" prefHeight="249.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -312,6 +312,11 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </StackedBarChart>
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="859.0" layoutY="137.0" prefHeight="36.0" prefWidth="211.0" style="-fx-wrap-text: true;" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>

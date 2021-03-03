@@ -58,6 +58,13 @@ public class Session {
     // Schedule: event just added, edited or deleted
     private static boolean scheduleCalendarChanged;
 
+    // Tasks: currently selected Period
+    private static Period tasksPeriodSelected = null;
+    // Tasks: type of popup for task
+    private static PopupType tasksPopupType = null;
+    // Tasks: task just added, edited or deleted
+    private static boolean taskTaskListChanged;
+
     /**
      * Getter for the primary stage of main window for stage dragging
      * @return primary stage of main window
@@ -356,5 +363,55 @@ public class Session {
      */
     public static void setScheduleCalendarChanged(boolean scheduleCalendarChanged) {
         Session.scheduleCalendarChanged = scheduleCalendarChanged;
+    }
+
+    /**
+     * Getter for period, which is selected in the Tasks scene.
+     * @return period selected in Tasks
+     */
+    public static Period getTasksPeriodSelected() {
+        return tasksPeriodSelected;
+    }
+
+    /**
+     * Setter for period, which is selected in the Tasks scene.
+     * @param tasksPeriodSelected period to set as selected
+     */
+    public static void setTasksPeriodSelected(Period tasksPeriodSelected) {
+        Session.tasksPeriodSelected = tasksPeriodSelected;
+    }
+
+    /**
+     * Getter for task editing/addition popup type in Tasks scene
+     * @return popup type in Tasks scene
+     */
+    public static PopupType getTasksPopupType() {
+        return tasksPopupType;
+    }
+
+    /**
+     * Setter for task editing/addition popup type in Tasks scene
+     * @param tasksPopupType popup type to set in Tasks scene
+     */
+    public static void setTasksPopupType(PopupType tasksPopupType) {
+        Session.tasksPopupType = tasksPopupType;
+    }
+
+    /**
+     * Getter for variable which returns true if a task was just edited,
+     * added or deleted in the Tasks scene.
+     * @return true if task was added/edited/deleted, false otherwise
+     */
+    public static boolean isTaskTaskListChanged() {
+        return taskTaskListChanged;
+    }
+
+    /**
+     * Setter for variable which returns true if a task was just edited,
+     * added or deleted in the Tasks scene.
+     * @param taskTaskListChanged boolean value to set
+     */
+    public static void setTaskTaskListChanged(boolean taskTaskListChanged) {
+        Session.taskTaskListChanged = taskTaskListChanged;
     }
 }

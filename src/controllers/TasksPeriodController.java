@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import controllers.utilities.SetupScene;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -133,7 +134,13 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     @FXML
     private void goBackClicked() {
-        //TODO goBackClicked
+        // Changes the scene to the the general Tasks scene
+        try {
+            SetupScene.changeScene("TasksView.fxml", goBackButton);
+
+        } catch (IOException e) {
+            System.out.println("Exception whilst changing scene from Period specific Tasks to general Tasks view.");
+        }
     }
 
     /**
