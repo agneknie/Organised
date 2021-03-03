@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -141,6 +144,174 @@
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
+            <Label layoutX="72.0" layoutY="62.0" prefHeight="42.0" prefWidth="315.0" text="Your Tasks." textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <Pane fx:id="goToTodayButton" layoutX="863.0" layoutY="57.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="goToTodayButtonImage" layoutX="14.0" layoutY="9.0">
+                     <image>
+                        <Image url="@../images/go_to_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="goToTodayButtonLabel" alignment="CENTER" layoutX="58.0" layoutY="6.0" prefHeight="42.0" prefWidth="139.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Go to Today" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fx:id="goLeftButton" layoutX="17.0" layoutY="337.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/next_element_left.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="pane1" layoutX="72.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="pane1YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1Year" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane1GoToPeriodButton" layoutX="25.0" layoutY="336.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane1GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/go_to_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane1GoToPeriodButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="7.0" prefHeight="53.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Go to Period" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane1AddTaskButton" layoutX="25.0" layoutY="251.0" onMouseClicked="#pane1AddTaskButtonClicked" onMouseEntered="#pane1AddTaskButtonHovered" onMouseExited="#pane1AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane1AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/add_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane1AddTaskButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Add recurring Task" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pane2" layoutX="442.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="pane2YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2Year" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="335.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane2GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/go_to_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane2GoToPeriodButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="7.0" prefHeight="53.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Go to Period" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane2AddTaskButton" layoutX="26.0" layoutY="251.0" onMouseClicked="#pane2AddTaskButtonClicked" onMouseEntered="#pane2AddTaskButtonHovered" onMouseExited="#pane2AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane2AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/add_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane2AddTaskButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Add recurring Task" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pane3" layoutX="811.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="pane3YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3Year" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="177.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane3GoToPeriodButton" layoutX="26.0" layoutY="334.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane3GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/go_to_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane3GoToPeriodButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="7.0" prefHeight="53.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Go to Period" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane3AddTaskButton" layoutX="26.0" layoutY="250.0" onMouseClicked="#pane3AddTaskButtonClicked" onMouseEntered="#pane3AddTaskButtonHovered" onMouseExited="#pane3AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fx:id="pane3AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
+                           <image>
+                              <Image url="@../images/add_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pane3AddTaskButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Add recurring Task" textFill="#e6bb9a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <ImageView fx:id="goRightButton" layoutX="1146.0" layoutY="337.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/next_element_right.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="72.0" layoutY="601.0" prefHeight="33.0" prefWidth="1060.0" text="Task Completion per Period:" textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Label>
+            <StackedBarChart layoutX="17.0" layoutY="637.0" prefHeight="249.0" prefWidth="1146.0" stylesheets="@../stylesheets/chartStyling.css">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </StackedBarChart>
          </children></Pane>
    </children>
 </AnchorPane>
