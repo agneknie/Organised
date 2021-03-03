@@ -1,5 +1,6 @@
 package core;
 
+import core.enums.TaskStatus;
 import database.Database;
 
 import java.sql.Connection;
@@ -312,6 +313,66 @@ public class Week {
 
         // Returns a list of Day objects
         return days;
+    }
+
+    /**
+     * Method which returns all tasks of the Week.
+     *
+     * @return List of all Tasks belonging to this Week.
+     */
+    public List<Task> getAllTasks(){
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT * FROM Task WHERE weekId = ? AND userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, userId);
+
+            //Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+
+            // If there are items in the result set, reconstructs the Tasks and saves them in a list
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int moduleId = rs.getInt("moduleId");
+                int weekId = rs.getInt("weekId");
+                String description = rs.getString("description");
+                TaskStatus status = TaskStatus.stringToTaskStatus(rs.getString("status"));
+
+                Task newTask = new Task(id, this.getUserId(), moduleId, weekId, description, status);
+                tasks.add(newTask);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Returns a list of Task objects
+        return tasks;
     }
 
     /**

@@ -362,7 +362,8 @@ public class Event {
     }
 
     /**
-     * Method which updates the name, description, startTime and endTime
+     * Method which updates the name, description, moduleId
+     * dayId, startTime and endTime
      * variables of the event in the database.
      */
     public void updateEvent() {
