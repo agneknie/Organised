@@ -149,7 +149,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Pane fx:id="goToTodayButton" layoutX="863.0" layoutY="57.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="goToTodayButton" layoutX="859.0" layoutY="57.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <ImageView fx:id="goToTodayButtonImage" layoutX="14.0" layoutY="9.0">
                      <image>
@@ -163,12 +163,12 @@
                   </Label>
                </children>
             </Pane>
-            <ImageView fx:id="goLeftButton" layoutX="17.0" layoutY="337.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+            <ImageView fx:id="goLeftButton" layoutX="13.0" layoutY="636.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_left.png" />
                </image>
             </ImageView>
-            <Pane fx:id="pane1" layoutX="72.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane1" layoutX="68.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane1YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1Year" textFill="WHITE">
                      <font>
@@ -210,7 +210,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pane2" layoutX="442.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane2" layoutX="438.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane2YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2Year" textFill="WHITE">
                      <font>
@@ -252,7 +252,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pane3" layoutX="811.0" layoutY="151.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane3" layoutX="807.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane3YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3Year" textFill="WHITE">
                      <font>
@@ -294,17 +294,17 @@
                   </Pane>
                </children>
             </Pane>
-            <ImageView fx:id="goRightButton" layoutX="1146.0" layoutY="337.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+            <ImageView fx:id="goRightButton" layoutX="1142.0" layoutY="636.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Label layoutX="72.0" layoutY="601.0" prefHeight="33.0" prefWidth="1060.0" text="Task Completion per Period:" textFill="#e6bb9a">
+            <Label layoutX="78.0" layoutY="138.0" prefHeight="33.0" prefWidth="1060.0" text="Task Completion per Period:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
             </Label>
-            <StackedBarChart layoutX="17.0" layoutY="637.0" prefHeight="249.0" prefWidth="1146.0" stylesheets="@../stylesheets/chartStyling.css">
+            <StackedBarChart layoutX="23.0" layoutY="174.0" prefHeight="249.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
