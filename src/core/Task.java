@@ -198,7 +198,7 @@ public class Task {
             PreparedStatement pStatement = null;
 
             // Sets up the query
-            String query = "INSERT INTO Task VALUES(null,?,?,?,?);";
+            String query = "INSERT INTO Task VALUES(null,?,?,?,?,?);";
             try {
                 // Fills prepared statement and executes
                 pStatement = connection.prepareStatement(query);

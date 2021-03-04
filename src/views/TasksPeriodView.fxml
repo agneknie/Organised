@@ -199,7 +199,7 @@
                </font>
             </Label>
             <ProgressBar fx:id="progressBar" layoutX="71.0" layoutY="218.0" prefHeight="36.0" prefWidth="593.0" progress="0.0" style="-fx-control-inner-background: #2B2B2B; -fx-text-box-border: #e6bb9a; -fx-border-style: solid; -fx-border-color: #e6bb9a; -fx-border-width: 4; -fx-border-radius: 10; -fx-background-radius: 15; -fx-accent: #e6bb9a;" />
-            <Pane fx:id="addTaskButton" layoutX="740.0" layoutY="196.0" onMouseClicked="#addTaskButtonClicked" onMouseEntered="#addTaskButtonHovered" onMouseExited="#addTaskButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="addTaskButton" layoutX="741.0" layoutY="198.0" onMouseClicked="#addTaskButtonClicked" onMouseEntered="#addTaskButtonHovered" onMouseExited="#addTaskButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="addTaskButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Add Task" textFill="#e6bb9a">
                      <font>
@@ -213,7 +213,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="editTaskButton" layoutX="959.0" layoutY="196.0" onMouseClicked="#editTaskButtonClicked" onMouseEntered="#editTaskButtonHovered" onMouseExited="#editTaskButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="editTaskButton" layoutX="959.0" layoutY="198.0" onMouseClicked="#editTaskButtonClicked" onMouseEntered="#editTaskButtonHovered" onMouseExited="#editTaskButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="editTaskButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Edit Task" textFill="#e6bb9a">
                      <font>
