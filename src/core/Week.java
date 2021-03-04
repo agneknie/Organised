@@ -376,6 +376,30 @@ public class Week {
     }
 
     /**
+     * Method which returns the number of tasks with the given status in the week.
+     * If taskStatus is null, returns number of all tasks in a week.
+     *
+     * @param taskStatus desired status of the task
+     * @return number of tasks with desired status
+     */
+    public int getTasksByStatus(TaskStatus taskStatus){
+        // Lists for saving tasks
+        List<Task> allTasks = this.getAllTasks();
+        List<Task> desiredTasks = new ArrayList<>();
+
+        // If taskStatus is null, returns the number of all tasks in a period
+        if(taskStatus==null) return allTasks.size();
+
+        // Goes through all tasks and checks whether they are of specified type
+        for(Task task : allTasks){
+            if(task.getStatus() == taskStatus) desiredTasks.add(task);
+        }
+
+        // Returns the number of such tasks
+        return desiredTasks.size();
+    }
+
+    /**
      * Method which returns only the working days of the week:
      * Monday, Tuesday, Wednesday, Thursday, Friday.
      *

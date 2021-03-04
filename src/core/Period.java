@@ -1,5 +1,6 @@
 package core;
 
+import core.enums.TaskStatus;
 import database.Database;
 
 import java.sql.Connection;
@@ -341,6 +342,47 @@ public class Period {
                 }
             }
         }
+    }
+
+    /**
+     * Method which returns all tasks which belong to the weeks in this period.
+     *
+     * @return tasks of the period
+     */
+    private List<Task> getAllTasks(){
+        List<Task> allTasks = new ArrayList<>();
+
+        // Goes through all weeks of period and collects all tasks of all weeks
+        for(Week week : this.getAllWeeks()){
+            allTasks.addAll(week.getAllTasks());
+        }
+
+        // Returns all tasks of period
+        return allTasks;
+    }
+
+    /**
+     * Method which returns the number of tasks with the given status in the period.
+     * If taskStatus is null, returns number of all tasks in a period.
+     *
+     * @param taskStatus desired status of the task
+     * @return number of tasks with desired status
+     */
+    public int getTasksByStatus(TaskStatus taskStatus){
+        // Lists for saving tasks
+        List<Task> allTasks = this.getAllTasks();
+        List<Task> desiredTasks = new ArrayList<>();
+
+        // If taskStatus is null, returns the number of all tasks in a period
+        if(taskStatus==null) return allTasks.size();
+
+        // Goes through all tasks and checks whether they are of specified type
+        for(Task task : allTasks){
+            if(task.getStatus() == taskStatus) desiredTasks.add(task);
+        }
+
+        // Returns the number of such tasks
+        return desiredTasks.size();
     }
 
     @Override

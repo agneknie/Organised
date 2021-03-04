@@ -3,8 +3,10 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Period;
 import core.Session;
 import core.Week;
+import core.enums.TaskStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -132,13 +134,22 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * top of the scene.
      */
     private void setupTopInformation(){
+        Period currentPeriod = Session.getTasksPeriodSelected();
+
         // Sets up period name label
-        periodNameLabel.setText("Year " + Session.getTasksPeriodSelected().getAssociatedYear() +
-                ": " + Session.getTasksPeriodSelected().getName());
+        periodNameLabel.setText("Year " + currentPeriod.getAssociatedYear() +
+                ": " + currentPeriod.getName());
 
         // Sets up week information labels
         weekNameLabel.setText(userSelectedWeek.toString());
         weekDateLabel.setText(userSelectedWeek.getWeekDate());
+
+        // Sets up the progress bar and the progress label
+        double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES);
+        double allTasks = userSelectedWeek.getTasksByStatus(null) - userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
+        System.out.println(allTasks + "    " + completedTasks);
+        progressBar.setProgress(completedTasks/allTasks);
+        tasksCompletedLabel.setText(Math.round(completedTasks/allTasks*100) + "%");
     }
 
     /**
@@ -260,9 +271,8 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * Method which updates the scene after user navigates from one week to other.
      */
     private void updateAfterNavigation(){
-        // Updates week information
-        weekNameLabel.setText(userSelectedWeek.toString());
-        weekDateLabel.setText(userSelectedWeek.getWeekDate());
+        // Updates top pane information
+        setupTopInformation();
 
         // Configures navigation arrows
         configureNavigationArrows();
