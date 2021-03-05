@@ -213,20 +213,6 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="editTaskButton" layoutX="959.0" layoutY="198.0" onMouseClicked="#editTaskButtonClicked" onMouseEntered="#editTaskButtonHovered" onMouseExited="#editTaskButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <Label fx:id="editTaskButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Edit Task" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="editTaskButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="11.0">
-                     <image>
-                        <Image url="@../images/edit_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
             <Label layoutX="73.0" layoutY="282.0" prefHeight="35.0" prefWidth="162.0" style="-fx-wrap-text: true;" text="Module:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
@@ -436,14 +422,14 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="moreTasksButton" layoutX="741.0" layoutY="280.0" onMouseClicked="#moreTasksButtonClicked" onMouseEntered="#moreTasksButtonHovered" onMouseExited="#moreTasksButtonExited" prefHeight="37.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="moreTasksButton" layoutX="960.0" layoutY="198.0" onMouseClicked="#moreTasksButtonClicked" onMouseEntered="#moreTasksButtonHovered" onMouseExited="#moreTasksButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="moreTasksButtonLabel" alignment="CENTER" layoutX="44.0" layoutY="5.0" prefHeight="27.0" prefWidth="132.0" style="-fx-wrap-text: true;" text="More Tasks" textFill="#e6bb9a">
+                  <Label fx:id="moreTasksButtonLabel" alignment="CENTER" layoutX="50.0" layoutY="8.0" prefHeight="42.0" prefWidth="132.0" style="-fx-wrap-text: true;" text="More Tasks" textFill="#e6bb9a">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="moreTasksButtonImage" fitHeight="27.0" fitWidth="27.0" layoutX="14.0" layoutY="5.0">
+                  <ImageView fx:id="moreTasksButtonImage" layoutX="14.0" layoutY="11.0">
                      <image>
                         <Image url="@../images/more_icon.png" />
                      </image>

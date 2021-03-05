@@ -149,7 +149,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Pane fx:id="goToTodayButton" layoutX="859.0" layoutY="72.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="goToTodayButton" layoutX="911.0" layoutY="535.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <ImageView fx:id="goToTodayButtonImage" layoutX="14.0" layoutY="9.0">
                      <image>
@@ -163,24 +163,24 @@
                   </Label>
                </children>
             </Pane>
-            <ImageView fx:id="goLeftButton" layoutX="13.0" layoutY="636.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+            <ImageView fx:id="goLeftButton" layoutX="13.0" layoutY="304.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_left.png" />
                </image>
             </ImageView>
-            <Pane fx:id="pane1" layoutX="68.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane1" layoutX="68.0" layoutY="118.0" prefHeight="401.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane1YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1Year" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane1GoToPeriodButton" layoutX="25.0" layoutY="336.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Label fx:id="pane1PeriodLabel" alignment="CENTER" layoutX="13.0" layoutY="77.0" prefHeight="136.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane1PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane1GoToPeriodButton" layoutX="25.0" layoutY="311.0" onMouseClicked="#pane1GoToPeriodButtonClicked" onMouseEntered="#pane1GoToPeriodButtonHovered" onMouseExited="#pane1GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane1GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -194,7 +194,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane1AddTaskButton" layoutX="25.0" layoutY="251.0" onMouseClicked="#pane1AddTaskButtonClicked" onMouseEntered="#pane1AddTaskButtonHovered" onMouseExited="#pane1AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane1AddTaskButton" layoutX="25.0" layoutY="228.0" onMouseClicked="#pane1AddTaskButtonClicked" onMouseEntered="#pane1AddTaskButtonHovered" onMouseExited="#pane1AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane1AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -210,19 +210,19 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pane2" layoutX="438.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane2" layoutX="438.0" layoutY="118.0" prefHeight="401.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane2YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2Year" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="335.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Label fx:id="pane2PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="75.0" prefHeight="136.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane2PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane2GoToPeriodButton" layoutX="26.0" layoutY="311.0" onMouseClicked="#pane2GoToPeriodButtonClicked" onMouseEntered="#pane2GoToPeriodButtonHovered" onMouseExited="#pane2GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane2GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -236,7 +236,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane2AddTaskButton" layoutX="26.0" layoutY="251.0" onMouseClicked="#pane2AddTaskButtonClicked" onMouseEntered="#pane2AddTaskButtonHovered" onMouseExited="#pane2AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane2AddTaskButton" layoutX="26.0" layoutY="228.0" onMouseClicked="#pane2AddTaskButtonClicked" onMouseEntered="#pane2AddTaskButtonHovered" onMouseExited="#pane2AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane2AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -252,19 +252,19 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pane3" layoutX="807.0" layoutY="450.0" prefHeight="425.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
+            <Pane fx:id="pane3" layoutX="807.0" layoutY="118.0" prefHeight="401.0" prefWidth="315.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="pane3YearLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3Year" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="170.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="pane3GoToPeriodButton" layoutX="26.0" layoutY="334.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Label fx:id="pane3PeriodLabel" alignment="CENTER" layoutX="14.0" layoutY="77.0" prefHeight="136.0" prefWidth="288.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="pane3PeriodName" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane3GoToPeriodButton" layoutX="26.0" layoutY="311.0" onMouseClicked="#pane3GoToPeriodButtonClicked" onMouseEntered="#pane3GoToPeriodButtonHovered" onMouseExited="#pane3GoToPeriodButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane3GoToPeriodButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -278,7 +278,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane3AddTaskButton" layoutX="26.0" layoutY="250.0" onMouseClicked="#pane3AddTaskButtonClicked" onMouseEntered="#pane3AddTaskButtonHovered" onMouseExited="#pane3AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+                  <Pane fx:id="pane3AddTaskButton" layoutX="26.0" layoutY="228.0" onMouseClicked="#pane3AddTaskButtonClicked" onMouseEntered="#pane3AddTaskButtonHovered" onMouseExited="#pane3AddTaskButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                      <children>
                         <ImageView fx:id="pane3AddTaskButtonImage" layoutX="25.0" layoutY="16.0">
                            <image>
@@ -294,17 +294,17 @@
                   </Pane>
                </children>
             </Pane>
-            <ImageView fx:id="goRightButton" layoutX="1142.0" layoutY="636.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+            <ImageView fx:id="goRightButton" layoutX="1142.0" layoutY="304.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
                <image>
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Label layoutX="78.0" layoutY="138.0" prefHeight="33.0" prefWidth="1060.0" text="Task Completion per Period:" textFill="#e6bb9a">
+            <Label layoutX="81.0" layoutY="554.0" prefHeight="33.0" prefWidth="390.0" text="Task Completion per Period:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
             </Label>
-            <StackedBarChart fx:id="stackedBarChart" layoutX="23.0" layoutY="174.0" prefHeight="249.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
+            <StackedBarChart fx:id="stackedBarChart" layoutX="26.0" layoutY="598.0" prefHeight="297.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -312,7 +312,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </StackedBarChart>
-            <Label fx:id="errorMessage" alignment="CENTER" layoutX="859.0" layoutY="137.0" prefHeight="36.0" prefWidth="211.0" style="-fx-wrap-text: true;" textFill="WHITE">
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="683.0" layoutY="561.0" prefHeight="27.0" prefWidth="211.0" style="-fx-wrap-text: true;" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
