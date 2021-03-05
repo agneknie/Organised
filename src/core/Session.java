@@ -67,7 +67,7 @@ public class Session {
     // Task: currently selected task
     private static Task tasksTaskSelected = null;
     // Tasks: task just added, edited or deleted
-    private static boolean taskTaskListChanged;
+    private static boolean tasksTaskListChanged;
 
     // Popup: Module information popup origin
     private static String moduleInformationOrigin = null;
@@ -409,17 +409,17 @@ public class Session {
      * added or deleted in the Tasks scene.
      * @return true if task was added/edited/deleted, false otherwise
      */
-    public static boolean isTaskTaskListChanged() {
-        return taskTaskListChanged;
+    public static boolean isTasksTaskListChanged() {
+        return tasksTaskListChanged;
     }
 
     /**
      * Setter for variable which returns true if a task was just edited,
      * added or deleted in the Tasks scene.
-     * @param taskTaskListChanged boolean value to set
+     * @param tasksTaskListChanged boolean value to set
      */
-    public static void setTaskTaskListChanged(boolean taskTaskListChanged) {
-        Session.taskTaskListChanged = taskTaskListChanged;
+    public static void setTasksTaskListChanged(boolean tasksTaskListChanged) {
+        Session.tasksTaskListChanged = tasksTaskListChanged;
     }
 
     /**

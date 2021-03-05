@@ -126,9 +126,9 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
     @FXML
     private void refreshScene(){
         // If task list changed
-        if(Session.isTaskTaskListChanged()){
+        if(Session.isTasksTaskListChanged()){
             // Resets session variable
-            Session.setTaskTaskListChanged(false);
+            Session.setTasksTaskListChanged(false);
             //TODO refreshScene
         }
     }

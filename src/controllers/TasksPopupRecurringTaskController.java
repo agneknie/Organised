@@ -14,10 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -81,7 +83,68 @@ public class TasksPopupRecurringTaskController extends DefaultNavigation impleme
      */
     @FXML
     private void actionButtonClicked(){
-        //TODO actionButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new event construction
+        boolean valid = true;
+        Module module = associatedModuleComboBox.getValue();
+        Week startWeek = startWeekComboBox.getValue();
+        Week endWeek = endWeekComboBox.getValue();
+        String description = descriptionField.getText();
+
+        // Checks whether inputs are not null/not empty
+        if(module==null){
+            valid = false;
+            ControlScene.highlightWrongField(associatedModuleComboBox);
+        }
+        if(startWeek==null){
+            valid = false;
+            ControlScene.highlightWrongField(startWeekComboBox);
+        }
+        if(endWeek==null){
+            valid = false;
+            ControlScene.highlightWrongField(endWeekComboBox);
+        }
+        if(description.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(descriptionField);
+        }
+
+        // Checks if week values are valid
+        if(valid && startWeek.getWeekNumber()>= endWeek.getWeekNumber()){
+            valid = false;
+            ControlScene.highlightWrongField(startWeekComboBox);
+            ControlScene.highlightWrongField(endWeekComboBox);
+        }
+
+        // If all fields valid creates the task
+        if(valid){
+            // Creates a list of weeks during which the recurring task takes place
+            List<Week> weeksOfTask = Session.getTasksPeriodSelected().getAllWeeks();
+            int startIndex = weeksOfTask.indexOf(startWeek);
+            int endIndex = weeksOfTask.indexOf(endWeek);
+            weeksOfTask = weeksOfTask.subList(startIndex, endIndex+1);
+
+            // Adds the recurring task
+            Task.addRecurringTask(Session.getSession().getId(), weeksOfTask, module.getId(), description);
+
+            // Updates session for task list change
+            Session.setTasksTaskListChanged(true);
+            // Closes the popup
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
+    }
+
+    /**
+     * Normalises all text field and combo box borders in case they
+     * were highlighted as wrong previously.
+     */
+    private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(associatedModuleComboBox);
+        ControlScene.normaliseWrongField(startWeekComboBox);
+        ControlScene.normaliseWrongField(endWeekComboBox);
+        ControlScene.normaliseWrongField(descriptionField);
     }
 
     // Methods handling styling of scene elements

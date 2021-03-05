@@ -497,7 +497,7 @@ public class Module {
 
     @Override
     public String toString(){
-        return this.code;
+        return this.code+" "+this.fullName;
     }
 
     @Override

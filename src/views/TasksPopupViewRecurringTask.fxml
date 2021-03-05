@@ -45,7 +45,7 @@
       </Pane>
       <Pane layoutX="90.0" layoutY="303.0" prefHeight="175.0" prefWidth="538.0">
          <children>
-            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Description:" textFill="WHITE">
+            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Task Description:" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>

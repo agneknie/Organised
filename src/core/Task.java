@@ -229,12 +229,11 @@ public class Task {
      * Method which adds a recurring task to the user's tasks.
      *
      * @param userId id of the user who is adding the task
-     * @param day day of week of the task
      * @param weeksOfTask weeks in which the task should be present
      * @param moduleId id of the module associated with task
      * @param description description of the task
      */
-    public static void addRecurringTask(int userId, DayOfWeek day, List<Week> weeksOfTask, int moduleId, String description){
+    public static void addRecurringTask(int userId, List<Week> weeksOfTask, int moduleId, String description){
         // Goes through all weeks the task has to appear on and creates the tasks
         for(Week week : weeksOfTask){
             // Formats the description if needed
@@ -258,7 +257,7 @@ public class Task {
      * @param description unaltered description of task
      * @return altered description
      */
-    private static String alterTaskDescription(int weekNumber, String description) {
+    public static String alterTaskDescription(int weekNumber, String description) {
         // Deals with symbol =
         description = description.replace("=", "%d");
         description = String.format(description, weekNumber);

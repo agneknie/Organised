@@ -11,12 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -109,9 +108,9 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
     @FXML
     private void actionButtonClicked(){
         // If action button is 'Add'
-        if(Session.getSchedulePopupType() == PopupType.ADD) addButtonClicked();
+        if(Session.getTasksPopupType() == PopupType.ADD) addButtonClicked();
 
-            // If action button is 'Edit'
+        // If action button is 'Edit'
         else editButtonClicked();
     }
 
@@ -127,7 +126,37 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
      * Method which tries to add a task if add button is clicked.
      */
     private void addButtonClicked(){
-        //TODO addButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for new event construction
+        boolean valid = true;
+        Module module = associatedModuleComboBox.getValue();
+        String description = descriptionField.getText();
+
+        // Checks whether inputs are not null/not empty
+        if(module==null){
+            valid = false;
+            ControlScene.highlightWrongField(associatedModuleComboBox);
+        }
+        if(description.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(descriptionField);
+        }
+
+        // If all fields valid creates the task
+        if(valid){
+            // Creates the task
+            Task newTask = new Task(Session.getSession().getId(), module.getId(), Session.getTasksWeekSelected().getId(),
+                    Task.alterTaskDescription(Session.getTasksWeekSelected().getWeekNumber(), description));
+            // Adds task to database
+            newTask.addTask();
+
+            // Updates session for task list change
+            Session.setTasksTaskListChanged(true);
+            // Closes the popup
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
     }
 
     /**
@@ -135,6 +164,15 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
      */
     private void editButtonClicked(){
         //TODO editButtonClicked
+    }
+
+    /**
+     * Normalises all text field and combo box borders in case they
+     * were highlighted as wrong previously.
+     */
+    private void normaliseAllFields(){
+        ControlScene.normaliseWrongField(associatedModuleComboBox);
+        ControlScene.normaliseWrongField(descriptionField);
     }
 
     // Methods handling styling of scene elements
