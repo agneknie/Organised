@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.utilities.ControlScene;
 import controllers.utilities.MarksDefaultPopup;
 import core.Module;
 import core.enums.PopupType;
@@ -63,21 +64,7 @@ public class MarksPopupModuleController extends MarksDefaultPopup implements Ini
         // Populates the combo box with Semester values
         semesterComboBox.getItems().setAll(Semester.values());
         // Styles semester combo box text
-        semesterComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(semesterComboBox);
 
         // Setups the popup based on scene type
         if(sceneType == PopupType.EDIT) setupEdit();

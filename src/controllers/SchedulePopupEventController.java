@@ -73,87 +73,27 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
         // Sets up the popup according to its type
         setupPopupBasedOnType();
 
-        // Sets up Day of Week combo box
         // Populates the combo box with Day of Week values
         dayOfWeekComboBox.getItems().setAll(Session.getScheduleWeekSelected().getWorkingDays());
         // Styles Day of Week combo box text
-        dayOfWeekComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(dayOfWeekComboBox);
 
-        // Sets up the associated module combo box
         // Populates the combo box with modules of period
         int yearNumber = Session.getSchedulePeriodSelected().getAssociatedYear();
         int userId = Session.getSession().getId();
         associatedModuleComboBox.getItems().setAll(Year.yearFromUserIdAndNumber(userId, yearNumber).getAllModules());
         // Styles modules combo box text
-        associatedModuleComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(associatedModuleComboBox);
 
-        // Sets up start time combo box
         // Populates the combo box with available start times
         startTimeComboBox.getItems().setAll(ScheduleTime.getStartTimes());
         // Styles start times combo box text
-        startTimeComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(startTimeComboBox);
 
-        // Sets up end time combo box
         // Populates the combo box with available end times
         endTimeComboBox.getItems().setAll(ScheduleTime.getEndTimes());
         // Styles end times combo box text
-        endTimeComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(endTimeComboBox);
     }
 
     /**

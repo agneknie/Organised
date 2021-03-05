@@ -61,23 +61,8 @@ public class TimePopupPeriodController extends DefaultButtons implements Initial
     public void initialize(URL location, ResourceBundle resources) {
         // Sets up Year combo box with year values
         yearComboBox.getItems().setAll(Session.getSession().getAllYears());
-
         // Styles Year combo box text
-        yearComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(yearComboBox);
 
         // Sets the value of the date picker to the closest coming Monday
         startOfPeriodDatePicker.setValue(closestMonday());

@@ -66,27 +66,12 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
         // Sets up the popup based on type
         setupPopupBasedOnType();
 
-        // Sets up the associated module combo box
         // Populates the combo box with modules of period
         int yearNumber = Session.getTasksPeriodSelected().getAssociatedYear();
         int userId = Session.getSession().getId();
         associatedModuleComboBox.getItems().setAll(Year.yearFromUserIdAndNumber(userId, yearNumber).getAllModules());
         // Styles modules combo box text
-        associatedModuleComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(associatedModuleComboBox);
     }
 
     /**

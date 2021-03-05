@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -221,5 +222,27 @@ public class ControlScene {
         problematicTextArea.setStyle("-fx-background-color: none; -fx-text-fill: white; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" +
                 "-fx-border-width: 3; -fx-wrap-text: true");
+    }
+
+    /**
+     * Method which takes a combo box and sets up its styling.
+     * @param comboBox combo box to style
+     */
+    public static void setupComboBoxStyle(ComboBox comboBox){
+        comboBox.setButtonCell(new ListCell(){
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                setFont(new Font("Arial", 16.0));
+                // If nothing selected, styles like the prompt
+                if(empty || item==null)
+                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
+                    // If something selected, styles accordingly
+                else {
+                    setStyle("-fx-text-fill: white");
+                    setText(item.toString());
+                }
+            }
+        });
     }
 }
