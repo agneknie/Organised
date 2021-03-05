@@ -27,12 +27,11 @@ import java.util.ResourceBundle;
  * This source code is licensed under the GNU General Public License, Version 3
  * found in the LICENSE file in the root directory of this source tree.
  *
- * Controller for Module Information popup in the Schedule tab.
+ * Controller for Module Information popup in the Schedule & Tasks tabs.
  * Used when user wishes to view information about modules, which are
  * present in the selected period.
  */
-public class SchedulePopupModuleController extends DefaultNavigation implements Initializable {
-
+public class ModuleInformationPopupController extends DefaultNavigation implements Initializable{
     // Title label
     @FXML
     private Label titleLabel;
@@ -75,8 +74,15 @@ public class SchedulePopupModuleController extends DefaultNavigation implements 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Gets all modules of the year associated with selected period
-        int yearNumber = Session.getSchedulePeriodSelected().getAssociatedYear();
+        int yearNumber = 0;     // Placeholder year number
+
+        // Gets all modules of the year associated with selected period#
+        if(Session.getModuleInformationOrigin().equals("Schedule"))
+            yearNumber = Session.getSchedulePeriodSelected().getAssociatedYear();
+        else if(Session.getModuleInformationOrigin().equals("Tasks"))
+            yearNumber = Session.getTasksPeriodSelected().getAssociatedYear();
+
+
         int userId = Session.getSession().getId();
         userModules = Year.yearFromUserIdAndNumber(userId, yearNumber).getAllModules();
 
