@@ -199,7 +199,12 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     @FXML
     private void moduleInfoButtonClicked() throws IOException {
-        //TODO moduleInfoButtonClicked
+        // Sets the session variable
+        Session.setModuleInformationOrigin("Tasks");
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "ModuleInformationPopupView.fxml");
     }
 
     /**

@@ -174,7 +174,7 @@
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Pane fx:id="moduleInfoButton" layoutX="741.0" layoutY="100.0" onMouseClicked="#moduleInfoButtonClicked" onMouseEntered="#moduleInfoButtonHovered" onMouseExited="#moduleInfoButtonExited" prefHeight="58.0" prefWidth="291.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Pane fx:id="moduleInfoButton" layoutX="741.0" layoutY="109.0" onMouseClicked="#moduleInfoButtonClicked" onMouseEntered="#moduleInfoButtonHovered" onMouseExited="#moduleInfoButtonExited" prefHeight="58.0" prefWidth="291.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <Label fx:id="moduleInfoButtonLabel" alignment="CENTER" layoutX="56.0" layoutY="8.0" prefHeight="42.0" prefWidth="226.0" style="-fx-wrap-text: true;" text="Module Information" textFill="#e6bb9a">
                      <font>

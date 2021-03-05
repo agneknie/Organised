@@ -69,6 +69,9 @@ public class Session {
     // Tasks: task just added, edited or deleted
     private static boolean taskTaskListChanged;
 
+    // Popup: Module information popup origin
+    private static String moduleInformationOrigin = null;
+
     /**
      * Getter for the primary stage of main window for stage dragging
      * @return primary stage of main window
@@ -449,5 +452,23 @@ public class Session {
      */
     public static void setTasksTaskSelected(Task tasksTaskSelected) {
         Session.tasksTaskSelected = tasksTaskSelected;
+    }
+
+    /**
+     * Getter for module information popup origin variable. Can be either
+     * "Tasks" or "Schedule".
+     * @return module information popup origin
+     */
+    public static String getModuleInformationOrigin() {
+        return moduleInformationOrigin;
+    }
+
+    /**
+     * Setter for module information popup origin variable. Can be either
+     * "Tasks" or "Schedule".
+     * @param moduleInformationOrigin module information popup origin
+     */
+    public static void setModuleInformationOrigin(String moduleInformationOrigin) {
+        Session.moduleInformationOrigin = moduleInformationOrigin;
     }
 }

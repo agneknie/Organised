@@ -555,9 +555,12 @@ public class SchedulePeriodController extends DefaultNavigation implements Initi
      */
     @FXML
     private void moduleInfoButtonClicked() throws IOException {
+        // Sets the session variable
+        Session.setModuleInformationOrigin("Schedule");
+
         // Opens the popup
         Stage popup = new Stage();
-        new PopupStage(popup, "SchedulePopupModuleView.fxml");
+        new PopupStage(popup, "ModuleInformationPopupView.fxml");
     }
 
     // Methods which handle clicking on timetabled events
