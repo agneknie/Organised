@@ -6,6 +6,7 @@ import controllers.utilities.SetupScene;
 import core.Period;
 import core.Session;
 import core.Week;
+import core.enums.PopupType;
 import core.enums.TaskStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import stages.BiggerPopupStage;
+import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -147,7 +151,6 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         // Sets up the progress bar and the progress label
         double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES);
         double allTasks = userSelectedWeek.getTasksByStatus(null) - userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
-        System.out.println(allTasks + "    " + completedTasks);
         progressBar.setProgress(completedTasks/allTasks);
         tasksCompletedLabel.setText(Math.round(completedTasks/allTasks*100) + "%");
     }
@@ -181,17 +184,13 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * add task button is clicked.
      */
     @FXML
-    private void addTaskButtonClicked() {
-        //TODO addEventButtonClicked
-    }
+    private void addTaskButtonClicked() throws IOException {
+        // Sets the popup type
+        Session.setTasksPopupType(PopupType.ADD);
 
-    /**
-     * Method which opens the task editing popup when
-     * edit task button is clicked.
-     */
-    @FXML
-    private void editTaskButtonClicked() {
-        //TODO editEventButtonClicked
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TasksPopupViewTask.fxml");
     }
 
     /**
@@ -321,25 +320,6 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
     private void addTaskButtonHovered() {
         ControlScene.buttonHovered(addTaskButton, addTaskButtonImage,
                 addTaskButtonLabel, "add_icon_selected.png");
-    }
-
-    /**
-     * Changes the styling of editTask button if hover
-     * ended/mouse exited.
-     */
-    @FXML
-    private void editTaskButtonExited() {
-        ControlScene.buttonExited(editTaskButton, editTaskButtonImage,
-                editTaskButtonLabel, "edit_icon.png");
-    }
-
-    /**
-     * Changes the styling of editTask button if hovered.
-     */
-    @FXML
-    private void editTaskButtonHovered() {
-        ControlScene.buttonHovered(editTaskButton, editTaskButtonImage,
-                editTaskButtonLabel, "edit_icon_selected.png");
     }
 
     /**

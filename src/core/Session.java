@@ -64,6 +64,8 @@ public class Session {
     private static PopupType tasksPopupType = null;
     // Tasks: currently selected week
     private static Week tasksWeekSelected = null;
+    // Task: currently selected task
+    private static Task tasksTaskSelected = null;
     // Tasks: task just added, edited or deleted
     private static boolean taskTaskListChanged;
 
@@ -431,5 +433,21 @@ public class Session {
      */
     public static void setTasksWeekSelected(Week tasksWeekSelected) {
         Session.tasksWeekSelected = tasksWeekSelected;
+    }
+
+    /**
+     * Getter for the task, which is currently selected in Tasks Period scene.
+     * @return currently selected Task in Tasks
+     */
+    public static Task getTasksTaskSelected() {
+        return tasksTaskSelected;
+    }
+
+    /**
+     * Setter for the task, which is currently selected in Tasks Period scene.
+     * @param tasksTaskSelected task to be set as selected
+     */
+    public static void setTasksTaskSelected(Task tasksTaskSelected) {
+        Session.tasksTaskSelected = tasksTaskSelected;
     }
 }
