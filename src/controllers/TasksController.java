@@ -13,6 +13,8 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -337,11 +339,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      * period, which is described by pane1.
      */
     @FXML
-    private void pane1AddTaskButtonClicked() {
+    private void pane1AddTaskButtonClicked() throws IOException {
         // Cleans error message field in case it was displaying something
         errorMessage.setText("");
 
-        //TODO pane1AddTaskButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane1Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TasksPopupViewRecurringTask.fxml");
     }
 
     /**
@@ -349,11 +356,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      * period, which is described by pane2.
      */
     @FXML
-    private void pane2AddTaskButtonClicked() {
+    private void pane2AddTaskButtonClicked() throws IOException {
         // Cleans error message field in case it was displaying something
         errorMessage.setText("");
 
-        //TODO pane2AddTaskButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane2Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TasksPopupViewRecurringTask.fxml");
     }
 
     /**
@@ -361,11 +373,16 @@ public class TasksController extends DefaultNavigation implements Initializable 
      * period, which is described by pane3.
      */
     @FXML
-    private void pane3AddTaskButtonClicked() {
+    private void pane3AddTaskButtonClicked() throws IOException {
         // Cleans error message field in case it was displaying something
         errorMessage.setText("");
 
-        //TODO pane3AddTaskButtonClicked
+        // Saves selected Period in Session
+        Session.setTasksPeriodSelected(userPeriods.get(pane3Pointer));
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TasksPopupViewRecurringTask.fxml");
     }
 
     /**
