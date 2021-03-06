@@ -86,7 +86,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0">
+            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
                <children>
                   <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
                      <font>
@@ -319,6 +319,11 @@
             <Label fx:id="errorMessage" alignment="CENTER" layoutX="847.0" layoutY="242.0" prefHeight="36.0" prefWidth="237.0" style="-fx-wrap-text: true;" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="noPeriodsYetLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="597.0" layoutY="154.0" prefHeight="93.0" prefWidth="242.0" style="-fx-wrap-text: true; -fx-text-alignment: left;" text="Add some Periods in Time to start getting Organised." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
          </children></Pane>

@@ -88,7 +88,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0">
+            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
                <children>
                   <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
                      <font>

@@ -40,7 +40,13 @@ import java.util.ResourceBundle;
 public class TasksController extends DefaultNavigation implements Initializable {
     // Stacked bar chart
     @FXML
+    private Label stackedBarChartLabel;
+    @FXML
     private StackedBarChart<String, Integer> stackedBarChart;
+
+    // No periods yet information label
+    @FXML
+    private Label noPeriodsYetLabel;
 
     // Go to today button
     @FXML
@@ -135,8 +141,17 @@ public class TasksController extends DefaultNavigation implements Initializable 
         // Gets user periods
         userPeriods = Session.getSession().getAllPeriods();
 
-        // Sets up the stacked bar chart
-        setupStackedBarChart();
+        // If user doesn't have any periods yet
+        if(userPeriods.isEmpty()){
+            stackedBarChart.setVisible(false);
+            stackedBarChartLabel.setVisible(false);
+            goToTodayButton.setVisible(false);
+        }
+        else{
+            noPeriodsYetLabel.setVisible(false);
+            // Sets up the stacked bar chart
+            setupStackedBarChart();
+        }
 
         // Sets up panes with information
         setupNavigationPanes();

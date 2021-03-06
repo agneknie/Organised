@@ -44,6 +44,8 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     private Label todayLabel;
     @FXML
     private Label timeLabel;
+    @FXML
+    private Label noPeriodsYetLabel;
 
     // Go to today button
     @FXML
@@ -137,6 +139,9 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     public void initialize(URL location, ResourceBundle resources) {
         // Gets user periods
         userPeriods = Session.getSession().getAllPeriods();
+
+        // If user has periods, hides information label
+        if(!userPeriods.isEmpty())  noPeriodsYetLabel.setVisible(false);
 
         // Sets up top pane with data
         initializeTopPane();

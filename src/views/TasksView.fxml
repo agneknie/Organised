@@ -89,7 +89,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0">
+            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
                <children>
                   <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
                      <font>
@@ -147,6 +147,11 @@
             <Label layoutX="72.0" layoutY="62.0" prefHeight="42.0" prefWidth="315.0" text="Your Tasks." textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <Label fx:id="noPeriodsYetLabel" layoutX="72.0" layoutY="104.0" prefHeight="37.0" prefWidth="722.0" text="Add some Periods in Time to start getting Organised." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28.0" />
                </font>
             </Label>
             <Pane fx:id="goToTodayButton" layoutX="911.0" layoutY="535.0" onMouseClicked="#goToTodayButtonClicked" onMouseEntered="#goToTodayButtonHovered" onMouseExited="#goToTodayButtonExited" prefHeight="53.0" prefWidth="211.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
@@ -299,7 +304,7 @@
                   <Image url="@../images/next_element_right.png" />
                </image>
             </ImageView>
-            <Label layoutX="81.0" layoutY="554.0" prefHeight="33.0" prefWidth="390.0" text="Task Completion per Period:" textFill="#e6bb9a">
+            <Label fx:id="stackedBarChartLabel" layoutX="81.0" layoutY="554.0" prefHeight="33.0" prefWidth="390.0" text="Task Completion per Period:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
