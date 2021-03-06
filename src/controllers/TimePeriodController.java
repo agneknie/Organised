@@ -177,21 +177,7 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
     private void setupDayComboBox(){
         daysComboBox.getItems().setAll(userSelectedWeek.getAllDays());
         // Styles semester combo box text
-        daysComboBox.setButtonCell(new ListCell(){
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                setFont(new Font("Arial", 16.0));
-                // If nothing selected, styles like the prompt
-                if(empty || item==null)
-                    setStyle("-fx-text-fill: derive(-fx-control-inner-background,-30%)");
-                    // If something selected, styles accordingly
-                else {
-                    setStyle("-fx-text-fill: white");
-                    setText(item.toString());
-                }
-            }
-        });
+        ControlScene.setupComboBoxStyle(daysComboBox);
         daysComboBox.setValue(null);
     }
 
@@ -420,6 +406,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void actionButtonClicked() throws IOException {
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Opens alert popup to confirm deletion
         Stage alert = new Stage();
         new AlertStage(alert, "TimeDeletePeriodAlertView.fxml");
@@ -567,6 +556,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void timerActionButtonClicked() {
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Acts based on the current label
         // Starts the timer
         if(timerActionButtonLabel.getText().equals("Start")){
@@ -602,6 +594,9 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
      */
     @FXML
     private void timerResetButtonClicked() {
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Resets the timer
         stopwatch.reset();
 

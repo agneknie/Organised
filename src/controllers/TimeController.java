@@ -3,6 +3,7 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
+import core.Day;
 import core.Period;
 import core.Session;
 import core.Week;
@@ -27,6 +28,7 @@ import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -57,6 +59,16 @@ public class TimeController extends DefaultNavigation implements Initializable {
     private Label actionButtonLabel;
     @FXML
     private ImageView actionButtonImage;
+
+    // Go to Today button
+    @FXML
+    private Pane goToTodayButton;
+    @FXML
+    private Label goToTodayButtonLabel;
+    @FXML
+    private ImageView goToTodayButtonImage;
+    @FXML
+    private Label errorMessage;
 
     // Navigation buttons for selecting periods
     @FXML
@@ -361,9 +373,47 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void actionButtonClicked() throws IOException {
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Creates Period addition popup
         Stage popup = new Stage();
         new PopupStage(popup, "TimePopupViewPeriod.fxml");
+    }
+
+    /**
+     * Method which goes to the schedule of the week, which has today's date.
+     * If there are more than one "todays" goes to the first one.
+     * If no today is present among the periods, displays error message.
+     */
+    @FXML
+    private void goToTodayButtonClicked() {
+        // Gets today's date
+        LocalDate today = LocalDate.now();
+
+        // Goes through all periods of user
+        for(Period period : Session.getSession().getAllPeriods()){
+            // Goes through all weeks of all periods
+            for(Week week : period.getAllWeeks()){
+                // Goes through all days of week
+                for(Day day : week.getAllDays()){
+                    // If current day is today, forwards to period of that day.
+                    // Week configuration is done in TasksPeriod
+                    if(day.getDate().equals(today)){
+                        Session.setTimePeriodSelected(period);
+                        // Changes the scene to Period specific scene
+                        try {
+                            SetupScene.changeScene("TimePeriodView.fxml", goToTodayButton);
+
+                        } catch (IOException e) {
+                            System.out.println("Exception whilst changing scene from general Time to Period specific Time.");
+                        }
+                    }
+                }
+            }
+        }
+        // If no today was found, displays error message
+        errorMessage.setText("No today was found.");
     }
 
     /**
@@ -372,6 +422,9 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void goLeftClicked(){
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Updates the navigation pane pointers
         navigationPane1Pointer--;
         navigationPane2Pointer--;
@@ -394,6 +447,9 @@ public class TimeController extends DefaultNavigation implements Initializable {
      */
     @FXML
     private void goRightClicked(){
+        // Cleans error message in case it was displayed
+        errorMessage.setText("");
+
         // Updates the navigation pane pointers
         navigationPane1Pointer++;
         navigationPane2Pointer++;
@@ -567,6 +623,25 @@ public class TimeController extends DefaultNavigation implements Initializable {
     @FXML
     private void actionButtonExited(){
         ControlScene.buttonExited(actionButton, actionButtonImage, actionButtonLabel, "add_icon.png");
+    }
+
+    /**
+     * Reverts goToTodayButton button styling back to usual
+     * when hover ends/button is exited.
+     */
+    @FXML
+    private void goToTodayButtonExited() {
+        ControlScene.buttonExited(goToTodayButton, goToTodayButtonImage,
+                goToTodayButtonLabel, "go_to_icon.png");
+    }
+
+    /**
+     * Handles styling of the goToTodayButton when hovered.
+     */
+    @FXML
+    private void goToTodayButtonHovered() {
+        ControlScene.buttonHovered(goToTodayButton, goToTodayButtonImage,
+                goToTodayButtonLabel, "go_to_icon_selected.png");
     }
 
     /**

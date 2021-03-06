@@ -8,7 +8,6 @@ import core.Period;
 import core.Session;
 import core.Week;
 import core.enums.TaskStatus;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -41,7 +40,7 @@ import java.util.ResourceBundle;
 public class TasksController extends DefaultNavigation implements Initializable {
     // Stacked bar chart
     @FXML
-    private StackedBarChart<String, Number> stackedBarChart;
+    private StackedBarChart<String, Integer> stackedBarChart;
 
     // Go to today button
     @FXML
@@ -150,7 +149,12 @@ public class TasksController extends DefaultNavigation implements Initializable 
      * Method which sets up the stacked bar chart of the scene with
      * task completion data of each period.
      */
+    @FXML
     private void setupStackedBarChart(){
+        // Cleans chart in case it was setup before
+        stackedBarChart.getData().clear();
+        ((CategoryAxis) stackedBarChart.getXAxis()).getCategories().clear();
+
         // Period numbering/naming
         int periodNumber = 1;
 
@@ -161,9 +165,9 @@ public class TasksController extends DefaultNavigation implements Initializable 
         }
 
         // Creates series
-        XYChart.Series<String, Number> seriesYes = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> seriesNo = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> seriesDropped = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Integer> seriesYes = new XYChart.Series<>();
+        XYChart.Series<String, Integer> seriesNo = new XYChart.Series<>();
+        XYChart.Series<String, Integer> seriesDropped = new XYChart.Series<>();
 
         // Names series
         seriesYes.setName("Completed");
