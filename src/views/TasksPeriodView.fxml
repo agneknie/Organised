@@ -188,12 +188,12 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="69.0" layoutY="165.0" prefHeight="31.0" prefWidth="291.0" style="-fx-wrap-text: true;" text="Week Task Completion:" textFill="#e6bb9a">
+            <Label fx:id="tasksCompletedInfoLabel" layoutX="69.0" layoutY="165.0" prefHeight="31.0" prefWidth="453.0" style="-fx-wrap-text: true;" text="Week Task Completion:" textFill="#e6bb9a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="tasksCompletedLabel" layoutX="437.0" layoutY="165.0" prefHeight="27.0" prefWidth="226.0" style="-fx-wrap-text: true;" text="100%" textFill="WHITE">
+            <Label fx:id="tasksCompletedLabel" layoutX="460.0" layoutY="165.0" prefHeight="31.0" prefWidth="204.0" style="-fx-wrap-text: true;" text="100%" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                </font>
@@ -213,227 +213,227 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="73.0" layoutY="282.0" prefHeight="35.0" prefWidth="162.0" style="-fx-wrap-text: true;" text="Module:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="243.0" layoutY="282.0" prefHeight="35.0" prefWidth="493.0" style="-fx-wrap-text: true;" text="Task:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="999.0" layoutY="282.0" prefHeight="35.0" prefWidth="162.0" style="-fx-wrap-text: true;" text="Completed:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <Pane fx:id="allTasksPane" layoutX="72.0" layoutY="323.0" prefHeight="563.0" prefWidth="1089.0">
-               <children>
-                  <Pane prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="58.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="116.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="174.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="232.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="273.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="331.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="389.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="447.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutY="505.0" prefHeight="58.0" prefWidth="1089.0">
-                     <children>
-                        <Label layoutX="5.0" layoutY="4.0" prefHeight="50.0" prefWidth="162.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="169.0" layoutY="4.0" prefHeight="50.0" prefWidth="756.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="927.0" layoutY="4.0" prefHeight="50.0" prefWidth="161.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
             <Pane fx:id="moreTasksButton" layoutX="960.0" layoutY="198.0" onMouseClicked="#moreTasksButtonClicked" onMouseEntered="#moreTasksButtonHovered" onMouseExited="#moreTasksButtonExited" prefHeight="58.0" prefWidth="189.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="moreTasksButtonLabel" alignment="CENTER" layoutX="50.0" layoutY="8.0" prefHeight="42.0" prefWidth="132.0" style="-fx-wrap-text: true;" text="More Tasks" textFill="#e6bb9a">
+                  <Label fx:id="moreTasksButtonLabel" alignment="CENTER" layoutX="48.0" layoutY="8.0" prefHeight="42.0" prefWidth="132.0" style="-fx-wrap-text: true;" text="More Tasks" textFill="#e6bb9a">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="22.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="moreTasksButtonImage" layoutX="14.0" layoutY="11.0">
+                  <ImageView fx:id="moreTasksButtonImage" layoutX="12.0" layoutY="12.0">
                      <image>
                         <Image url="@../images/more_icon.png" />
                      </image>
                   </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="moduleLabel" layoutX="75.0" layoutY="282.0" prefHeight="35.0" prefWidth="162.0" style="-fx-wrap-text: true;" text="Module:" textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="taskLabel" layoutX="244.0" layoutY="282.0" prefHeight="35.0" prefWidth="493.0" style="-fx-wrap-text: true;" text="Task:" textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="completeLabel" alignment="CENTER" layoutX="999.0" layoutY="282.0" prefHeight="35.0" prefWidth="162.0" style="-fx-wrap-text: true;" text="Completed:" textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <Pane fx:id="allTasksPane" layoutX="72.0" layoutY="323.0" onMouseClicked="#allTasksPaneClicked" prefHeight="555.0" prefWidth="1089.0">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="56.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="112.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="168.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="224.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="280.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="336.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="392.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="448.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="504.0" prefHeight="50.0" prefWidth="1089.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="2.0" prefHeight="46.0" prefWidth="158.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="2.0" prefHeight="46.0" prefWidth="744.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="923.0" prefHeight="50.0" prefWidth="166.0" style="-fx-wrap-text: true;" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
          </children></Pane>

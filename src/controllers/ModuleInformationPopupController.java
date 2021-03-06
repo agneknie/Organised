@@ -188,8 +188,8 @@ public class ModuleInformationPopupController extends DefaultNavigation implemen
     @FXML
     void moreButtonClicked() {
         // Counts the number of batches
-        int batches = userModules.size()/5-1;   // -1 because Batch numbering starts from 0
-        if(userModules.size()%5!=0) batches++;
+        int batches = userModules.size()/MAX_PANES-1;   // -1 because Batch numbering starts from 0
+        if(userModules.size()%MAX_PANES!=0) batches++;
 
         // Updates the batch
         if(currentlyDisplayedBatch==batches) currentlyDisplayedBatch = 0;

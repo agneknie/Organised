@@ -3,23 +3,24 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import controllers.utilities.SetupScene;
-import core.Period;
-import core.Session;
-import core.Week;
+import core.*;
 import core.enums.PopupType;
 import core.enums.TaskStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import stages.BiggerPopupStage;
 import stages.PopupStage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -60,6 +61,8 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
 
     // Week task completion pane
     @FXML
+    private Label tasksCompletedInfoLabel;
+    @FXML
     private Label tasksCompletedLabel;
     @FXML
     private ProgressBar progressBar;
@@ -90,18 +93,31 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
 
     // Main tasks pane holding all tasks panes
     @FXML
+    private Label moduleLabel;
+    @FXML
+    private Label taskLabel;
+    @FXML
+    private Label completeLabel;
+    @FXML
     private Pane allTasksPane;
 
     // User specific variables
     private Week userSelectedWeek;
+    private Task[] taskList = new Task[]{null, null, null, null, null, null, null, null, null, null};
+    private List<Task> tasksOfWeek;
+    private int currentlyDisplayedBatch;
+
+    // Number of panes on the window
+    final int MAX_PANES = 10;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Finds out which week should be selected by the user
         userSelectedWeek = Week.getCurrentWeek(Session.getTasksPeriodSelected().getAllWeeks());
-
         // Saves selected week in session
         Session.setTasksWeekSelected(userSelectedWeek);
+        // Saves tasks of the week in a list
+        tasksOfWeek = userSelectedWeek.getAllTasks();
 
         // Sets up navigation arrow visibility
         configureNavigationArrows();
@@ -112,11 +128,31 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         // Sets up the progress bar and label
         setupProgressBar();
 
-        // Hides more tasks button
-        moreTasksButton.setVisible(false);
+        // Determines visibility of moreTasksButton
+        moreTasksButton.setVisible(tasksOfWeek.size() > MAX_PANES);
 
+        // If there are no tasks to display, hides the task list elements
+        if(tasksOfWeek.isEmpty()) visibilityOfTaskListElements(false);
         // Setups task list
-        setupTaskList();
+        else{
+            currentlyDisplayedBatch = 0;
+            setupTaskList();
+        }
+    }
+
+    /**
+     * Method which handles visibility the task list labels.
+     */
+    private void visibilityOfTaskListElements(boolean visible){
+        moduleLabel.setVisible(visible);
+        taskLabel.setVisible(visible);
+        completeLabel.setVisible(visible);
+        // If no tasks are present, displays information message
+        if(!visible){
+            tasksCompletedInfoLabel.setText("Add some Tasks to get Organised.");
+            tasksCompletedLabel.setText("");
+            progressBar.setVisible(false);
+        }
     }
 
     /**
@@ -129,7 +165,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         if(Session.isTasksTaskListChanged()){
             // Resets session variable
             Session.setTasksTaskListChanged(false);
-            //TODO refreshScene
+            updateAfterNavigation();
         }
     }
 
@@ -147,12 +183,6 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         // Sets up week information labels
         weekNameLabel.setText(userSelectedWeek.toString());
         weekDateLabel.setText(userSelectedWeek.getWeekDate());
-
-        // Sets up the progress bar and the progress label
-        double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES);
-        double allTasks = userSelectedWeek.getTasksByStatus(null) - userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
-        progressBar.setProgress(completedTasks/allTasks);
-        tasksCompletedLabel.setText(Math.round(completedTasks/allTasks*100) + "%");
     }
 
     /**
@@ -160,14 +190,83 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * indicates the percentage of tasks completed for week.
      */
     private void setupProgressBar(){
-        //TODO setupProgressBar
+        // Gets the relevant tasks for calculations
+        double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES);
+        double allTasks = userSelectedWeek.getTasksByStatus(null) - userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
+
+        // Sets up the progress bar and the progress label
+        progressBar.setVisible(true);
+        progressBar.setProgress(completedTasks/allTasks);
+        tasksCompletedInfoLabel.setText("Week Task Completion:");
+        tasksCompletedLabel.setText(Math.round(completedTasks/allTasks*100) + "%");
     }
 
     /**
      * Method which sets up the task list.
      */
     private void setupTaskList(){
-        //TODO setupTaskList
+        // Makes all panes visible in case they weren't before
+        for(Node node : allTasksPane.getChildren()){
+            ((Pane) node).setVisible(true);
+        }
+
+        // Takes tasks, which will be displayed
+        List<Task> displayedTasks = new ArrayList<>();
+        for(int i = currentlyDisplayedBatch*MAX_PANES; i<tasksOfWeek.size(); i++){
+            displayedTasks.add(tasksOfWeek.get(i));
+        }
+
+        // Counts panes which will be visible/have info in them
+        int panesToSetup = MAX_PANES;
+        if(MAX_PANES-displayedTasks.size()>0) panesToSetup = MAX_PANES-(MAX_PANES-displayedTasks.size());
+
+        // Setups the panes with tasks
+        for(int i = 0; i<panesToSetup; i++){
+            setupTask(displayedTasks.get(i), (Pane) allTasksPane.getChildren().get(i));
+        }
+
+        // Determines pane visibility if not all are filled
+        if(panesToSetup<MAX_PANES){
+            for(int panesLeft = MAX_PANES-panesToSetup; panesLeft>0; panesLeft--){
+                allTasksPane.getChildren().get(MAX_PANES-panesLeft).setVisible(false);
+            }
+        }
+    }
+
+    /**
+     * Method which setups the given task pane with given task data.
+     */
+    private void setupTask(Task task, Pane pane){
+        // Constant for colour to change text colour
+        final double COLOR_THRESHOLD = 500.0;
+
+        // Gets all pane elements separately
+        Label code = (Label) pane.getChildren().get(0);
+        Label description = (Label) pane.getChildren().get(1);
+        Label status = (Label) pane.getChildren().get(2);
+
+        // Sets the labels with task data
+        code.setText(task.getModule().getCode());
+        description.setText(task.getDescription());
+        status.setText(task.getStatus().toString());        //TODO setup status properly
+
+        // Sets the colour of the pane
+        pane.setStyle("-fx-background-color: "+task.getTaskColourString()+"; " +
+                "-fx-background-radius: 10;");
+
+        // Configures text colour if background is too fair
+        Color moduleColor = task.getTaskColour();
+        double colourOverall = moduleColor.getRed()*255 + moduleColor.getBlue()*255 + moduleColor.getGreen()*255;
+        if(colourOverall >= COLOR_THRESHOLD){
+            code.setTextFill(Paint.valueOf("#2B2B2B"));
+            description.setTextFill(Paint.valueOf("#2B2B2B"));
+        }
+        else{
+            code.setTextFill(Paint.valueOf("#FFFFFF"));
+            description.setTextFill(Paint.valueOf("#FFFFFF"));
+        }
+
+        //TODO initiate pointer to task to retrieve them later
     }
 
     /**
@@ -178,7 +277,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         //TODO cleanTaskList
     }
 
-    // Methods handling event clicks
+    // Methods handling button clicks
     /**
      * Method which opens the task addition popup when
      * add task button is clicked.
@@ -213,7 +312,25 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     @FXML
     private void moreTasksButtonClicked(){
-        //TODO moreTasksButtonClicked
+        // Counts the number of batches
+        int batches = tasksOfWeek.size()/MAX_PANES-1;   // -1 because Batch numbering starts from 0
+        if(tasksOfWeek.size()%MAX_PANES!=0) batches++;
+
+        // Updates the batch
+        if(currentlyDisplayedBatch==batches) currentlyDisplayedBatch = 0;
+        else currentlyDisplayedBatch++;
+
+        // Updates the task list
+        setupTaskList();
+    }
+
+    /**
+     * Method which opens the edit task popup for a task when a task
+     * is clicked.
+     */
+    @FXML
+    private void allTasksPaneClicked(){
+        //TODO allTasksPaneClicked
     }
 
     // Methods handling navigation
@@ -277,14 +394,22 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
     private void updateAfterNavigation(){
         // Updates top pane information
         setupTopInformation();
+        setupProgressBar();
 
         // Configures navigation arrows
         configureNavigationArrows();
 
-        // Disables visibility of more tasks button
-        moreTasksButton.setVisible(false);
+        // Updates the task list
+        tasksOfWeek = userSelectedWeek.getAllTasks();
+
+        // Determines visibility of moreTasksButton
+        moreTasksButton.setVisible(tasksOfWeek.size() > MAX_PANES);
+
+        // Determines visibility of task list labels
+        visibilityOfTaskListElements(!tasksOfWeek.isEmpty());
 
         // Setups the task list
+        currentlyDisplayedBatch = 0;
         cleanTaskList();
         setupTaskList();
     }
