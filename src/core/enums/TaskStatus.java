@@ -27,10 +27,6 @@ public enum TaskStatus {
         return VALUE;
     }
 
-    private final String COLOR_NO = "#E89E99";
-    private final String COLOR_YES = "#84D99B";
-    private final String COLOR_DROPPED = "#E0DE8D";
-
     /**
      * Method which takes a string and returns a corresponding task status
      *
@@ -72,6 +68,12 @@ public enum TaskStatus {
      * @return color of TaskStatus
      */
     public String getColor(){
+        // Associated colours
+        final String COLOR_NO = "#E89E99";
+        final String COLOR_YES = "#84D99B";
+        final String COLOR_DROPPED = "#E0DE8D";
+
+        // Returns a colour based on enum
         switch (this){
             case NO:
                 return COLOR_NO;

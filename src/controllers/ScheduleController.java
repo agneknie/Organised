@@ -329,7 +329,7 @@ public class ScheduleController extends DefaultNavigation implements Initializab
     // Methods handling button functionality
     /**
      * Method which goes to the schedule of the week, which has today's date.
-     * If there are more than one "todays" goes to the first one.
+     * If there are more than one "today(s)" goes to the first one.
      * If no today is present among the periods, displays error message.
      */
     @FXML

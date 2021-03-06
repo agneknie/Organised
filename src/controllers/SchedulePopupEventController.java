@@ -10,8 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -94,6 +94,17 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
         endTimeComboBox.getItems().setAll(ScheduleTime.getEndTimes());
         // Styles end times combo box text
         ControlScene.setupComboBoxStyle(endTimeComboBox);
+    }
+
+    /**
+     * Listener for keyboard events.
+     * If enter is pressed, action button is activated.
+     * @param event used for identifying the key
+     */
+    @FXML
+    private void keyPressed(KeyEvent event) {
+        // Enter pressed
+        if(event.getCode().toString().equals("ENTER")) actionButtonClicked();
     }
 
     /**

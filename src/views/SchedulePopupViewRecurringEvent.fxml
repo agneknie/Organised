@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SchedulePopupRecurringEventController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SchedulePopupRecurringEventController">
    <Pane layoutX="4.0" layoutY="4.0" prefHeight="793.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
       <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true">
          <Image url="@../images/close_icon.png" />

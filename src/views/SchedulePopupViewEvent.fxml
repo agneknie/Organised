@@ -89,7 +89,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="actionButton" layoutX="269.0" layoutY="645.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+      <Pane fx:id="actionButton" layoutX="269.0" layoutY="642.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">
             <Image url="@../images/more_icon.png" />
          </ImageView>

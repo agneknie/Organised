@@ -208,7 +208,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
     private void setupTaskList(){
         // Makes all panes visible in case they weren't before
         for(Node node : allTasksPane.getChildren()){
-            ((Pane) node).setVisible(true);
+            node.setVisible(true);
         }
 
         // Takes tasks, which will be displayed

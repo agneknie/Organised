@@ -12,8 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -245,20 +243,6 @@ public class MarksController extends DefaultNavigation implements Initializable 
         if(pane5Pointer > 0) goLeftButton.setVisible(true);
         // If there are objects hidden on the right, enables right navigation
         if(pane7Pointer < objects.size()-1 && pane7Pointer != -1) goRightButton.setVisible(true);
-    }
-
-    /**
-     * Listener for keyboard events.
-     * If right/left arrow is pressed, changes the pane information (triggers
-     * the navigation arrows actions)
-     * @param event used for identifying the key
-     */
-    public void keyPressed(KeyEvent event){
-        KeyCode key = event.getCode();
-        // If left arrow is clicked
-        if (key.equals(KeyCode.LEFT)) goLeftClicked();
-        // If right arrow is clicked
-        if (key.equals(KeyCode.RIGHT)) goRightClicked();
     }
 
     /**

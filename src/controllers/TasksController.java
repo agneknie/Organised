@@ -174,7 +174,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
         int periodNumber = 1;
 
         // Defines axis categories
-        for(Period period : userPeriods){
+        for(Period ignored : userPeriods){
             ((CategoryAxis) stackedBarChart.getXAxis()).getCategories().add("Period "+periodNumber);
             periodNumber++;
         }
@@ -362,7 +362,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
     // Methods responsible for handling button clicks
     /**
      * Method which goes to the schedule of the week, which has today's date.
-     * If there are more than one "todays" goes to the first one.
+     * If there are more than one "today(s)" goes to the first one.
      * If no today is present among the periods, displays error message.
      */
     @FXML

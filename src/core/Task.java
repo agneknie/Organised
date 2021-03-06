@@ -1,6 +1,5 @@
 package core;
 
-import core.enums.ScheduleTime;
 import core.enums.TaskStatus;
 import database.Database;
 import javafx.scene.paint.Color;
@@ -8,7 +7,6 @@ import javafx.scene.paint.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +24,7 @@ public class Task {
     private final int id;
     private final int userId;
     private int moduleId;
-    private int weekId;
+    private final int weekId;
     private String description;
     private TaskStatus status;
 
@@ -44,22 +42,6 @@ public class Task {
      */
     public int getUserId() {
         return userId;
-    }
-
-    /**
-     * Getter for id of module which is associated with the task.
-     * @return moduleId of task
-     */
-    public int getModuleId() {
-        return moduleId;
-    }
-
-    /**
-     * Getter for id of week the task belongs to.
-     * @return weekId of task
-     */
-    public int getWeekId() {
-        return weekId;
     }
 
     /**
@@ -84,14 +66,6 @@ public class Task {
      */
     public void setModuleId(int moduleId) {
         this.moduleId = moduleId;
-    }
-
-    /**
-     * Setter for weekId variable.
-     * @param weekId to set
-     */
-    public void setWeekId(int weekId) {
-        this.weekId = weekId;
     }
 
     /**
@@ -166,16 +140,6 @@ public class Task {
      */
     public Color getTaskColour(){
         return this.getModule().getColour();
-    }
-
-    /**
-     * Method which returns the code of the module, which is associated
-     * with the task.
-     *
-     * @return code of module associated with task
-     */
-    public String getModuleCode(){
-        return this.getModule().getCode();
     }
 
     /**

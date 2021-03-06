@@ -3,21 +3,16 @@ package controllers;
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.*;
-import core.enums.PopupType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -75,6 +70,17 @@ public class TasksPopupRecurringTaskController extends DefaultNavigation impleme
         endWeekComboBox.getItems().setAll(Session.getTasksPeriodSelected().getAllWeeks());
         // Styles end times combo box text
         ControlScene.setupComboBoxStyle(endWeekComboBox);
+    }
+
+    /**
+     * Listener for keyboard events.
+     * If enter is pressed, action button is activated.
+     * @param event used for identifying the key
+     */
+    @FXML
+    private void keyPressed(KeyEvent event) {
+        // Enter pressed
+        if(event.getCode().toString().equals("ENTER")) actionButtonClicked();
     }
 
     // Methods handling button clicks

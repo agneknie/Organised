@@ -18,11 +18,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -384,20 +381,6 @@ public class TimePeriodController extends DefaultNavigation implements Initializ
         // Disables the arrows, based on current week selection
         if(indexOfSelectedWeek == 0) goLeftButton.setVisible(false);
         if(indexOfSelectedWeek == userWeeks.size()-1) goRightButton.setVisible(false);
-    }
-
-    /**
-     * Listener for keyboard events.
-     * If right/left arrow is pressed, changes the pane information (triggers
-     * the navigation arrows actions)
-     * @param event used for identifying the key
-     */
-    public void keyPressed(KeyEvent event){
-        KeyCode key = event.getCode();
-        // If left arrow is clicked
-        if (key.equals(KeyCode.LEFT)) goLeftClicked();
-        // If right arrow is clicked
-        if (key.equals(KeyCode.RIGHT)) goRightClicked();
     }
 
     /**
