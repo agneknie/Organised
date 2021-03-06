@@ -223,6 +223,8 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         // Setups the panes with tasks
         for(int i = 0; i<panesToSetup; i++){
             setupTask(displayedTasks.get(i), (Pane) allTasksPane.getChildren().get(i));
+            // Saves the task in the currently displayed task array for retrieval
+            taskList[i] = displayedTasks.get(i);
         }
 
         // Determines pane visibility if not all are filled
@@ -245,16 +247,15 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         Label description = (Label) pane.getChildren().get(1);
         Label status = (Label) pane.getChildren().get(2);
 
-        // Sets the labels with task data
+        // Sets the module and task labels with task data
         code.setText(task.getModule().getCode());
         description.setText(task.getDescription());
-        status.setText(task.getStatus().toString());        //TODO setup status properly
 
         // Sets the colour of the pane
         pane.setStyle("-fx-background-color: "+task.getTaskColourString()+"; " +
                 "-fx-background-radius: 10;");
 
-        // Configures text colour if background is too fair
+        // Configures text colour if background is too fair for module and task data
         Color moduleColor = task.getTaskColour();
         double colourOverall = moduleColor.getRed()*255 + moduleColor.getBlue()*255 + moduleColor.getGreen()*255;
         if(colourOverall >= COLOR_THRESHOLD){
@@ -266,7 +267,29 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
             description.setTextFill(Paint.valueOf("#FFFFFF"));
         }
 
-        //TODO initiate pointer to task to retrieve them later
+        // Setups status field
+        setupStatusField(status, task);
+    }
+
+    /**
+     * Method which setups the status field of the task.
+     *
+     * @param statusLabel label field of the task status
+     * @param task task which belongs to that field
+     */
+    private void setupStatusField(Label statusLabel, Task task){
+        statusLabel.setText(task.getStatus().toString());
+        switch (task.getStatus()){
+            case YES:
+                statusLabel.setStyle("-fx-background-color: #84D99B; -fx-background-radius: 10;");
+                break;
+            case NO:
+                statusLabel.setStyle("-fx-background-color: #E89E99; -fx-background-radius: 10;");
+                break;
+            case DROPPED:
+                statusLabel.setStyle("-fx-background-color: #E0DE8D; -fx-background-radius: 10;");
+                break;
+        }
     }
 
     /**
@@ -274,7 +297,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * a fresh task update.
      */
     private void cleanTaskList(){
-        //TODO cleanTaskList
+        taskList = new Task[]{null, null, null, null, null, null, null, null, null, null};
     }
 
     // Methods handling button clicks
