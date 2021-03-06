@@ -304,7 +304,7 @@
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
             </Label>
-            <StackedBarChart fx:id="stackedBarChart" layoutX="26.0" layoutY="598.0" prefHeight="297.0" prefWidth="1138.0" stylesheets="@../stylesheets/chartStyling.css">
+            <StackedBarChart fx:id="stackedBarChart" animated="false" layoutX="26.0" layoutY="598.0" prefHeight="297.0" prefWidth="1138.0" styleClass="main-tasks-chart" stylesheets="@../stylesheets/tasksChartStyling.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

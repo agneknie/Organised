@@ -7,12 +7,18 @@ import core.Day;
 import core.Period;
 import core.Session;
 import core.Week;
+import core.enums.TaskStatus;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import stages.PopupStage;
 
@@ -145,7 +151,43 @@ public class TasksController extends DefaultNavigation implements Initializable 
      * task completion data of each period.
      */
     private void setupStackedBarChart(){
-        //TODO setupStackedBarChart
+        // Period numbering/naming
+        int periodNumber = 1;
+
+        // Defines axis categories
+        for(Period period : userPeriods){
+            ((CategoryAxis) stackedBarChart.getXAxis()).getCategories().add("Period "+periodNumber);
+            periodNumber++;
+        }
+
+        // Creates series
+        XYChart.Series<String, Number> seriesYes = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> seriesNo = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> seriesDropped = new XYChart.Series<String, Number>();
+
+        // Names series
+        seriesYes.setName("Completed");
+        seriesNo.setName("Not Completed");
+        seriesDropped.setName("Dropped");
+
+        // Adds period data to the series
+        periodNumber = 1;
+        for(Period period : userPeriods){
+            // Adds task data to series
+            seriesYes.getData().add(new XYChart.Data<>("Period "+periodNumber, period.getTasksByStatus(TaskStatus.YES)));
+            seriesNo.getData().add(new XYChart.Data<>("Period "+periodNumber, period.getTasksByStatus(TaskStatus.NO)));
+            seriesDropped.getData().add(new XYChart.Data<>("Period "+periodNumber, period.getTasksByStatus(TaskStatus.DROPPED)));
+            periodNumber++;
+        }
+
+        // Adds series to the chart
+        stackedBarChart.getData().addAll(seriesYes, seriesNo, seriesDropped);
+
+        // Styles the chart
+        stackedBarChart.setCategoryGap(150.0);
+        // Sets the font & size of the chart text
+        stackedBarChart.getYAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
+        stackedBarChart.getXAxis().setTickLabelFont(Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 18));
     }
 
     // Methods responsible for navigation between panes displaying periods
