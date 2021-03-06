@@ -119,7 +119,15 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
      */
     @FXML
     private void deleteButtonClicked(){
-        //TODO deleteButtonClicked
+        // Deletes the task
+        Session.getTasksTaskSelected().deleteTask();
+        // Removes task from session
+        Session.setTasksTaskSelected(null);
+        // Changes session variable to reflect the change
+        Session.setTasksTaskListChanged(true);
+        // Closes the popup window
+        Session.setSchedulePopupType(null);
+        ((Stage) actionButton.getScene().getWindow()).close();
     }
 
     /**
@@ -129,7 +137,7 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
         // Normalises all fields in case they were marked as wrong before
         normaliseAllFields();
 
-        // Variables for new event construction
+        // Variables for new task construction
         boolean valid = true;
         Module module = associatedModuleComboBox.getValue();
         String description = descriptionField.getText();
@@ -163,7 +171,40 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
      * Method which tries to edit a task if edit button is clicked.
      */
     private void editButtonClicked(){
-        //TODO editButtonClicked
+        // Normalises all fields in case they were marked as wrong before
+        normaliseAllFields();
+
+        // Variables for task updating
+        boolean valid = true;
+        Module module = associatedModuleComboBox.getValue();
+        String description = descriptionField.getText();
+
+        // Checks whether inputs are not null/not empty
+        if(module==null){
+            valid = false;
+            ControlScene.highlightWrongField(associatedModuleComboBox);
+        }
+        if(description.isEmpty()){
+            valid = false;
+            ControlScene.highlightWrongField(descriptionField);
+        }
+
+        // If all fields are valid, updates the task
+        if(valid){
+            // Updates task fields
+            Task currentTask = Session.getTasksTaskSelected();
+            currentTask.setDescription
+                    (Task.alterTaskDescription(Session.getTasksWeekSelected().getWeekNumber(), description));
+            currentTask.setModuleId(module.getId());
+
+            // Updates task in database
+            currentTask.updateTask();
+
+            // Updates session for task list change
+            Session.setTasksTaskListChanged(true);
+            // Closes the popup
+            ((Stage) actionButton.getScene().getWindow()).close();
+        }
     }
 
     /**
