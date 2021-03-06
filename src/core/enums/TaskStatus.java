@@ -13,8 +13,8 @@ package core.enums;
  */
 public enum TaskStatus {
 
-    YES("Yes"),             // Completed
     NO("No"),               // Not Completed
+    YES("Yes"),             // Completed
     DROPPED("Dropped");     // Won't be Completed
 
     public final String VALUE;
@@ -27,6 +27,10 @@ public enum TaskStatus {
         return VALUE;
     }
 
+    private final String COLOR_NO = "#E89E99";
+    private final String COLOR_YES = "#84D99B";
+    private final String COLOR_DROPPED = "#E0DE8D";
+
     /**
      * Method which takes a string and returns a corresponding task status
      *
@@ -38,5 +42,46 @@ public enum TaskStatus {
             if(taskStatusString.equals(taskStatus.VALUE)) return taskStatus;
         }
         throw new IllegalArgumentException("TaskStatus " +taskStatusString+ " does not exist.");
+    }
+
+    /**
+     * Returns the next TaskStatus value, which follows after the current one.
+     * If invalid TaskStatus, returns null.
+     *
+     * @return next/following TaskStatus value
+     */
+    public TaskStatus nextStatus(){
+        switch (this){
+            case NO:
+                return TaskStatus.YES;
+            case YES:
+                return TaskStatus.DROPPED;
+            case DROPPED:
+                return TaskStatus.NO;
+            // If something goes wrong, returns null
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Method which returns the color, which is associated with
+     * the current TaskStatus.
+     * If invalid TaskStatus, returns null
+     *
+     * @return color of TaskStatus
+     */
+    public String getColor(){
+        switch (this){
+            case NO:
+                return COLOR_NO;
+            case YES:
+                return COLOR_YES;
+            case DROPPED:
+                return COLOR_DROPPED;
+            // If something goes wrong, returns null
+            default:
+                return null;
+        }
     }
 }

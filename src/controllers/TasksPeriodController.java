@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -191,8 +192,8 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     private void setupProgressBar(){
         // Gets the relevant tasks for calculations
-        double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES);
-        double allTasks = userSelectedWeek.getTasksByStatus(null) - userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
+        double completedTasks = userSelectedWeek.getTasksByStatus(TaskStatus.YES) + userSelectedWeek.getTasksByStatus(TaskStatus.DROPPED);
+        double allTasks = userSelectedWeek.getTasksByStatus(null);
 
         // Sets up the progress bar and the progress label
         progressBar.setVisible(true);
@@ -279,17 +280,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      */
     private void setupStatusField(Label statusLabel, Task task){
         statusLabel.setText(task.getStatus().toString());
-        switch (task.getStatus()){
-            case YES:
-                statusLabel.setStyle("-fx-background-color: #84D99B; -fx-background-radius: 10;");
-                break;
-            case NO:
-                statusLabel.setStyle("-fx-background-color: #E89E99; -fx-background-radius: 10;");
-                break;
-            case DROPPED:
-                statusLabel.setStyle("-fx-background-color: #E0DE8D; -fx-background-radius: 10;");
-                break;
-        }
+        statusLabel.setStyle("-fx-background-color: "+ task.getStatus().getColor() +"; -fx-background-radius: 10;");
     }
 
     /**
@@ -344,6 +335,7 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
         else currentlyDisplayedBatch++;
 
         // Updates the task list
+        cleanTaskList();
         setupTaskList();
     }
 
@@ -352,8 +344,79 @@ public class TasksPeriodController extends DefaultNavigation implements Initiali
      * is clicked.
      */
     @FXML
-    private void allTasksPaneClicked(){
-        //TODO allTasksPaneClicked
+    private void allTasksPaneClicked(MouseEvent event) throws IOException {
+        // Gets click coordinates
+        double xCoordinate = event.getX();
+        double yCoordinate = event.getY();
+
+        // Variables to determine mouse click purpose
+        Task clickedTask = null;
+        Pane taskPaneClicked = null;
+
+        // Constants with allTasksPane measurements
+        final int TASK_HEIGHT = 50;
+        final int GAP_HEIGHT = 6;
+        final int PANEL_HEIGHT = 554;
+        final int TASK_WIDTH = 1089;
+        final int STATUS_WIDTH = 159;       // -7 line width included
+
+        // Figures out which task was selected
+        int taskNumber = 0;
+        for(int i=0; i<PANEL_HEIGHT; i+=(TASK_HEIGHT+GAP_HEIGHT)){
+            if(yCoordinate>=i && yCoordinate<=i+TASK_HEIGHT){
+                clickedTask = taskList[taskNumber];
+                taskPaneClicked = (Pane) allTasksPane.getChildren().get(taskNumber);
+            }
+            taskNumber++;
+        }
+
+        // If a task was clicked, figures out whether to open edit popup or change the status
+        if(clickedTask!=null){
+            // If status was clicked, changes the status
+            if(xCoordinate>=TASK_WIDTH-STATUS_WIDTH && xCoordinate<=TASK_WIDTH)
+                statusClicked((Label) taskPaneClicked.getChildren().get(2), clickedTask);
+            // If task was clicked opens edit task popup
+            else taskClicked(clickedTask);
+        }
+    }
+
+    /**
+     * Method which changes the status field when clicked and updates the task status in
+     * the database.
+     *
+     * @param status status label corresponding to the task
+     * @param task task that has been clicked
+     */
+    private void statusClicked(Label status, Task task){
+        // Gets the following status
+        task.setStatus(task.getStatus().nextStatus());
+
+        // Updates the task's status in database
+        task.updateTask();
+
+        // Sets up the new styling of status
+        setupStatusField(status, task);
+
+        // Updates the progress bar and label
+        setupProgressBar();
+    }
+
+    /**
+     * Method which opens a task edit popup when a task is clicked in the task
+     * list.
+     *
+     * @param task task that was clicked
+     */
+    private void taskClicked(Task task) throws IOException {
+        // Sets the popup type
+        Session.setTasksPopupType(PopupType.EDIT);
+
+        // Saves selected task in session
+        Session.setTasksTaskSelected(task);
+
+        // Opens the popup
+        Stage popup = new Stage();
+        new PopupStage(popup, "TasksPopupViewTask.fxml");
     }
 
     // Methods handling navigation

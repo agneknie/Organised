@@ -418,6 +418,7 @@ public class TasksController extends DefaultNavigation implements Initializable 
 
         } catch (IOException e) {
             System.out.println("Exception whilst changing scene from general Tasks to Period specific Tasks.");
+            e.printStackTrace();
         }
     }
 
