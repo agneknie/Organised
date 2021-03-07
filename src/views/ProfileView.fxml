@@ -5,9 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <children>
       <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
          <children>
@@ -141,11 +142,159 @@
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
-            <Label fx:id="userForenameLabel" layoutX="413.0" layoutY="394.0" text="User forename!" textFill="WHITE">
+            <Label fx:id="greetingLabel" layoutX="66.0" layoutY="101.0" prefHeight="56.0" prefWidth="1059.0" text="Wrong Universe of Time Agne." textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="48.0" />
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
+            <Label layoutX="64.0" layoutY="55.0" prefHeight="27.0" prefWidth="393.0" text="Your Profile." textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="bannerImage" fitHeight="150.0" fitWidth="1082.0" layoutX="64.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/all-banner.png" />
+               </image></ImageView>
+            <Pane layoutX="64.0" layoutY="376.0" prefHeight="503.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="81.0" layoutY="1.0" prefHeight="91.0" prefWidth="147.0" style="-fx-wrap-text: true;" text="Organised Marks." textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView layoutX="24.0" layoutY="29.0">
+                     <image>
+                        <Image url="@../images/marks_icon_selected.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="96.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Number of Assignments:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfAssignments" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="245.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Number of Modules:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfModules" alignment="CENTER" layoutX="33.0" layoutY="313.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Line endX="-109.0" endY="477.0" layoutX="439.0" layoutY="406.0" startX="-109.0" startY="-34.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+            <Pane layoutX="360.0" layoutY="376.0" prefHeight="503.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="81.0" layoutY="1.0" prefHeight="91.0" prefWidth="147.0" style="-fx-wrap-text: true;" text="Organised Time." textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView layoutX="24.0" layoutY="29.0">
+                     <image>
+                        <Image url="@../images/time_icon_selected.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="38.0" layoutY="96.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Time spent Organised:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timeSpentOrganised" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="245.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Busiest Week:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="busiestWeek" alignment="TOP_CENTER" layoutX="33.0" layoutY="323.0" prefHeight="171.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name: Week X" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Line endX="-109.0" endY="477.0" layoutX="725.0" layoutY="406.0" startX="-109.0" startY="-34.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+            <Pane layoutX="636.0" layoutY="376.0" prefHeight="503.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="81.0" layoutY="1.0" prefHeight="91.0" prefWidth="147.0" style="-fx-wrap-text: true;" text="Organised Schedule." textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView layoutX="24.0" layoutY="29.0">
+                     <image>
+                        <Image url="@../images/schedule_icon_selected.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="96.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Number of Events:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfEvents" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="245.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Busiest Period:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="busiestPeriod" alignment="TOP_CENTER" layoutX="33.0" layoutY="323.0" prefHeight="171.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Line endX="-109.0" endY="477.0" layoutX="1001.0" layoutY="406.0" startX="-109.0" startY="-34.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
+            <Pane layoutX="914.0" layoutY="376.0" prefHeight="503.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="81.0" layoutY="1.0" prefHeight="91.0" prefWidth="147.0" style="-fx-wrap-text: true;" text="Organised Tasks." textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView layoutX="24.0" layoutY="29.0">
+                     <image>
+                        <Image url="@../images/tasks_icon_selected.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="96.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Number of Tasks:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfTasks" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="33.0" layoutY="245.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Tasks Completed:" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tasksCompleted" alignment="CENTER" layoutX="33.0" layoutY="313.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children></Pane>
    </children>
 </AnchorPane>
