@@ -1,5 +1,6 @@
 package controllers.utilities;
 
+import core.enums.TimeOfDay;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalTime;
+import java.util.Objects;
 
 /**
  * Organised.
@@ -61,39 +62,27 @@ public class SetupScene {
      * @param greetingMessage accompanying greeting field (e.g. displays: Start your day.)
      */
     public static void setupWelcomePanel(Label greeting, Label greetingMessage){
-        // Gets current user's time
-        LocalTime currentTime = LocalTime.now();
 
-        // Times slicing the day into sequences
-        LocalTime morningStart = LocalTime.of(5, 0);
-        LocalTime afternoonStart = LocalTime.of(12, 0);
-        LocalTime eveningStart = LocalTime.of(18, 0);
-        LocalTime nightStart = LocalTime.of(22, 0);
+        switch(Objects.requireNonNull(TimeOfDay.getTimeOfDay())){
+            case MORNING:
+                greeting.setText("Good Morning!");
+                greetingMessage.setText("Start your productive day.");
+                break;
 
-        // Morning
-        if(currentTime.isAfter(morningStart) && currentTime.isBefore(afternoonStart) || currentTime.equals(morningStart)){
-            greeting.setText("Good Morning!");
-            greetingMessage.setText("Start your productive day.");
-        }
-        // Afternoon
-        else if(currentTime.isAfter(afternoonStart) && currentTime.isBefore(eveningStart) || currentTime.equals(afternoonStart)){
-            greeting.setText("Good Afternoon!");
-            greetingMessage.setText("Prime productivity time.");
-        }
-        // Evening
-        else if(currentTime.isAfter(eveningStart) && currentTime.isBefore(nightStart) || currentTime.equals(eveningStart)){
-            greeting.setText("Good Evening!");
-            greetingMessage.setText("End your day productively.");
-        }
-        // Night
-        else if(currentTime.isAfter(nightStart) || currentTime.isBefore(morningStart) || currentTime.equals(nightStart)){
-            greeting.setText("Good Evening!");
-            greetingMessage.setText("Late night work rush?");
-        }
-        // Something is seriously wrong
-        else{
-            greeting.setText("Hello!");
-            greetingMessage.setText("You are literally out of the comprehension of time.");
+            case AFTERNOON:
+                greeting.setText("Good Afternoon!");
+                greetingMessage.setText("Prime productivity time.");
+                break;
+
+            case EVENING:
+                greeting.setText("Good Evening!");
+                greetingMessage.setText("End your day productively.");
+                break;
+
+            case NIGHT:
+                greeting.setText("Good Evening!");
+                greetingMessage.setText("Late night work rush?");
+                break;
         }
     }
 }
