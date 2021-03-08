@@ -328,10 +328,14 @@ public class Event {
 
     /**
      * Method which deletes an Event from the system.
+     *
+     * @return true if deletion successful, false otherwise
      */
-    public void deleteEvent(){
+    public boolean deleteEvent(){
         // Event doesn't exist in the database
-        if(this.getId() == 0) return;
+        if(this.getId() == 0) return true;
+
+        int rowsAffected = 0;
 
         // Gets Database connection
         Connection connection = Database.getConnection();
@@ -345,7 +349,7 @@ public class Event {
             pStatement.setInt(1, this.getId());
 
             // Result of query is true if SQL command worked
-            pStatement.executeUpdate();
+            rowsAffected = pStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -359,6 +363,8 @@ public class Event {
                 }
             }
         }
+
+        return rowsAffected!=0;
     }
 
     /**

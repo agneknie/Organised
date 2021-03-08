@@ -452,14 +452,21 @@ public class Week {
         // Checks if Week exists in the database
         if(this.getId() != 0) {
             // Deletes all Days of the Week
-            int counter = 0;
+            int dayCounter = 0;
             List <Day> days = this.getAllDays();
             for(Day day : days){
-                if(day.deleteDay()) counter++;
+                if(day.deleteDay()) dayCounter++;
             }
 
-            // If day deletion was successful, deletes the week
-            if (counter == days.size()){
+            // Deletes all Tasks of the Week
+            int taskCounter = 0;
+            List <Task> tasks = this.getAllTasks();
+            for(Task task : tasks){
+                if(task.deleteTask()) taskCounter++;
+            }
+
+            // If day & task deletion was successful, deletes the week
+            if (dayCounter == days.size() && taskCounter == tasks.size()){
 
                 // Gets Database connection
                 Connection connection = Database.getConnection();

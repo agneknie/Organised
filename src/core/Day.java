@@ -272,30 +272,40 @@ public class Day {
         // Day doesn't exist in the database
         if(this.getId() == 0) return true;
 
-        // Gets Database connection
-        Connection connection = Database.getConnection();
-        PreparedStatement pStatement = null;
+        // Deletes all events of the day
+        int eventCounter = 0;
+        List<Event> events = this.getAllEvents();
+        for(Event event : events){
+            if(event.deleteEvent()) eventCounter++;
+        }
+
+        // If event deletion was successful, deletes the day
         int rowsAffected = 0;
+        if(eventCounter == events.size()){
+            // Gets Database connection
+            Connection connection = Database.getConnection();
+            PreparedStatement pStatement = null;
 
-        // Sets up the query
-        String query = "DELETE FROM Day WHERE id = ?;";
-        try {
-            // Fills prepared statement and executes
-            pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, this.getId());
+            // Sets up the query
+            String query = "DELETE FROM Day WHERE id = ?;";
+            try {
+                // Fills prepared statement and executes
+                pStatement = connection.prepareStatement(query);
+                pStatement.setInt(1, this.getId());
 
-            // Result of query is true if SQL command worked
-            rowsAffected = pStatement.executeUpdate();
+                // Result of query is true if SQL command worked
+                rowsAffected = pStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Closes the prepared statement
-            if (pStatement != null) {
-                try {
-                    pStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Closes the prepared statement
+                if (pStatement != null) {
+                    try {
+                        pStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

@@ -240,10 +240,14 @@ public class Task {
 
     /**
      * Method which deletes a Task from the system.
+     *
+     * @return true if deletion successful, false otherwise
      */
-    public void deleteTask(){
+    public boolean deleteTask(){
         // Task doesn't exist in the database
-        if(this.getId() == 0) return;
+        if(this.getId() == 0) return true;
+
+        int rowsAffected = 0;
 
         // Gets Database connection
         Connection connection = Database.getConnection();
@@ -257,7 +261,7 @@ public class Task {
             pStatement.setInt(1, this.getId());
 
             // Result of query is true if SQL command worked
-            pStatement.executeUpdate();
+            rowsAffected = pStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -271,6 +275,8 @@ public class Task {
                 }
             }
         }
+
+        return rowsAffected!=0;
     }
 
     /**
