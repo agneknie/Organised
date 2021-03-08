@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.DefaultNavigation;
 import core.Session;
+import core.User;
 import core.enums.TimeOfDay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -102,6 +103,23 @@ public class ProfileController extends DefaultNavigation implements Initializabl
      * Method which setups the statistics of the user.
      */
     private void setupStatistics(){
-        //TODO setupStatistics
+        // Gets the logged user
+        User user = Session.getSession();
+
+        // Marks section
+        numberOfAssignments.setText(Integer.toString(user.getAssignmentNumber()));
+        numberOfModules.setText(Integer.toString(user.getModuleNumber()));
+
+        // Time section
+        timeSpentOrganised.setText(user.getTimeSpentOrganised());
+        busiestWeek.setText(user.getBusiestWeek());
+
+        // Schedule section
+        numberOfEvents.setText(Integer.toString(user.getEventsNumber()));
+        busiestPeriod.setText(user.getBusiestPeriod());
+
+        // Tasks section
+        numberOfTasks.setText(Integer.toString(user.getTasksNumber()));
+        tasksCompleted.setText(Integer.toString(user.getCompletedTasksNumber()));
     }
 }

@@ -977,6 +977,332 @@ public class User {
         else return hours/weeks;
     }
 
+    // Methods concerning user statistics
+    /**
+     * Method which returns the number of assignments which are associated with the user.
+     *
+     * @return number of assignments of user
+     */
+    public int getAssignmentNumber(){
+        int assignmentNumber = 0;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT COUNT(userId) FROM Assignment WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            // Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+            assignmentNumber = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return assignmentNumber;
+    }
+
+    /**
+     * Method which returns the number of modules which are associated with the user.
+     *
+     * @return number of modules of user
+     */
+    public int getModuleNumber(){
+        int moduleNumber = 0;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT COUNT(userId) FROM Module WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            // Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+            moduleNumber = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return moduleNumber;
+    }
+
+    /**
+     * Method which returns the number of events which are associated with the user.
+     *
+     * @return number of events of user
+     */
+    public int getEventsNumber(){
+        int eventsNumber = 0;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT COUNT(userId) FROM Event WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            // Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+            eventsNumber = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return eventsNumber;
+    }
+
+    /**
+     * Method which returns the number of tasks which are associated with the user.
+     *
+     * @return number of tasks of user
+     */
+    public int getTasksNumber(){
+        int tasksNumber = 0;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT COUNT(userId) FROM Task WHERE userId = ?;";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            // Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+            tasksNumber = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return tasksNumber;
+    }
+
+    /**
+     * Method which returns the number of completed tasks which are associated with the user.
+     *
+     * @return number of completed tasks of user
+     */
+    public int getCompletedTasksNumber(){
+        int completedTasksNumber = 0;
+
+        // Gets Database connection
+        Connection connection = Database.getConnection();
+        PreparedStatement pStatement = null;
+        ResultSet rs = null;
+
+        // Sets up the query
+        String query = "SELECT COUNT(userId AND status) FROM Task WHERE userId = ? AND status = 'Yes';";
+        try {
+            // Fills prepared statement and executes
+            pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            // Executes the statement, gets the result set
+            rs = pStatement.executeQuery();
+            completedTasksNumber = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Closes the prepared statement and result set
+            if (pStatement != null) {
+                try {
+                    pStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return completedTasksNumber;
+    }
+
+    /**
+     * Method which calculates total time user spent in recorded time.
+     *
+     * @return time as string in format __ days __x __min
+     */
+    public String getTimeSpentOrganised(){
+        int minutes = 0;
+
+        // Goes through all periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all weeks
+            for(Week week : period.getAllWeeks()){
+                // Adds all week times
+                minutes += week.getAllWeekHours()*60;
+            }
+            // Adds period leftover minutes
+            minutes += period.getMinutesLeft();
+        }
+
+        // Returns the time as string
+        int days = minutes/1440;
+        minutes = minutes - days*1440;
+        return days + " days " +minutes/60 + "h " + minutes%60 + "min";
+    }
+
+    /**
+     * Method which finds the busiest period of the user based on the number
+     * of events in schedule during that period.
+     *
+     * @return busiest period of user based on schedule in format Period Name (_ events)
+     */
+    public String getBusiestPeriod(){
+        Period busiestPeriod = null;
+        int eventNumber = 0;
+
+        // Goes through all periods of user
+        for(Period period : this.getAllPeriods()){
+            int currentEventNumber = 0;
+
+            // Goes through all weeks of period
+            for(Week week : period.getAllWeeks()){
+                // Goes through all days of week
+                for(Day day : week.getAllDays()){
+                    // Adds all events to period event count
+                    currentEventNumber += day.getAllEvents().size();
+                }
+            }
+
+            // Compares periods, finds the one with most events
+            if(busiestPeriod==null){
+                busiestPeriod = period;
+                eventNumber = currentEventNumber;
+            }
+            else if(eventNumber<currentEventNumber){
+                busiestPeriod = period;
+                eventNumber = currentEventNumber;
+            }
+        }
+
+        // Returns the busiest period
+        return "Year "+busiestPeriod.getAssociatedYear()+" "+busiestPeriod.getName()+" ("+eventNumber+" events)";
+    }
+
+    /**
+     * Method which finds the busiest week of the user based on the time worked during that week.
+     *
+     * @return busiest week of user based on time in format Period Name: Week X (__h)
+     */
+    public String getBusiestWeek(){
+        Week busiestWeek = null;
+        Period periodOfWeek = null;
+
+        // Goes through all user periods
+        for(Period period : this.getAllPeriods()){
+            // Goes through all weeks
+            for(Week week : period.getAllWeeks()){
+                // Chooses the week, that has the most work hours
+                if(busiestWeek==null){
+                    busiestWeek = week;
+                    periodOfWeek = period;
+                }
+                else if(busiestWeek.getAllWeekHours()<week.getAllWeekHours()){
+                    busiestWeek = week;
+                    periodOfWeek = period;
+                }
+            }
+        }
+
+        // Returns the busiest week
+        if (periodOfWeek != null) {
+            return "Year "+periodOfWeek.getAssociatedYear()+" "+periodOfWeek.getName()+": "+busiestWeek.toString()+" ("+busiestWeek.getAllWeekHours()+"h)";
+        }
+        else return "-";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

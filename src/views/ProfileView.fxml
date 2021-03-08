@@ -173,7 +173,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="numberOfAssignments" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="numberOfAssignments" alignment="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -183,7 +183,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="numberOfModules" alignment="CENTER" layoutX="33.0" layoutY="313.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="numberOfModules" alignment="CENTER" layoutX="23.0" layoutY="313.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -208,7 +208,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="timeSpentOrganised" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="timeSpentOrganised" alignment="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -218,7 +218,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="busiestWeek" alignment="TOP_CENTER" layoutX="33.0" layoutY="323.0" prefHeight="171.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name: Week X" textFill="WHITE">
+                  <Label fx:id="busiestWeek" alignment="TOP_CENTER" layoutX="23.0" layoutY="318.0" prefHeight="171.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name: Week X" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -243,7 +243,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="numberOfEvents" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="numberOfEvents" alignment="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -253,7 +253,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="busiestPeriod" alignment="TOP_CENTER" layoutX="33.0" layoutY="323.0" prefHeight="171.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="WHITE">
+                  <Label fx:id="busiestPeriod" alignment="TOP_CENTER" layoutX="23.0" layoutY="318.0" prefHeight="171.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Period Name" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -278,7 +278,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="numberOfTasks" alignment="CENTER" layoutX="33.0" layoutY="164.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="numberOfTasks" alignment="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
@@ -288,7 +288,7 @@
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tasksCompleted" alignment="CENTER" layoutX="33.0" layoutY="313.0" prefHeight="68.0" prefWidth="169.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
+                  <Label fx:id="tasksCompleted" alignment="CENTER" layoutX="23.0" layoutY="313.0" prefHeight="68.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="100" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
