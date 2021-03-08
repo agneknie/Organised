@@ -1,7 +1,16 @@
 .text-area {
     text-area-background: #2B2B2B;
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+    -fx-text-box-border: transparent;
 }
 
 .text-area .content {
-    -fx-background-color: text-area-background;
+    -fx-background-color: #2B2B2B;
+    -fx-border-style: solid;
+    -fx-border-color: #2B2B2B;
+}
+
+.text-area .content .text{
+    -fx-fill: #000000;
 }

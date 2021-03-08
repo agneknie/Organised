@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -141,6 +142,73 @@
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
+            <Label layoutX="72.0" layoutY="62.0" prefHeight="42.0" prefWidth="315.0" text="About Organised." textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <Label fx:id="topicNameLabel" layoutX="72.0" layoutY="224.0" prefHeight="42.0" prefWidth="865.0" text="Selected Topic Full Name." textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="32.0" />
+               </font>
+            </Label>
+            <Pane fx:id="userGuideButton" layoutX="72.0" layoutY="128.0" onMouseClicked="#userGuideButtonClicked" onMouseEntered="#userGuideButtonHovered" onMouseExited="#userGuideButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="userGuideButtonImage" fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="12.0">
+                     <image>
+                        <Image url="@../images/user_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="userGuideButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="User Guide" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="userGuideText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="User Guide Text!" visible="false">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </TextArea>
+            <Pane fx:id="behindTheScenesButton" layoutX="370.0" layoutY="128.0" onMouseClicked="#behindTheScenesButtonClicked" onMouseEntered="#behindTheScenesButtonHovered" onMouseExited="#behindTheScenesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="behindTheScenesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="27.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../images/door_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="behindTheScenesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Behind the Scenes" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="behindTheScenesText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Behind the Scenes Text!" visible="false">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </TextArea>
+            <Pane fx:id="copyrightResourcesButton" layoutX="670.0" layoutY="128.0" onMouseClicked="#copyrightResourcesButtonClicked" onMouseEntered="#copyrightResourcesButtonHovered" onMouseExited="#copyrightResourcesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+               <children>
+                  <ImageView fx:id="copyrightResourcesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="21.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../images/copyright_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="copyrightResourcesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Copyright &amp; Resources" textFill="#e6bb9a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="copyrightResourcesText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Copyright &amp; Resources Text!" visible="false">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </TextArea>
          </children></Pane>
    </children>
 </AnchorPane>
