@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class Database {
     private final static String localDir = System.getProperty("user.dir");
-    static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisationDB.db";
+    static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisedDB.db";
     private static Connection connection = null;
 
     /**
