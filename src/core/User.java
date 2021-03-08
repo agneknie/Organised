@@ -1228,9 +1228,12 @@ public class User {
         }
 
         // Returns the time as string
-        int days = minutes/1440;
-        minutes = minutes - days*1440;
-        return days + " days " +minutes/60 + "h " + minutes%60 + "min";
+        if(minutes==0) return "-";
+        else{
+            int days = minutes/1440;
+            minutes = minutes - days*1440;
+            return days + " days " +minutes/60 + "h " + minutes%60 + "min";
+        }
     }
 
     /**
@@ -1268,7 +1271,8 @@ public class User {
         }
 
         // Returns the busiest period
-        return "Year "+busiestPeriod.getAssociatedYear()+" "+busiestPeriod.getName()+" ("+eventNumber+" events)";
+        if(busiestPeriod==null) return "-";
+        else return "Year "+busiestPeriod.getAssociatedYear()+" "+busiestPeriod.getName()+" ("+eventNumber+" events)";
     }
 
     /**
@@ -1297,10 +1301,9 @@ public class User {
         }
 
         // Returns the busiest week
-        if (periodOfWeek != null) {
-            return "Year "+periodOfWeek.getAssociatedYear()+" "+periodOfWeek.getName()+": "+busiestWeek.toString()+" ("+busiestWeek.getAllWeekHours()+"h)";
-        }
-        else return "-";
+        if (periodOfWeek == null) return "-";
+        else return "Year "+periodOfWeek.getAssociatedYear()+" "+periodOfWeek.getName()+": "
+                +busiestWeek.toString()+" ("+busiestWeek.getAllWeekHours()+"h)";
     }
 
     @Override
