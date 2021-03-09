@@ -3,6 +3,7 @@ package database;
 import org.sqlite.SQLiteDataSource;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -16,8 +17,7 @@ import java.sql.SQLException;
  * Class which handles Database initialization and connections.
  */
 public class Database {
-    private final static String localDir = System.getProperty("user.dir");
-    static String currentURL = "jdbc:sqlite:"+localDir+"/src/database/organisedDB.db";
+    private final static String URL = "jdbc:sqlite::resource:database/organisedDB.db";
     private static Connection connection = null;
 
     /**
@@ -25,14 +25,12 @@ public class Database {
      */
     public static void openConnection() {
         try{
-            SQLiteDataSource ds = new SQLiteDataSource();
-            ds.setUrl(currentURL);
-            connection = ds.getConnection();
+            connection = DriverManager.getConnection(URL);
         }
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        System.out.println("Connection opened to " + currentURL);
+        System.out.println("Connection opened to " + URL);
     }
 
     /**
@@ -45,7 +43,7 @@ public class Database {
         }else {
             try {
                 connection.close();
-                System.out.println("Connection closed from " + currentURL);
+                System.out.println("Connection closed from " + URL);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
