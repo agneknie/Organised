@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,9 @@ import java.util.ResourceBundle;
  * Class which handles About Tab functionality and UI.
  */
 public class AboutController extends DefaultNavigation implements Initializable {
+    @FXML
+    private Label topicNameLabel;
+
     // User Guide Button
     @FXML
     private Pane userGuideButton;
@@ -46,62 +50,112 @@ public class AboutController extends DefaultNavigation implements Initializable 
     @FXML
     private Label copyrightResourcesButtonLabel;
 
-    // Text areas for information display
+    // Panes for information display
     @FXML
-    private TextArea userGuideText;
+    private Pane userGuide;
     @FXML
-    private TextArea behindTheScenesText;
+    private Pane behindTheScenes;
     @FXML
-    private TextArea copyrightResourcesText;
+    private Pane copyrightResources;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Default selection is user guide button
+        userGuideButtonClicked();
     }
 
     // Methods handling button clicks
+    /**
+     * Method which displays the pane and the label which corresponds
+     * with the behind the scenes selection.
+     */
     @FXML
     private void behindTheScenesButtonClicked() {
-        //TODO behindTheScenesButtonClicked
+        topicNameLabel.setText("Behind the Scenes.");
+        userGuide.setVisible(false);
+        behindTheScenes.setVisible(true);
+        copyrightResources.setVisible(false);
     }
 
+    /**
+     * Method which displays the pane and the label which corresponds
+     * with the copyright & resources selection.
+     */
     @FXML
     private void copyrightResourcesButtonClicked() {
-        //TODO copyrightResourcesButtonClicked
+        topicNameLabel.setText("Copyright & Resources.");
+        userGuide.setVisible(false);
+        behindTheScenes.setVisible(false);
+        copyrightResources.setVisible(true);
     }
 
+    /**
+     * Method which displays the pane and the label which corresponds
+     * with the user guide selection.
+     */
     @FXML
     private void userGuideButtonClicked() {
-        //TODO userGuideButtonClicked
+        topicNameLabel.setText("User Guide.");
+        userGuide.setVisible(true);
+        behindTheScenes.setVisible(false);
+        copyrightResources.setVisible(false);
     }
 
     // Methods styling the buttons
+    /**
+     * Changes the styling of behindTheScenesButton when hover ends/
+     * button exited.
+     */
     @FXML
     private void behindTheScenesButtonExited() {
-
+        ControlScene.buttonExited(behindTheScenesButton, behindTheScenesButtonImage, behindTheScenesButtonLabel,
+                "door_icon.png");
     }
 
+    /**
+     * Changes the styling of behindTheScenesButton when hovered.
+     */
     @FXML
     private void behindTheScenesButtonHovered() {
-
+        ControlScene.buttonHovered(behindTheScenesButton, behindTheScenesButtonImage, behindTheScenesButtonLabel,
+                "door_icon_selected.png");
     }
 
+    /**
+     * Changes the styling of copyrightResourcesButton when hover ends/
+     * button exited.
+     */
     @FXML
     private void copyrightResourcesButtonExited() {
-
+        ControlScene.buttonExited(copyrightResourcesButton, copyrightResourcesButtonImage, copyrightResourcesButtonLabel,
+                "copyright_icon.png");
     }
 
+    /**
+     * Changes the styling of copyrightResourcesButton when hovered.
+     */
     @FXML
     private void copyrightResourcesButtonHovered() {
-
+        ControlScene.buttonHovered(copyrightResourcesButton, copyrightResourcesButtonImage, copyrightResourcesButtonLabel,
+                "copyright_icon_selected.png");
     }
 
+    /**
+     * Changes the styling of userGuideButton when hover ends/
+     * button exited.
+     */
     @FXML
     private void userGuideButtonExited() {
-
+        ControlScene.buttonExited(userGuideButton, userGuideButtonImage, userGuideButtonLabel,
+                "user_icon.png");
     }
 
+    /**
+     * Changes the styling of userGuideButton when hovered.
+     */
     @FXML
     private void userGuideButtonHovered() {
-
+        ControlScene.buttonHovered(userGuideButton, userGuideButtonImage, userGuideButtonLabel,
+                "user_icon_selected.png");
     }
 }

@@ -166,11 +166,15 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="userGuideText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="User Guide Text!" visible="false">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </TextArea>
+            <Pane fx:id="userGuide" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0">
+               <children>
+                  <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="User Guide Text!">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
             <Pane fx:id="behindTheScenesButton" layoutX="370.0" layoutY="128.0" onMouseClicked="#behindTheScenesButtonClicked" onMouseEntered="#behindTheScenesButtonHovered" onMouseExited="#behindTheScenesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <ImageView fx:id="behindTheScenesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="27.0" layoutY="14.0">
@@ -185,11 +189,15 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="behindTheScenesText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Behind the Scenes Text!" visible="false">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </TextArea>
+            <Pane fx:id="behindTheScenes" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0">
+               <children>
+                  <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Behind the Scenes Text!">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
             <Pane fx:id="copyrightResourcesButton" layoutX="670.0" layoutY="128.0" onMouseClicked="#copyrightResourcesButtonClicked" onMouseEntered="#copyrightResourcesButtonHovered" onMouseExited="#copyrightResourcesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
                <children>
                   <ImageView fx:id="copyrightResourcesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="21.0" layoutY="14.0">
@@ -204,11 +212,15 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="copyrightResourcesText" editable="false" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Copyright &amp; Resources Text!" visible="false">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </TextArea>
+            <Pane fx:id="copyrightResources" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0">
+               <children>
+                  <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Copyright &amp; Resources Text!">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
          </children></Pane>
    </children>
 </AnchorPane>
