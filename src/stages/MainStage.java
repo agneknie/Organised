@@ -1,5 +1,6 @@
 package stages;
 
+import controllers.utilities.ControlScene;
 import core.Session;
 import core.User;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +31,11 @@ public class MainStage {
         // If logged in user exists, loads their data into session and forwards to profile view
         if(loggedInUser!=null) {
             Session.beginSession(loggedInUser);
-            root = FXMLLoader.load(getClass().getResource("/views/ProfileView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/ProfileView.fxml"));
         }
         // Otherwise, forwards to login page
         else
-            root = FXMLLoader.load(getClass().getResource("/views/LoginPageView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/LoginPageView.fxml"));
 
         // Sets window (stage) to default size
         primaryStage.setScene(new Scene(root, 1400, 900));
@@ -47,7 +48,8 @@ public class MainStage {
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         // Adds the application logo
-        primaryStage.getIcons().add(new Image("/images/icon.png"));
+        Image newImage = new Image(MainStage.class.getResourceAsStream("/icon.png"));
+        primaryStage.getIcons().add(newImage);
 
         // Focuses away from the fields for prompt text to be visible
         root.requestFocus();

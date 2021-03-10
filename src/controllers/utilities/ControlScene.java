@@ -11,9 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 /**
  * Organised.
  * Copyright (c) 2021, Agne Knietaite
@@ -56,14 +53,9 @@ public class ControlScene {
      * @param imageName name of the image to change to
      * @param image image/button to change
      */
-    public static void controlButtonEffect(String imageName, ImageView image){
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/"+imageName);
-            image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static void controlButtonEffect(String imageName, ImageView image) {
+        Image newImage = new Image(ControlScene.class.getResourceAsStream("/"+imageName));
+        image.setImage(newImage);
     }
 
     /**
@@ -87,13 +79,10 @@ public class ControlScene {
      */
     public static void buttonHovered(Pane pane, ImageView image, Label label, String imageName){
         pane.setStyle("-fx-background-color: white; -fx-background-radius: 20");
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/"+imageName);
-            image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(ControlScene.class.getResourceAsStream("/"+imageName));
+        image.setImage(newImage);
+
         label.setTextFill(Color.rgb(0, 0, 0));
     }
 
@@ -120,13 +109,10 @@ public class ControlScene {
     public static void buttonExited(Pane pane, ImageView image, Label label, String imageName){
         pane.setStyle("-fx-background-color: none; -fx-background-radius: 20; " +
                 "-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20");
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/"+imageName);
-            image.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(ControlScene.class.getResourceAsStream("/"+imageName));
+        image.setImage(newImage);
+
         label.setTextFill(Color.rgb(230,187,154));
     }
 

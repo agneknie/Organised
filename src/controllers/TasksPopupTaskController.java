@@ -84,12 +84,10 @@ public class TasksPopupTaskController extends DefaultNavigation implements Initi
 
         // Sets up the action button
         actionButtonLabel.setText(sceneType.toString());
-        try {
-            FileInputStream newImage = new FileInputStream("src/images/" + sceneType.toString().toLowerCase() + "_icon.png");
-            actionButtonImage.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(TasksPopupTaskController.class.getResourceAsStream
+                ("/"+sceneType.toString().toLowerCase() + "_icon.png"));
+        actionButtonImage.setImage(newImage);
 
         // Hides delete button if popup is Add
         if(sceneType == PopupType.ADD) deleteButton.setVisible(false);

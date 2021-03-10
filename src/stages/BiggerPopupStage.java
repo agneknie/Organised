@@ -1,5 +1,6 @@
 package stages;
 
+import controllers.utilities.ControlScene;
 import core.Session;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +27,7 @@ public class BiggerPopupStage {
     public BiggerPopupStage(Stage popup, String viewName) throws IOException {
         // Loads the required scene
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("/views/"+viewName));
+        root = FXMLLoader.load(getClass().getResource("/"+viewName));
 
         // Sets window (stage) to default size
         popup.setScene(new Scene(root, 700, 800));
@@ -42,7 +43,8 @@ public class BiggerPopupStage {
         popup.initStyle(StageStyle.UNDECORATED);
 
         // Adds the application logo
-        popup.getIcons().add(new Image("/images/icon.png"));
+        Image newImage = new Image(BiggerPopupStage.class.getResourceAsStream("/icon.png"));
+        popup.getIcons().add(newImage);
 
         // Focuses away from the fields for prompt text to be visible
         root.requestFocus();

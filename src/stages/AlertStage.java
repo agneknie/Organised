@@ -1,5 +1,6 @@
 package stages;
 
+import controllers.utilities.ControlScene;
 import core.Session;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +27,7 @@ public class AlertStage {
     public AlertStage(Stage alert, String viewName) throws IOException {
         // Loads the required scene
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("/views/"+viewName));
+        root = FXMLLoader.load(getClass().getResource("/"+viewName));
 
         // Sets window (stage) to default size
         alert.setScene(new Scene(root, 300, 200));
@@ -42,7 +43,8 @@ public class AlertStage {
         alert.initStyle(StageStyle.UNDECORATED);
 
         // Adds the application logo
-        alert.getIcons().add(new Image("/images/icon.png"));
+        Image newImage = new Image(AlertStage.class.getResourceAsStream("/icon.png"));
+        alert.getIcons().add(newImage);
 
         // Focuses away from the fields for prompt text to be visible
         root.requestFocus();

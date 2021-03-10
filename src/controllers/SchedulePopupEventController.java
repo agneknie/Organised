@@ -118,12 +118,10 @@ public class SchedulePopupEventController extends DefaultNavigation implements I
 
         // Sets up the action button
         actionButtonLabel.setText(sceneType.toString());
-        try {
-            FileInputStream newImage = new FileInputStream("src/images/" + sceneType.toString().toLowerCase() + "_icon.png");
-            actionButtonImage.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(SchedulePopupEventController.class.getResourceAsStream
+                ("/"+sceneType.toString().toLowerCase() + "_icon.png"));
+        actionButtonImage.setImage(newImage);
 
         // Hides delete button if popup is Add
         if(sceneType == PopupType.ADD) deleteButton.setVisible(false);

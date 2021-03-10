@@ -56,12 +56,10 @@ public abstract class MarksDefaultPopup extends DefaultButtons{
     protected void initializePopup(){
         // Sets up the action button
         actionButtonLabel.setText(sceneType.toString());
-        try {
-            FileInputStream newImage = new FileInputStream("src/images/" + sceneType.toString().toLowerCase() + "_icon.png");
-            actionButtonImage.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(MarksDefaultPopup.class.getResourceAsStream
+                ("/"+sceneType.toString().toLowerCase() + "_icon.png"));
+        actionButtonImage.setImage(newImage);
 
         // Hides delete button if needed
         if(sceneType == PopupType.ADD) deleteButton.setVisible(false);

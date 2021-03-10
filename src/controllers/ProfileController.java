@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.Session;
 import core.User;
@@ -10,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -90,13 +89,9 @@ public class ProfileController extends DefaultNavigation implements Initializabl
 
         // Sets up banner image
         String imageName = timeOfDay.toString().toLowerCase()+"-banner.png";
-        FileInputStream newImage;
-        try {
-            newImage = new FileInputStream("src/images/"+imageName);
-            bannerImage.setImage(new Image(newImage));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Image newImage = new Image(ProfileController.class.getResourceAsStream("/"+imageName));
+        bannerImage.setImage(newImage);
     }
 
     /**

@@ -40,7 +40,8 @@ public class SetupScene {
         String path = localDir+prefix+viewName;
 
         // Loads new scene
-        Parent root= FXMLLoader.load(new File(path).toURI().toURL());
+        Parent root= FXMLLoader.load(SetupScene.class.getResource("/"+viewName));
+                // FXMLLoader.load(new File(path).toURI().toURL());
 
         // Creates new scene and sets it's size
         Scene newScene = new Scene(root, 1400, 900);
