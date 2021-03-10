@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
+import core.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -98,6 +99,39 @@ public class AboutController extends DefaultNavigation implements Initializable 
         userGuide.setVisible(true);
         behindTheScenes.setVisible(false);
         copyrightResources.setVisible(false);
+    }
+
+    // Methods for external link clicks
+    /**
+     * Method which forwards the user to the browser when github link is clicked.
+     */
+    @FXML
+    private void githubLinkClicked(){
+        Session.getHostServices().showDocument("https://github.com/agneknie/Organised.");
+    }
+
+    /**
+     * Method which forwards the user to the browser when student link is clicked.
+     */
+    @FXML
+    private void studentLinkClicked(){
+        Session.getHostServices().showDocument("https://linkedin.com/in/agne-knietaite");
+    }
+
+    /**
+     * Method which forwards the user to the browser when material link is clicked.
+     */
+    @FXML
+    private void materialLinkClicked(){
+        Session.getHostServices().showDocument("https://material.io/resources/icons/");
+    }
+
+    /**
+     * Method which forwards the user to the browser when license link is clicked.
+     */
+    @FXML
+    private void licenseLinkClicked(){
+        Session.getHostServices().showDocument("https://github.com/agneknie/Organised./blob/master/LICENSE");
     }
 
     // Methods styling the buttons

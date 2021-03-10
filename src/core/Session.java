@@ -2,6 +2,7 @@ package core;
 
 import core.enums.PopupType;
 import core.enums.MarksSelection;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +31,9 @@ public class Session {
     private static User loggedUser = null;
     // Whether non-logged in user has just created a new user by registration
     private static boolean userCreatedInSession;
+
+    // Variable for url opening in browser
+    private static HostServices hostServices = null;
 
     // Marks: which Year selected
     private static Year marksYearSelected = null;
@@ -173,6 +177,22 @@ public class Session {
      */
     public static void setUserCreatedInSession(boolean userCreatedInSession) {
         Session.userCreatedInSession = userCreatedInSession;
+    }
+
+    /**
+     * Returns host services used for url opening in browser.
+     * @return host services of Application
+     */
+    public static HostServices getHostServices() {
+        return hostServices;
+    }
+
+    /**
+     * Sets host services used for url opening in browser.
+     * @param hostServices host services of Application
+     */
+    public static void setHostServices(HostServices hostServices) {
+        Session.hostServices = hostServices;
     }
 
     /**

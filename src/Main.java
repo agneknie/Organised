@@ -1,5 +1,7 @@
+import core.Session;
 import database.Database;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 import stages.MainStage;
 
@@ -40,6 +42,9 @@ public class Main extends Application {
 
         // Loads the main application window
         new MainStage(primaryStage);
+
+        // Saves the host services to open urls later
+        Session.setHostServices(getHostServices());
     }
 
     /**
