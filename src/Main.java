@@ -1,7 +1,6 @@
 import core.Session;
 import database.Database;
 import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.stage.Stage;
 import stages.MainStage;
 

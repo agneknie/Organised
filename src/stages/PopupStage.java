@@ -1,6 +1,5 @@
 package stages;
 
-import controllers.utilities.ControlScene;
 import core.Session;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -30,19 +30,6 @@ public enum TimeOfDay {
     }
 
     /**
-     * Method which takes a string and returns a corresponding time of day
-     *
-     * @param timeOfDayString TimeOfDay as string
-     * @return TimeOfDay which corresponds to a string
-     */
-    public static TimeOfDay stringToTaskStatus(String timeOfDayString){
-        for(TimeOfDay timeOfDay : TimeOfDay.values()){
-            if(timeOfDayString.equals(timeOfDay.VALUE)) return timeOfDay;
-        }
-        throw new IllegalArgumentException("TimeOfDay " +timeOfDayString+ " does not exist.");
-    }
-
-    /**
      * Method which takes the local time of the machine and returns a time of day it
      * corresponds to.
      *

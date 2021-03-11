@@ -13,9 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 /**
  * Organised.
  * Copyright (c) 2021, Agne Knietaite

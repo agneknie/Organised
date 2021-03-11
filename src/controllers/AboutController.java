@@ -83,7 +83,7 @@ public class AboutController extends DefaultNavigation implements Initializable 
      */
     @FXML
     private void copyrightResourcesButtonClicked() {
-        topicNameLabel.setText("Copyright & Resources.");
+        topicNameLabel.setText("Copyright.");
         userGuide.setVisible(false);
         behindTheScenes.setVisible(false);
         copyrightResources.setVisible(true);

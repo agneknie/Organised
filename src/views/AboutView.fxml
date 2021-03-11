@@ -9,259 +9,254 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AboutController">
-   <children>
-      <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
-         <children>
-            <Label layoutX="11.0" layoutY="31.0" text="Organised.">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
-               </font>
-            </Label>
-            <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered" onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/profile_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered" onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/marks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="timePane" layoutY="242.0" onMouseClicked="#timeClicked" onMouseEntered="#timeHovered" onMouseExited="#timeExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/time_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered" onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/schedule_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered" onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/tasks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/settings_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered" onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/sign_out_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutY="832.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/about_icon_selected.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children></Pane>
-      <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
-         <children>
-            <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/minimize_icon.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/close_icon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="72.0" layoutY="62.0" prefHeight="42.0" prefWidth="315.0" text="About Organised." textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
-               </font>
-            </Label>
-            <Label fx:id="topicNameLabel" layoutX="72.0" layoutY="224.0" prefHeight="42.0" prefWidth="865.0" text="Selected Topic Full Name." textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="32.0" />
-               </font>
-            </Label>
-            <Pane fx:id="userGuideButton" layoutX="72.0" layoutY="128.0" onMouseClicked="#userGuideButtonClicked" onMouseEntered="#userGuideButtonHovered" onMouseExited="#userGuideButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="userGuideButtonImage" fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="12.0">
-                     <image>
-                        <Image url="@../images/user_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="userGuideButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="User Guide" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="userGuide" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" visible="false">
-               <children>
-                  <TextArea editable="false" layoutX="-6.0" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="            Organised is a system aimed at university students, who feel the need to get organised in their studies. It is&#10;comprised of 4 main sections, visible on the left: Marks, Time, Schedule and Tasks. Whilst navigating through the&#10;system, keep in mind that you might need to complete one section before moving to the other. For example, add&#10;years and modules in Marks and then move to study period addition in Time.&#10;&#10;     -&#9;     Profile.&#10;             Your statistics. Populate Organised with information and see your profile update based on your progress. &#10;     -&#9;     Marks.&#10;             Add your Years, Modules &amp; Assignments. When you complete your assignments, add your marks to&#10;             Organised and get grade calculations for each module and each year.&#10;     -&#9;     Time.&#10;             Add your Periods (such as Year 1 Semester 1, Year 2 Spring Vacation, etc.) and track how much time you&#10;             work during the day. Get statistics about each day and week and compare them amongst themselves or &#10;             other periods.&#10;     -&#9;    Schedule.&#10;            Add Events to your periods and get your schedule Organised. Such events as lectures, which repeat over &#10;            multiple weeks, can be added as recurring events to save time.&#10;     -&#9;    Tasks.&#10;            Add Tasks to your periods &amp; weeks and always be Organised with your activities. Tasks which need to be &#10;            repeated in multiple weeks can be added as recurring tasks-in the same manner as events. Observe your &#10;            progress and know what needs to be done when.&#10;&#10;            Check out             for more information.&#10;">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                  </TextArea>
-                  <Label layoutX="172.0" layoutY="534.0" onMouseClicked="#githubLinkClicked" prefHeight="21.0" prefWidth="59.0" text="Github" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="behindTheScenesButton" layoutX="370.0" layoutY="128.0" onMouseClicked="#behindTheScenesButtonClicked" onMouseEntered="#behindTheScenesButtonHovered" onMouseExited="#behindTheScenesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="behindTheScenesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="27.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../images/door_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="behindTheScenesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Behind the Scenes" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="behindTheScenes" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" visible="false">
-               <children>
-                  <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Organised is a system made for university students by a university student and aims to be as simple as possible by&#10;usage and construction both. Organised contains:&#10;&#10;     -&#9;     One university             ;&#10;&#10;     -&#9;     Java for back-end;&#10;&#10;     -&#9;     JavaFX for front-end;&#10;&#10;     -&#9;     SQLite for a database;&#10;&#10;     -&#9;     Icons from              ;&#10;&#10;     -&#9;     Installer made with Inno Setup.&#10;&#10;Full codebase is available on            .&#10;">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                  </TextArea>
-                  <Label layoutX="276.0" layoutY="368.0" onMouseClicked="#githubLinkClicked" prefHeight="21.0" prefWidth="59.0" text="Github" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label layoutX="218.0" layoutY="79.0" onMouseClicked="#studentLinkClicked" prefHeight="23.0" prefWidth="80.0" text="student" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label layoutX="185.0" layoutY="271.0" onMouseClicked="#materialLinkClicked" prefHeight="23.0" prefWidth="80.0" text="Material" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="copyrightResourcesButton" layoutX="670.0" layoutY="128.0" onMouseClicked="#copyrightResourcesButtonClicked" onMouseEntered="#copyrightResourcesButtonHovered" onMouseExited="#copyrightResourcesButtonExited" prefHeight="68.0" prefWidth="264.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="copyrightResourcesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="21.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../images/copyright_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="copyrightResourcesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="Copyright" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="copyrightResources" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0">
-               <children>
-                  <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0" stylesheets="@../stylesheets/textAreaStyling.css" text="Organised.&#10;&#10;Copyright © 2021, Agne Knietaite&#10;&#10;All rights reserved.&#10;&#10;The source code of the application is licensed under the GNU General Public License 3.0, which can be found        .&#10;&#10;This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public &#10;License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later&#10;version.&#10;&#10;This program is distributed in the hope that it will be useful, but without any warranty; without even the implied&#10;warranty of merchantability or fitness for a particular purpose.  See the GNU General Public License for more details.&#10;">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                  </TextArea>
-                  <Label layoutX="991.0" layoutY="150.0" onMouseClicked="#licenseLinkClicked" prefHeight="23.0" prefWidth="45.0" text="here" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-            </Pane>
-         </children></Pane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0"
+            xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.AboutController">
+   <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
+      <Label layoutX="11.0" layoutY="31.0" text="Organised.">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered"
+            onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/profile_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered"
+            onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/marks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="timePane" layoutY="242.0" onMouseClicked="#timeClicked" onMouseEntered="#timeHovered"
+            onMouseExited="#timeExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/time_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered"
+            onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/schedule_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered"
+            onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/tasks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered"
+            onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/settings_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered"
+            onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/sign_out_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane layoutY="832.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/about_icon_selected.png"/>
+         </ImageView>
+      </Pane>
+   </Pane>
+   <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
+      <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0"
+                 onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/minimize_icon.png"/>
+      </ImageView>
+      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0"
+                 onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/close_icon.png"/>
+      </ImageView>
+      <Label layoutX="72.0" layoutY="62.0" prefHeight="42.0" prefWidth="315.0" text="About Organised."
+             textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Label fx:id="topicNameLabel" layoutX="72.0" layoutY="224.0" prefHeight="42.0" prefWidth="865.0"
+             text="Selected Topic Full Name." textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="32.0"/>
+         </font>
+      </Label>
+      <Pane fx:id="userGuideButton" layoutX="72.0" layoutY="128.0" onMouseClicked="#userGuideButtonClicked"
+            onMouseEntered="#userGuideButtonHovered" onMouseExited="#userGuideButtonExited" prefHeight="68.0"
+            prefWidth="264.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="userGuideButtonImage" fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="12.0">
+            <Image url="@../images/user_icon.png"/>
+         </ImageView>
+         <Label fx:id="userGuideButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0" prefHeight="60.0"
+                prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="User Guide"
+                textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="24.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Pane fx:id="userGuide" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0" visible="false">
+         <TextArea editable="false" layoutX="-6.0" prefHeight="603.0" prefWidth="1082.0"
+                   stylesheets="@../stylesheets/textAreaStyling.css"
+                   text="            Organised is a system aimed at university students, who feel the need to get organised in their studies. It is&#10;comprised of 4 main sections, visible on the left: Marks, Time, Schedule and Tasks. Whilst navigating through the&#10;system, keep in mind that you might need to complete one section before moving to the other. For example, add&#10;years and modules in Marks and then move to study period addition in Time.&#10;&#10;     -&#9;     Profile.&#10;             Your statistics. Populate Organised with information and see your profile update based on your progress. &#10;     -&#9;     Marks.&#10;             Add your Years, Modules &amp; Assignments. When you complete your assignments, add your marks to&#10;             Organised and get grade calculations for each module and each year.&#10;     -&#9;     Time.&#10;             Add your Periods (such as Year 1 Semester 1, Year 2 Spring Vacation, etc.) and track how much time you&#10;             work during the day. Get statistics about each day and week and compare them amongst themselves or &#10;             other periods.&#10;     -&#9;    Schedule.&#10;            Add Events to your periods and get your schedule Organised. Such events as lectures, which repeat over &#10;            multiple weeks, can be added as recurring events to save time.&#10;     -&#9;    Tasks.&#10;            Add Tasks to your periods &amp; weeks and always be Organised with your activities. Tasks which need to be &#10;            repeated in multiple weeks can be added as recurring tasks-in the same manner as events. Observe your &#10;            progress and know what needs to be done when.&#10;&#10;            Check out             for more information.&#10;">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+         </TextArea>
+         <Label layoutX="172.0" layoutY="534.0" onMouseClicked="#githubLinkClicked" prefHeight="21.0"
+                prefWidth="59.0" text="Github" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+      </Pane>
+      <Pane fx:id="behindTheScenesButton" layoutX="370.0" layoutY="128.0"
+            onMouseClicked="#behindTheScenesButtonClicked" onMouseEntered="#behindTheScenesButtonHovered"
+            onMouseExited="#behindTheScenesButtonExited" prefHeight="68.0" prefWidth="264.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="behindTheScenesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="27.0"
+                    layoutY="14.0">
+            <Image url="@../images/door_icon.png"/>
+         </ImageView>
+         <Label fx:id="behindTheScenesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0"
+                prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;"
+                text="Behind the Scenes" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="24.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Pane fx:id="behindTheScenes" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0"
+            visible="false">
+         <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0"
+                   stylesheets="@../stylesheets/textAreaStyling.css"
+                   text="Organised is a system made for university students by a university student and aims to be as simple as possible by&#10;usage and construction both. Organised contains:&#10;&#10;     -&#9;     One university             ;&#10;&#10;     -&#9;     Java for back-end;&#10;&#10;     -&#9;     JavaFX for front-end;&#10;&#10;     -&#9;     SQLite for a database;&#10;&#10;     -&#9;     Icons from              ;&#10;&#10;     -&#9;     Installer made with Inno Setup.&#10;&#10;Full codebase is available on            .&#10;">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+         </TextArea>
+         <Label layoutX="276.0" layoutY="368.0" onMouseClicked="#githubLinkClicked" prefHeight="21.0"
+                prefWidth="59.0" text="Github" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+         <Label layoutX="218.0" layoutY="79.0" onMouseClicked="#studentLinkClicked" prefHeight="23.0"
+                prefWidth="80.0" text="student" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+         <Label layoutX="185.0" layoutY="271.0" onMouseClicked="#materialLinkClicked" prefHeight="23.0"
+                prefWidth="80.0" text="Material" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+      </Pane>
+      <Pane fx:id="copyrightResourcesButton" layoutX="670.0" layoutY="128.0"
+            onMouseClicked="#copyrightResourcesButtonClicked" onMouseEntered="#copyrightResourcesButtonHovered"
+            onMouseExited="#copyrightResourcesButtonExited" prefHeight="68.0" prefWidth="264.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="copyrightResourcesButtonImage" fitHeight="40.0" fitWidth="40.0" layoutX="21.0"
+                    layoutY="14.0">
+            <Image url="@../images/copyright_icon.png"/>
+         </ImageView>
+         <Label fx:id="copyrightResourcesButtonLabel" alignment="CENTER" layoutX="61.0" layoutY="4.0"
+                prefHeight="60.0" prefWidth="189.0" style="-fx-wrap-text: true; -fx-text-alignment: center;"
+                text="Copyright" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="24.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Pane fx:id="copyrightResources" layoutX="60.0" layoutY="277.0" prefHeight="603.0" prefWidth="1082.0">
+         <TextArea editable="false" prefHeight="603.0" prefWidth="1082.0"
+                   stylesheets="@../stylesheets/textAreaStyling.css"
+                   text="Organised.&#10;&#10;Copyright © 2021, Agne Knietaite&#10;&#10;All rights reserved.&#10;&#10;The source code of the application is licensed under the GNU General Public License 3.0, which can be found        .&#10;&#10;This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public &#10;License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later&#10;version.&#10;&#10;This program is distributed in the hope that it will be useful, but without any warranty; without even the implied&#10;warranty of merchantability or fitness for a particular purpose.  See the GNU General Public License for more details.&#10;">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+         </TextArea>
+         <Label layoutX="991.0" layoutY="150.0" onMouseClicked="#licenseLinkClicked" prefHeight="23.0"
+                prefWidth="45.0" text="here" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+      </Pane>
+   </Pane>
 </AnchorPane>

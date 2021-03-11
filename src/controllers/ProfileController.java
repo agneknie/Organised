@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.utilities.ControlScene;
 import controllers.utilities.DefaultNavigation;
 import core.Session;
 import core.User;

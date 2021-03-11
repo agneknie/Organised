@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModuleInformationPopupController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModuleInformationPopupController">
    <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
       <ImageView fx:id="minimizeButton" fitHeight="29.0" fitWidth="27.0" layoutX="632.0" layoutY="7.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true">
          <Image url="@../images/minimize_icon.png" />
@@ -19,89 +19,93 @@
             <Font name="Arial Rounded MT Bold" size="35.0" />
          </font>
       </Label>
-      <Pane fx:id="moreButton" layoutX="462.0" layoutY="61.0" onMouseClicked="#moreButtonClicked" onMouseEntered="#moreButtonHovered" onMouseExited="#moreButtonExited" prefHeight="49.0" prefWidth="137.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-         <children>
-            <ImageView fx:id="moreButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="8.0">
-               <image>
-                  <Image url="@../images/more_icon.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="moreButtonLabel" alignment="CENTER" layoutX="42.0" layoutY="7.0" prefHeight="36.0" prefWidth="88.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="moreButton" layoutX="462.0" layoutY="61.0" onMouseClicked="#moreButtonClicked"
+            onMouseEntered="#moreButtonHovered" onMouseExited="#moreButtonExited" prefHeight="49.0" prefWidth="137.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="moreButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="8.0">
+            <Image url="@../images/more_icon.png"/>
+         </ImageView>
+         <Label fx:id="moreButtonLabel" alignment="CENTER" layoutX="42.0" layoutY="7.0" prefHeight="36.0"
+                prefWidth="88.0" style="-fx-wrap-text: true;" text="More" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
-      <Pane fx:id="pane1" layoutX="89.0" layoutY="127.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
-         <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code1" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name1" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="pane1" layoutX="89.0" layoutY="127.0" prefHeight="63.0" prefWidth="524.0"
+            style="-fx-background-radius: 10;">
+         <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code1" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
+         <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name1" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
-      <Pane fx:id="pane2" layoutX="89.0" layoutY="204.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
-         <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code2" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name2" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="pane2" layoutX="89.0" layoutY="204.0" prefHeight="63.0" prefWidth="524.0"
+            style="-fx-background-radius: 10;">
+         <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code2" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
+         <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name2" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
-      <Pane fx:id="pane3" layoutX="89.0" layoutY="281.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
-         <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code3" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name3" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="pane3" layoutX="89.0" layoutY="281.0" prefHeight="63.0" prefWidth="524.0"
+            style="-fx-background-radius: 10;">
+         <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code3" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
+         <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name3" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
-      <Pane fx:id="pane4" layoutX="89.0" layoutY="360.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
-         <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code4" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name4" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="pane4" layoutX="89.0" layoutY="360.0" prefHeight="63.0" prefWidth="524.0"
+            style="-fx-background-radius: 10;">
+         <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code4" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
+         <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name4" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
-      <Pane fx:id="pane5" layoutX="89.0" layoutY="438.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-radius: 10;">
-         <children>
-            <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code5" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name5" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="pane5" layoutX="89.0" layoutY="438.0" prefHeight="63.0" prefWidth="524.0"
+            style="-fx-background-radius: 10;">
+         <Label alignment="CENTER" layoutX="6.0" prefHeight="63.0" prefWidth="137.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="code5" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
+         <Label alignment="CENTER" layoutX="152.0" prefHeight="63.0" prefWidth="363.0"
+                style="-fx-wrap-text: true; -fx-text-alignment: center;" text="name5" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="20.0"/>
+            </font>
+         </Label>
       </Pane>
       <Pane fx:id="actionButton" layoutX="266.0" layoutY="516.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="63.0" prefWidth="161.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
          <ImageView fx:id="actionButtonImage" fitHeight="35.0" fitWidth="35.0" layoutX="19.0" layoutY="14.0">

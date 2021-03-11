@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -34,11 +33,6 @@ public class SetupScene {
      * @throws IOException if fxml file could not be found
      */
     public static void changeScene(String viewName, Node node) throws IOException {
-        // Constructs scene's fxml url
-        String localDir = System.getProperty("user.dir");
-        String prefix = "\\src\\views\\";
-        String path = localDir+prefix+viewName;
-
         // Loads new scene
         Parent root= FXMLLoader.load(SetupScene.class.getResource("/"+viewName));
                 // FXMLLoader.load(new File(path).toURI().toURL());

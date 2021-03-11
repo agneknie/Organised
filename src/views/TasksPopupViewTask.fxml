@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TasksPopupTaskController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TasksPopupTaskController">
    <Pane layoutX="4.0" layoutY="4.0" prefHeight="593.0" prefWidth="693.0" style="-fx-background-color: #2B2B2B;">
       <Label fx:id="titleLabel" layoutX="89.0" layoutY="50.0" prefHeight="69.0" prefWidth="269.0" text="Word Task." textFill="WHITE">
          <font>
@@ -44,33 +44,37 @@
          </Label>
       </Pane>
       <Pane layoutX="89.0" layoutY="140.0" prefHeight="69.0" prefWidth="538.0">
-         <children>
-            <Label prefHeight="69.0" prefWidth="269.0" text="Associated Module:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="associatedModuleComboBox" layoutX="300.0" layoutY="6.0" prefHeight="56.0" prefWidth="224.0" promptText="Select Module:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-         </children>
+         <Label prefHeight="69.0" prefWidth="269.0" text="Associated Module:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <ComboBox fx:id="associatedModuleComboBox" layoutX="300.0" layoutY="6.0" prefHeight="56.0" prefWidth="224.0"
+                   promptText="Select Module:"
+                   style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;"
+                   styleClass="combo-box-base"/>
       </Pane>
       <Pane layoutX="89.0" layoutY="220.0" prefHeight="175.0" prefWidth="538.0">
-         <children>
-            <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Task Description:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="descriptionField" layoutX="300.0" layoutY="3.0" prefHeight="167.0" prefWidth="224.0" promptText="e.g. Organise Weekly Tasks " style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white; -fx-wrap-text: true;" stylesheets="@../stylesheets/textAreaStyling.css">
-               <font>
-                  <Font name="Arial" size="16.0" />
-               </font>
-            </TextArea>
-            <Label layoutY="52.0" prefHeight="119.0" prefWidth="289.0" style="-fx-wrap-text: true;" text="Special symbols, which insert     Week numbers:                                         • = current Week number.                      • &lt; previous Week number.                    • &gt; following Week number." textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="16.0" />
-               </font>
-            </Label>
-         </children>
+         <Label layoutY="-6.0" prefHeight="69.0" prefWidth="269.0" text="Task Description:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextArea fx:id="descriptionField" layoutX="300.0" layoutY="3.0" prefHeight="167.0" prefWidth="224.0"
+                   promptText="e.g. Organise Weekly Tasks "
+                   style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white; -fx-wrap-text: true;"
+                   stylesheets="@../stylesheets/textAreaStyling.css">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextArea>
+         <Label layoutY="52.0" prefHeight="119.0" prefWidth="289.0" style="-fx-wrap-text: true;"
+                text="Special symbols, which insert     Week numbers:                                         • = current Week number.                      • &lt; previous Week number.                    • &gt; following Week number."
+                textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="16.0"/>
+            </font>
+         </Label>
       </Pane>
    </Pane>
 </Pane>

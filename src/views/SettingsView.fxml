@@ -7,140 +7,122 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
-   <children>
-      <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
-         <children>
-            <Label layoutX="11.0" layoutY="31.0" text="Organised.">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
-               </font>
-            </Label>
-            <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered" onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/profile_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered" onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/marks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="timePane" layoutY="242.0" onMouseClicked="#timeClicked" onMouseEntered="#timeHovered" onMouseExited="#timeExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/time_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered" onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/schedule_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered" onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/tasks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutY="446.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/settings_icon_selected.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered" onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/sign_out_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="aboutPane" layoutY="832.0" onMouseClicked="#aboutClicked" onMouseEntered="#aboutHovered" onMouseExited="#aboutExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/about_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children></Pane>
-      <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
-         <children>
-            <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/minimize_icon.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/close_icon.png" />
-               </image>
-            </ImageView>
-         </children></Pane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0"
+            xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.SettingsController">
+   <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
+      <Label layoutX="11.0" layoutY="31.0" text="Organised.">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered"
+            onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/profile_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered"
+            onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/marks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="timePane" layoutY="242.0" onMouseClicked="#timeClicked" onMouseEntered="#timeHovered"
+            onMouseExited="#timeExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/time_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered"
+            onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/schedule_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered"
+            onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/tasks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane layoutY="446.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/settings_icon_selected.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered"
+            onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/sign_out_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="aboutPane" layoutY="832.0" onMouseClicked="#aboutClicked" onMouseEntered="#aboutHovered"
+            onMouseExited="#aboutExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/about_icon.png"/>
+         </ImageView>
+      </Pane>
+   </Pane>
+   <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
+      <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0"
+                 onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/minimize_icon.png"/>
+      </ImageView>
+      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0"
+                 onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/close_icon.png"/>
+      </ImageView>
+   </Pane>
 </AnchorPane>

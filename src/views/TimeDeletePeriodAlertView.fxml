@@ -6,32 +6,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimeDeletePeriodAlertController">
-   <children>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="241.0" layoutY="14.0">
-         <image>
-            <Image url="@../images/warning_icon.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="16.0" layoutY="31.0" prefHeight="25.0" prefWidth="221.0" text="This Action is irreversible.">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="alertMessage" alignment="CENTER" layoutX="16.0" layoutY="66.0" prefHeight="76.0" prefWidth="271.0" style="-fx-wrap-text: true; -fx-text-alignment: center;" text="This is an alert message. Please read and react accordingly.">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="17.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="confirmButton" fitHeight="45.0" fitWidth="45.0" layoutX="69.0" layoutY="142.0" onMouseClicked="#confirmButtonClicked" onMouseEntered="#confirmButtonHovered" onMouseExited="#confirmButtonExited" pickOnBounds="true">
-         <image>
-            <Image url="@../images/tasks_icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="discardButton" fitHeight="45.0" fitWidth="45.0" layoutX="192.0" layoutY="142.0" onMouseClicked="#discardButtonClicked" onMouseEntered="#discardButtonHovered" onMouseExited="#discardButtonExited" pickOnBounds="true">
-         <image>
-            <Image url="@../images/close_icon_black.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane onMouseDragged="#mouseDraggedPopup" onMousePressed="#mousePressed" prefHeight="200.0" prefWidth="300.0"
+            style="-fx-background-color: #E6BB9A;" xmlns="http://javafx.com/javafx/8.0.241"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimeDeletePeriodAlertController">
+   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="241.0" layoutY="14.0">
+      <Image url="@../images/warning_icon.png"/>
+   </ImageView>
+   <Label layoutX="16.0" layoutY="31.0" prefHeight="25.0" prefWidth="221.0" text="This Action is irreversible.">
+      <font>
+         <Font name="Arial Rounded MT Bold" size="17.0"/>
+      </font>
+   </Label>
+   <Label fx:id="alertMessage" alignment="CENTER" layoutX="16.0" layoutY="66.0" prefHeight="76.0" prefWidth="271.0"
+          style="-fx-wrap-text: true; -fx-text-alignment: center;"
+          text="This is an alert message. Please read and react accordingly.">
+      <font>
+         <Font name="Arial Rounded MT Bold" size="17.0"/>
+      </font>
+   </Label>
+   <ImageView fx:id="confirmButton" fitHeight="45.0" fitWidth="45.0" layoutX="69.0" layoutY="142.0"
+              onMouseClicked="#confirmButtonClicked" onMouseEntered="#confirmButtonHovered"
+              onMouseExited="#confirmButtonExited" pickOnBounds="true">
+      <Image url="@../images/tasks_icon.png"/>
+   </ImageView>
+   <ImageView fx:id="discardButton" fitHeight="45.0" fitWidth="45.0" layoutX="192.0" layoutY="142.0"
+              onMouseClicked="#discardButtonClicked" onMouseEntered="#discardButtonHovered"
+              onMouseExited="#discardButtonExited" pickOnBounds="true">
+      <Image url="@../images/close_icon_black.png"/>
+   </ImageView>
 </AnchorPane>

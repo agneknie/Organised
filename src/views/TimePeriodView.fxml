@@ -14,357 +14,360 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDragged" onMouseEntered="#refreshView" onMousePressed="#mousePressed" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimePeriodController">
-   <children>
-      <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
-         <children>
-            <Label layoutX="11.0" layoutY="31.0" text="Organised.">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            onMouseDragged="#mouseDragged" onMouseEntered="#refreshView" onMousePressed="#mousePressed"
+            prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.241"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimePeriodController">
+   <Pane prefHeight="900.0" prefWidth="211.0" style="-fx-background-color: #E6BB9A;">
+      <Label layoutX="11.0" layoutY="31.0" text="Organised.">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered"
+            onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/profile_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered"
+            onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/marks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane layoutY="242.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/time_icon_selected.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered"
+            onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/schedule_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered"
+            onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/tasks_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered"
+            onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/settings_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="aboutPane" layoutY="832.0" onMouseClicked="#aboutClicked" onMouseEntered="#aboutHovered"
+            onMouseExited="#aboutExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/about_icon.png"/>
+         </ImageView>
+      </Pane>
+      <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered"
+            onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
+         <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="22.0"/>
+            </font>
+         </Label>
+         <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../images/sign_out_icon.png"/>
+         </ImageView>
+      </Pane>
+   </Pane>
+   <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
+      <ImageView fx:id="goBackButton" fitHeight="27.0" fitWidth="27.0" layoutX="1095.0" layoutY="14.0"
+                 onMouseClicked="#goBackClicked" onMouseEntered="#goBackHovered" onMouseExited="#goBackExited"
+                 pickOnBounds="true">
+         <Image url="@../images/back_icon.png"/>
+      </ImageView>
+      <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0"
+                 onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/minimize_icon.png"/>
+      </ImageView>
+      <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0"
+                 onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../images/close_icon.png"/>
+      </ImageView>
+      <Label fx:id="periodNameLabel" layoutX="66.0" layoutY="59.0" prefHeight="33.0" prefWidth="1060.0"
+             text="Full Period Name." textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="105.0" prefHeight="36.0" prefWidth="154.0" text="Week N:"
+             textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0"/>
+         </font>
+      </Label>
+      <Label fx:id="weekDateLabel" layoutX="207.0" layoutY="105.0" prefHeight="27.0" prefWidth="320.0"
+             text="2020 Jan 23 - Jan 30 " textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0"/>
+         </font>
+      </Label>
+      <ImageView fx:id="goLeftButton" layoutX="554.0" layoutY="103.0" onMouseClicked="#goLeftClicked"
+                 onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
+         <Image url="@../images/next_element_left.png"/>
+      </ImageView>
+      <Line endX="-100.0" endY="26.0" layoutX="712.0" layoutY="115.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a"
+            strokeLineCap="ROUND" style="-fx-stroke-width: 3;"/>
+      <ImageView fx:id="goRightButton" layoutX="631.0" layoutY="103.0" onMouseClicked="#goRightClicked"
+                 onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
+         <Image url="@../images/next_element_right.png"/>
+      </ImageView>
+      <Pane fx:id="actionButton" layoutX="888.0" layoutY="102.0" onMouseClicked="#actionButtonClicked"
+            onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="42.0"
+            prefWidth="221.0"
+            style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+         <ImageView fx:id="actionButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="5.0">
+            <Image url="@../images/delete_icon.png"/>
+         </ImageView>
+         <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="30.0" layoutY="5.0" prefHeight="32.0"
+                prefWidth="189.0" style="-fx-wrap-text: true;" text="Delete Period" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="21.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Line endX="969.0" endY="-8.0" layoutX="180.0" layoutY="189.0" startX="-109.0" startY="-10.0" stroke="WHITE"
+            strokeLineCap="ROUND" style="-fx-stroke-width: 4;"/>
+      <Pane layoutX="66.0" layoutY="181.0" prefHeight="160.0" prefWidth="532.0">
+         <Label layoutX="43.0" layoutY="27.0" prefHeight="32.0" prefWidth="221.0" text="Time Elapsed:"
+                textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <Label fx:id="timerLabel" layoutX="383.0" layoutY="25.0" prefHeight="37.0" prefWidth="106.0"
+                text="00:00:00" textFill="#e6bb9a">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <Pane fx:id="timerActionButton" layoutX="43.0" layoutY="77.0" onMouseClicked="#timerActionButtonClicked"
+               onMouseEntered="#timerActionButtonHovered" onMouseExited="#timerActionButtonExited"
+               prefHeight="58.0" prefWidth="173.0"
+               style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Label fx:id="timerActionButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0"
+                   prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Action"
+                   textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
+                  <Font name="Arial Rounded MT Bold" size="22.0"/>
                </font>
             </Label>
-            <Pane fx:id="profilePane" layoutY="106.0" onMouseClicked="#profileClicked" onMouseEntered="#profileHovered" onMouseExited="#profileExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Profile">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/profile_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="marksPane" layoutY="174.0" onMouseClicked="#marksClicked" onMouseEntered="#marksHovered" onMouseExited="#marksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Marks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/marks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutY="242.0" prefHeight="68.0" prefWidth="211.0" style="-fx-background-color: #2B2B2B;">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Time" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/time_icon_selected.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="schedulePane" layoutY="310.0" onMouseClicked="#scheduleClicked" onMouseEntered="#scheduleHovered" onMouseExited="#scheduleExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Schedule">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/schedule_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="tasksPane" layoutY="378.0" onMouseClicked="#tasksClicked" onMouseEntered="#tasksHovered" onMouseExited="#tasksExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Tasks">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/tasks_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="settingsPane" layoutY="446.0" onMouseClicked="#settingsClicked" onMouseEntered="#settingsHovered" onMouseExited="#settingsExited" prefHeight="68.0" prefWidth="211.0" visible="false">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Settings">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/settings_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="aboutPane" layoutY="832.0" onMouseClicked="#aboutClicked" onMouseEntered="#aboutHovered" onMouseExited="#aboutExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="About">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/about_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="signOutPane" layoutY="764.0" onMouseClicked="#signOutClicked" onMouseEntered="#signOutHovered" onMouseExited="#signOutExited" prefHeight="68.0" prefWidth="211.0">
-               <children>
-                  <Label layoutX="72.0" prefHeight="68.0" prefWidth="139.0" text="Sign Out">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="37.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/sign_out_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children></Pane>
-      <Pane layoutX="211.0" prefHeight="900.0" prefWidth="1190.0" style="-fx-background-color: #2B2B2B;">
-         <children>
-            <ImageView fx:id="goBackButton" fitHeight="27.0" fitWidth="27.0" layoutX="1095.0" layoutY="14.0" onMouseClicked="#goBackClicked" onMouseEntered="#goBackHovered" onMouseExited="#goBackExited" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/back_icon.png" />
-               </image>
+            <ImageView fx:id="timerActionButtonImage" layoutX="14.0" layoutY="11.0">
+               <Image url="@../images/timer_icon.png"/>
             </ImageView>
-            <ImageView fx:id="minimizeButton" fitHeight="27.0" fitWidth="27.0" layoutX="1122.0" layoutY="14.0" onMouseClicked="#minimizeClicked" onMouseEntered="#minimizeHovered" onMouseExited="#minimizeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/minimize_icon.png" />
-               </image>
+         </Pane>
+         <Pane fx:id="timerResetButton" layoutX="316.0" layoutY="77.0" onMouseClicked="#timerResetButtonClicked"
+               onMouseEntered="#timerResetButtonHovered" onMouseExited="#timerResetButtonExited" prefHeight="58.0"
+               prefWidth="173.0"
+               style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Label fx:id="timerResetButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0"
+                   prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Reset"
+                   textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="22.0"/>
+               </font>
+            </Label>
+            <ImageView fx:id="timerResetButtonImage" layoutX="14.0" layoutY="11.0">
+               <Image url="@../images/reset_icon.png"/>
             </ImageView>
-            <ImageView fx:id="closeButton" fitHeight="29.0" fitWidth="27.0" layoutX="1149.0" layoutY="14.0" onMouseClicked="#closeClicked" onMouseEntered="#closeHovered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/close_icon.png" />
-               </image>
+         </Pane>
+      </Pane>
+      <Line endX="391.0" endY="-10.0" layoutX="180.0" layoutY="359.0" startX="-109.0" startY="-10.0" stroke="WHITE"
+            strokeLineCap="ROUND" style="-fx-stroke-width: 4;"/>
+      <Label layoutX="71.0" layoutY="362.0" prefHeight="68.0" prefWidth="275.0" style="-fx-wrap-text: true;"
+             text="Minutes left unused for Period:" textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label fx:id="minutesLeftForPeriodField" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="374.0"
+             prefHeight="45.0" prefWidth="145.0" style="-fx-wrap-text: true;" text="59 min" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="432.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;"
+             text="Daily Week Average:" textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label fx:id="dailyAverageField" alignment="CENTER_RIGHT" layoutX="384.0" layoutY="432.0" prefHeight="36.0"
+             prefWidth="173.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="478.0" prefHeight="45.0" prefWidth="492.0" style="-fx-wrap-text: true;"
+             text="Hours spent per Day:" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Pane layoutX="617.0" layoutY="181.0" prefHeight="241.0" prefWidth="532.0">
+         <Label layoutX="37.0" layoutY="29.0" prefHeight="37.0" prefWidth="244.0" text="Time:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="hoursField" layoutX="290.0" layoutY="25.0" prefHeight="45.0" prefWidth="56.0"
+                    style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextField>
+         <Label layoutX="37.0" layoutY="87.0" prefHeight="37.0" prefWidth="228.0" text="Day:" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <ComboBox fx:id="daysComboBox" layoutX="290.0" layoutY="83.0" prefHeight="45.0" prefWidth="201.0"
+                   promptText="Select Day:"
+                   style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;"
+                   styleClass="combo-box-base"/>
+         <Pane fx:id="addMinutesButton" layoutX="37.0" layoutY="141.0" onMouseClicked="#addMinutesButtonClicked"
+               onMouseEntered="#addMinutesButtonHovered" onMouseExited="#addMinutesButtonExited" prefHeight="58.0"
+               prefWidth="173.0"
+               style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Label fx:id="addMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0"
+                   prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Add"
+                   textFill="#e6bb9a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="22.0"/>
+               </font>
+            </Label>
+            <ImageView fx:id="addMinutesButtonImage" layoutX="14.0" layoutY="11.0">
+               <Image url="@../images/add_icon.png"/>
             </ImageView>
-            <Label fx:id="periodNameLabel" layoutX="66.0" layoutY="59.0" prefHeight="33.0" prefWidth="1060.0" text="Full Period Name." textFill="WHITE">
+         </Pane>
+         <Pane fx:id="deleteMinutesButton" layoutX="318.0" layoutY="141.0"
+               onMouseClicked="#deleteMinutesButtonClicked" onMouseEntered="#deleteMinutesButtonHovered"
+               onMouseExited="#deleteMinutesButtonExited" prefHeight="58.0" prefWidth="173.0"
+               style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
+            <Label fx:id="deleteMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0"
+                   prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Remove"
+                   textFill="#e6bb9a">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="35.0" />
+                  <Font name="Arial Rounded MT Bold" size="22.0"/>
                </font>
             </Label>
-            <Label fx:id="weekNameLabel" layoutX="66.0" layoutY="105.0" prefHeight="36.0" prefWidth="154.0" text="Week N:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="weekDateLabel" layoutX="207.0" layoutY="105.0" prefHeight="27.0" prefWidth="320.0" text="2020 Jan 23 - Jan 30 " textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="30.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="goLeftButton" layoutX="554.0" layoutY="103.0" onMouseClicked="#goLeftClicked" onMouseEntered="#goLeftHovered" onMouseExited="#goLeftExited" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/next_element_left.png" />
-               </image>
+            <ImageView fx:id="deleteMinutesButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0"
+                       layoutY="13.0">
+               <Image url="@../images/subtract_icon.png"/>
             </ImageView>
-            <Line endX="-100.0" endY="26.0" layoutX="712.0" layoutY="115.0" startX="-100.0" startY="-10.0" stroke="#e6bb9a" strokeLineCap="ROUND" style="-fx-stroke-width: 3;" />
-            <ImageView fx:id="goRightButton" layoutX="631.0" layoutY="103.0" onMouseClicked="#goRightClicked" onMouseEntered="#goRightHovered" onMouseExited="#goRightExited" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/next_element_right.png" />
-               </image>
-            </ImageView>
-            <Pane fx:id="actionButton" layoutX="888.0" layoutY="102.0" onMouseClicked="#actionButtonClicked" onMouseEntered="#actionButtonHovered" onMouseExited="#actionButtonExited" prefHeight="42.0" prefWidth="221.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-               <children>
-                  <ImageView fx:id="actionButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="5.0">
-                     <image>
-                        <Image url="@../images/delete_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="actionButtonLabel" alignment="CENTER" layoutX="30.0" layoutY="5.0" prefHeight="32.0" prefWidth="189.0" style="-fx-wrap-text: true;" text="Delete Period" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Line endX="969.0" endY="-8.0" layoutX="180.0" layoutY="189.0" startX="-109.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
-            <Pane layoutX="66.0" layoutY="181.0" prefHeight="160.0" prefWidth="532.0">
-               <children>
-                  <Label layoutX="43.0" layoutY="27.0" prefHeight="32.0" prefWidth="221.0" text="Time Elapsed:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="timerLabel" layoutX="383.0" layoutY="25.0" prefHeight="37.0" prefWidth="106.0" text="00:00:00" textFill="#e6bb9a">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <Pane fx:id="timerActionButton" layoutX="43.0" layoutY="77.0" onMouseClicked="#timerActionButtonClicked" onMouseEntered="#timerActionButtonHovered" onMouseExited="#timerActionButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-                     <children>
-                        <Label fx:id="timerActionButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Action" textFill="#e6bb9a">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="timerActionButtonImage" layoutX="14.0" layoutY="11.0">
-                           <image>
-                              <Image url="@../images/timer_icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="timerResetButton" layoutX="316.0" layoutY="77.0" onMouseClicked="#timerResetButtonClicked" onMouseEntered="#timerResetButtonHovered" onMouseExited="#timerResetButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-                     <children>
-                        <Label fx:id="timerResetButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Reset" textFill="#e6bb9a">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="timerResetButtonImage" layoutX="14.0" layoutY="11.0">
-                           <image>
-                              <Image url="@../images/reset_icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-            <Line endX="391.0" endY="-10.0" layoutX="180.0" layoutY="359.0" startX="-109.0" startY="-10.0" stroke="WHITE" strokeLineCap="ROUND" style="-fx-stroke-width: 4;" />
-            <Label layoutX="71.0" layoutY="362.0" prefHeight="68.0" prefWidth="275.0" style="-fx-wrap-text: true;" text="Minutes left unused for Period:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label fx:id="minutesLeftForPeriodField" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="374.0" prefHeight="45.0" prefWidth="145.0" style="-fx-wrap-text: true;" text="59 min" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="71.0" layoutY="432.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Daily Week Average:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label fx:id="dailyAverageField" alignment="CENTER_RIGHT" layoutX="384.0" layoutY="432.0" prefHeight="36.0" prefWidth="173.0" style="-fx-wrap-text: true;" text="5h 20 min" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="71.0" layoutY="478.0" prefHeight="45.0" prefWidth="492.0" style="-fx-wrap-text: true;" text="Hours spent per Day:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Pane layoutX="617.0" layoutY="181.0" prefHeight="241.0" prefWidth="532.0">
-               <children>
-                  <Label layoutX="37.0" layoutY="29.0" prefHeight="37.0" prefWidth="244.0" text="Time:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="hoursField" layoutX="290.0" layoutY="25.0" prefHeight="45.0" prefWidth="56.0" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="37.0" layoutY="87.0" prefHeight="37.0" prefWidth="228.0" text="Day:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="daysComboBox" layoutX="290.0" layoutY="83.0" prefHeight="45.0" prefWidth="201.0" promptText="Select Day:" style="-fx-background-color: none; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="combo-box-base" />
-                  <Pane fx:id="addMinutesButton" layoutX="37.0" layoutY="141.0" onMouseClicked="#addMinutesButtonClicked" onMouseEntered="#addMinutesButtonHovered" onMouseExited="#addMinutesButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-                     <children>
-                        <Label fx:id="addMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Add" textFill="#e6bb9a">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="addMinutesButtonImage" layoutX="14.0" layoutY="11.0">
-                           <image>
-                              <Image url="@../images/add_icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="deleteMinutesButton" layoutX="318.0" layoutY="141.0" onMouseClicked="#deleteMinutesButtonClicked" onMouseEntered="#deleteMinutesButtonHovered" onMouseExited="#deleteMinutesButtonExited" prefHeight="58.0" prefWidth="173.0" style="-fx-border-style: solid; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;">
-                     <children>
-                        <Label fx:id="deleteMinutesButtonLabel" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="42.0" prefWidth="113.0" style="-fx-wrap-text: true;" text="Remove" textFill="#e6bb9a">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="deleteMinutesButtonImage" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="13.0">
-                           <image>
-                              <Image url="@../images/subtract_icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Label fx:id="errorMessage" alignment="CENTER" layoutX="39.0" layoutY="199.0" prefHeight="37.0" prefWidth="455.0" style="-fx-wrap-text: true;" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="352.0" layoutY="36.0" prefHeight="19.0" prefWidth="19.0" text="h" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="minutesField" layoutX="383.0" layoutY="25.0" prefHeight="45.0" prefWidth="56.0" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="446.0" layoutY="33.0" prefHeight="37.0" prefWidth="45.0" text="min" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="25.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Label layoutX="631.0" layoutY="432.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;" text="Week Overall:" textFill="#e6bb9a">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="629.0" layoutY="478.0" prefHeight="45.0" prefWidth="492.0" style="-fx-wrap-text: true;" text="Hours spent per Week during Period:" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label fx:id="weekOverallField" alignment="TOP_RIGHT" layoutX="908.0" layoutY="432.0" prefHeight="36.0" prefWidth="228.0" style="-fx-wrap-text: true;" text="35h" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="22.0" />
-               </font>
-            </Label>
-            <LineChart fx:id="lineChart" layoutX="41.0" layoutY="513.0" prefHeight="385.0" prefWidth="532.0" stylesheets="@../stylesheets/chartStyling.css">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis prefWidth="18.0" side="LEFT" />
-              </yAxis>
-            </LineChart>
-            <Pane fx:id="barChartPane" layoutX="589.0" layoutY="513.0" prefHeight="385.0" prefWidth="573.0">
-               <children>
-                  <BarChart fx:id="barChart" prefHeight="385.0" prefWidth="573.0" stylesheets="@../stylesheets/chartStyling.css">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-               </children>
-            </Pane>
-         </children></Pane>
-   </children>
+         </Pane>
+         <Label fx:id="errorMessage" alignment="CENTER" layoutX="39.0" layoutY="199.0" prefHeight="37.0"
+                prefWidth="455.0" style="-fx-wrap-text: true;" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="18.0"/>
+            </font>
+         </Label>
+         <Label layoutX="352.0" layoutY="36.0" prefHeight="19.0" prefWidth="19.0" text="h" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="minutesField" layoutX="383.0" layoutY="25.0" prefHeight="45.0" prefWidth="56.0"
+                    style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;">
+            <font>
+               <Font name="Arial" size="16.0"/>
+            </font>
+         </TextField>
+         <Label layoutX="446.0" layoutY="33.0" prefHeight="37.0" prefWidth="45.0" text="min" textFill="WHITE">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="25.0"/>
+            </font>
+         </Label>
+      </Pane>
+      <Label layoutX="631.0" layoutY="432.0" prefHeight="36.0" prefWidth="244.0" style="-fx-wrap-text: true;"
+             text="Week Overall:" textFill="#e6bb9a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label layoutX="629.0" layoutY="478.0" prefHeight="45.0" prefWidth="492.0" style="-fx-wrap-text: true;"
+             text="Hours spent per Week during Period:" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <Label fx:id="weekOverallField" alignment="TOP_RIGHT" layoutX="908.0" layoutY="432.0" prefHeight="36.0"
+             prefWidth="228.0" style="-fx-wrap-text: true;" text="35h" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="22.0"/>
+         </font>
+      </Label>
+      <LineChart fx:id="lineChart" layoutX="41.0" layoutY="513.0" prefHeight="385.0" prefWidth="532.0"
+                 stylesheets="@../stylesheets/chartStyling.css">
+         <xAxis>
+            <CategoryAxis side="BOTTOM"/>
+         </xAxis>
+         <yAxis>
+            <NumberAxis prefWidth="18.0" side="LEFT"/>
+         </yAxis>
+      </LineChart>
+      <Pane fx:id="barChartPane" layoutX="589.0" layoutY="513.0" prefHeight="385.0" prefWidth="573.0">
+         <BarChart fx:id="barChart" prefHeight="385.0" prefWidth="573.0"
+                   stylesheets="@../stylesheets/chartStyling.css">
+            <xAxis>
+               <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+               <NumberAxis side="LEFT"/>
+            </yAxis>
+         </BarChart>
+      </Pane>
+   </Pane>
 </AnchorPane>
