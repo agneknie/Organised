@@ -1,6 +1,6 @@
 ![Organised.](OrganisedBanner.png)
 
-#General
+# General
 Organised is an organisation system geared towards university students who feel the
 need to get organised in their university and/or professional life.
 It covers such aspects as mark calculation, productive time tracking, event scheduling
@@ -9,11 +9,11 @@ and task organisation.
 Developed by a university student for university students, Organised aims to be the BFF who helps you with
 productivity and organisation to get the most out of your time.
 
-#Installation
-###Installer:
+# Installation
+### Installer:
 An installer is provided for Windows systems. Download it, install it and use Organised on your Windows machine.
 
-###Source code:
+### Source code:
 - All source code and resources needed are available here on Github. Feel free to tinker Organised to your own
 liking or suggest improvements.
 
@@ -26,16 +26,16 @@ liking or suggest improvements.
 - A jar file is provided as well. Keep in mind that an SQLite JDBC jar file will need to be in the same
   directory as the jar file for Organised to open.
   
-#User Guide
+# User Guide
 Organised  consists of 4 main sections: Marks, Time, Schedule and Tasks. Whilst navigating through the
 system, keep in mind that you might need to complete one section before moving to the other. For example, add
 years and modules in Marks and then move to study period addition in Time.
 
-###Profile.
+### Profile.
 Your statistics. Populate Organised with information and see your profile update based on your progress.
 The banner at the top changes based on the time of day.
   
-###Marks.
+### Marks.
 Add your Years, Modules & Assignments. When you complete your assignments, add your marks to Organised and get 
 grade calculations for each module and each year. Note that:
 - Values in Marks are rounded up, so minimal variation is possible;
@@ -44,13 +44,13 @@ grade calculations for each module and each year. Note that:
 based on university and not be the same in other countries;
 - All Year modules are split evenly between Autumn and Spring semesters.
   
-###Time.
+### Time.
 Add your Periods (such as Year 1 Semester 1, Year 2 Spring Vacation, etc.) and track how much time you
 work during the day. Get statistics about each day and week and compare them amongst themselves or other periods.
 
 Each Period is associated with a Year. A Year can be added in the Marks tab.
 
-###Schedule.
+### Schedule.
 Add Events to your periods and get your schedule Organised. Such events as lectures, which repeat over 
 multiple weeks, can be added as recurring events to save time. Note that:
 - Organised time is UK time (GMT)
@@ -60,7 +60,7 @@ To use this tab, you'll have to have Periods created. You can create a Period in
 Events have to be associated with a module. In case your event is neutral *(e.g. Trip to the beach)* add a module
 for such occasions *(e.g. Free time)* in the Year, which is associated with the Period the Event is to be added to.
   
-###Tasks.
+### Tasks.
 Add Tasks to your periods & weeks and always be Organised with your activities. Tasks which need to be 
 repeated in multiple weeks can be added as recurring tasks-in the same manner as events. Observe your 
 progress and know what needs to be done when.
@@ -73,7 +73,7 @@ such occasions *(e.g. Housework) in the Year, which is associated with the Perio
 Tasks can be Completed, Not Completed or Dropped. A dropped task is a task which was meant to be completed, but has
 been discarded for some reason. A dropped task does not impact the progress bar of tasks completion in any way.
 
-#Technical Brief
+# Technical Brief
 
 ### Behind Organised
 The back-end of Organised is Java whilst the front-end is made with JavaFX. SQLite is used as a local database, to avoid
@@ -96,6 +96,6 @@ warranty of merchantability or fitness for a particular purpose.  See the GNU Ge
 
 Use it for non-commercial purposes as you wish. Organised is not for commercial use in any form.
 
-#Contact
+# Contact
 If you wish to reach out to me regarding Organised, any improvements, ideas, projects, a chat or a cup of coffee
 you can do so at my [LinkedIn](https://www.linkedin.com/in/agne-knietaite/).
