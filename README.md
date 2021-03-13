@@ -10,26 +10,37 @@ Developed by a university student for university students, Organised aims to be 
 productivity and organisation to get the most out of your time.
 
 # Installation
-### Installer:
-An installer is provided for Windows systems. Download it, install it and use Organised on your Windows machine.
+### Installer
+- An [installer](output/OrganisedSetup.exe) is provided for Windows systems. Download it, install it and 
+  use Organised on your Windows machine;
 
-### Source code:
+- By installing Organised you agree with the [license](LICENSE).
+
+### Source code
 - All source code and resources needed are available here on Github. Feel free to tinker Organised to your own
-liking or suggest improvements.
+liking or suggest improvements;
 
-- Keep in mind that you will need to add your own SQLite JDBC to connect with the database of Organised.
+- Keep in mind that you will need to add your own SQLite JDBC to connect with the database of Organised;
 
 - Also, depending on your IDE you might have problems with references to the images & database. Database 
   reference can be modified in [Database.java](src/database/Database.java) and the majority of image links
-  can be modified in the relevant [FXML Files](src/views) and class [ControlScene.java](src/controllers/utilities/ControlScene.java)
+  can be modified in the relevant [FXML Files](src/views) and class [ControlScene.java](src/controllers/utilities/ControlScene.java);
 
-- A jar file is provided as well. Keep in mind that an SQLite JDBC jar file will need to be in the same
+- The main start point of the system is [Main.java](src/Main.java);
+  
+- A [jar file](output/Organised.jar) is provided as well. Keep in mind that an SQLite JDBC jar file will need to be in the same
   directory as the jar file for Organised to open.
   
 # User Guide
 Organised  consists of 4 main sections: Marks, Time, Schedule and Tasks. Whilst navigating through the
 system, keep in mind that you might need to complete one section before moving to the other. For example, add
 years and modules in Marks and then move to study period addition in Time.
+
+### First Launch
+
+Using Organised for the first time you will have to register. The username and the password you use to create an
+account will act as your login details to access Organised. To avoid logging in each time you launch Organised, make
+sure you check the "Keep me logged in." checkbox.
 
 ### Profile
 Your statistics. Populate Organised with information and see your profile update based on your progress.
@@ -53,7 +64,7 @@ Each Period is associated with a Year. A Year can be added in the Marks tab.
 ### Schedule
 Add Events to your periods and get your schedule Organised. Such events as lectures, which repeat over 
 multiple weeks, can be added as recurring events to save time. Note that:
-- Organised time is UK time (GMT)
+- Organised time is UK time (GMT).
 
 To use this tab, you'll have to have Periods created. You can create a Period in Time tab.
 
@@ -74,6 +85,10 @@ Tasks can be Completed, Not Completed or Dropped. A dropped task is a task which
 been discarded for some reason. A dropped task does not impact the progress bar of tasks completion in any way.
 
 # Technical Brief
+
+### Notes
+As of now, the main system window is fixed at 1400 x 900 pixels to preserve the necessary layout.
+There is no way of changing that size (yet!)
 
 ### Behind Organised
 The back-end of Organised is Java whilst the front-end is made with JavaFX. SQLite is used as a local database, to avoid
@@ -97,5 +112,5 @@ warranty of merchantability or fitness for a particular purpose.  See the GNU Ge
 Use it for non-commercial purposes as you wish. Organised is not for commercial use in any form.
 
 # Contact
-If you wish to reach out to me regarding Organised, any improvements, ideas, projects, a chat or a cup of coffee
-you can do so at my [LinkedIn](https://www.linkedin.com/in/agne-knietaite/).
+If you wish to reach out to me regarding Organised, any improvements, ideas, other projects, a chat or a cup of coffee
+you can do so by [LinkedIn](https://www.linkedin.com/in/agne-knietaite/).
