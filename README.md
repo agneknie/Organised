@@ -1,4 +1,4 @@
-![Organised.](OrganisedBanner.png)
+![Organised.](output/OrganisedBanner.png)
 
 # General
 Organised is an organisation system geared towards university students who feel the
@@ -8,6 +8,8 @@ and task organisation.
 
 Developed by a university student for university students, Organised aims to be the BFF who helps you with
 productivity and organisation to get the most out of your time.
+
+A brief introduction of Organised can be found [here](output/OrganisedBrief.pdf).
 
 # Installation
 ### Installer
