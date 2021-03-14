@@ -6,7 +6,7 @@ need to get organised in their university and/or professional life.
 It covers such aspects as mark calculation, productive time tracking, event scheduling
 and task organisation.
 
-Developed by a university student for university students, Organised aims to be the BFF who helps you with
+Developed by a university student for university students, Organised aims to be the friend who helps you with
 productivity and organisation to get the most out of your time.
 
 A brief introduction of Organised can be found [here](output/OrganisedBrief.pdf).
