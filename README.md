@@ -16,7 +16,9 @@ A brief introduction of Organised can be found [here](output/OrganisedBrief.pdf)
 - An [installer](output/OrganisedSetup.exe) is provided for Windows systems. Download it, install it and 
   use Organised on your Windows machine;
 
-- By installing Organised you agree with the [license](LICENSE).
+- By installing Organised you agree with the [license](LICENSE);
+
+- I also recommend reading the [Notes segment](#notes) of the [Technical Brief section](#technical-brief).
 
 ### Source code
 - All source code and resources needed are available here on Github. Feel free to tinker Organised to your own
@@ -89,8 +91,11 @@ been discarded for some reason. A dropped task does not impact the progress bar 
 # Technical Brief
 
 ### Notes
-As of now, the main system window is fixed at 1400 x 900 pixels to preserve the necessary layout.
-There is no way of changing that size (yet!)
+ - As of now, the main system window is fixed at 1400 x 900 pixels to preserve the necessary layout.
+There is no way of changing that size (yet!);
+
+ - Currently, your database file might be saved in your AppData/Local/Temp folder. Be aware, that updating your machine or deleting
+temporary files might remove your data entirely. I recommend backing up the database file in case you accidently delete those files.
 
 ### Behind Organised
 The back-end of Organised is Java whilst the front-end is made with JavaFX. SQLite is used as a local database, to avoid
